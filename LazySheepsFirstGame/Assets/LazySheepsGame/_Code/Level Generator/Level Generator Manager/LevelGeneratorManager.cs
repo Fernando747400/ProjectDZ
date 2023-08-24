@@ -1,18 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
+using com.LazyGames;
 using UnityEngine;
 
-public class LevelGeneratorManager : MonoBehaviour
+public class LevelGeneratorManager : ManagerBase
 {
-    // Start is called before the first frame update
-    void Start()
+
+    #region SerializedFields
+
+    
+
+    #endregion
+
+    #region private variables
+
+    #endregion
+
+    #region public variables
+
+    public static LevelGeneratorManager Instance;
+    
+
+    #endregion
+
+
+    #region Unity Methods
+
+    void Awake()
     {
-        
+        if (Instance == null || Instance != this)
+        {
+            Instance = this;
+        }else if (Instance == this)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        Debug.Log("LevelGeneratorManager Started".SetColor("#CFD93C"));
     }
+
+    #endregion
+
+
+    #region Private Methods
+
+    #endregion
+    
+    #region public Methods
+    
+    #endregion
 }
