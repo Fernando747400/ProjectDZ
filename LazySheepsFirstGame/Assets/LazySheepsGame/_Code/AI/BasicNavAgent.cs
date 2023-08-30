@@ -29,6 +29,7 @@ public class BasicNavAgent : MonoBehaviour
 
   private void BuildNavMesh(bool async)
   {
+    Debug.Log("start build");
     Bounds navmeshBounds = new Bounds(_targetPos, areaSize);
     List<NavMeshBuildMarkup> markups = new List<NavMeshBuildMarkup>();
 
@@ -41,11 +42,11 @@ public class BasicNavAgent : MonoBehaviour
     {
       modifiers = NavMeshModifier.activeModifiers;
     }
-
+      
     for (int  i = 0;  i < modifiers.Count;  i++)
     {
-      if (surface.layerMask != layerMask && modifiers[i].gameObject.layer != layerMask) ;
-      continue;
+      if (surface.layerMask != layerMask && modifiers[i].gameObject.layer != layerMask) 
+        continue;
       markups.Add(new NavMeshBuildMarkup()
       {
         root = modifiers[i].transform,
@@ -54,12 +55,14 @@ public class BasicNavAgent : MonoBehaviour
         ignoreFromBuild = modifiers[i].ignoreFromBuild
       });
     }
-    
+    Debug.Log("end build");
   }
   private void Prepare()
   {
     _navData = new NavMeshData();
     NavMesh.AddNavMeshData(_navData);
+    _targetPos = target.transform.position;
+    
     BuildNavMesh(false);
   }
   
