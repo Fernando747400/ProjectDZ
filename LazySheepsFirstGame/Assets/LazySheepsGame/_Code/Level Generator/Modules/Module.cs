@@ -16,15 +16,17 @@ namespace com.LazyGames
         #region Unity Methods
         void Start()
         {
-            GetSpawnPointsfromContainer();
+            _spawnPoints = new GameObject[containerSpawnPoints.transform.childCount];
+            Debug.Log("SpawnPoints: " + _spawnPoints.Length);
+            // GetSpawnPointsfromContainer();
         }
         #endregion
 
         #region Private Methods
         private void GetSpawnPointsfromContainer()
         {
-            _spawnPoints = new GameObject[containerSpawnPoints.transform.childCount];
-            for (int i = 0; i < containerSpawnPoints.transform.childCount; i++)
+           
+            for (int i = 0; i < _spawnPoints.Length; i++)
             {
                 _spawnPoints[i] = containerSpawnPoints.transform.GetChild(i).gameObject;
             }

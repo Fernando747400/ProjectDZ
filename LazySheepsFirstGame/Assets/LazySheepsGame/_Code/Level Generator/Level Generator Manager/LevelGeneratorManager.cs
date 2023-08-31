@@ -59,7 +59,9 @@ public class LevelGeneratorManager : ManagerBase
     {
         for (int i = 0; i < sizeLevel.x; i++)
         {
-            GameObject spawnedModule = Instantiate(modules[0].gameObject, new Vector3(modules[0].SpawnPoints[0].gameObject.transform.position.x, 0, 0), Quaternion.identity);
+            
+            GameObject spawnedModule = Instantiate(modules[0].gameObject, new Vector3(0, 0, 0), Quaternion.identity);
+            Module module = spawnedModule.GetComponent<Module>();
             spawnedModule.transform.SetParent(centerLevel.transform);
         }
 
