@@ -10,34 +10,54 @@ namespace com.LazyGames
         [SerializeField] private GameObject containerSpawnPoints;
         public ModuleData MyData => moduleData;
         
-        private GameObject[] _spawnPoints;
-        public GameObject[] SpawnPoints => _spawnPoints;
+        private List<GameObject>_spawnPoints = new List<GameObject>();
+        public List<GameObject> SpawnPoints => _spawnPoints;
+        public int SelectedRandomPoint { get; set; }
+
+        #region private variables
+
+        
+
+        #endregion
 
         #region Unity Methods
         void Start()
         {
-            _spawnPoints = new GameObject[containerSpawnPoints.transform.childCount];
-            Debug.Log("SpawnPoints: " + _spawnPoints.Length);
-            // GetSpawnPointsfromContainer();
+            
         }
         #endregion
+        
 
-        #region Private Methods
-        private void GetSpawnPointsfromContainer()
+        #region public Methods
+
+        public void Initialize()
         {
-           
-            for (int i = 0; i < _spawnPoints.Length; i++)
+            for (int i = 0; i < containerSpawnPoints.transform.childCount; i++)
             {
-                _spawnPoints[i] = containerSpawnPoints.transform.GetChild(i).gameObject;
+                _spawnPoints.Add(containerSpawnPoints.transform.GetChild(i).gameObject);
             }
-            Debug.Log("SpawnPoints: " + _spawnPoints.Length);
         }
 
+        public Vector3 GetPositionPivot()
+        {
+            Vector3 positionPivot = _spawnPoints[0].transform.position - transform.position;
+            return positionPivot;
+        }
+        public Vector3 GetRandomPosition()
+        {
+            int randomIndex = Random.Range(0, _spawnPoints.Count);
+            SelectedRandomPoint = randomIndex;
+            
+            Vector3 randomPosition = _spawnPoints[randomIndex].transform.position - transform.position;
+            _spawnPoints.RemoveAt(randomIndex);
+            return randomPosition;
+        }
+        
+      
+        
         
 
         #endregion
-
-        
         
     }
 }

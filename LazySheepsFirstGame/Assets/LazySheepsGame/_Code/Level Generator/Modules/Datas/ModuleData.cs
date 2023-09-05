@@ -23,6 +23,7 @@ namespace com.LazyGames
         Limit,
         Prop,
         Building,
+        Floor
         
     }
 }
