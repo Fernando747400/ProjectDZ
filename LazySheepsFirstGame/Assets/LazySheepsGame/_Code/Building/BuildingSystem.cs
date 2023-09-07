@@ -7,23 +7,15 @@ public class BuildingSystem : MonoBehaviour
 {
 
     [SerializeField] private LayerMask _groundLayerMask;
-    [SerializeField] private GameObject _groundGameObject;
+    [SerializeField] private LayerMask _buildingsLayerMask;
+    [SerializeField] private GameObject _groundGameObjectReference;
 
-    [SerializeField] private BoolEventChannelSO _collisionChannelSO;
+
 
     private bool _canBuild = false;
-    private bool _isColliding = false;
+    private GameObject _currentGameObject;
+    private BuildingCollisionChecker _buildChecker;
 
-    private void OnEnable()
-    {
-        _collisionChannelSO.BoolEvent += UpdateCollision;
-        _groundGameObject = Instantiate(_groundGameObject);
-    }
-
-    private void OnDisable()
-    {
-        _collisionChannelSO.BoolEvent -= UpdateCollision;
-    }
 
     private void Update()
     {
@@ -31,38 +23,36 @@ public class BuildingSystem : MonoBehaviour
 
         Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if(Physics.Raycast(raycast, out RaycastHit hit, 1000, _groundLayerMask)) 
+        if (Physics.Raycast(raycast, out RaycastHit hit, 1000, _groundLayerMask))
         {
-            _groundGameObject.transform.position = hit.point;
-        }
+            Vector3 objectSize = _currentGameObject.GetComponent<Renderer>().bounds.size;
 
-        if(Input.GetMouseButtonDown(0))
-        {
-            if (_isColliding) return;
-            GameObject go = Instantiate(_groundGameObject, hit.point, Quaternion.identity);
-            go.GetComponent<BuildingCollisionChecker>().Destroy();
-        } else if (Input.GetMouseButtonUp(1)) {
-            _canBuild = false;
-            _groundGameObject.SetActive(false);
+            Vector3 newPosition = hit.point + Vector3.up * (objectSize.y / 2);
+
+            _currentGameObject.transform.position = newPosition;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (_buildChecker.IsColliding) return;
+                GameObject go = Instantiate(_groundGameObjectReference, newPosition, Quaternion.identity);
+            }
+            else if (Input.GetMouseButtonUp(1))
+            {
+                _canBuild = false;
+                _currentGameObject.SetActive(false);
+                Destroy(_currentGameObject);
+            }
         }
     }
+
     public void StartBuilding()
     {
         _canBuild = true;
-        _groundGameObject.SetActive(true);
-        AddCollisionChecker(_groundGameObject);
-    }
-
-    private void UpdateCollision(bool onCollision)
-    {
-        _isColliding = onCollision;
-        UpdateColor(onCollision);
-    }
-
-    private void UpdateColor(bool onCollision)
-    {
-        if (onCollision) _groundGameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-        if (!onCollision) _groundGameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+        if (_currentGameObject == null) _currentGameObject = Instantiate(_groundGameObjectReference);
+        _currentGameObject.SetActive(true);
+        if (_buildChecker == null) AddCollisionChecker(_currentGameObject);
+        _buildChecker = _currentGameObject.GetComponent<BuildingCollisionChecker>();
+        _buildChecker.BuildingsLayerMask= _buildingsLayerMask;
     }
 
     private void AddCollisionChecker(GameObject gameObject)
@@ -70,7 +60,6 @@ public class BuildingSystem : MonoBehaviour
         if(gameObject.GetComponent<BuildingCollisionChecker>() == null) 
         {
             gameObject.AddComponent<BuildingCollisionChecker>();
-            gameObject.GetComponent<BuildingCollisionChecker>().CollisionChannelSO = _collisionChannelSO;
         }
     }
 
