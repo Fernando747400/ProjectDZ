@@ -1,70 +1,30 @@
-// Creado Raymundo Mosqueda 24/08/23
+// Creado Raymundo Mosqueda 07/09/23
+using System;
 using System.Collections.Generic;
-using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class BasicNavAgent : MonoBehaviour
 {
-  [SerializeField] private NavMeshSurface surface;
-  [SerializeField] private Vector3 areaSize = new Vector3(20,20,20);
-  [SerializeField] private GameObject target;
-  [SerializeField]private LayerMask layerMask;
+    [SerializeField] private GameObject target;
+    private NavMeshAgent _agent;
 
-  private Vector3 _targetPos;
-  private Vector3 _lastAreaPosition;
-  private NavMeshData _navData;
-  private List<NavMeshBuildSource> _buildSources;
-    
-
-  private void Start()
-  {
-    Prepare();
-  }
-
-  private void OnBuild()
-  {
-    BuildNavMesh(false);
-  }
-
-  private void BuildNavMesh(bool async)
-  {
-    Debug.Log("start build");
-    Bounds navmeshBounds = new Bounds(_targetPos, areaSize);
-    List<NavMeshBuildMarkup> markups = new List<NavMeshBuildMarkup>();
-
-    List<NavMeshModifier> modifiers;
-    if (surface.collectObjects == CollectObjects.Children)
+    private void Start()
     {
-      modifiers = new List<NavMeshModifier>(surface.GetComponentsInChildren<NavMeshModifier>());
+        Prepare();
+
     }
-    else
+
+    private void Update()
     {
-      modifiers = NavMeshModifier.activeModifiers;
+        _agent.destination = target.transform.position;
+
     }
-      
-    for (int  i = 0;  i < modifiers.Count;  i++)
+
+    private void Prepare()
     {
-      if (surface.layerMask != layerMask && modifiers[i].gameObject.layer != layerMask) 
-        continue;
-      markups.Add(new NavMeshBuildMarkup()
-      {
-        root = modifiers[i].transform,
-        overrideArea = modifiers[i].overrideArea,
-        area = modifiers[i].area,
-        ignoreFromBuild = modifiers[i].ignoreFromBuild
-      });
+        _agent = GetComponent<NavMeshAgent>();
+        
     }
-    Debug.Log("end build");
-  }
-  private void Prepare()
-  {
-    _navData = new NavMeshData();
-    NavMesh.AddNavMeshData(_navData);
-    _targetPos = target.transform.position;
-    
-    BuildNavMesh(false);
-  }
-  
-  
+
 }
