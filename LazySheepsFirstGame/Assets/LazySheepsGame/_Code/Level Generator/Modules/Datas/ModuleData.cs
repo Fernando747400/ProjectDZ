@@ -20,10 +20,8 @@ namespace com.LazyGames
     public enum ModuleType
     {
         None,
-        Limit,
-        Prop,
-        Building,
-        Floor
+        Room,
+        Corridor
         
     }
 }

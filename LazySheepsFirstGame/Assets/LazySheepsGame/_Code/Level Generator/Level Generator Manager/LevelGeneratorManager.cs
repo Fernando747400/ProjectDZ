@@ -15,7 +15,6 @@ public class LevelGeneratorManager : ManagerBase
     [SerializeField] private List<Module> modules;
     
     [Header("Level Settings")]
-    [SerializeField] private int sizeLevel;
     [SerializeField] GameObject centerLevel;
     [SerializeField] private int selectedModule;
 
@@ -60,18 +59,18 @@ public class LevelGeneratorManager : ManagerBase
 
     public void GenerateLevel()
     {
-        DeleteCurrentLevel();
-        for (int i = 0; i < sizeLevel; i++)
-        {
-            GameObject spawnedModule = Instantiate(modules[selectedModule].gameObject, new Vector3(0,0,0), Quaternion.identity);
-            Module module = spawnedModule.GetComponent<Module>();
-            module.Initialize();
-            spawnedModule.transform.SetParent(centerLevel.transform);
-            _modulesSpawned.Add(spawnedModule);
-            RepositionModule(module);
-            
-            
-        }
+        // DeleteCurrentLevel();
+        // for (int i = 0; i < sizeLevel; i++)
+        // {
+        //     GameObject spawnedModule = Instantiate(modules[selectedModule].gameObject, new Vector3(0,0,0), Quaternion.identity);
+        //     Module module = spawnedModule.GetComponent<Module>();
+        //     module.Initialize();
+        //     spawnedModule.transform.SetParent(centerLevel.transform);
+        //     _modulesSpawned.Add(spawnedModule);
+        //     RepositionModule(module);
+        //     
+        //     
+        // }
         
     }
 
@@ -88,17 +87,18 @@ public class LevelGeneratorManager : ManagerBase
     
     private void RepositionModule(Module module)
     {
-      
-        if(_modulesSpawned.Count == 0)
-        {
-            module.transform.position = centerLevel.transform.position;
-            return;
-        }
-        
-        Vector3 positionPivot = module.GetPositionPivot();
-        Module previousModule = _modulesSpawned[_modulesSpawned.Count - 1].GetComponent<Module>();
-        Vector3 previousConnectionPoint = previousModule.GetRandomPosition();
-        module.transform.position = previousConnectionPoint - positionPivot;
+        //
+        // if(_modulesSpawned.Count == 0)
+        // {
+        //     module.transform.position = centerLevel.transform.position;
+        //     return;
+        // }
+        //
+        // Vector3 positionPivot = module.GetPositionPivot();
+        // Module previousModule = _modulesSpawned[_modulesSpawned.Count - 1].GetComponent<Module>();
+        // Vector3 previousConnectionPoint = previousModule.GetRandomPosition();
+        // Debug.Log("Previous Connection Point: ".SetColor("") + previousConnectionPoint);
+        // module.transform.position = previousConnectionPoint - positionPivot;
         
     }
     
