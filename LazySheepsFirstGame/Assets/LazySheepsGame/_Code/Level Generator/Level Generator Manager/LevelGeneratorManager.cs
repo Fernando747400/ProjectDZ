@@ -59,7 +59,10 @@ public class LevelGeneratorManager : ManagerBase
 
     public void GenerateLevel()
     {
-        // DeleteCurrentLevel();
+        DeleteCurrentLevel();
+        GameObject spawnedModule = Instantiate(modules[selectedModule].gameObject, new Vector3(0,0,0), Quaternion.identity);
+        
+        
         // for (int i = 0; i < sizeLevel; i++)
         // {
         //     GameObject spawnedModule = Instantiate(modules[selectedModule].gameObject, new Vector3(0,0,0), Quaternion.identity);
