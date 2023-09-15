@@ -15,13 +15,15 @@ public class LevelGeneratorManager : ManagerBase
     [SerializeField] private List<Module> modules;
     
     [Header("Level Settings")]
+    [SerializeField] private int roomsCount;
+    [SerializeField] private int corridorsCount;
     [SerializeField] GameObject centerLevel;
-    [SerializeField] private int selectedModule;
 
     #endregion
 
     #region private variables
-    private List<GameObject> _modulesSpawned = new List<GameObject>();
+    private List<GameObject> _spawnedRooms = new List<GameObject>();
+    private List<GameObject> _spawnedCorridors = new List<GameObject>();
 
     #endregion
 
@@ -55,26 +57,27 @@ public class LevelGeneratorManager : ManagerBase
     #endregion
 
 
-    #region Private Methods
+    #region Public Methods
 
     public void GenerateLevel()
     {
         DeleteCurrentLevel();
-        GameObject spawnedModule = Instantiate(modules[selectedModule].gameObject, new Vector3(0,0,0), Quaternion.identity);
+
+        for (int i = 0; i < roomsCount; i++)
+        {
+            GameObject spawnedModule = Instantiate(modules[0].gameObject, centerLevel.transform.position, Quaternion.identity);
+            spawnedModule.transform.SetParent(centerLevel.transform);
+            _spawnedRooms.Add(spawnedModule);
+        }
         
+        for (int i = 0; i < corridorsCount; i++)
+        {
+            GameObject spawnedModule = Instantiate(modules[1].gameObject, centerLevel.transform.position, Quaternion.identity);
+            spawnedModule.transform.SetParent(centerLevel.transform);
+            _spawnedCorridors.Add(spawnedModule);
+        }
         
-        // for (int i = 0; i < sizeLevel; i++)
-        // {
-        //     GameObject spawnedModule = Instantiate(modules[selectedModule].gameObject, new Vector3(0,0,0), Quaternion.identity);
-        //     Module module = spawnedModule.GetComponent<Module>();
-        //     module.Initialize();
-        //     spawnedModule.transform.SetParent(centerLevel.transform);
-        //     _modulesSpawned.Add(spawnedModule);
-        //     RepositionModule(module);
-        //     
-        //     
-        // }
-        
+        RepositionModules();
     }
 
     public void DeleteCurrentLevel()
@@ -88,30 +91,20 @@ public class LevelGeneratorManager : ManagerBase
         
     }
     
-    private void RepositionModule(Module module)
+    #endregion
+
+    #region private Methods
+
+    private void RepositionModules()
     {
-        //
-        // if(_modulesSpawned.Count == 0)
-        // {
-        //     module.transform.position = centerLevel.transform.position;
-        //     return;
-        // }
-        //
-        // Vector3 positionPivot = module.GetPositionPivot();
-        // Module previousModule = _modulesSpawned[_modulesSpawned.Count - 1].GetComponent<Module>();
-        // Vector3 previousConnectionPoint = previousModule.GetRandomPosition();
-        // Debug.Log("Previous Connection Point: ".SetColor("") + previousConnectionPoint);
-        // module.transform.position = previousConnectionPoint - positionPivot;
-        
+      
+       
     }
     
-   
+  
     
     #endregion
-    
-    #region public Methods
-    
-    #endregion
+
 }
 
 #if UNITY_EDITOR_WIN

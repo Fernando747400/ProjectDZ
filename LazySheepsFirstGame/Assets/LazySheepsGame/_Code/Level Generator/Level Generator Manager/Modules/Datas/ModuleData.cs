@@ -7,12 +7,12 @@ namespace com.LazyGames
     [CreateAssetMenu(fileName = "ModuleData", menuName = "LazySheeps/Level Generation", order = 1)]
     public class ModuleData : ScriptableObject
     {
-        [SerializeField] GameObject modulePrefab;
-        [SerializeField] Vector2 moduleSize;
-        [SerializeField] int connectionPoints;
+        [SerializeField] private string id;
         [SerializeField] ModuleType moduleType;
         
-        public int ConnectionPoints => connectionPoints;
+        public ModuleType ModuleType => moduleType;
+        public string MyId => id;
+        
 
 
     }
