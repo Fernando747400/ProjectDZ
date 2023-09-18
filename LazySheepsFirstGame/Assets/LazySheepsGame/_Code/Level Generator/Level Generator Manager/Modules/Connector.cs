@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ namespace com.LazyGames
     public class Connector : MonoBehaviour
     { 
         [SerializeField] private ModuleDirection moduleDirection;
+        [SerializeField] private MeshRenderer meshRenderer;
+        [SerializeField] private Material[] materials;
         
         private bool _isConnected;
         
@@ -22,24 +25,32 @@ namespace com.LazyGames
           
         }
         
-        private MeshRenderer meshRenderer;
         
-        private void Awake()
+        private void Start()
         {
-            meshRenderer = GetComponent<MeshRenderer>();
-            Connect(false);
+            if (meshRenderer == null)
+            {
+                meshRenderer = GetComponent<MeshRenderer>();
+            }
+            
         }
-        
-        
+
+        private void OnEnable()
+        {
+            _isConnected = false;
+        }
+
         private void Connect(bool value)
         {
             if (value)
             {
-                meshRenderer.material.color = Color.green;
+                //Green Material
+                meshRenderer.material = materials[0];
             }
             else
             {
-                meshRenderer.material.color = Color.red;
+                //Red Material
+                meshRenderer.material = materials[1];
             }
             
         }

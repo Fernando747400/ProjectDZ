@@ -9,7 +9,6 @@ namespace com.LazyGames
         #region SerializedFields
         [SerializeField] private ModuleData moduleData;
         [SerializeField] private Connector[] connectors;
-        [SerializeField] private string connectionsIDs;
         
         #endregion
 
@@ -34,35 +33,45 @@ namespace com.LazyGames
 
         #region public Methods
         
-        public void RepositionModule(Connector moduleToConnect)
+        public void RepositionModule(Module moduleToConnect)
         {
-            Connector myConnector = GetConnector();
-            if (myConnector.ModuleDirection != moduleToConnect.ModuleDirection)
+            Connector otherConnector = moduleToConnect.GetConnector();
+            Connector myConnector = GetConnector(otherConnector.ModuleDirection);
+            
+            Debug.Log("Re positioning Module Type = ".SetColor("#F37817") + moduleData.ModuleType);
+            if (myConnector.ModuleDirection != otherConnector.ModuleDirection)
             {
-                Vector3 positionOffset = moduleToConnect.transform.position - myConnector.transform.position;
+                Debug.Log("Direction previous connector = ".SetColor("#F37817") + otherConnector.ModuleDirection + " = "+ myConnector.ModuleDirection);
+
+                Vector3 positionOffset = otherConnector.transform.position - myConnector.transform.position;
                 transform.position += positionOffset;
                 myConnector.IsConnected = true;
+                otherConnector.IsConnected = true;
             }
             
         }
-        
         #endregion
         
         
         #region private Methods
 
-        private Connector GetConnector()
+        public Connector GetConnector(ModuleDirection oppositeDirection = ModuleDirection.None)
         {
+            if(oppositeDirection == ModuleDirection.None)
+                return connectors[Random.Range(0, connectors.Length)];
+            
             foreach (var connector in connectors)
             {
-                if (!connector.IsConnected)
+                if (connector.ModuleDirection != oppositeDirection)
                 {
                     return connector;
                 }
             }
-
+            
             return null;
         }
+        
+      
         #endregion
     }
 }

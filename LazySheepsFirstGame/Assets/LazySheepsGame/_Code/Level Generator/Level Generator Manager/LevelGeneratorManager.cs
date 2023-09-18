@@ -22,8 +22,7 @@ public class LevelGeneratorManager : ManagerBase
     #endregion
 
     #region private variables
-    private List<GameObject> _spawnedRooms = new List<GameObject>();
-    private List<GameObject> _spawnedCorridors = new List<GameObject>();
+    private List<GameObject> _spawnedMoudles = new List<GameObject>();
 
     #endregion
 
@@ -65,18 +64,22 @@ public class LevelGeneratorManager : ManagerBase
 
         for (int i = 0; i < roomsCount; i++)
         {
-            GameObject spawnedModule = Instantiate(modules[0].gameObject, centerLevel.transform.position, Quaternion.identity);
+            GameObject spawnedModule = null;
+            Module module = GetModuleType(ModuleType.Room);
+            spawnedModule = Instantiate(module.gameObject, centerLevel.transform.position, Quaternion.identity);
             spawnedModule.transform.SetParent(centerLevel.transform);
-            _spawnedRooms.Add(spawnedModule);
+            _spawnedMoudles.Add(spawnedModule);
         }
-        
+
         for (int i = 0; i < corridorsCount; i++)
         {
-            GameObject spawnedModule = Instantiate(modules[1].gameObject, centerLevel.transform.position, Quaternion.identity);
+            GameObject spawnedModule = null;
+            Module module = GetModuleType(ModuleType.Corridor);
+            spawnedModule = Instantiate(module.gameObject, centerLevel.transform.position, Quaternion.identity);
             spawnedModule.transform.SetParent(centerLevel.transform);
-            _spawnedCorridors.Add(spawnedModule);
+            _spawnedMoudles.Add(spawnedModule);
         }
-        
+
         RepositionModules();
     }
 
@@ -88,7 +91,7 @@ public class LevelGeneratorManager : ManagerBase
         {
            DestroyImmediate(module);
         }
-        
+        _spawnedMoudles.Clear();
     }
     
     #endregion
@@ -97,13 +100,49 @@ public class LevelGeneratorManager : ManagerBase
 
     private void RepositionModules()
     {
-      
+      foreach (var module in _spawnedMoudles)
+      {
+          if (module == _spawnedMoudles[0])
+          {
+              Debug.Log("First Module".SetColor("#CFD93C"));
+              continue;
+          }
+          Module moduleComponent = module.GetComponent<Module>();
+          moduleComponent.RepositionModule(GetPreviousModule(_spawnedMoudles));
+          
+      }
        
     }
     
-  
+    private Module GetPreviousModule(List<GameObject> _spawnedMoudles)
+    {
+        foreach (var module in _spawnedMoudles)
+        {
+            Debug.Log("Previous Module Connector type ".SetColor("#1F43EB") + module.GetComponent<Module>().MyData.ModuleType);
+            return module.GetComponent<Module>();
+
+        }
+
+        return null;
+    }
+    
+    private Module GetModuleType(ModuleType moduleType)
+    {
+        foreach (var module in modules)
+        {
+            if (module.MyData.ModuleType == moduleType)
+            {
+                return module;
+            }
+        }
+
+        return null;
+    }
     
     #endregion
+    
+    
+    
 
 }
 

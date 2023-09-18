@@ -187,6 +187,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136a0c4d75903284a9441f4217aceacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moduleDirection: 1
+  meshRenderer: {fileID: 5834790630462355921}
+  materials:
+  - {fileID: 2100000, guid: 0ea12dfa7f9e74342b3e7fc71fc1c4fb, type: 2}
+  - {fileID: 2100000, guid: c239141a955cb0346a28567d3ce3017a, type: 2}
 --- !u!1 &613514746333425415
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,6 +319,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136a0c4d75903284a9441f4217aceacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moduleDirection: 2
+  meshRenderer: {fileID: 6641779292453523590}
+  materials:
+  - {fileID: 2100000, guid: 0ea12dfa7f9e74342b3e7fc71fc1c4fb, type: 2}
+  - {fileID: 2100000, guid: c239141a955cb0346a28567d3ce3017a, type: 2}
 --- !u!1 &2702503544562541009
 GameObject:
   m_ObjectHideFlags: 0
