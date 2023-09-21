@@ -17,8 +17,13 @@ public class BasicNavAgent : MonoBehaviour
 
     private void Update()
     {
+        if (!_agent.isOnNavMesh) return;
         _agent.destination = target.transform.position;
+    }
 
+    private void OnGeometryChanged()
+    {
+        
     }
 
     private void Prepare()
