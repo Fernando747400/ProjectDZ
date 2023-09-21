@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using com.LazyGames;
 using Lean.Pool;
+using UnityEditor;
 
 public class EnemyCoreController : MonoBehaviour
 {
@@ -27,8 +28,7 @@ public class EnemyCoreController : MonoBehaviour
 
     void Start()
     {
-        _currentHealth = enemyCoreData.MaxHealth;
-        SpawnEnemyWave();
+       
     }
 
     void Update()
@@ -40,14 +40,22 @@ public class EnemyCoreController : MonoBehaviour
 
     #region private methods
 
-
-
-    private void ReceiveDamage(int damage)
+    public void Initialized()
     {
+        _currentHealth = enemyCoreData.MaxHealth;
+        Debug.Log("Init Health = ".SetColor("#F37817") + _currentHealth);
+        SpawnEnemyWave();
+    }
+    public void ReceiveDamage(int damage)
+    {
+        if(_currentHealth <= 0) return;
         _currentHealth -= damage;
+        
+        Debug.Log("Receive damage Current Health = ".SetColor("#F73B46") + _currentHealth);
         if (_currentHealth <= 0)
         {
             Debug.Log("Enemy Core Destroyed");
+            
         }
     }
 
@@ -61,6 +69,25 @@ public class EnemyCoreController : MonoBehaviour
 #endregion
 
 }
+#if UNITY_EDITOR_WIN
 
-
-
+[CustomEditor(typeof(EnemyCoreController))]
+public class EnemyCoreControllerEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+        EnemyCoreController enemyCoreController = (EnemyCoreController) target;
+        if (GUILayout.Button("Initialize Core"))
+        {
+            enemyCoreController.Initialized();
+        }
+        
+        if (GUILayout.Button("Receive Damage"))
+        {
+            
+            enemyCoreController.ReceiveDamage(100);
+        }
+    }
+}
+#endif
