@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3374afd9551bca146ab2c7f06e8911d2, type: 3}
   m_Name: EnemyCoreData
   m_EditorClassIdentifier: 
-  health: 1000
+  maxHealth: 1000
   enemyPerWave: 10
   spawnDelay: 0.5
   waveDelay: 5
+  enemyPrefab: {fileID: 8803804436613043091, guid: 22a77ab47b9c7ac45829e04870221355, type: 3}
