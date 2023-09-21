@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace com.LazyGames.Dio
+namespace com.LazyGames.DZ
 { //All code MUST be contained under namespace for our studio and our proyect 
 
     public class Example : MonoBehaviour //PascalCaseForClassNames
