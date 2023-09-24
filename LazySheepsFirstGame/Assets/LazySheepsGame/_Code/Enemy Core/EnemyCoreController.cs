@@ -5,70 +5,100 @@ using com.LazyGames;
 using Lean.Pool;
 using UnityEditor;
 
-public class EnemyCoreController : MonoBehaviour
+namespace com.LazyGames
 {
-    #region Serialized Fields
-
-    [SerializeField] private EnemyCoreData enemyCoreData;
-    [SerializeField] private Transform[] spawnPoints;
-
-    #endregion
-
-    #region private variables
-
-    private int _currentHealth;
-
-
-
-    #endregion
-
-    #region unity methods
-
-
-
-    void Start()
+    public class EnemyCoreController : MonoBehaviour
     {
-       
-    }
+        #region Serialized Fields
 
-    void Update()
-    {
-
-    }
-
-    #endregion
-
-    #region private methods
-
-    public void Initialized()
-    {
-        _currentHealth = enemyCoreData.MaxHealth;
-        Debug.Log("Init Health = ".SetColor("#F37817") + _currentHealth);
-        SpawnEnemyWave();
-    }
-    public void ReceiveDamage(int damage)
-    {
-        if(_currentHealth <= 0) return;
-        _currentHealth -= damage;
+        [Header("Enemy Core")]
+        [SerializeField] private EnemyCoreData enemyCoreData;
+        [SerializeField] private Transform[] spawnPoints;
         
-        Debug.Log("Receive damage Current Health = ".SetColor("#F73B46") + _currentHealth);
-        if (_currentHealth <= 0)
+        TimersBase _lifeTimer;
+        TimersBase _waveTimer;
+        
+        
+
+        #endregion
+
+        #region private variables
+
+        private int _currentHealth;
+
+        #endregion
+
+        #region unity methods
+
+        void Start()
         {
-            Debug.Log("Enemy Core Destroyed");
+           Initialized();
+        }
+        
+        #endregion
+
+        #region public methods
+
+        public void Initialized()
+        {
+            _currentHealth = enemyCoreData.MaxHealth;
+            SetTimers();
+            
             
         }
-    }
-
-    private void SpawnEnemyWave()
-    {
-        var enemy = LeanPool.Spawn(enemyCoreData.EnemyPrefab);
-        enemy.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
+        public void ReceiveDamage(int damage)
+        {
+            if(_currentHealth <= 0) return;
+            _currentHealth -= damage;
+            
+            Debug.Log("Receive damage Current Health = ".SetColor("#F73B46") + _currentHealth);
+            if (_currentHealth <= 0)
+            {
+                Debug.Log("Enemy Core Destroyed");
+            }
+        }
         
+        #endregion
+
+        #region private methods
+
+        private void SetTimers()
+        {
+            Debug.Log("Set Timers");
+            //Life Timer
+            _lifeTimer = gameObject.AddComponent<TimersBase>();
+            _lifeTimer.OnTimerEnd += () =>
+            {
+                Debug.Log("Life Timer End");
+            };
+            _lifeTimer.StartTimer(enemyCoreData.TimerLifeCoreSec, "Life Timer");
+            
+            //Wave Delay Timer
+            _waveTimer = gameObject.AddComponent<TimersBase>();
+            _waveTimer.OnTimerEnd += () =>
+            {
+                Debug.Log("Wave Delay Timer End");
+                SpawnEnemyWave();
+                _waveTimer.StartTimer(enemyCoreData.EnemySpawnDelay, "Enemy Spawn Delay Timer");
+            };
+            
+        }
+        private void SpawnEnemyWave()
+        {
+            var enemy = LeanPool.Spawn(enemyCoreData.EnemyPrefab);
+            enemy.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
+        }
+        
+        private void StartCountDown()
+        {
+            
+        }
+        
+        #endregion
+
     }
-
-#endregion
-
 }
+
 #if UNITY_EDITOR_WIN
 
 [CustomEditor(typeof(EnemyCoreController))]
