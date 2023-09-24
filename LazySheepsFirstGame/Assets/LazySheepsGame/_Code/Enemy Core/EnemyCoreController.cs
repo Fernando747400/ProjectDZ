@@ -14,12 +14,12 @@ namespace com.LazyGames
         [Header("Enemy Core")]
         [SerializeField] private EnemyCoreData enemyCoreData;
         [SerializeField] private Transform[] spawnPoints;
+        [Header("UI")]
+        [SerializeField] private EnemyCoreUI enemyCoreUI;
         
-        TimersBase _lifeTimer;
-        TimersBase _waveTimer;
+        TimerBase _lifeTimer;
+        TimerBase _waveTimer;
         
-        
-
         #endregion
 
         #region private variables
@@ -45,6 +45,7 @@ namespace com.LazyGames
             SetTimers();
             
             
+            
         }
         public void ReceiveDamage(int damage)
         {
@@ -64,24 +65,28 @@ namespace com.LazyGames
 
         private void SetTimers()
         {
-            Debug.Log("Set Timers");
             //Life Timer
-            _lifeTimer = gameObject.AddComponent<TimersBase>();
+            _lifeTimer = gameObject.AddComponent<TimerBase>();
             _lifeTimer.OnTimerEnd += () =>
             {
                 Debug.Log("Life Timer End");
             };
-            _lifeTimer.StartTimer(enemyCoreData.TimerLifeCoreSec, "Life Timer");
-            
-            //Wave Delay Timer
-            _waveTimer = gameObject.AddComponent<TimersBase>();
-            _waveTimer.OnTimerEnd += () =>
+            _lifeTimer.OnTimerUpdate += (time) =>
             {
-                Debug.Log("Wave Delay Timer End");
-                SpawnEnemyWave();
-                _waveTimer.StartTimer(enemyCoreData.EnemySpawnDelay, "Enemy Spawn Delay Timer");
+                enemyCoreUI.SetLifeTimeSlider(time);
             };
+            _lifeTimer.StartTimer(enemyCoreData.TimerLifeCoreSec,true,0.5f);
             
+            
+            // //Wave Delay Timer
+            // _waveTimer = gameObject.AddComponent<TimerBase>();
+            // _waveTimer.OnTimerEnd += () =>
+            // {
+            //     Debug.Log("Wave Delay Timer End");
+            //     SpawnEnemyWave();
+            //     _waveTimer.StartTimer(enemyCoreData.EnemySpawnDelay, "Enemy Spawn Delay Timer");
+            // };
+            //
         }
         private void SpawnEnemyWave()
         {
