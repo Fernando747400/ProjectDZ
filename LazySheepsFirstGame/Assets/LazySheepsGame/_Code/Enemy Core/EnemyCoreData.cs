@@ -9,8 +9,8 @@ namespace com.LazyGames
     public class EnemyCoreData : ScriptableObject
     {
         #region Serialized Fields
-        [Header("Health")]
-        [SerializeField] private int maxHealth = 1000;
+        // [Header("Health")]
+        // [SerializeField] private int maxHealth = 1000;
         [Header("Enemy Wave")]
         [SerializeField] private int enemyPerWave = 10;
         [SerializeField] private GameObject enemyPrefab;
@@ -29,7 +29,7 @@ namespace com.LazyGames
         public float WaveDelay => waveDelay;
         public int EnemyPerWave => enemyPerWave;
         public float EnemySpawnDelay => enemySpawnDelay;
-        public int MaxHealth => maxHealth;
+        // public int MaxHealth => maxHealth;
         public float TimerLifeCoreSec => timerLifeCoreSec;
         #endregion
     }

@@ -13,9 +13,16 @@ namespace com.LazyGames
 
         [Header("Enemy Core")]
         [SerializeField] private EnemyCoreData enemyCoreData;
+        [SerializeField] private EnemyCoreState enemyCoreState = EnemyCoreState.None;
+        [SerializeField] private Collider enemyCoreCollider;
+        [SerializeField] private GameObject coreVisual;
         [SerializeField] private Transform[] spawnPoints;
+        
         [Header("UI")]
         [SerializeField] private EnemyCoreUI enemyCoreUI;
+        
+        [Header("Deactivator")]
+        [SerializeField] private DeactivatorCore deactivatorCore;
         
         TimerBase _lifeTimer;
         TimerBase _waveTimer;
@@ -24,44 +31,65 @@ namespace com.LazyGames
 
         #region private variables
 
-        private int _currentHealth;
-
+        private EnemyCoreState EnemyCoreState
+        {
+            get => enemyCoreState;
+            set
+            {
+                enemyCoreState = value;
+                CheckEnemyCoreState();
+            }
+        }
+        
         #endregion
 
         #region unity methods
 
-        void Start()
+        private void Start()
         {
            Initialized();
+        }
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.GetComponent<DeactivatorCore>())
+            {
+                deactivatorCore = other.GetComponent<DeactivatorCore>();
+                
+                Debug.Log("Deactivator Core Enter Enemy Core".SetColor("#FE0D4F"));
+                deactivatorCore.OnDeactivatorHealthChanged += (health) =>
+                {
+                    enemyCoreUI.UpdateDeactivatorLifeText(health);
+                };
+                deactivatorCore.OnDeactivatorDestroyed += () =>
+                {
+                    _lifeTimer.PauseTimer();
+                    _waveTimer.PauseTimer();
+                };
+                SetTimers();
+                if(_waveTimer != null) 
+                
+                enemyCoreCollider.enabled = false;
+            }
+            
         }
         
         #endregion
 
         #region public methods
 
-        public void Initialized()
-        {
-            _currentHealth = enemyCoreData.MaxHealth;
-            SetTimers();
-            
-            
-            
-        }
-        public void ReceiveDamage(int damage)
-        {
-            if(_currentHealth <= 0) return;
-            _currentHealth -= damage;
-            
-            Debug.Log("Receive damage Current Health = ".SetColor("#F73B46") + _currentHealth);
-            if (_currentHealth <= 0)
-            {
-                Debug.Log("Enemy Core Destroyed");
-            }
-        }
+       
+      
         
         #endregion
 
         #region private methods
+        private void Initialized()
+        {
+            EnemyCoreState = EnemyCoreState.Idle;
+            enemyCoreUI.SetMaxValue(enemyCoreData.TimerLifeCoreSec);
+            // SetTimers();
+        }
 
         private void SetTimers()
         {
@@ -69,24 +97,31 @@ namespace com.LazyGames
             _lifeTimer = gameObject.AddComponent<TimerBase>();
             _lifeTimer.OnTimerEnd += () =>
             {
-                Debug.Log("Life Timer End");
+                if (deactivatorCore != null && deactivatorCore.CurrentHealth > 0)
+                {
+                    _lifeTimer.PauseTimer();
+                    DestroyEnemyCore();
+                }
             };
             _lifeTimer.OnTimerUpdate += (time) =>
             {
-                enemyCoreUI.SetLifeTimeSlider(time);
+                enemyCoreUI.UpdateLifeTime(time);
             };
-            _lifeTimer.StartTimer(enemyCoreData.TimerLifeCoreSec,true,0.5f);
+            _lifeTimer.StartTimer(enemyCoreData.TimerLifeCoreSec,true,0.2f ,"Life Timer");
             
             
-            // //Wave Delay Timer
-            // _waveTimer = gameObject.AddComponent<TimerBase>();
-            // _waveTimer.OnTimerEnd += () =>
-            // {
-            //     Debug.Log("Wave Delay Timer End");
-            //     SpawnEnemyWave();
-            //     _waveTimer.StartTimer(enemyCoreData.EnemySpawnDelay, "Enemy Spawn Delay Timer");
-            // };
-            //
+            //Wave Delay Timer Loop
+            _waveTimer = gameObject.AddComponent<TimerBase>();
+            _waveTimer.OnTimerLoop += () =>
+            {
+                if (deactivatorCore.CurrentHealth <= 0) return;
+                SpawnEnemyWave();
+                EnemyCoreState = EnemyCoreState.WaveDelay;
+            };
+            _waveTimer.SetLoopableTimer(enemyCoreData.WaveDelay,true,0,"Wave Delay Timer");
+            
+           
+            
         }
         private void SpawnEnemyWave()
         {
@@ -94,35 +129,59 @@ namespace com.LazyGames
             enemy.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
         }
         
-        private void StartCountDown()
+        private void DestroyEnemyCore()
         {
-            
+            EnemyCoreState = EnemyCoreState.Destroyed;
+            coreVisual.SetActive(false);
+            Debug.Log("Enemy Core Destroyed".SetColor("#FE0D4F"));
+        }
+        private void CheckEnemyCoreState()
+        {
+            switch (EnemyCoreState)
+            {
+                case EnemyCoreState.Idle:
+                    enemyCoreUI.EnableLifeTimeUI(true);
+                    break;
+                case EnemyCoreState.WaveDelay:
+                    break;
+                
+                case EnemyCoreState.Destroyed:
+                    enemyCoreUI.EnableLifeTimeUI(false);
+                    break;
+            }
         }
         
+        
+        
+        //Deactivator Core
+      
         #endregion
 
     }
+    
+  public enum EnemyCoreState
+  {
+      None,
+      Idle,
+      WaveDelay,
+      Destroyed
+      
+  }
+    
+
 }
 
-#if UNITY_EDITOR_WIN
 
-[CustomEditor(typeof(EnemyCoreController))]
-public class EnemyCoreControllerEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-        EnemyCoreController enemyCoreController = (EnemyCoreController) target;
-        if (GUILayout.Button("Initialize Core"))
-        {
-            enemyCoreController.Initialized();
-        }
-        
-        if (GUILayout.Button("Receive Damage"))
-        {
-            
-            enemyCoreController.ReceiveDamage(100);
-        }
-    }
-}
-#endif
+// #if UNITY_EDITOR_WIN
+//
+// [CustomEditor(typeof(EnemyCoreController))]
+// public class EnemyCoreControllerEditor : Editor
+// {
+//     public override void OnInspectorGUI()
+//     {
+//         DrawDefaultInspector();
+//         EnemyCoreController enemyCoreController = (EnemyCoreController) target;
+//         
+//     }
+// }
+// #endif
