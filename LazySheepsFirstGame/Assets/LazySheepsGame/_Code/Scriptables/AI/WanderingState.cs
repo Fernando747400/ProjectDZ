@@ -1,8 +1,6 @@
 // Creado Raymundo Mosqueda 07/09/23
 using UnityEngine;
 
-
-
 namespace com.LazyGames.DZ
 {
     [CreateAssetMenu(menuName = "LazySheeps/EnemyStates/WanderingState")]

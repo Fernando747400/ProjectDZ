@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1513,6 +1513,7 @@ MonoBehaviour:
   idleState: {fileID: 11400000, guid: 8bc3792f2e1d6194292110118cfe4281, type: 2}
   wanderingState: {fileID: 11400000, guid: 0731f3ec83ec7f14f84e6ddee8d16250, type: 2}
   aggroState: {fileID: 11400000, guid: 97558fa19f7fc6b4dad669ac9e6965fd, type: 2}
+  alertState: {fileID: 11400000, guid: f07d6ba80724f414b81156c14c6048cd, type: 2}
   target: {fileID: 456796539}
 --- !u!136 &1054719737
 CapsuleCollider:

@@ -2,7 +2,6 @@
 using com.LazyGames.DZ;
 using UnityEngine;
 
-
 [CreateAssetMenu(menuName = "LazySheeps/EnemyStates/AlertState")]
 
 public class AlertState : EnemyState

@@ -7,11 +7,12 @@ namespace com.LazyGames.DZ
 
     public class IdleState : EnemyState
     {
+        
         public IdleState(EnemyNavAgent agent) : base(agent) {}
         
         public override void EnterState()
         {
-            throw new System.NotImplementedException();
+            _agent.DoChase = false;
         }
 
         public override void UpdateState()
