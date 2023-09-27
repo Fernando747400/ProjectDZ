@@ -66,6 +66,7 @@ public class BuildingSystem : MonoBehaviour
         _currentGameObject.SetActive(true);
         if (_buildChecker == null) AddCollisionChecker(_currentGameObject);
         _buildChecker = _currentGameObject.GetComponent<BuildingCollisionChecker>();
+        _buildChecker._hammerCollisionEvent = _hammerCollisionEvent;
         _buildChecker.BuildingsLayerMask= _buildingsLayerMask;
     }
 

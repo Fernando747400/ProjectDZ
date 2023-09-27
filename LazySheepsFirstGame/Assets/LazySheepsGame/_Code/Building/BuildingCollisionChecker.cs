@@ -6,7 +6,7 @@ public class BuildingCollisionChecker : MonoBehaviour
 {
     [Header("Dependencies")]
     [Header("Scriptable Objects")]
-    [SerializeField] private VoidEventChannelSO _hammerCollisionEvent;
+    public VoidEventChannelSO _hammerCollisionEvent;
 
     public bool IsColliding { get { return _isColliding; } }
     public LayerMask BuildingsLayerMask { set { _buildingsLayerMask = value; } }
@@ -58,6 +58,14 @@ public class BuildingCollisionChecker : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Hammer")
+        {
+            _hammerCollisionEvent.RaiseEvent();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Hammer")
         {
             _hammerCollisionEvent.RaiseEvent();
         }
