@@ -1,68 +1,72 @@
 using com.LazyGames.Dio;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingSystem : MonoBehaviour
 {
-
+    [Header("Dependencies Layers")]
+    [Tooltip("This layer mask is used to determine if there's valid ground to place the building")]
     [SerializeField] private LayerMask _groundLayerMask;
-    [SerializeField] private GameObject _groundGameObject;
 
-    [SerializeField] private BoolEventChannelSO _collisionChannelSO;
+    [Tooltip("This layer is used to determine collision with other GameObjects that have a Collider")]
+    [SerializeField] private LayerMask _buildingsLayerMask;
 
+    [Header("Dependencies Building")]
+    [Tooltip("This is the Gameobject that will be instanciated")]
+    [SerializeField] private GameObject _objectToBuild;
+    [SerializeField] private GameObject _rayCastOrigin;
+
+    [Header("Dependencies Scriptable Objects")]
+    [SerializeField] private VoidEventChannelSO _hammerCollisionEvent;
+
+    public bool VRConfirmation {  set { _VRBuildConfirmartion = value; } }
+
+    private RaycastHit _rayHit;
     private bool _canBuild = false;
-    private bool _isColliding = false;
+    private bool _VRBuildConfirmartion = true;
+
+    private Vector3 _buildPosition = Vector3.zero;
+
+    private GameObject _currentGameObject;
+    private BuildingCollisionChecker _buildChecker;
+
 
     private void OnEnable()
     {
-        _collisionChannelSO.BoolEvent += UpdateCollision;
-        _groundGameObject = Instantiate(_groundGameObject);
+        _hammerCollisionEvent.VoidEvent += Build;
     }
 
     private void OnDisable()
     {
-        _collisionChannelSO.BoolEvent -= UpdateCollision;
+        _hammerCollisionEvent.VoidEvent -= Build;
     }
 
     private void Update()
     {
-        if (!_canBuild) return;
+        if (!_canBuild || !_VRBuildConfirmartion) return;
 
-        Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray raycast = new Ray(_rayCastOrigin.transform.position, _rayCastOrigin.transform.forward);
 
-        if(Physics.Raycast(raycast, out RaycastHit hit, 1000, _groundLayerMask)) 
+        Debug.DrawRay(raycast.origin, raycast.direction * 1000, Color.red);
+
+        if (Physics.Raycast(raycast, out _rayHit, 1000, _groundLayerMask))
         {
-            _groundGameObject.transform.position = hit.point;
-        }
+            Vector3 objectSize = _currentGameObject.GetComponent<Renderer>().bounds.size;
 
-        if(Input.GetMouseButtonDown(0))
-        {
-            if (_isColliding) return;
-            GameObject go = Instantiate(_groundGameObject, hit.point, Quaternion.identity);
-            go.GetComponent<BuildingCollisionChecker>().Destroy();
-        } else if (Input.GetMouseButtonUp(1)) {
-            _canBuild = false;
-            _groundGameObject.SetActive(false);
+            _buildPosition = _rayHit.point + Vector3.up * (objectSize.y / 2);
+
+            _currentGameObject.transform.position = _buildPosition;
         }
     }
+
+
     public void StartBuilding()
     {
         _canBuild = true;
-        _groundGameObject.SetActive(true);
-        AddCollisionChecker(_groundGameObject);
-    }
-
-    private void UpdateCollision(bool onCollision)
-    {
-        _isColliding = onCollision;
-        UpdateColor(onCollision);
-    }
-
-    private void UpdateColor(bool onCollision)
-    {
-        if (onCollision) _groundGameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-        if (!onCollision) _groundGameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+        if (_currentGameObject == null) _currentGameObject = Instantiate(_objectToBuild);
+        _currentGameObject.SetActive(true);
+        if (_buildChecker == null) AddCollisionChecker(_currentGameObject);
+        _buildChecker = _currentGameObject.GetComponent<BuildingCollisionChecker>();
+        _buildChecker.BuildingsLayerMask= _buildingsLayerMask;
     }
 
     private void AddCollisionChecker(GameObject gameObject)
@@ -70,8 +74,20 @@ public class BuildingSystem : MonoBehaviour
         if(gameObject.GetComponent<BuildingCollisionChecker>() == null) 
         {
             gameObject.AddComponent<BuildingCollisionChecker>();
-            gameObject.GetComponent<BuildingCollisionChecker>().CollisionChannelSO = _collisionChannelSO;
         }
+    }
+
+    public void Build()
+    {
+        if (_buildChecker.IsColliding) return;
+        Instantiate(_objectToBuild, _buildPosition, Quaternion.identity);
+    }
+
+    public void FinishBuilding()
+    {
+        _canBuild = false;
+        _currentGameObject.SetActive(false);
+        Destroy(_currentGameObject);
     }
 
 }
