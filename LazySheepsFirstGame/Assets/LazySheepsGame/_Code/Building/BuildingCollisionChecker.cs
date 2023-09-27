@@ -1,8 +1,13 @@
 using UnityEngine;
 using System.Linq;
+using com.LazyGames.Dio;
 
 public class BuildingCollisionChecker : MonoBehaviour
 {
+    [Header("Dependencies")]
+    [Header("Scriptable Objects")]
+    [SerializeField] private VoidEventChannelSO _hammerCollisionEvent;
+
     public bool IsColliding { get { return _isColliding; } }
     public LayerMask BuildingsLayerMask { set { _buildingsLayerMask = value; } }
     
@@ -47,6 +52,14 @@ public class BuildingCollisionChecker : MonoBehaviour
         else
         {
             ValidPlacement();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Hammer")
+        {
+            _hammerCollisionEvent.RaiseEvent();
         }
     }
 

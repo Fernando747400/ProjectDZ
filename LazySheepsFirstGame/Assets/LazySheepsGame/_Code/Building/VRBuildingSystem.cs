@@ -1,3 +1,4 @@
+using com.LazyGames.Dio;
 using UnityEngine;
 
 public class VRBuildingSystem : MonoBehaviour
@@ -6,13 +7,24 @@ public class VRBuildingSystem : MonoBehaviour
     [SerializeField] private BuildingSystem _buildingSystem;
     [SerializeField] private GameObject _vrHead;
 
+    [Header("Scriptable Objects")]
+    [SerializeField] private BoolEventChannelSO _hammerInHandChannel;
+
     [Header("Settings")]
     [SerializeField] private float _headTiltDegrees;
 
-    public bool HammerInHand { get { return _hammerInHand; } set { _hammerInHand = value; } }
-
     private bool _hammerInHand = true;
     private bool _isBuilding = false;
+
+    private void OnEnable()
+    {
+        _hammerInHandChannel.BoolEvent += UpdateHammerInHand;
+    }
+
+    private void OnDisable()
+    {
+        _hammerInHandChannel.BoolEvent -= UpdateHammerInHand;
+    }
 
     private void Update()
     {
@@ -44,5 +56,15 @@ public class VRBuildingSystem : MonoBehaviour
     {
         _buildingSystem.FinishBuilding();
         _isBuilding = false;
+    }
+
+    private void UpdateHammerInHand(bool inHand)
+    {
+        _hammerInHand = inHand;
+
+        if(!_hammerInHand)
+        {
+            DroppedHammer();
+        }
     }
 }

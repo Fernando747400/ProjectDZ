@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using com.LazyGames.Dio;
 using UnityEngine;
 
 public class BuildingSystem : MonoBehaviour
@@ -15,15 +15,30 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField] private GameObject _objectToBuild;
     [SerializeField] private GameObject _rayCastOrigin;
 
+    [Header("Dependencies Scriptable Objects")]
+    [SerializeField] private VoidEventChannelSO _hammerCollisionEvent;
+
     public bool VRConfirmation {  set { _VRBuildConfirmartion = value; } }
 
     private RaycastHit _rayHit;
     private bool _canBuild = false;
     private bool _VRBuildConfirmartion = true;
 
+    private Vector3 _buildPosition = Vector3.zero;
+
     private GameObject _currentGameObject;
     private BuildingCollisionChecker _buildChecker;
 
+
+    private void OnEnable()
+    {
+        _hammerCollisionEvent.VoidEvent += Build;
+    }
+
+    private void OnDisable()
+    {
+        _hammerCollisionEvent.VoidEvent -= Build;
+    }
 
     private void Update()
     {
@@ -37,14 +52,9 @@ public class BuildingSystem : MonoBehaviour
         {
             Vector3 objectSize = _currentGameObject.GetComponent<Renderer>().bounds.size;
 
-            Vector3 newPosition = _rayHit.point + Vector3.up * (objectSize.y / 2);
+            _buildPosition = _rayHit.point + Vector3.up * (objectSize.y / 2);
 
-            _currentGameObject.transform.position = newPosition;
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                Build(newPosition);
-            }
+            _currentGameObject.transform.position = _buildPosition;
         }
     }
 
@@ -67,10 +77,10 @@ public class BuildingSystem : MonoBehaviour
         }
     }
 
-    public void Build(Vector3 newPosition)
+    public void Build()
     {
         if (_buildChecker.IsColliding) return;
-        Instantiate(_objectToBuild, newPosition, Quaternion.identity);
+        Instantiate(_objectToBuild, _buildPosition, Quaternion.identity);
     }
 
     public void FinishBuilding()
