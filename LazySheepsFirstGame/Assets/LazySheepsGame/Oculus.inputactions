@@ -1,0 +1,34 @@
+{
+    "name": "Oculus",
+    "maps": [
+        {
+            "name": "OculusController",
+            "id": "e7e33093-05d0-4260-aa1c-d422bd90597f",
+            "actions": [
+                {
+                    "name": "ChangeMove",
+                    "type": "Button",
+                    "id": "c99367d3-a8dc-401a-9e64-414c1bbf75f9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "428fd306-a430-4f95-9a42-407364b23e29",
+                    "path": "<XRInputV1::Oculus::OculusTouchControllerRight>{RightHand}/primarybutton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
