@@ -18,6 +18,10 @@ public class BuildingSystem : MonoBehaviour
     [Header("Dependencies Scriptable Objects")]
     [SerializeField] private VoidEventChannelSO _hammerCollisionEvent;
 
+    [Header("BuildMaterials")]
+    [SerializeField] private Material _validPlacementMaterial;
+    [SerializeField] private Material _invalidPlacementMaterials;
+
     public bool VRConfirmation {  set { _VRBuildConfirmartion = value; } }
 
     private RaycastHit _rayHit;
@@ -66,7 +70,9 @@ public class BuildingSystem : MonoBehaviour
         _currentGameObject.SetActive(true);
         if (_buildChecker == null) AddCollisionChecker(_currentGameObject);
         _buildChecker = _currentGameObject.GetComponent<BuildingCollisionChecker>();
-        _buildChecker._hammerCollisionEvent = _hammerCollisionEvent;
+        _buildChecker.HammerCollisionEvent = _hammerCollisionEvent;
+        _buildChecker.ValidPlacementMaterial = _validPlacementMaterial;
+        _buildChecker.InvalidPlacementMaterial = _invalidPlacementMaterials;
         _buildChecker.BuildingsLayerMask= _buildingsLayerMask;
     }
 

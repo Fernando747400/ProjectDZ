@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 20521849}
   - component: {fileID: 20521848}
   - component: {fileID: 20521847}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,6 +378,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4713b0e528911eb4c931ec141eb5a442, type: 2}
+    - target: {fileID: 6063023293893065851, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6063023293893065851, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6063023293893065853, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
       propertyPath: m_Name
       value: BodySocketLeft
@@ -1884,6 +1892,8 @@ MonoBehaviour:
   _objectToBuild: {fileID: 2139907925}
   _rayCastOrigin: {fileID: 1051425203}
   _hammerCollisionEvent: {fileID: 11400000, guid: 5b24cce30355d6048acf64b9f46b7b29, type: 2}
+  _validPlacementMaterial: {fileID: 2100000, guid: 53b377d8c88fa5e4b9561f9c992608d8, type: 2}
+  _invalidPlacementMaterials: {fileID: 2100000, guid: 7a3ac71e384adb74fbc93944ce580958, type: 2}
 --- !u!4 &1966314959
 Transform:
   m_ObjectHideFlags: 0
@@ -1955,6 +1965,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4713b0e528911eb4c931ec141eb5a442, type: 2}
+    - target: {fileID: 6063023293893065851, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6063023293893065851, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6063023293893065851, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6063023293893065853, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
       propertyPath: m_Name
       value: BodySocketRight
@@ -2163,8 +2185,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.13869047, y: 0.53329825, z: 0.17422025}
-  m_Center: {x: -0.0077655315, y: 0.23335087, z: 0.005479865}
+  m_Size: {x: 0.13869047, y: 0.8191947, z: 0.17422025}
+  m_Center: {x: -0.0077655315, y: 0.09040266, z: 0.005479865}
 --- !u!114 &5280164926687754844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2206,16 +2228,64 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 25ff584054a7b0448994a987e205bac9, type: 2}
+        m_TargetAssemblyTypeName: com.LazyGames.Dio.BoolEventChannelSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 25ff584054a7b0448994a987e205bac9, type: 2}
+        m_TargetAssemblyTypeName: com.LazyGames.Dio.BoolEventChannelSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_Activated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 25ff584054a7b0448994a987e205bac9, type: 2}
+        m_TargetAssemblyTypeName: com.LazyGames.Dio.BoolEventChannelSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_Deactivated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 25ff584054a7b0448994a987e205bac9, type: 2}
+        m_TargetAssemblyTypeName: com.LazyGames.Dio.BoolEventChannelSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnFirstHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -2466,8 +2536,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.003956616, y: 0.0061176065, z: 0.003956618}
-  m_Center: {x: 0, y: 0.0000027314522, z: 0.006887907}
+  m_Size: {x: 0.003956616, y: 0.013467939, z: 0.0039566183}
+  m_Center: {x: 2.1889512e-10, y: -0.0036724503, z: 0.0068879076}
 --- !u!4 &9130080833093465792
 Transform:
   m_ObjectHideFlags: 0
@@ -2476,8 +2546,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4931086199619880478}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: -0, y: -0.295, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 130}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5280164926687754842}
