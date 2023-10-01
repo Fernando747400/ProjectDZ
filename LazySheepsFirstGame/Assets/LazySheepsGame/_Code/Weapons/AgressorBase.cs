@@ -5,8 +5,8 @@ namespace com.LazyGames
 {
     public class AgressorBase : MonoBehaviour
     {
-        [Header("Agressor Base")] [SerializeField]
-        private AgressorData agressorData;
+        // [Header("Agressor Base")] 
+        // [SerializeField] private AgressorData agressorData;
 
         protected bool TryGetGeneralTarget(GameObject target)
         {
