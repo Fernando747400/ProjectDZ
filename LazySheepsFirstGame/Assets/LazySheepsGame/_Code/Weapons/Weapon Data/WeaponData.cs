@@ -8,12 +8,15 @@ namespace com.LazyGames
     public class WeaponData : AgressorData
     {
         [Header("Weapon Data")] 
+        [SerializeField] private WeaponType weaponType;
         [SerializeField] private float bulletSpeed;
         [SerializeField] private float maxDistance;
         [SerializeField] private GameObject shootParticle;
         [SerializeField] private GameObject hitParticle;
         [SerializeField] private float cooldownPerShot;
         [SerializeField] private float delayReload;
+        [SerializeField] private int maxAmmo;
+        
         
         
         #region public variables
@@ -33,5 +36,13 @@ namespace com.LazyGames
 
         #endregion
         
+    }
+
+
+    enum WeaponType 
+    {
+        None,
+        Pistol,
+        AutomaticRifle,
     }
 }

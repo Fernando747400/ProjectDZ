@@ -56,19 +56,12 @@ public class WallTarget : MonoBehaviour, IGeneralTarget
     #endregion
     
     #region private methods
-
-    private void TakeDamage(float dmgValue, string id = "")
-    {
-        CurrentHp -= dmgValue;
-        Debug.Log("TookDamage = ".SetColor("#F73B46") + id + CurrentHp);
-    }
-
+    
+    
     private void PrepareTarget()
     {
         ID = targetsData.ID;
-        MaxHealth = targetsData.MaxHealth;
         Type = targetsData.Type;
-        CurrentHp = MaxHealth;
     }
     #endregion
 }

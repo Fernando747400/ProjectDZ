@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: weapon_1
   damage: 10
-  layerMask:
+  layerMasks:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 4609
   bulletSpeed: 10
-  maxDistance: 10
+  maxDistance: 30
   shootParticle: {fileID: 0}
   hitParticle: {fileID: 0}
   cooldownPerShot: 1

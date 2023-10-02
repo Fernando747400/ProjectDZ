@@ -18,8 +18,9 @@ namespace com.LazyGames
 
         private void Start()
         {
-            EnableLifeTimeUI(false);
             deactivatorLifeText.text = "Deactivator Life = " + 100;
+            EnableLifeTimeUI(false);
+
         }
 
         #endregion

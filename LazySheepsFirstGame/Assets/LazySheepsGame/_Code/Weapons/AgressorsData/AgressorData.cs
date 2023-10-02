@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace com.LazyGames
 {
@@ -10,7 +11,7 @@ namespace com.LazyGames
       [Header("Agressor Data")]
       [SerializeField] private string id;
       [SerializeField] private int damage;
-      [SerializeField] private LayerMask layerMask;
+      [SerializeField] private LayerMask layerMasks;
 
       #region public variables
       public string ID
@@ -23,8 +24,10 @@ namespace com.LazyGames
          get => damage;
       }
 
-      public LayerMask LayerMask => layerMask;
+      public LayerMask LayerMasks => layerMasks;
    }
    #endregion
 
+   
+   
 }

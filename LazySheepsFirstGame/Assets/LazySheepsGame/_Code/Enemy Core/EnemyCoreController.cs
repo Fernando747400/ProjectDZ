@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using com.LazyGames;
+using com.LazyGames.Dio;
 using Lean.Pool;
 using UnityEditor;
+using UnityEngine.Serialization;
 
 namespace com.LazyGames
 {
@@ -14,23 +16,24 @@ namespace com.LazyGames
         [Header("Enemy Core")]
         [SerializeField] private EnemyCoreData enemyCoreData;
         [SerializeField] private EnemyCoreState enemyCoreState = EnemyCoreState.None;
-        [SerializeField] private Collider enemyCoreCollider;
+        [SerializeField] private Collider collider;
         [SerializeField] private GameObject coreVisual;
         [SerializeField] private Transform[] spawnPoints;
+        [SerializeField] private Transform deactivatorPos;
+        [SerializeField] private GameObject ringVisual;
         
         [Header("UI")]
         [SerializeField] private EnemyCoreUI enemyCoreUI;
-        
-        [Header("Deactivator")]
-        [SerializeField] private DeactivatorCore deactivatorCore;
-        
-        TimerBase _lifeTimer;
-        TimerBase _waveTimer;
-        
+
+        [Header("Deactivator")] 
+        [SerializeField] private VoidEventChannelSO onCoreDestroyed;
         #endregion
 
         #region private variables
 
+        private DeactivatorCore deactivatorCore;
+        private TimerBase _lifeTimer;
+        private TimerBase _waveTimer;
         private EnemyCoreState EnemyCoreState
         {
             get => enemyCoreState;
@@ -55,8 +58,13 @@ namespace com.LazyGames
             if (other.GetComponent<DeactivatorCore>())
             {
                 deactivatorCore = other.GetComponent<DeactivatorCore>();
+                deactivatorPos.parent = transform;
+                deactivatorCore.transform.position = new Vector3(
+                    deactivatorPos.position.x, 
+                    deactivatorPos.position.y + 0.5f,
+                    deactivatorPos.position.z);
                 
-                Debug.Log("Deactivator Core Enter Enemy Core".SetColor("#FE0D4F"));
+                // Debug.Log("Deactivator Core Enter Enemy Core".SetColor("#FE0D4F"));
                 deactivatorCore.OnDeactivatorHealthChanged += (health) =>
                 {
                     enemyCoreUI.UpdateDeactivatorLifeText(health);
@@ -67,9 +75,7 @@ namespace com.LazyGames
                     _waveTimer.PauseTimer();
                 };
                 SetTimers();
-                if(_waveTimer != null) 
-                
-                enemyCoreCollider.enabled = false;
+                collider.enabled = false;
             }
             
         }
@@ -116,12 +122,9 @@ namespace com.LazyGames
             {
                 if (deactivatorCore.CurrentHealth <= 0) return;
                 SpawnEnemyWave();
-                EnemyCoreState = EnemyCoreState.WaveDelay;
             };
             _waveTimer.SetLoopableTimer(enemyCoreData.WaveDelay,true,0,"Wave Delay Timer");
-            
-           
-            
+            EnemyCoreState = EnemyCoreState.WaveDelay;
         }
         private void SpawnEnemyWave()
         {
@@ -133,6 +136,10 @@ namespace com.LazyGames
         {
             EnemyCoreState = EnemyCoreState.Destroyed;
             coreVisual.SetActive(false);
+            ringVisual.SetActive(false);
+            _waveTimer.PauseTimer();
+            collider.enabled = false;
+            onCoreDestroyed.RaiseEvent();
             Debug.Log("Enemy Core Destroyed".SetColor("#FE0D4F"));
         }
         private void CheckEnemyCoreState()
@@ -140,9 +147,10 @@ namespace com.LazyGames
             switch (EnemyCoreState)
             {
                 case EnemyCoreState.Idle:
-                    enemyCoreUI.EnableLifeTimeUI(true);
+                    // enemyCoreUI.EnableLifeTimeUI(false);
                     break;
                 case EnemyCoreState.WaveDelay:
+                    enemyCoreUI.EnableLifeTimeUI(true);
                     break;
                 
                 case EnemyCoreState.Destroyed:

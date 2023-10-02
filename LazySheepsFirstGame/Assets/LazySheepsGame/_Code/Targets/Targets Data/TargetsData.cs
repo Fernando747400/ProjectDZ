@@ -9,6 +9,8 @@ public class TargetsData : ScriptableObject
   [SerializeField] private string id;
   [SerializeField] private int maxHealth;
   [SerializeField] private TargetsType type;
+  [SerializeField] private string audioBulletHit;
+  [SerializeField] private ParticleSystem particleBulletHit;
 
 
   public string ID

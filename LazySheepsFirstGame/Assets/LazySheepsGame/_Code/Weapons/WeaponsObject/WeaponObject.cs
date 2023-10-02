@@ -33,16 +33,23 @@ namespace com.LazyGames
         
         #region private methods
         
+        
+        
         private void Shoot()
         {
-            Debug.Log("Shoot".SetColor("#DB7AFF"));
             StopAllCoroutines();
             _savedFirePosition = transform.position;
-            if (!Physics.Raycast( transform.position, transform.forward, out RaycastHit hit, weaponData.MaxDistance,
-                    Physics.DefaultRaycastLayers)) return;
+            RaycastHit hit;
             
+            if (!Physics.Raycast(transform.position, transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
+            {
+                Debug.Log("No Hit".SetColor("#F95342"));
+                Debug.DrawRay(transform.position, transform.forward * weaponData.MaxDistance, Color.red, 1f);
+                return;
+            }
+            //Collision Raycast
             _hitPosition = hit.point;
-            _travelTime = hit.distance / (weaponData.BulletSpeed) * Time.fixedDeltaTime;
+            _travelTime = hit.distance / (weaponData.BulletSpeed) * Time.fixedDeltaTime; 
             StartCoroutine(DelayBulletTravel());
         }
         #endregion
@@ -55,11 +62,14 @@ namespace com.LazyGames
         
         protected virtual void BulletTravel()
         {
+            Debug.Log("BulletTravel".SetColor("#DB7AFF"));
             StopAllCoroutines();
             Vector3 simulatedHitDir = _hitPosition - _savedFirePosition;
-            Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out RaycastHit simulatedHit, weaponData.MaxDistance, weaponData.LayerMask);
+            Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out RaycastHit simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
+            Debug.DrawRay(_savedFirePosition, simulatedHitDir.normalized * weaponData.MaxDistance, Color.green, 1f);
         
             if (!TryGetGeneralTarget(simulatedHit.collider.gameObject)) return;
+            Debug.Log("Receive Damage ".SetColor("#4DF942"));
             simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRaycast(weaponData.Damage);
 
         }

@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using com.LazyGames;
+using Lean.Pool;
 using UnityEngine;
 
 
 public interface IGeneralTarget
 {
     #region Variables
-
+ 
     string ID { get; set; }
     int MaxHealth { get; set; }
     TargetsType Type { get; set; }
@@ -19,18 +20,26 @@ public interface IGeneralTarget
     
     private void TakeDamage(float dmgValue, string id ="")
     {
+        if(!CheckHealth()) return;
+
         CurrentHp -= dmgValue;
+        ReactToDamage();
         Debug.Log("TookDamage = ".SetColor("#F73B46") + id + CurrentHp);
+    }
+    private void ReactToDamage()
+    {
+        
     }
 
 
-    private void CheckHealth()
+    private bool CheckHealth()
     {
         if (CurrentHp <= 0)
-        { 
-            
-            // Destroy(gameObject);
+        {
+            return false;
         }
+
+        return true;
     }
 
     #endregion
@@ -39,8 +48,18 @@ public interface IGeneralTarget
 
     public void ReceiveRaycast(float dmgValue)
     {
-        TakeDamage(dmgValue);
-        CheckHealth();
+        switch (Type)
+        {
+            case TargetsType.Enemy:
+                Debug.Log("Enemy".SetColor("#F95342"));
+                TakeDamage(dmgValue);
+                break;
+            case TargetsType.Object:
+                Debug.Log("Object".SetColor("#F95342"));
+                ReactToDamage();
+                break;
+        }
+        
     }
     
     #endregion

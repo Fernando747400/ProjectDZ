@@ -12,7 +12,8 @@ namespace com.LazyGames
         {
             try
             {
-                bool result = target.GetComponent<IGeneralTarget>().Type == TargetsType.Enemy;
+                bool result = target.GetComponent<IGeneralTarget>().Type == TargetsType.Enemy ||
+                              target.GetComponent<IGeneralTarget>().Type == TargetsType.Object;
                 return result;
             }
             catch

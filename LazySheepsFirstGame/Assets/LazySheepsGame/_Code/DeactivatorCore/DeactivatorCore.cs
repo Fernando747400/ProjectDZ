@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using com.LazyGames;
+using com.LazyGames.Dio;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,6 +14,9 @@ namespace com.LazyGames
         #region Serialized Fields
         
         [SerializeField] private int maxHealth = 100;
+        [SerializeField] private Collider collider;
+        [SerializeField] private VoidEventChannelSO onCoreDestroyed;
+
         
 
         #endregion
@@ -25,6 +29,7 @@ namespace com.LazyGames
 
         #region public variables
 
+        public Collider Collider => collider;
         public int CurrentHealth => _currentHealth;
         public Action OnDeactivatorDestroyed;
         public Action<int> OnDeactivatorHealthChanged;
@@ -37,6 +42,7 @@ namespace com.LazyGames
         void Start()
         {
             _currentHealth = maxHealth;
+            onCoreDestroyed.VoidEvent += () => { Destroy(gameObject); };
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -70,20 +76,20 @@ namespace com.LazyGames
     }
 }
 
-#if UNITY_EDITOR_WIN
-[CustomEditor(typeof(DeactivatorCore))]
-public class DeactivatorCoreEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-        DeactivatorCore deactivatorCore = (DeactivatorCore) target;
-        
-        if (GUILayout.Button("Receive Damage"))
-        {
-            deactivatorCore.ReceiveDamage(5);
-        }
-    }
-}
-
-#endif
+// #if UNITY_EDITOR_WIN
+// [CustomEditor(typeof(DeactivatorCore))]
+// public class DeactivatorCoreEditor : Editor
+// {
+//     public override void OnInspectorGUI()
+//     {
+//         DrawDefaultInspector();
+//         DeactivatorCore deactivatorCore = (DeactivatorCore) target;
+//         
+//         if (GUILayout.Button("Receive Damage"))
+//         {
+//             deactivatorCore.ReceiveDamage(5);
+//         }
+//     }
+// }
+//
+// #endif
