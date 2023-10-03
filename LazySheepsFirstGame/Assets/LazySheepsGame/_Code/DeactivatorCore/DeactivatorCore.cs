@@ -5,6 +5,7 @@ using com.LazyGames;
 using com.LazyGames.Dio;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace com.LazyGames
 {
@@ -16,6 +17,7 @@ namespace com.LazyGames
         [SerializeField] private int maxHealth = 100;
         [SerializeField] private Collider collider;
         [SerializeField] private VoidEventChannelSO onCoreDestroyed;
+        [SerializeField] private XRGrabInteractable grabInteractable;
 
         
 
@@ -29,6 +31,7 @@ namespace com.LazyGames
 
         #region public variables
 
+        public XRGrabInteractable GrabInteractable => grabInteractable;
         public Collider Collider => collider;
         public int CurrentHealth => _currentHealth;
         public Action OnDeactivatorDestroyed;

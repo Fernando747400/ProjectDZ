@@ -19,7 +19,7 @@ namespace com.LazyGames
         [SerializeField] private Collider collider;
         [SerializeField] private GameObject coreVisual;
         [SerializeField] private Transform[] spawnPoints;
-        [SerializeField] private Transform deactivatorPos;
+        // [SerializeField] private Transform deactivatorPos;
         [SerializeField] private GameObject ringVisual;
         
         [Header("UI")]
@@ -58,13 +58,7 @@ namespace com.LazyGames
             if (other.GetComponent<DeactivatorCore>())
             {
                 deactivatorCore = other.GetComponent<DeactivatorCore>();
-                deactivatorPos.parent = transform;
-                deactivatorCore.transform.position = new Vector3(
-                    deactivatorPos.position.x, 
-                    deactivatorPos.position.y + 0.5f,
-                    deactivatorPos.position.z);
-                
-                // Debug.Log("Deactivator Core Enter Enemy Core".SetColor("#FE0D4F"));
+                deactivatorCore.GrabInteractable.attachTransform = ringVisual.transform;
                 deactivatorCore.OnDeactivatorHealthChanged += (health) =>
                 {
                     enemyCoreUI.UpdateDeactivatorLifeText(health);
@@ -75,7 +69,7 @@ namespace com.LazyGames
                     _waveTimer.PauseTimer();
                 };
                 SetTimers();
-                collider.enabled = false;
+                // collider.enabled = false;
             }
             
         }
