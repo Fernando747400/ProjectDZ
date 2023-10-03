@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using com.LazyGames;
+using com.LazyGames.Dio;
+using UnityEngine.Serialization;
 
 namespace com.LazyGames
 {
@@ -12,6 +14,7 @@ namespace com.LazyGames
         [Header("Weapon Object")]
         [SerializeField] private WeaponData weaponData;
         [SerializeField] private Transform shootPoint;
+        [SerializeField] private FloatEventChannelSO InputShootActionRight;
 
         #endregion
         
@@ -21,30 +24,66 @@ namespace com.LazyGames
 
         #region unity methods
 
+        private void Start()
+        {
+            PrepareAgressor();
+        }
+
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            // if (Input.GetMouseButtonDown(0))
+            // {
+            //     Shoot();
+            // }
+        }
+
+        private void OnDisable()
+        {
+            InputShootActionRight.FloatEvent -= value =>
             {
-                Shoot();
-            }
+                if(value >= 1)  Shoot();
+            };
         }
 
         #endregion
         
         #region private methods
-        
-        
-        
+
+        private void PrepareAgressor()
+        {
+            InputShootActionRight.FloatEvent += value =>
+            {
+                if (value > 0)
+                {
+                    switch (weaponData.WeaponType)
+                    {
+                        case WeaponType.Pistol:
+                            Shoot();
+                            break;
+                        
+                        case WeaponType.AutomaticRifle:
+                            StartConstantShoot();
+                            break;
+                    }
+                }
+            };
+        }
+
+
+        private void StartConstantShoot()
+        {
+            
+        }
         private void Shoot()
         {
             StopAllCoroutines();
-            _savedFirePosition = transform.position;
+            _savedFirePosition = shootPoint.transform.position;
             RaycastHit hit;
             
-            if (!Physics.Raycast(transform.position, transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
+            if (!Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
             {
-                Debug.Log("No Hit".SetColor("#F95342"));
-                Debug.DrawRay(transform.position, transform.forward * weaponData.MaxDistance, Color.red, 1f);
+                // Debug.Log("No Hit".SetColor("#F95342"));
+                Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.forward * weaponData.MaxDistance, Color.red, 1f);
                 return;
             }
             //Collision Raycast
@@ -62,14 +101,14 @@ namespace com.LazyGames
         
         protected virtual void BulletTravel()
         {
-            Debug.Log("BulletTravel".SetColor("#DB7AFF"));
+            // Debug.Log("BulletTravel".SetColor("#DB7AFF"));
             StopAllCoroutines();
             Vector3 simulatedHitDir = _hitPosition - _savedFirePosition;
             Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out RaycastHit simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
             Debug.DrawRay(_savedFirePosition, simulatedHitDir.normalized * weaponData.MaxDistance, Color.green, 1f);
         
             if (!TryGetGeneralTarget(simulatedHit.collider.gameObject)) return;
-            Debug.Log("Receive Damage ".SetColor("#4DF942"));
+            // Debug.Log("Receive Damage ".SetColor("#4DF942"));
             simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRaycast(weaponData.Damage);
 
         }
