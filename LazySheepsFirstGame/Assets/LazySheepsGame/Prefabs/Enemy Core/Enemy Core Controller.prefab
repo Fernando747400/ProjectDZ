@@ -591,6 +591,7 @@ GameObject:
   - component: {fileID: 2521251838177466524}
   - component: {fileID: 2521251838177466525}
   - component: {fileID: 2521251838177466526}
+  - component: {fileID: 2761169146257995055}
   m_Layer: 0
   m_Name: Enemy Core Controller
   m_TagString: Untagged
@@ -637,7 +638,6 @@ MonoBehaviour:
   - {fileID: 2521251837129601971}
   - {fileID: 2521251838131372558}
   - {fileID: 2521251838497362797}
-  deactivatorPos: {fileID: 4301644535870633630}
   ringVisual: {fileID: 4298591503073574454}
   enemyCoreUI: {fileID: 2521251838806435661}
   onCoreDestroyed: {fileID: 11400000, guid: e82263401804fb84792edb1e85174d80, type: 2}
@@ -654,6 +654,57 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.28027022, z: 1}
   m_Center: {x: 0, y: 1.0781801, z: 0}
+--- !u!114 &2761169146257995055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2521251838177466523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60523e0647cc6ab43acc73cb266a32a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 0}
+  m_InteractionLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_InteractionLayers:
+    m_Bits: 4294967295
+  m_AttachTransform: {fileID: 4301644535870633630}
+  m_KeepSelectedTargetValid: 1
+  m_StartingSelectedInteractable: {fileID: 0}
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ShowInteractableHoverMeshes: 1
+  m_InteractableHoverMeshMaterial: {fileID: 0}
+  m_InteractableCantHoverMeshMaterial: {fileID: 0}
+  m_SocketActive: 1
+  m_InteractableHoverScale: 1
+  m_RecycleDelayTime: 1
 --- !u!1 &2521251838497362796
 GameObject:
   m_ObjectHideFlags: 0
