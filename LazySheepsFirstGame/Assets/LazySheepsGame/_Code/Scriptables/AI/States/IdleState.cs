@@ -12,7 +12,7 @@ namespace com.LazyGames.DZ
         
         public override void EnterState()
         {
-            _agent.DoChase = false;
+            Agent.DoChase = false;
         }
 
         public override void UpdateState()

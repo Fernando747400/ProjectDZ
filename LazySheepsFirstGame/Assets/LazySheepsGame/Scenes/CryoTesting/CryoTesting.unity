@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1513,8 +1513,11 @@ MonoBehaviour:
   wanderingState: {fileID: 11400000, guid: 0731f3ec83ec7f14f84e6ddee8d16250, type: 2}
   aggroState: {fileID: 11400000, guid: 97558fa19f7fc6b4dad669ac9e6965fd, type: 2}
   alertState: {fileID: 11400000, guid: f07d6ba80724f414b81156c14c6048cd, type: 2}
+  tickManager: {fileID: 0}
   currentState: {fileID: 0}
+  agent: {fileID: 0}
   target: {fileID: 456796539}
+  parameters: {fileID: 11400000, guid: 20bf2c09fda47634c83e395cd5ad899f, type: 2}
 --- !u!136 &1054719737
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2965,8 +2968,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1905456450}
   - component: {fileID: 1905456449}
+  - component: {fileID: 1905456451}
   m_Layer: 0
-  m_Name: MeshBuilder
+  m_Name: AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3005,6 +3009,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1905456451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905456448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee68f5d0bc8ba72448d4fb4636229939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tickRate: 3
 --- !u!1 &1951485888
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed4d87446575cd4fae990e3bfd9518f, type: 3}
   m_Name: Wandering State
   m_EditorClassIdentifier: 
-  speed: 0.7
+  doWalk: 0
+  minWalkSpeed: 2
+  maxWalkSpeed: 2
+  circleOffset: 2
+  circleRadius: 10
+  deviationRange: 2
+  minActTime: 2
+  maxActTime: 2
+  visualize: 1

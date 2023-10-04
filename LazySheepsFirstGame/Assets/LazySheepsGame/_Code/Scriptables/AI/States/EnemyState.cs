@@ -5,12 +5,11 @@ namespace com.LazyGames.DZ
 {
     public abstract class EnemyState : ScriptableObject
     {
-        protected EnemyNavAgent _agent;
-        public float speed = 1f;
+        protected EnemyNavAgent Agent;
 
         protected EnemyState (EnemyNavAgent agent)
         {
-            _agent = agent;
+            Agent = agent;
         }
         public abstract void EnterState();
         public abstract void UpdateState();

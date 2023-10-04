@@ -12,40 +12,33 @@ namespace com.LazyGames.DZ
         public bool DoChase{ get; set; }
         public EnemyParameters Parameters { get; set; }
         
-        public IdleState idleState;
+        // public IdleState idleState;
         public WanderingState wanderingState;
-        public AggroState aggroState;
-        public AlertState alertState;
+        // public AggroState aggroState;
+        // public AlertState alertState;
+        [HideInInspector] public NPC_TickManager tickManager;
         [HideInInspector] public EnemyState currentState;
+        [HideInInspector] public NavMeshAgent agent;
         
         [SerializeField] private GameObject target;
         [SerializeField] private EnemyParameters parameters;
 
-        private NavMeshAgent _agent;
         private bool _doChase;
         private float _hP; 
         
     private void Start()
         {
             Prepare();
-            currentState = idleState;
+            currentState = wanderingState;
+            currentState.EnterState();
         }
 
         private void Update()
         {
-            
-            Motion();
             currentState.UpdateState();
             if (_hP > 0) return;
             Die();
         }
-
-        private void Motion()
-        {
-            
-        }
-
-      
 
         private void OnGeometryChanged()
         {
@@ -54,14 +47,15 @@ namespace com.LazyGames.DZ
 
         private void Die()
         {
-            Debug.Log("isded");
             // LeanPool.Despawn(this);
         }
 
         private void Prepare()
         {
-            _agent = GetComponent<NavMeshAgent>();
+            agent = GetComponent<NavMeshAgent>();
             Parameters = parameters;
+            
+            tickManager = FindObjectOfType<NPC_TickManager>();
         }
     }
 }
