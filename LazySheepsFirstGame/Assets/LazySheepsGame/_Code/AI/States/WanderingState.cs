@@ -6,16 +6,10 @@ using Random = UnityEngine.Random;
 
 namespace com.LazyGames.DZ
 {
-        [CreateAssetMenu(menuName = "LazySheeps/EnemyStates/WanderingState")]
     public class WanderingState : EnemyState
     {
-        public WanderingState(EnemyNavAgent agent) : base(agent) 
-        {
-            Agent = agent; // Set the Agent property
-        }
-        
         [HideInInspector]public bool doWalk;
-
+        
         #region Wander Variables
         [Header("Movement Variables")]
         [Tooltip("Bottom range of walking speed")]
@@ -50,13 +44,13 @@ namespace com.LazyGames.DZ
         
         public override void EnterState()
         {
+            _tickManager = FindObjectOfType<NPC_TickManager>();
             _tickManager.OnTick += TickManagerOnTick;
-            
         }
 
         public override void UpdateState()
         {
-            _agentTransform = Agent.gameObject.transform;
+            _agentTransform = Agent.agentTransform;
             PlayerDetection();
             CountTime();
             if (!doWalk) return;
@@ -72,7 +66,7 @@ namespace com.LazyGames.DZ
         private void PlayerDetection()
         {
             Vector3 offset = new Vector3(0, .5f, 0);
-            Physics.Raycast( _agentTransform.position + offset, _agentTransform.forward, Agent.Parameters.detectionRange);
+            // Physics.Raycast( _agentTransform.position + offset, _agentTransform.forward, Agent.Parameters.detectionRange);
         }
 
         private void TickManagerOnTick(object sender, EventArgs e)

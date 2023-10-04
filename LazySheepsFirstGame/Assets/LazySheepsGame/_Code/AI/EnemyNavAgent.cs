@@ -7,15 +7,16 @@ using UnityEngine.Serialization;
 
 namespace com.LazyGames.DZ
 {
+    [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(IdleState))]
+    [RequireComponent(typeof(WanderingState))]
+    [RequireComponent(typeof(AlertState))]
+    [RequireComponent(typeof(AggroState))]
     public class EnemyNavAgent : MonoBehaviour
     {
         public bool DoChase{ get; set; }
         public EnemyParameters Parameters { get; set; }
-        
-        // public IdleState idleState;
-        public WanderingState wanderingState;
-        // public AggroState aggroState;
-        // public AlertState alertState;
+        public Transform agentTransform;
         [HideInInspector] public NPC_TickManager tickManager;
         [HideInInspector] public EnemyState currentState;
         [HideInInspector] public NavMeshAgent agent;
@@ -25,16 +26,21 @@ namespace com.LazyGames.DZ
 
         private bool _doChase;
         private float _hP; 
+        private IdleState _idleState;
+        private WanderingState _wanderingState;
+        private AlertState _alertState;
+        private AggroState _aggroState;
         
     private void Start()
         {
             Prepare();
-            currentState = wanderingState;
+            currentState = _wanderingState;
             currentState.EnterState();
         }
 
         private void Update()
         {
+            agentTransform = transform;
             currentState.UpdateState();
             if (_hP > 0) return;
             Die();
@@ -53,9 +59,15 @@ namespace com.LazyGames.DZ
         private void Prepare()
         {
             agent = GetComponent<NavMeshAgent>();
-            Parameters = parameters;
-            
             tickManager = FindObjectOfType<NPC_TickManager>();
+            _idleState = GetComponent<IdleState>();
+            _idleState.Agent = this;
+            _wanderingState = GetComponent<WanderingState>();
+            _wanderingState.Agent = this;
+            _alertState = GetComponent<AlertState>();
+            _alertState.Agent = this;
+            _aggroState = GetComponent<AggroState>();
+            _aggroState.Agent = this;
         }
     }
 }

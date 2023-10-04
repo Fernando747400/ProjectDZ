@@ -3,13 +3,8 @@ using UnityEngine;
 
 namespace com.LazyGames.DZ
 {
-    [CreateAssetMenu(menuName = "LazySheeps/EnemyStates/IdleState")]
-
     public class IdleState : EnemyState
     {
-        
-        public IdleState(EnemyNavAgent agent) : base(agent) {}
-        
         public override void EnterState()
         {
             Agent.DoChase = false;

@@ -2,12 +2,8 @@
 using com.LazyGames.DZ;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "LazySheeps/EnemyStates/AlertState")]
-
 public class AlertState : EnemyState
 {
-    public AlertState(EnemyNavAgent agent) : base(agent) {}
-
     public override void EnterState()
     {
         throw new System.NotImplementedException();
