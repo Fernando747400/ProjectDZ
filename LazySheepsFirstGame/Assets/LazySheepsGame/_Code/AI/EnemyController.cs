@@ -3,33 +3,28 @@
 using Lean.Pool;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace com.LazyGames.DZ
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    [RequireComponent(typeof(IdleState))]
     [RequireComponent(typeof(WanderingState))]
     [RequireComponent(typeof(AlertState))]
     [RequireComponent(typeof(AggroState))]
     public class EnemyNavAgent : MonoBehaviour
     {
-        public bool DoChase{ get; set; }
-        public EnemyParameters Parameters { get; set; }
-        public Transform agentTransform;
-        [HideInInspector] public NPC_TickManager tickManager;
         [HideInInspector] public EnemyState currentState;
         [HideInInspector] public NavMeshAgent agent;
+        public EnemyParameters Parameters { get; set; }
+        public EnemyParameters parameters;
         
         [SerializeField] private GameObject target;
-        [SerializeField] private EnemyParameters parameters;
 
         private bool _doChase;
         private float _hP; 
-        private IdleState _idleState;
         private WanderingState _wanderingState;
         private AlertState _alertState;
         private AggroState _aggroState;
+        private DeadState _deadState;
         
     private void Start()
         {
@@ -40,34 +35,35 @@ namespace com.LazyGames.DZ
 
         private void Update()
         {
-            agentTransform = transform;
             currentState.UpdateState();
             if (_hP > 0) return;
-            Die();
+            currentState = _deadState;
         }
 
         private void OnGeometryChanged()
         {
             
         }
-
-        private void Die()
-        {
-            // LeanPool.Despawn(this);
-        }
-
+        
         private void Prepare()
         {
             agent = GetComponent<NavMeshAgent>();
-            tickManager = FindObjectOfType<NPC_TickManager>();
-            _idleState = GetComponent<IdleState>();
-            _idleState.Agent = this;
+            GetStates();
+            Parameters = parameters;
+            _hP = parameters.maxHp;
+            agent.speed = parameters.moveSpeed;
+        }
+
+        private void GetStates()
+        {
             _wanderingState = GetComponent<WanderingState>();
             _wanderingState.Agent = this;
             _alertState = GetComponent<AlertState>();
             _alertState.Agent = this;
             _aggroState = GetComponent<AggroState>();
             _aggroState.Agent = this;
+            _deadState = GetComponent<DeadState>();
+            _deadState.Agent = this;
         }
     }
 }
