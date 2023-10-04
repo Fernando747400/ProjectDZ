@@ -19,7 +19,6 @@ namespace com.LazyGames
         [SerializeField] private Collider collider;
         [SerializeField] private GameObject coreVisual;
         [SerializeField] private Transform[] spawnPoints;
-        // [SerializeField] private Transform deactivatorPos;
         [SerializeField] private GameObject ringVisual;
         
         [Header("UI")]
@@ -27,6 +26,7 @@ namespace com.LazyGames
 
         [Header("Deactivator")] 
         [SerializeField] private VoidEventChannelSO onCoreDestroyed;
+        [SerializeField] private VoidEventChannelSO onDeactivatorEnter;
         #endregion
 
         #region private variables
@@ -34,6 +34,7 @@ namespace com.LazyGames
         private DeactivatorCore deactivatorCore;
         private TimerBase _lifeTimer;
         private TimerBase _waveTimer;
+        private bool _deactivatorEnter;
         private EnemyCoreState EnemyCoreState
         {
             get => enemyCoreState;
@@ -57,8 +58,9 @@ namespace com.LazyGames
         {
             if (other.GetComponent<DeactivatorCore>())
             {
+                if(_deactivatorEnter) return; 
                 deactivatorCore = other.GetComponent<DeactivatorCore>();
-                deactivatorCore.GrabInteractable.attachTransform = ringVisual.transform;
+                // deactivatorCore.GrabInteractable.enabled = false;
                 deactivatorCore.OnDeactivatorHealthChanged += (health) =>
                 {
                     enemyCoreUI.UpdateDeactivatorLifeText(health);
@@ -69,7 +71,9 @@ namespace com.LazyGames
                     _waveTimer.PauseTimer();
                 };
                 SetTimers();
-                // collider.enabled = false;
+                _deactivatorEnter = true;
+                onDeactivatorEnter.RaiseEvent();
+                
             }
             
         }
