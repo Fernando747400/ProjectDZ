@@ -378,9 +378,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4713b0e528911eb4c931ec141eb5a442, type: 2}
+    - target: {fileID: 6063023293893065850, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 4294967290
+      objectReference: {fileID: 0}
+    - target: {fileID: 6063023293893065850, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
+      propertyPath: m_StartingSelectedInteractable
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6063023293893065853, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
       propertyPath: m_Name
-      value: BodySocketLeft
+      value: BodySocketGun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
@@ -1955,9 +1963,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4713b0e528911eb4c931ec141eb5a442, type: 2}
+    - target: {fileID: 6063023293893065850, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 4294967286
+      objectReference: {fileID: 0}
+    - target: {fileID: 6063023293893065850, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
+      propertyPath: m_StartingSelectedInteractable
+      value: 
+      objectReference: {fileID: 5280164926687754844}
     - target: {fileID: 6063023293893065853, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
       propertyPath: m_Name
-      value: BodySocketRight
+      value: BodySocketHammer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
@@ -2183,7 +2199,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
