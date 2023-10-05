@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using com.LazyGames;
 using com.LazyGames.Dio;
 using UnityEditor;
 using UnityEngine;
@@ -11,9 +8,9 @@ namespace com.LazyGames
 {
     public class DeactivatorCore : MonoBehaviour
     {
-        
+
         #region Serialized Fields
-        
+
         [SerializeField] private int maxHealth = 100;
         [SerializeField] private Collider collider;
         [SerializeField] private VoidEventChannelSO onCoreDestroyed;
@@ -21,15 +18,16 @@ namespace com.LazyGames
         [SerializeField] private XRGrabInteractable grabInteractable;
         [SerializeField] private InteractionLayerMask nonInteractableLayers;
 
-        
+
 
         #endregion
 
         #region private variables
 
         private int _currentHealth;
+        private bool _deactivatorIsPlaced;
 
-        #endregion
+    #endregion
 
         #region public variables
 
@@ -54,7 +52,8 @@ namespace com.LazyGames
             onCoreDestroyed.VoidEvent += () => { Destroy(gameObject); };
             onDeactivatorIsPlaced.VoidEvent += () =>
             {
-                grabInteractable.interactionLayers = nonInteractableLayers;
+                _deactivatorIsPlaced = true;
+                // grabInteractable.interactionLayers = nonInteractableLayers;
                 Debug.Log("Deactivator Is Placed ".SetColor("#FE0D4F") + nonInteractableLayers);
             };
         }
@@ -75,16 +74,37 @@ namespace com.LazyGames
             _currentHealth -= damage;
             OnDeactivatorHealthChanged?.Invoke(_currentHealth);
             
-            Debug.Log("Receive damage Current Health = ".SetColor("#F73B46") + _currentHealth);
+            // Debug.Log("Receive damage Current Health = ".SetColor("#F73B46") + _currentHealth);
             if (_currentHealth <= 0)
             {
                 Debug.Log("Deactivator Destroyed".SetColor("#FE0D4F"));
                 OnDeactivatorDestroyed?.Invoke();
             }
         }
+
+        public void LastSelectedExit(SelectExitEventArgs arg)
+        {
+            if (_deactivatorIsPlaced)
+            {
+                gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                gameObject.GetComponent<Rigidbody>().useGravity = false;
+                grabInteractable.interactionLayers = nonInteractableLayers;
+                
+            }
+            Debug.Log("LastSelectedExit".SetColor("#FE0D4F"));
+
+        }
+
         
-       
+
+        #region private methods
+
+        
+
+        #endregion
     }
+    
+    
 }
 
 // #if UNITY_EDITOR_WIN

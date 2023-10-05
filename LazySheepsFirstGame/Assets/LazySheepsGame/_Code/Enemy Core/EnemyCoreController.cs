@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using com.LazyGames;
 using com.LazyGames.Dio;
 using Lean.Pool;
 using UnityEditor;
@@ -32,7 +29,7 @@ namespace com.LazyGames
 
         #region private variables
 
-        private DeactivatorCore deactivatorCore;
+        private DeactivatorCore _deactivatorCore;
         private TimerBase _lifeTimer;
         private TimerBase _waveTimer;
         private bool _deactivatorEnter;
@@ -60,13 +57,13 @@ namespace com.LazyGames
             if (other.GetComponent<DeactivatorCore>())
             {
                 if(_deactivatorEnter) return; 
-                deactivatorCore = other.GetComponent<DeactivatorCore>();
+                _deactivatorCore = other.GetComponent<DeactivatorCore>();
                 // deactivatorCore.GrabInteractable.enabled = false;
-                deactivatorCore.OnDeactivatorHealthChanged += (health) =>
+                _deactivatorCore.OnDeactivatorHealthChanged += (health) =>
                 {
                     enemyCoreUI.UpdateDeactivatorLifeText(health);
                 };
-                deactivatorCore.OnDeactivatorDestroyed += () =>
+                _deactivatorCore.OnDeactivatorDestroyed += () =>
                 {
                     _lifeTimer.PauseTimer();
                     _waveTimer.PauseTimer();
@@ -102,7 +99,7 @@ namespace com.LazyGames
             _lifeTimer = gameObject.AddComponent<TimerBase>();
             _lifeTimer.OnTimerEnd += () =>
             {
-                if (deactivatorCore != null && deactivatorCore.CurrentHealth > 0)
+                if (_deactivatorCore != null && _deactivatorCore.CurrentHealth > 0)
                 {
                     _lifeTimer.PauseTimer();
                     DestroyEnemyCore();
@@ -119,7 +116,7 @@ namespace com.LazyGames
             _waveTimer = gameObject.AddComponent<TimerBase>();
             _waveTimer.OnTimerLoop += () =>
             {
-                if (deactivatorCore.CurrentHealth <= 0) return;
+                if (_deactivatorCore.CurrentHealth <= 0) return;
                 SpawnEnemyWave();
             };
             _waveTimer.SetLoopableTimer(enemyCoreData.WaveDelay,true,0,"Wave Delay Timer");
