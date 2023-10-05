@@ -17,6 +17,7 @@ namespace com.LazyGames
         [SerializeField] private float cooldownPerShot;
         [SerializeField] private float delayReload;
         [SerializeField] private int maxAmmo;
+        [SerializeField] private Vector3 shootPointOffset;
 
 
 
