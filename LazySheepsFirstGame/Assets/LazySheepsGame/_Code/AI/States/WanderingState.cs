@@ -12,10 +12,6 @@ namespace com.LazyGames.DZ
         
         #region Wander Variables
         [Header("Movement Variables")]
-        [Tooltip("Bottom range of walking speed")]
-        [SerializeField]private float minWalkSpeed = 1f;
-        [Tooltip("Top range of walking speed")]
-        [SerializeField]private float maxWalkSpeed = 3f;
         [Tooltip("Distance of the circle from the _agent")]
         [SerializeField]private float circleOffset = 1.5f;
         [Tooltip("Radius of the circle")]
@@ -32,46 +28,64 @@ namespace com.LazyGames.DZ
 
         [Header("Detection Variables")]
         [Tooltip("Layer mask of the objects that can be detected")]
-
+        private float _oscillationSpeed = 50f; // Adjust the speed of oscillation
+        private float _coneAngle = 45f; // Set the angle of the vision cone (in degrees)
+        private Vector3 _offset = new Vector3(0, .5f, 0);
         #endregion
 
         private float _wanderAngle;
         private Vector3 _deviation;
         private float _elapsedTime;
         private float _actTime;
-
-        private NPC_TickManager _tickManager;
+        
         private Transform _agentTransform;
         
         public override void EnterState()
         {
-            _tickManager = FindObjectOfType<NPC_TickManager>();
-            _tickManager.OnTick += TickManagerOnTick;
+            Controller.tickManager.OnTick += TickManagerOnTick;
         }
 
         public override void UpdateState()
         {
-            _agentTransform = Agent.gameObject.transform;
+            _agentTransform = Controller.gameObject.transform;
             PlayerDetection();
             CountTime();
             if (!doWalk) return;
-            Agent.agent.SetDestination(Wander());
-            
+            Controller.agent.SetDestination(Wander());
         }
 
         public override void ExitState()
         {
-            
+            Controller.tickManager.OnTick -= TickManagerOnTick;
         }
         
+
+
         private void PlayerDetection()
         {
-            Vector3 offset = new Vector3(0, .5f, 0);
-            Debug.DrawRay(transform.position + offset,transform.forward * Agent.parameters.detectionRange, Color.red);
+            float oscillationAngle = Mathf.Sin(Time.time * _oscillationSpeed) * (_coneAngle / 2);
 
-            if(!Physics.Raycast(transform.position + offset, transform.forward, out var hit,Agent.parameters.detectionRange, Physics.DefaultRaycastLayers)) return;
-            if (!hit.collider.CompareTag("Player")) return;
-            Agent.currentState = Agent.aggroState;
+            Vector3 rayDirection = Quaternion.Euler(0, oscillationAngle, 0) * transform.forward;
+
+            Debug.DrawRay(transform.position + _offset, rayDirection * Controller.parameters.softDetectionRange, Color.white);
+
+            if (Physics.Raycast(transform.position + _offset, rayDirection, out var hit, Controller.parameters.softDetectionRange, Physics.DefaultRaycastLayers))
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    if (hit.distance <= Controller.parameters.hardDetectionRange)
+                    {
+                        Debug.DrawRay(transform.position + _offset, rayDirection * Controller.parameters.softDetectionRange, Color.red);
+                        Controller.ChangeState(Controller.aggroState);
+                    }
+                    else
+                    {
+                        Debug.DrawRay(transform.position + _offset, rayDirection * Controller.parameters.softDetectionRange, Color.yellow);
+                        Controller.target = hit.collider.transform.position;
+                        Controller.ChangeState(Controller.alertState);
+                    }
+                }
+            }
         }
 
         private void TickManagerOnTick(object sender, EventArgs e)
@@ -105,7 +119,7 @@ namespace com.LazyGames.DZ
         
         private Vector3 GetCircleCenter()
         {
-            Vector3 result = (Agent.agent.velocity.normalized * circleOffset) + _agentTransform.position;
+            Vector3 result = (Controller.agent.velocity.normalized * circleOffset) + _agentTransform.position;
             return result;
         }
 

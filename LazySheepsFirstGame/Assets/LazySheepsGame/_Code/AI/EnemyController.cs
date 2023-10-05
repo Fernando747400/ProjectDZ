@@ -14,15 +14,15 @@ namespace com.LazyGames.DZ
     [RequireComponent(typeof(DeadState))]
     public class EnemyController : MonoBehaviour
     {
-        [HideInInspector] public EnemyState currentState;
+        public EnemyState currentState;
         [HideInInspector] public NavMeshAgent agent;
         public EnemyParameters Parameters { get; set; }
         public EnemyParameters parameters;
+        public Vector3 target;
         
-        [SerializeField] private GameObject target;
-
         private bool _doChase;
         private float _hP; 
+        public NPC_TickManager tickManager;
         [HideInInspector] public WanderingState wanderingState;
         [HideInInspector] public AlertState alertState;
         [HideInInspector] public AggroState aggroState;
@@ -41,6 +41,13 @@ namespace com.LazyGames.DZ
             if (_hP > 0) return;
             currentState = deadState;
         }
+        
+        public void ChangeState(EnemyState newState)
+        {
+            currentState.ExitState();
+            currentState = newState;
+            currentState.EnterState();
+        }
 
         private void OnGeometryChanged()
         {
@@ -50,22 +57,24 @@ namespace com.LazyGames.DZ
         private void Prepare()
         {
             agent = GetComponent<NavMeshAgent>();
+            tickManager = FindObjectOfType<NPC_TickManager>();
+
             GetStates();
             Parameters = parameters;
             _hP = parameters.maxHp;
-            agent.speed = parameters.moveSpeed;
+            agent.speed = parameters.baseSpeed;
         }
 
         private void GetStates()
         {
             wanderingState = GetComponent<WanderingState>();
-            wanderingState.Agent = this;
+            wanderingState.Controller = this;
             alertState = GetComponent<AlertState>();
-            alertState.Agent = this;
+            alertState.Controller = this;
             aggroState = GetComponent<AggroState>();
-            aggroState.Agent = this;
+            aggroState.Controller = this;
             deadState = GetComponent<DeadState>();
-            deadState.Agent = this;
+            deadState.Controller = this;
         }
     }
 }
