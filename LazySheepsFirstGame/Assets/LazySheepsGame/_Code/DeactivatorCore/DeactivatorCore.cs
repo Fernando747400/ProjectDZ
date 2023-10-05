@@ -17,7 +17,9 @@ namespace com.LazyGames
         [SerializeField] private int maxHealth = 100;
         [SerializeField] private Collider collider;
         [SerializeField] private VoidEventChannelSO onCoreDestroyed;
+        [SerializeField] private VoidEventChannelSO onDeactivatorIsPlaced;
         [SerializeField] private XRGrabInteractable grabInteractable;
+        [SerializeField] private InteractionLayerMask nonInteractableLayers;
 
         
 
@@ -31,7 +33,11 @@ namespace com.LazyGames
 
         #region public variables
 
-        public XRGrabInteractable GrabInteractable => grabInteractable;
+        public XRGrabInteractable GrabInteractable
+        {
+            get => grabInteractable;
+            set => grabInteractable = value;
+        }
         public Collider Collider => collider;
         public int CurrentHealth => _currentHealth;
         public Action OnDeactivatorDestroyed;
@@ -46,14 +52,19 @@ namespace com.LazyGames
         {
             _currentHealth = maxHealth;
             onCoreDestroyed.VoidEvent += () => { Destroy(gameObject); };
+            onDeactivatorIsPlaced.VoidEvent += () =>
+            {
+                grabInteractable.interactionLayers = nonInteractableLayers;
+                Debug.Log("Deactivator Is Placed ".SetColor("#FE0D4F") + nonInteractableLayers);
+            };
         }
         private void OnTriggerEnter(Collider other)
         {
-            // if (other.CompareTag("Enemy"))
-            // {
-            //     Debug.Log("Enemy Enter Deactivator Core".SetColor("#FE0D4F"));
-            //     ReceiveDamage(5);
-            // }
+            if (other.CompareTag("Enemy"))
+            {
+                Debug.Log("Enemy Enter Deactivator Core".SetColor("#FE0D4F"));
+                ReceiveDamage(5);
+            }
         }
        
         #endregion
@@ -72,10 +83,7 @@ namespace com.LazyGames
             }
         }
         
-#region private methods
-
-        #endregion
-        
+       
     }
 }
 
