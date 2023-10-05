@@ -1488,12 +1488,12 @@ GameObject:
   - component: {fileID: 1054719739}
   - component: {fileID: 1054719738}
   - component: {fileID: 1054719737}
-  - component: {fileID: 1054719736}
   - component: {fileID: 1054719741}
+  - component: {fileID: 1054719746}
   - component: {fileID: 1054719745}
   - component: {fileID: 1054719744}
-  - component: {fileID: 1054719743}
   - component: {fileID: 1054719742}
+  - component: {fileID: 1054719747}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1501,27 +1501,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1054719736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054719735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49f6dbbc9ed333c40a227b620334a099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idleState: {fileID: 0}
-  wanderingState: {fileID: 11400000, guid: 0731f3ec83ec7f14f84e6ddee8d16250, type: 2}
-  aggroState: {fileID: 0}
-  alertState: {fileID: 0}
-  tickManager: {fileID: 0}
-  currentState: {fileID: 0}
-  agent: {fileID: 0}
-  target: {fileID: 456796539}
-  parameters: {fileID: 11400000, guid: 20bf2c09fda47634c83e395cd5ad899f, type: 2}
 --- !u!136 &1054719737
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1639,23 +1618,11 @@ MonoBehaviour:
   doWalk: 0
   minWalkSpeed: 1
   maxWalkSpeed: 2
-  circleOffset: 1.5
+  circleOffset: 0
   circleRadius: 1
-  deviationRange: 0.2
+  deviationRange: 2
   minActTime: 5
-  maxActTime: 20
---- !u!114 &1054719743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054719735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dbc1692f59d2fd429abc1eb208284ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  maxActTime: 40
 --- !u!114 &1054719744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1678,6 +1645,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d168d7b8aed44a43b3a9930251ac7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1054719746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054719735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f6dbbc9ed333c40a227b620334a099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: {fileID: 0}
+  agent: {fileID: 0}
+  parameters: {fileID: 11400000, guid: 20bf2c09fda47634c83e395cd5ad899f, type: 2}
+  target: {fileID: 456796539}
+  wanderingState: {fileID: 0}
+  alertState: {fileID: 0}
+  aggroState: {fileID: 0}
+  deadState: {fileID: 0}
+--- !u!114 &1054719747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054719735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8d0464fe617c644a83bd275ccc8a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1082391900

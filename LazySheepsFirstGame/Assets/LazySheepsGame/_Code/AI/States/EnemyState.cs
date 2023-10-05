@@ -5,7 +5,7 @@ namespace com.LazyGames.DZ
 {
     public abstract class EnemyState : MonoBehaviour
     {
-        public EnemyNavAgent Agent { get; set; }
+        public EnemyController Agent { get; set; }
         
         public abstract void EnterState();
         public abstract void UpdateState();

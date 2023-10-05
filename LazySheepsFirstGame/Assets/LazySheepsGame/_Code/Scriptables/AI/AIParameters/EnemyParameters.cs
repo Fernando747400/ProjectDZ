@@ -1,5 +1,6 @@
 // Creado Raymundo Mosqueda 028/09/23
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace com.LazyGames.DZ
 {
@@ -7,7 +8,7 @@ namespace com.LazyGames.DZ
     public class EnemyParameters : ScriptableObject
     {
         public float maxHp = 20f;
-        public float enemySpeed = 1f;
+        public float moveSpeed = 1f;
         public float detectionRange = 20f;
         public float attackPower = 1f;
         public float attackRange = .5f;

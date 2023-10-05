@@ -3,6 +3,7 @@
 using Lean.Pool;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace com.LazyGames.DZ
 {
@@ -10,7 +11,8 @@ namespace com.LazyGames.DZ
     [RequireComponent(typeof(WanderingState))]
     [RequireComponent(typeof(AlertState))]
     [RequireComponent(typeof(AggroState))]
-    public class EnemyNavAgent : MonoBehaviour
+    [RequireComponent(typeof(DeadState))]
+    public class EnemyController : MonoBehaviour
     {
         [HideInInspector] public EnemyState currentState;
         [HideInInspector] public NavMeshAgent agent;
@@ -21,15 +23,15 @@ namespace com.LazyGames.DZ
 
         private bool _doChase;
         private float _hP; 
-        private WanderingState _wanderingState;
-        private AlertState _alertState;
-        private AggroState _aggroState;
-        private DeadState _deadState;
-        
+        [HideInInspector] public WanderingState wanderingState;
+        [HideInInspector] public AlertState alertState;
+        [HideInInspector] public AggroState aggroState;
+        [HideInInspector] public DeadState deadState;
+       
     private void Start()
         {
             Prepare();
-            currentState = _wanderingState;
+            currentState = wanderingState;
             currentState.EnterState();
         }
 
@@ -37,7 +39,7 @@ namespace com.LazyGames.DZ
         {
             currentState.UpdateState();
             if (_hP > 0) return;
-            currentState = _deadState;
+            currentState = deadState;
         }
 
         private void OnGeometryChanged()
@@ -56,14 +58,14 @@ namespace com.LazyGames.DZ
 
         private void GetStates()
         {
-            _wanderingState = GetComponent<WanderingState>();
-            _wanderingState.Agent = this;
-            _alertState = GetComponent<AlertState>();
-            _alertState.Agent = this;
-            _aggroState = GetComponent<AggroState>();
-            _aggroState.Agent = this;
-            _deadState = GetComponent<DeadState>();
-            _deadState.Agent = this;
+            wanderingState = GetComponent<WanderingState>();
+            wanderingState.Agent = this;
+            alertState = GetComponent<AlertState>();
+            alertState.Agent = this;
+            aggroState = GetComponent<AggroState>();
+            aggroState.Agent = this;
+            deadState = GetComponent<DeadState>();
+            deadState.Agent = this;
         }
     }
 }

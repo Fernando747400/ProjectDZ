@@ -28,14 +28,15 @@ namespace com.LazyGames.DZ
         [SerializeField]private float maxActTime = 20f;
         #endregion
 
-        #region Debugging Variables
-        [Header("Debugging Variables")]
-        [Tooltip("Enables visualisation of steering variables. Only works in play mode")]
+        #region Detection Variables
+
+        [Header("Detection Variables")]
+        [Tooltip("Layer mask of the objects that can be detected")]
+
         #endregion
 
         private float _wanderAngle;
         private Vector3 _deviation;
-
         private float _elapsedTime;
         private float _actTime;
 
@@ -50,7 +51,7 @@ namespace com.LazyGames.DZ
 
         public override void UpdateState()
         {
-            _agentTransform = Agent.agentTransform;
+            _agentTransform = Agent.gameObject.transform;
             PlayerDetection();
             CountTime();
             if (!doWalk) return;
@@ -66,7 +67,11 @@ namespace com.LazyGames.DZ
         private void PlayerDetection()
         {
             Vector3 offset = new Vector3(0, .5f, 0);
-            // Physics.Raycast( _agentTransform.position + offset, _agentTransform.forward, Agent.Parameters.detectionRange);
+            Debug.DrawRay(transform.position + offset,transform.forward * Agent.parameters.detectionRange, Color.red);
+
+            if(!Physics.Raycast(transform.position + offset, transform.forward, out var hit,Agent.parameters.detectionRange, Physics.DefaultRaycastLayers)) return;
+            if (!hit.collider.CompareTag("Player")) return;
+            Agent.currentState = Agent.aggroState;
         }
 
         private void TickManagerOnTick(object sender, EventArgs e)
