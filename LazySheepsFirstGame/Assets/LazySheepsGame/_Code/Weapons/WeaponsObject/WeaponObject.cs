@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using com.LazyGames;
 using com.LazyGames.Dio;
+using Unity.VisualScripting;
 using UnityEngine.Serialization;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace com.LazyGames
 {
@@ -14,13 +16,21 @@ namespace com.LazyGames
         [Header("Weapon Object")]
         [SerializeField] private WeaponData weaponData;
         [SerializeField] private Transform shootPoint;
-        [SerializeField] private FloatEventChannelSO InputShootActionRight;
+        [SerializeField] private IntEventChannelSO InputShootActionRight;
+        [SerializeField] private IntEventChannelSO InputShootActionLeft;
+        [SerializeField] private ParticleSystem shootParticle;
+        
+        
+        [Header("Hand Holder")]
+        [SerializeField] private HandShoot currentHandHolding;
 
         #endregion
         
         private float _travelTime = 0.3f;
         private Vector3 _hitPosition;
         private Vector3 _savedFirePosition;
+        private bool _isHoldingWeapon = false;
+        
 
         #region unity methods
 
@@ -39,36 +49,75 @@ namespace com.LazyGames
 
         private void OnDisable()
         {
-            InputShootActionRight.FloatEvent -= value =>
+            InputShootActionRight.IntEvent -= (value) =>
             {
-                if(value >= 1)  Shoot();
+                HandleShootEvent(value);
             };
+            InputShootActionLeft.IntEvent -= (value) =>
+            {
+                HandleShootEvent(value);
+                
+            };
+            
+            
         }
 
         #endregion
+
+        #region public methods
+
+        public void OnSelectWeapon(SelectEnterEventArgs args)
+        {
+            Debug.Log("OnSelectWeapon".SetColor("#F1BE50"));
+            // _isHoldingWeapon = true;
+        }
+        public void OnSelectExitWeapon(SelectExitEventArgs args)
+        {
+            Debug.Log("OnSelectExitWeapon".SetColor("#50F155"));
+            // _isHoldingWeapon = false;
+        }
+
+        #endregion
+        
         
         #region private methods
 
         private void PrepareAgressor()
         {
-            InputShootActionRight.FloatEvent += value =>
+            InputShootActionRight.IntEvent += (value) =>
             {
-                if (value > 0)
-                {
-                    switch (weaponData.WeaponType)
-                    {
-                        case WeaponType.Pistol:
-                            Shoot();
-                            break;
-                        
-                        case WeaponType.AutomaticRifle:
-                            StartConstantShoot();
-                            break;
-                    }
-                }
+                HandleShootEvent(value);
+            };
+            InputShootActionLeft.IntEvent += (value) =>
+            {
+                HandleShootEvent(value);
+                
             };
         }
 
+        private void HandleShootEvent(int value)
+        {
+            if (value == 2)
+            {
+                currentHandHolding = HandShoot.Left;
+            }
+            else if(value == 1)
+            {
+                currentHandHolding = HandShoot.Right;
+            }
+            
+            if (!_isHoldingWeapon) return;
+            
+            switch (weaponData.WeaponType) 
+            { 
+                case WeaponType.Pistol: 
+                    Shoot();
+                    break;
+                case WeaponType.AutomaticRifle: 
+                    StartConstantShoot(); 
+                    break;
+            }
+        }
 
         private void StartConstantShoot()
         {
@@ -76,6 +125,7 @@ namespace com.LazyGames
         }
         private void Shoot()
         {
+            shootParticle.Play();
             StopAllCoroutines();
             _savedFirePosition = shootPoint.transform.position;
             RaycastHit hit;
@@ -114,4 +164,7 @@ namespace com.LazyGames
         }
         
     }
+    
+    
+    
 }
