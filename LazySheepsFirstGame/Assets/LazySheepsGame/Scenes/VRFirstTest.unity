@@ -842,7 +842,7 @@ MonoBehaviour:
   m_SmoothMovement: 0
   m_FollowTightness: 10
   m_SnapThresholdDistance: 10
-  m_Reticle: {fileID: 7598762303102727148, guid: 5a1114388f48df0448acb128bd89b944, type: 3}
+  m_Reticle: {fileID: 7598762303102727148, guid: deadab31a43e4974bbdfef6ac787cf6b, type: 3}
   m_StopLineAtFirstRaycastHit: 1
 --- !u!120 &502074163
 LineRenderer:
@@ -3419,6 +3419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _SmoothMoveCode: {fileID: 1847112435}
+  _SnapTurn: {fileID: 1847112438}
   _telepotMoveCode: {fileID: 1847112436}
   _lineRendererRight: {fileID: 1211652528}
   _lineRendererLeft: {fileID: 502074164}
@@ -3440,10 +3441,10 @@ MonoBehaviour:
   m_System: {fileID: 1847112433}
   m_TurnAmount: 45
   m_DebounceTime: 0.5
-  m_EnableTurnLeftRight: 1
+  m_EnableTurnLeftRight: 0
   m_EnableTurnAround: 0
   m_LeftHandSnapTurnAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Left Hand Snap Turn
       m_Type: 0

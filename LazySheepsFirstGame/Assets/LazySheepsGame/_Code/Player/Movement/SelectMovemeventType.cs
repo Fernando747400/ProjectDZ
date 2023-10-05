@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class SelectMovemeventType : MonoBehaviour
 {
     [SerializeField] private ContinuousMoveProviderBase _SmoothMoveCode;
+    [SerializeField] private SnapTurnProviderBase _SnapTurn;
     [SerializeField] private TeleportationProvider _telepotMoveCode;
     [SerializeField] private XRRayInteractor _lineRendererRight;
     [SerializeField] private XRRayInteractor _lineRendererLeft;
@@ -18,6 +19,7 @@ public class SelectMovemeventType : MonoBehaviour
     private void Start()
     {
         _SmoothMoveCode.enabled = true;
+        _SnapTurn.enabled = true;
         _telepotMoveCode.enabled = false;
         _lineRendererRight.enabled = false;
         _lineRendererLeft.enabled = false;
@@ -44,15 +46,17 @@ public class SelectMovemeventType : MonoBehaviour
 
     public void CambiarCodigoEstado()
     {
-        if (codigo1Activo)
-        {
-            _SmoothMoveCode.enabled = false;
-            _telepotMoveCode.enabled = true;
-        }
-        else
+        if(codigo1Activo)
         {
             _SmoothMoveCode.enabled = true;
+            _SnapTurn.enabled = true;
             _telepotMoveCode.enabled = false;
+        }
+        if(!codigo1Activo)
+        {
+            _SmoothMoveCode.enabled = false;
+            _SnapTurn.enabled = false;
+            _telepotMoveCode.enabled = true;
         }
 
         codigo1Activo = !codigo1Activo;
@@ -60,41 +64,41 @@ public class SelectMovemeventType : MonoBehaviour
 
     private void CanMoveRight()
     {
-        _lineRendererRight.enabled = true;
-        GameObject[] DeleteRetyicle = GameObject.FindGameObjectsWithTag("Reticle");
-        foreach (GameObject objeto in DeleteRetyicle)
+        if (codigo1Activo)
         {
-            objeto.SetActive(true);
+            _lineRendererRight.enabled = true;
+            GameObject Retyicle = GameObject.FindGameObjectWithTag("ReticleRight");
+            if(Retyicle != null ) Retyicle.SetActive(true);
         }
     }
 
     private void CantMoveRight() 
     {
-        _lineRendererRight.enabled = false;
-        GameObject[] DeleteRetyicle = GameObject.FindGameObjectsWithTag("Reticle");
-        foreach (GameObject objeto in DeleteRetyicle)
+        if (codigo1Activo)
         {
-            objeto.SetActive(false);
+            _lineRendererRight.enabled = false;
+            GameObject Retyicle = GameObject.FindGameObjectWithTag("ReticleRight");
+            if (Retyicle != null) Retyicle.SetActive(false);
         }
     }
 
     private void CanMoveLeft()
     {
-        _lineRendererLeft.enabled = true;
-        GameObject[] DeleteRetyicle = GameObject.FindGameObjectsWithTag("Reticle");
-        foreach (GameObject objeto in DeleteRetyicle)
+        if (codigo1Activo)
         {
-            objeto.SetActive(true);
+            _lineRendererLeft.enabled = true;
+            GameObject Retyicle = GameObject.FindGameObjectWithTag("ReticleLeft");
+            if (Retyicle != null) Retyicle.SetActive(true);
         }
     }
 
     private void CantMoveLeft()
     {
-        _lineRendererLeft.enabled = false;
-        GameObject[] DeleteRetyicle = GameObject.FindGameObjectsWithTag("Reticle");
-        foreach (GameObject objeto in DeleteRetyicle)
+        if (codigo1Activo)
         {
-            objeto.SetActive(false);
+            _lineRendererLeft.enabled = false;
+            GameObject Retyicle = GameObject.FindGameObjectWithTag("ReticleLeft");
+            if (Retyicle != null) Retyicle.SetActive(false);
         }
     }
 }
