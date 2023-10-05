@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using com.LazyGames;
+using com.LazyGames.Dio;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace com.LazyGames
 {
@@ -13,6 +15,11 @@ namespace com.LazyGames
         #region Serialized Fields
         
         [SerializeField] private int maxHealth = 100;
+        [SerializeField] private Collider collider;
+        [SerializeField] private VoidEventChannelSO onCoreDestroyed;
+        [SerializeField] private VoidEventChannelSO onDeactivatorIsPlaced;
+        [SerializeField] private XRGrabInteractable grabInteractable;
+
         
 
         #endregion
@@ -20,11 +27,18 @@ namespace com.LazyGames
         #region private variables
 
         private int _currentHealth;
+        private bool _deactivatorEnter;
 
         #endregion
 
         #region public variables
 
+        public XRGrabInteractable GrabInteractable
+        {
+            get => grabInteractable;
+            set => grabInteractable = value;
+        }
+        public Collider Collider => collider;
         public int CurrentHealth => _currentHealth;
         public Action OnDeactivatorDestroyed;
         public Action<int> OnDeactivatorHealthChanged;
@@ -37,6 +51,8 @@ namespace com.LazyGames
         void Start()
         {
             _currentHealth = maxHealth;
+            onCoreDestroyed.VoidEvent += () => { Destroy(gameObject); };
+            onDeactivatorIsPlaced.VoidEvent += () => { _deactivatorEnter = true; };
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -62,28 +78,36 @@ namespace com.LazyGames
                 OnDeactivatorDestroyed?.Invoke();
             }
         }
+        public void HoverEntered(SelectEnterEventArgs args)
+        {
+            if (_deactivatorEnter)return;
+            
+            Debug.Log("Select Enter".SetColor("#FE0D4F"));
+        }
         
 #region private methods
+
+
 
         #endregion
         
     }
 }
 
-#if UNITY_EDITOR_WIN
-[CustomEditor(typeof(DeactivatorCore))]
-public class DeactivatorCoreEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-        DeactivatorCore deactivatorCore = (DeactivatorCore) target;
-        
-        if (GUILayout.Button("Receive Damage"))
-        {
-            deactivatorCore.ReceiveDamage(5);
-        }
-    }
-}
-
-#endif
+// #if UNITY_EDITOR_WIN
+// [CustomEditor(typeof(DeactivatorCore))]
+// public class DeactivatorCoreEditor : Editor
+// {
+//     public override void OnInspectorGUI()
+//     {
+//         DrawDefaultInspector();
+//         DeactivatorCore deactivatorCore = (DeactivatorCore) target;
+//         
+//         if (GUILayout.Button("Receive Damage"))
+//         {
+//             deactivatorCore.ReceiveDamage(5);
+//         }
+//     }
+// }
+//
+// #endif
