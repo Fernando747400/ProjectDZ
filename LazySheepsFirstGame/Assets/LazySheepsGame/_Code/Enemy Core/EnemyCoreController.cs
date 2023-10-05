@@ -20,6 +20,7 @@ namespace com.LazyGames
         [SerializeField] private GameObject coreVisual;
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private GameObject ringVisual;
+        [SerializeField] private ParticleSystem explosionParticle;
         
         [Header("UI")]
         [SerializeField] private EnemyCoreUI enemyCoreUI;
@@ -138,7 +139,8 @@ namespace com.LazyGames
             _waveTimer.PauseTimer();
             collider.enabled = false;
             onCoreDestroyed.RaiseEvent();
-            Debug.Log("Enemy Core Destroyed".SetColor("#FE0D4F"));
+            explosionParticle.Play();
+            // Debug.Log("Enemy Core Destroyed".SetColor("#FE0D4F"));
         }
         private void CheckEnemyCoreState()
         {
