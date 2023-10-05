@@ -2555,7 +2555,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5686134208185136530, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5686134208185136530, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3422,7 +3422,9 @@ MonoBehaviour:
   _telepotMoveCode: {fileID: 1847112436}
   _lineRendererRight: {fileID: 1211652528}
   _lineRendererLeft: {fileID: 502074164}
-  cambioCodigoAction: {fileID: -2284522883836272401, guid: fa3fd5c6fd8891c4490e4f2ac33c5d60, type: 3}
+  _changeMoveTipe: {fileID: -2284522883836272401, guid: fa3fd5c6fd8891c4490e4f2ac33c5d60, type: 3}
+  _rightHandRayEnable: {fileID: 4784419539437572486, guid: fa3fd5c6fd8891c4490e4f2ac33c5d60, type: 3}
+  _leftHandRayEnable: {fileID: -6591995716513118080, guid: fa3fd5c6fd8891c4490e4f2ac33c5d60, type: 3}
 --- !u!114 &1847112438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3441,7 +3443,7 @@ MonoBehaviour:
   m_EnableTurnLeftRight: 1
   m_EnableTurnAround: 0
   m_LeftHandSnapTurnAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Left Hand Snap Turn
       m_Type: 0
@@ -3477,7 +3479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 109434732395451517, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 109434732395451517, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
       propertyPath: m_LocalPosition.x
