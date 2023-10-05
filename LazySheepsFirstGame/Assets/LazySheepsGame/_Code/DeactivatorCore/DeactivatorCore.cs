@@ -52,7 +52,13 @@ namespace com.LazyGames
         {
             _currentHealth = maxHealth;
             onCoreDestroyed.VoidEvent += () => { Destroy(gameObject); };
-            onDeactivatorIsPlaced.VoidEvent += () => { _deactivatorEnter = true; };
+            onDeactivatorIsPlaced.VoidEvent += () =>
+            {
+                // grabInteractable.deactivated.AddListener(Deactivated);
+                _deactivatorEnter = true; 
+                
+                
+            };
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -78,11 +84,9 @@ namespace com.LazyGames
                 OnDeactivatorDestroyed?.Invoke();
             }
         }
-        public void HoverEntered(SelectEnterEventArgs args)
+        public void Deactivated(DeactivateEventArgs args)
         {
-            if (_deactivatorEnter)return;
-            
-            Debug.Log("Select Enter".SetColor("#FE0D4F"));
+            Debug.Log("Select Exit".SetColor("#FE0D4F"));
         }
         
 #region private methods
