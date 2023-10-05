@@ -19,6 +19,7 @@ namespace com.LazyGames
         [SerializeField] private VoidEventChannelSO onCoreDestroyed;
         [SerializeField] private VoidEventChannelSO onDeactivatorIsPlaced;
         [SerializeField] private XRGrabInteractable grabInteractable;
+        [SerializeField] private InteractionLayerMask nonInteractableLayers;
 
         
 
@@ -27,7 +28,6 @@ namespace com.LazyGames
         #region private variables
 
         private int _currentHealth;
-        private bool _deactivatorEnter;
 
         #endregion
 
@@ -54,19 +54,17 @@ namespace com.LazyGames
             onCoreDestroyed.VoidEvent += () => { Destroy(gameObject); };
             onDeactivatorIsPlaced.VoidEvent += () =>
             {
-                // grabInteractable.deactivated.AddListener(Deactivated);
-                _deactivatorEnter = true; 
-                
-                
+                grabInteractable.interactionLayers = nonInteractableLayers;
+                Debug.Log("Deactivator Is Placed ".SetColor("#FE0D4F") + nonInteractableLayers);
             };
         }
         private void OnTriggerEnter(Collider other)
         {
-            // if (other.CompareTag("Enemy"))
-            // {
-            //     Debug.Log("Enemy Enter Deactivator Core".SetColor("#FE0D4F"));
-            //     ReceiveDamage(5);
-            // }
+            if (other.CompareTag("Enemy"))
+            {
+                Debug.Log("Enemy Enter Deactivator Core".SetColor("#FE0D4F"));
+                ReceiveDamage(5);
+            }
         }
        
         #endregion
@@ -84,17 +82,8 @@ namespace com.LazyGames
                 OnDeactivatorDestroyed?.Invoke();
             }
         }
-        public void Deactivated(DeactivateEventArgs args)
-        {
-            Debug.Log("Select Exit".SetColor("#FE0D4F"));
-        }
         
-#region private methods
-
-
-
-        #endregion
-        
+       
     }
 }
 

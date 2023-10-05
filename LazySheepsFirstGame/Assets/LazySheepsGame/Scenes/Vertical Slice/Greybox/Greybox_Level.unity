@@ -3546,17 +3546,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822282621}
   m_Mesh: {fileID: 4300000, guid: 4271e1f51cf274c499b8283b04da0c03, type: 3}
---- !u!114 &865508981 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8435215112150212769, guid: 186b9ccfd3c6d864db629c91dd415fc6, type: 3}
-  m_PrefabInstance: {fileID: 992334934}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744669666de94d944a6d12bd87cc197a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &891408449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4102,34 +4091,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3055132493716823882, guid: 186b9ccfd3c6d864db629c91dd415fc6, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3055132493716823882, guid: 186b9ccfd3c6d864db629c91dd415fc6, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3055132493716823882, guid: 186b9ccfd3c6d864db629c91dd415fc6, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 865508981}
-    - target: {fileID: 3055132493716823882, guid: 186b9ccfd3c6d864db629c91dd415fc6, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3055132493716823882, guid: 186b9ccfd3c6d864db629c91dd415fc6, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Select
-      objectReference: {fileID: 0}
-    - target: {fileID: 3055132493716823882, guid: 186b9ccfd3c6d864db629c91dd415fc6, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: com.LazyGames.DeactivatorCore, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3055132493716823882, guid: 186b9ccfd3c6d864db629c91dd415fc6, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 8435215112150212768, guid: 186b9ccfd3c6d864db629c91dd415fc6, type: 3}
       propertyPath: m_RootOrder
       value: 3
