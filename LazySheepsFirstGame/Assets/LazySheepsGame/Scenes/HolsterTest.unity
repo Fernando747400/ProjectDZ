@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 20521849}
   - component: {fileID: 20521848}
   - component: {fileID: 20521847}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &250673434 stripped
 Transform:
@@ -671,6 +671,8 @@ MonoBehaviour:
   _objectToBuild: {fileID: 2139907925}
   _rayCastOrigin: {fileID: 910777786}
   _hammerCollisionEvent: {fileID: 11400000, guid: 5b24cce30355d6048acf64b9f46b7b29, type: 2}
+  _validPlacementMaterial: {fileID: 2100000, guid: 53b377d8c88fa5e4b9561f9c992608d8, type: 2}
+  _invalidPlacementMaterials: {fileID: 2100000, guid: 7a3ac71e384adb74fbc93944ce580958, type: 2}
 --- !u!4 &1966314959
 Transform:
   m_ObjectHideFlags: 0

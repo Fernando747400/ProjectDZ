@@ -13,7 +13,7 @@ public class VRBuildingSystem : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _headTiltDegrees;
 
-    private bool _hammerInHand = true;
+    [SerializeField] private bool _hammerInHand = false;
     private bool _isBuilding = false;
 
     private void OnEnable()
