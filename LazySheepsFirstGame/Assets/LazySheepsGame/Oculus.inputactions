@@ -34,9 +34,9 @@
                 },
                 {
                     "name": "ShootRight",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "2a2df0af-8f4c-4877-8ecc-b257ebd4f928",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -88,7 +88,7 @@
                 {
                     "name": "",
                     "id": "9b8260a5-768d-429a-b993-6830ef0fb1eb",
-                    "path": "<XRInputV1::Oculus::OculusTouchControllerLeft>{RightHand}/secondarybutton",
+                    "path": "<XRInputV1::Oculus::OculusTouchControllerRight>{RightHand}/triggerpressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -110,7 +110,7 @@
                 {
                     "name": "",
                     "id": "fe81fb04-43ac-463d-a482-71f17dc3e6c4",
-                    "path": "<XRInputV1::Oculus::OculusTouchControllerLeft>{LeftHand}/secondarybutton",
+                    "path": "<XRInputV1::Oculus::OculusTouchControllerLeft>{LeftHand}/triggerpressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

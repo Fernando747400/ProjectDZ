@@ -52,28 +52,24 @@ namespace com.LazyGames
             InputShootActionRight.IntEvent -= (value) =>
             {
                 HandleShootEvent(value);
-                Debug.Log("Right desuscript");
             };
             InputShootActionLeft.IntEvent -= (value) =>
             {
                 HandleShootEvent(value);
-                Debug.Log("Left desuscript");
             };
-
-
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             if (other.CompareTag("HandLeft"))
             {
                 currentHandHolding = HandShoot.Left;
-                Debug.Log("Hand Holder Enter".SetColor("#F1BE50"));
+                //Debug.Log("Hand Holder Enter".SetColor("#F1BE50"));
             }
             if (other.CompareTag("HandRight"))
             {
                 currentHandHolding = HandShoot.Right;
-                Debug.Log("Hand Holder Enter".SetColor("#F1BE50"));
+                //Debug.Log("Hand Holder Enter".SetColor("#F1BE50"));
             }
         }
 
@@ -83,12 +79,12 @@ namespace com.LazyGames
 
         public void OnSelectWeapon(SelectEnterEventArgs args)
         {
-            Debug.Log("OnSelectWeapon".SetColor("#F1BE50"));
+            //Debug.Log("OnSelectWeapon".SetColor("#F1BE50"));
             _isHoldingWeapon = true;
         }
         public void OnSelectExitWeapon(SelectExitEventArgs args)
         {
-            Debug.Log("OnSelectExitWeapon".SetColor("#50F155"));
+            //Debug.Log("OnSelectExitWeapon".SetColor("#50F155"));
             _isHoldingWeapon = false;
             currentHandHolding = HandShoot.None;
         }
@@ -106,7 +102,8 @@ namespace com.LazyGames
 
         private void HandleShootEvent(int value)
         {
-            Debug.Log("Is Holding Weapon = " + _isHoldingWeapon.ToString().SetColor("#F1BE50"));
+            Debug.Log("Is Holding Weapon = " + currentHandHolding);
+            Debug.Log("Shoot = " + value);
 
             if(currentHandHolding == HandShoot.None) return;
             if (value != (int)currentHandHolding) return;
