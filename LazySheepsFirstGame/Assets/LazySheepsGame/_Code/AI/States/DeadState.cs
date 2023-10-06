@@ -6,7 +6,7 @@ namespace com.LazyGames.DZ
     {
         public override void EnterState()
         {
-            
+            Controller.agent.speed = 0;
         }
         
         public override void UpdateState()

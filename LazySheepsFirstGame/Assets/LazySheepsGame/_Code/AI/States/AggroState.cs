@@ -7,14 +7,27 @@ namespace com.LazyGames.DZ
     {
         public override void EnterState()
         {
-            // throw new System.NotImplementedException();
+            Controller.agent.speed = Controller.parameters.aggroSpeed;
         }
 
         public override void UpdateState()
         {
-            // throw new System.NotImplementedException();
+            Controller.agent.SetDestination(Controller.player.transform.position);
+            CheckDistance();
+        }
+        
+        private void CheckDistance()
+        {
+            var dist = Vector3.Distance(transform.position, Controller.player.transform.position);
+            if(dist > Controller.agent.stoppingDistance) return;
+            Attack();
         }
 
+        private void Attack()
+        {
+            
+        }
+        
         public override void ExitState()
         {
             // throw new System.NotImplementedException();

@@ -24,15 +24,6 @@ namespace com.LazyGames.DZ
         [SerializeField]private float maxActTime = 20f;
         #endregion
 
-        #region Detection Variables
-
-        [Header("Detection Variables")]
-        [Tooltip("Layer mask of the objects that can be detected")]
-        private float _oscillationSpeed = 50f; // Adjust the speed of oscillation
-        private float _coneAngle = 45f; // Set the angle of the vision cone (in degrees)
-        private Vector3 _offset = new Vector3(0, .5f, 0);
-        #endregion
-
         private float _wanderAngle;
         private Vector3 _deviation;
         private float _elapsedTime;
@@ -63,28 +54,25 @@ namespace com.LazyGames.DZ
 
         private void PlayerDetection()
         {
-            float oscillationAngle = Mathf.Sin(Time.time * _oscillationSpeed) * (_coneAngle / 2);
+            float oscillationAngle = Mathf.Sin(Time.time * Controller.parameters.oscillationSpeed) * (Controller.parameters.coneAngle / 2);
 
             Vector3 rayDirection = Quaternion.Euler(0, oscillationAngle, 0) * transform.forward;
 
-            Debug.DrawRay(transform.position + _offset, rayDirection * Controller.parameters.softDetectionRange, Color.white);
+            Debug.DrawRay(transform.position + Controller.parameters.heightOffset, rayDirection * Controller.parameters.softDetectionRange, Color.white);
 
-            if (Physics.Raycast(transform.position + _offset, rayDirection, out var hit, Controller.parameters.softDetectionRange, Physics.DefaultRaycastLayers))
+            if (!Physics.Raycast(transform.position + Controller.parameters.heightOffset, rayDirection,
+                    out var hit, Controller.parameters.softDetectionRange, Physics.DefaultRaycastLayers)) return;
+            if (!hit.collider.CompareTag("Player")) return;
+            if (hit.distance <= Controller.parameters.hardDetectionRange)
             {
-                if (hit.collider.CompareTag("Player"))
-                {
-                    if (hit.distance <= Controller.parameters.hardDetectionRange)
-                    {
-                        Debug.DrawRay(transform.position + _offset, rayDirection * Controller.parameters.softDetectionRange, Color.red);
-                        Controller.ChangeState(Controller.aggroState);
-                    }
-                    else
-                    {
-                        Debug.DrawRay(transform.position + _offset, rayDirection * Controller.parameters.softDetectionRange, Color.yellow);
-                        Controller.target = hit.collider.transform.position;
-                        Controller.ChangeState(Controller.alertState);
-                    }
-                }
+                Debug.DrawRay(transform.position + Controller.parameters.heightOffset, rayDirection * Controller.parameters.softDetectionRange, Color.red);
+                Controller.ChangeState(Controller.aggroState);
+            }
+            else
+            {
+                Debug.DrawRay(transform.position + Controller.parameters.heightOffset, rayDirection * Controller.parameters.softDetectionRange, Color.yellow);
+                Controller.target = hit.collider.transform.position;
+                Controller.ChangeState(Controller.alertState);
             }
         }
 

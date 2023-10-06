@@ -66,6 +66,10 @@ namespace com.LazyGames
         }
         #endregion
 
+        public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
+        {
+            Debug.Log($"received aggressor");
+        }
     }
 
 }

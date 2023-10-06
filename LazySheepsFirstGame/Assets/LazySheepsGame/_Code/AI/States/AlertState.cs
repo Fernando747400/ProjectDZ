@@ -4,18 +4,9 @@ using UnityEngine;
 
 public class AlertState : EnemyState
 {
-    private Vector3 _targetPos;
     
-    #region Detection Variables
-    [Header("Detection Variables")]
-    [Tooltip("Layer mask of the objects that can be detected")]
-    private float _oscillationSpeed = 50f;
-    private float _coneAngle = 45f;
-    private Vector3 _offset = new Vector3(0, .5f, 0);
-    #endregion
     public override void EnterState()
     {
-        _targetPos = Controller.target;
         Controller.agent.speed = Controller.parameters.alertSpeed;
     }
 
@@ -24,33 +15,30 @@ public class AlertState : EnemyState
         Controller.agent.SetDestination(Controller.target);
         PlayerDetection();
         float dist = Vector3.Distance(transform.position,Controller.target);
-        if (dist < .5f)
+        if (dist <= Controller.agent.stoppingDistance)
         {
             Controller.ChangeState(Controller.wanderingState);
         }
-    }
+    }   
     
     private void PlayerDetection()
     {
-        float oscillationAngle = Mathf.Sin(Time.time * _oscillationSpeed) * (_coneAngle / 2);
+        float oscillationAngle = Mathf.Sin(Time.time * Controller.parameters.oscillationSpeed) * (Controller.parameters.coneAngle / 2);
 
         Vector3 rayDirection = Quaternion.Euler(0, oscillationAngle, 0) * transform.forward;
-        
-        if (Physics.Raycast(transform.position + _offset, rayDirection, out var hit, Controller.parameters.softDetectionRange, Physics.DefaultRaycastLayers))
+
+        if (!Physics.Raycast(transform.position + Controller.parameters.heightOffset, rayDirection,
+                out var hit, Controller.parameters.softDetectionRange, Physics.DefaultRaycastLayers)) return;
+        if (!hit.collider.CompareTag("Player")) return;
+        if (hit.distance <= Controller.parameters.hardDetectionRange)
         {
-            if (hit.collider.CompareTag("Player"))
-            {
-                if (hit.distance <= Controller.parameters.hardDetectionRange)
-                {
-                    Debug.DrawRay(transform.position + _offset, rayDirection * Controller.parameters.softDetectionRange, Color.red);
-                    Controller.ChangeState(Controller.aggroState);
-                }
-                else
-                {
-                    Debug.DrawRay(transform.position + _offset, rayDirection * Controller.parameters.softDetectionRange, Color.yellow);
-                    Controller.target = hit.collider.transform.position;
-                }
-            }
+            Debug.DrawRay(transform.position + Controller.parameters.heightOffset, rayDirection * Controller.parameters.softDetectionRange, Color.red);
+            Controller.ChangeState(Controller.aggroState);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position + Controller.parameters.heightOffset, rayDirection * Controller.parameters.softDetectionRange, Color.yellow);
+            Controller.target = hit.collider.transform.position;
         }
     }
 

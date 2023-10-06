@@ -1,9 +1,8 @@
 // Creado Raymundo Mosqueda 07/09/23
 
-using Lean.Pool;
+using Lean.Pool;    
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace com.LazyGames.DZ
 {
@@ -12,21 +11,22 @@ namespace com.LazyGames.DZ
     [RequireComponent(typeof(AlertState))]
     [RequireComponent(typeof(AggroState))]
     [RequireComponent(typeof(DeadState))]
-    public class EnemyController : MonoBehaviour
+    public class EnemyController : MonoBehaviour, IGeneralTarget
     {
-        public EnemyState currentState;
         [HideInInspector] public NavMeshAgent agent;
         public EnemyParameters Parameters { get; set; }
         public EnemyParameters parameters;
-        public Vector3 target;
-        
-        private bool _doChase;
-        private float _hP; 
-        public NPC_TickManager tickManager;
+        public GameObject player;
+        [HideInInspector]public EnemyState currentState;
+        [HideInInspector]public Vector3 target;
         [HideInInspector] public WanderingState wanderingState;
         [HideInInspector] public AlertState alertState;
         [HideInInspector] public AggroState aggroState;
         [HideInInspector] public DeadState deadState;
+        
+        private bool _doChase;
+        private float _hP; 
+        public NPC_TickManager tickManager;
        
     private void Start()
         {
@@ -75,6 +75,11 @@ namespace com.LazyGames.DZ
             aggroState.Controller = this;
             deadState = GetComponent<DeadState>();
             deadState.Controller = this;
+        }
+
+        public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
+        {
+            _hP -= dmg;
         }
     }
 }
