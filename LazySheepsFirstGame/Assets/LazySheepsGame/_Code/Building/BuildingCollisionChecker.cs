@@ -19,14 +19,14 @@ public class BuildingCollisionChecker : MonoBehaviour
     private LayerMask _buildingsLayerMask;
 
     private MeshRenderer _myMeshRenderer;
-    private Material _initialMaterial; 
+    private Material[] _initialMaterials; 
 
     private bool _isColliding = false;
     private BoxCollider _boxCollider;
 
     public void PlaceObjectSequence()
     {
-        this.GetComponent<MeshRenderer>().material = _initialMaterial;
+        this.GetComponent<MeshRenderer>().materials = _initialMaterials;
         Destroy(this.GetComponent<BuildingCollisionChecker>());
     }
 
@@ -38,7 +38,7 @@ public class BuildingCollisionChecker : MonoBehaviour
 
     private void Start()
     {
-        _initialMaterial = _myMeshRenderer.material;
+        _initialMaterials = _myMeshRenderer.materials;
     }
 
     private void Update()
@@ -52,11 +52,13 @@ public class BuildingCollisionChecker : MonoBehaviour
 
         if (hasOtherColliders)
         {
-            InvalidPlacement();
+            _isColliding = true;
+            ChangeMaterials(InvalidPlacementMaterial);
         }
         else
         {
-            ValidPlacement();
+            _isColliding = false;
+            ChangeMaterials(ValidPlacementMaterial);
         }
     }
 
@@ -76,17 +78,16 @@ public class BuildingCollisionChecker : MonoBehaviour
         }
     }
 
-
-    private void InvalidPlacement()
+    private void ChangeMaterials(Material materialToChange)
     {
-        _isColliding = true;
-        _myMeshRenderer.material = InvalidPlacementMaterial;
-    }
+        Material[] newMaterials = new Material[_myMeshRenderer.materials.Length];
 
-    private void ValidPlacement()
-    {
-        _isColliding = false;
-        _myMeshRenderer.material = ValidPlacementMaterial;
+        for (int i = 0; i < _myMeshRenderer.materials.Length; i++)
+        {
+            newMaterials[i] = materialToChange;
+        }
+
+        _myMeshRenderer.materials = newMaterials;
     }
 }
 
