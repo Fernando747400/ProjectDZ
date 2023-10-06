@@ -36,7 +36,7 @@ namespace com.LazyGames
 
         private void Start()
         {
-            
+            PrepareAgressor();
         }
 
         private void Update()
@@ -46,26 +46,31 @@ namespace com.LazyGames
             //     Shoot();
             // }
         }
-
-        private void OnEnable()
-        {
-            PrepareAgressor();
-        }
-
+        
         private void OnDisable()
         {
             InputShootActionRight.IntEvent -= (value) =>
             {
                 HandleShootEvent(value);
-                Debug.Log("Right desuscript");
             };
             InputShootActionLeft.IntEvent -= (value) =>
             {
                 HandleShootEvent(value);
-                Debug.Log("Left desuscript");
             };
+        }
 
-
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.CompareTag("HandLeft"))
+            {
+                currentHandHolding = HandShoot.Left;
+                //Debug.Log("Hand Holder Enter".SetColor("#F1BE50"));
+            }
+            if (other.CompareTag("HandRight"))
+            {
+                currentHandHolding = HandShoot.Right;
+                //Debug.Log("Hand Holder Enter".SetColor("#F1BE50"));
+            }
         }
 
         #endregion
@@ -74,13 +79,14 @@ namespace com.LazyGames
 
         public void OnSelectWeapon(SelectEnterEventArgs args)
         {
-            Debug.Log("OnSelectWeapon".SetColor("#F1BE50"));
+            //Debug.Log("OnSelectWeapon".SetColor("#F1BE50"));
             _isHoldingWeapon = true;
         }
         public void OnSelectExitWeapon(SelectExitEventArgs args)
         {
-            Debug.Log("OnSelectExitWeapon".SetColor("#50F155"));
+            //Debug.Log("OnSelectExitWeapon".SetColor("#50F155"));
             _isHoldingWeapon = false;
+            currentHandHolding = HandShoot.None;
         }
 
         #endregion
@@ -91,35 +97,16 @@ namespace com.LazyGames
         private void PrepareAgressor()
         {
             InputShootActionRight.IntEvent += HandleShootEvent;
-            /*
-            InputShootActionRight.IntEvent += (value) =>
-            {
-                Debug.Log("Right suscript");
-                HandleShootEvent(value);
-            };
-            InputShootActionLeft.IntEvent += (value) =>
-            {
-                Debug.Log("Left suscript");
-                HandleShootEvent(value);
-            };
-            */
+            InputShootActionLeft.IntEvent += HandleShootEvent;
         }
 
         private void HandleShootEvent(int value)
         {
-            Debug.Log("Entando a HSE");
+            Debug.Log("Is Holding Weapon = " + currentHandHolding);
+            Debug.Log("Shoot = " + value);
 
-            if (value == 2)
-            {
-                currentHandHolding = HandShoot.Left;
-            }
-            else if(value == 1)
-            {
-                currentHandHolding = HandShoot.Right;
-            }
-            
-            Debug.Log(_isHoldingWeapon);
-
+            if(currentHandHolding == HandShoot.None) return;
+            if (value != (int)currentHandHolding) return;
             if (!_isHoldingWeapon) return;
             
             switch (weaponData.WeaponType) 

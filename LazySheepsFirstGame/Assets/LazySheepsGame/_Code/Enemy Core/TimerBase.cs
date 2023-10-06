@@ -10,9 +10,11 @@ namespace com.LazyGames
     {
         #region public variables
         public float CurrentTimer => _currentTimer;
+        public Action OnTimerStart;
         public Action OnTimerEnd;
         public Action<float> OnTimerUpdate;
         public Action OnTimerLoop;
+        public bool IsTimerActive => _isTimerActive; 
         #endregion
 
         #region private variables
@@ -66,6 +68,7 @@ namespace com.LazyGames
             _isCountdown = isCountDown;
             
             _isTimerActive = true;
+            OnTimerStart?.Invoke();
             
             if(!string.IsNullOrEmpty(message))
              Debug.Log("Timer Started = " + message + " Timer = " + _currentTimer);
