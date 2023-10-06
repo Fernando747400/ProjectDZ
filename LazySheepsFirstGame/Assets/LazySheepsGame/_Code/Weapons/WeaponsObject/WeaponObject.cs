@@ -36,7 +36,7 @@ namespace com.LazyGames
 
         private void Start()
         {
-            
+            PrepareAgressor();
         }
 
         private void Update()
@@ -49,7 +49,6 @@ namespace com.LazyGames
 
         private void OnEnable()
         {
-            PrepareAgressor();
         }
 
         private void OnDisable()
@@ -91,23 +90,11 @@ namespace com.LazyGames
         private void PrepareAgressor()
         {
             InputShootActionRight.IntEvent += HandleShootEvent;
-            /*
-            InputShootActionRight.IntEvent += (value) =>
-            {
-                Debug.Log("Right suscript");
-                HandleShootEvent(value);
-            };
-            InputShootActionLeft.IntEvent += (value) =>
-            {
-                Debug.Log("Left suscript");
-                HandleShootEvent(value);
-            };
-            */
+            InputShootActionLeft.IntEvent += HandleShootEvent;
         }
 
         private void HandleShootEvent(int value)
         {
-            Debug.Log("Entando a HSE");
 
             if (value == 2)
             {
@@ -118,7 +105,7 @@ namespace com.LazyGames
                 currentHandHolding = HandShoot.Right;
             }
             
-            Debug.Log(_isHoldingWeapon);
+            Debug.Log("Is Holding Weapon = " + _isHoldingWeapon.ToString().SetColor("#F1BE50"));
 
             if (!_isHoldingWeapon) return;
             
