@@ -106,10 +106,10 @@ namespace com.LazyGames
 
         private void HandleShootEvent(int value)
         {
-            if(currentHandHolding == HandShoot.None) return;
-            
             Debug.Log("Is Holding Weapon = " + _isHoldingWeapon.ToString().SetColor("#F1BE50"));
 
+            if(currentHandHolding == HandShoot.None) return;
+            if (value != (int)currentHandHolding) return;
             if (!_isHoldingWeapon) return;
             
             switch (weaponData.WeaponType) 
