@@ -18,9 +18,7 @@ public class ReciverInputShoot : MonoBehaviour
     {
         shootRightReference.action.performed += ctx => inputShootEventRight.RaiseEvent(1);
         shootLeftReference.action.performed += ctx => inputShootEventLeft.RaiseEvent(2);
-
     }
-    
 }
 
 
