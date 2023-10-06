@@ -46,11 +46,7 @@ namespace com.LazyGames
             //     Shoot();
             // }
         }
-
-        private void OnEnable()
-        {
-        }
-
+        
         private void OnDisable()
         {
             InputShootActionRight.IntEvent -= (value) =>
@@ -67,6 +63,20 @@ namespace com.LazyGames
 
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("HandLeft"))
+            {
+                currentHandHolding = HandShoot.Left;
+                Debug.Log("Hand Holder Enter".SetColor("#F1BE50"));
+            }
+            if (other.CompareTag("HandRight"))
+            {
+                currentHandHolding = HandShoot.Right;
+                Debug.Log("Hand Holder Enter".SetColor("#F1BE50"));
+            }
+        }
+
         #endregion
 
         #region public methods
@@ -80,6 +90,7 @@ namespace com.LazyGames
         {
             Debug.Log("OnSelectExitWeapon".SetColor("#50F155"));
             _isHoldingWeapon = false;
+            currentHandHolding = HandShoot.None;
         }
 
         #endregion
@@ -95,15 +106,7 @@ namespace com.LazyGames
 
         private void HandleShootEvent(int value)
         {
-
-            if (value == 2)
-            {
-                currentHandHolding = HandShoot.Left;
-            }
-            else if(value == 1)
-            {
-                currentHandHolding = HandShoot.Right;
-            }
+            if(currentHandHolding == HandShoot.None) return;
             
             Debug.Log("Is Holding Weapon = " + _isHoldingWeapon.ToString().SetColor("#F1BE50"));
 

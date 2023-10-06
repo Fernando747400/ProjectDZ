@@ -11,7 +11,7 @@ public class ReciverInputShoot : MonoBehaviour
     [Header("Input Actions")]
     [SerializeField] private InputActionReference shootRightReference;
     [SerializeField] private InputActionReference shootLeftReference;
-
+    
     [Header("SO Events")]
     [SerializeField] private IntEventChannelSO inputShootEventRight;
     [SerializeField] private IntEventChannelSO inputShootEventLeft;
