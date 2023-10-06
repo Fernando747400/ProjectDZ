@@ -36,7 +36,7 @@ namespace com.LazyGames
 
         private void Start()
         {
-            PrepareAgressor();
+            
         }
 
         private void Update()
@@ -47,19 +47,25 @@ namespace com.LazyGames
             // }
         }
 
+        private void OnEnable()
+        {
+            PrepareAgressor();
+        }
+
         private void OnDisable()
         {
             InputShootActionRight.IntEvent -= (value) =>
             {
                 HandleShootEvent(value);
+                Debug.Log("Right desuscript");
             };
             InputShootActionLeft.IntEvent -= (value) =>
             {
                 HandleShootEvent(value);
-                
+                Debug.Log("Left desuscript");
             };
-            
-            
+
+
         }
 
         #endregion
@@ -69,12 +75,12 @@ namespace com.LazyGames
         public void OnSelectWeapon(SelectEnterEventArgs args)
         {
             Debug.Log("OnSelectWeapon".SetColor("#F1BE50"));
-            // _isHoldingWeapon = true;
+            _isHoldingWeapon = true;
         }
         public void OnSelectExitWeapon(SelectExitEventArgs args)
         {
             Debug.Log("OnSelectExitWeapon".SetColor("#50F155"));
-            // _isHoldingWeapon = false;
+            _isHoldingWeapon = false;
         }
 
         #endregion
@@ -84,19 +90,25 @@ namespace com.LazyGames
 
         private void PrepareAgressor()
         {
+            InputShootActionRight.IntEvent += HandleShootEvent;
+            /*
             InputShootActionRight.IntEvent += (value) =>
             {
+                Debug.Log("Right suscript");
                 HandleShootEvent(value);
             };
             InputShootActionLeft.IntEvent += (value) =>
             {
+                Debug.Log("Left suscript");
                 HandleShootEvent(value);
-                
             };
+            */
         }
 
         private void HandleShootEvent(int value)
         {
+            Debug.Log("Entando a HSE");
+
             if (value == 2)
             {
                 currentHandHolding = HandShoot.Left;
@@ -106,6 +118,8 @@ namespace com.LazyGames
                 currentHandHolding = HandShoot.Right;
             }
             
+            Debug.Log(_isHoldingWeapon);
+
             if (!_isHoldingWeapon) return;
             
             switch (weaponData.WeaponType) 

@@ -43,6 +43,9 @@ GameObject:
   - component: {fileID: 6966291645138990502}
   - component: {fileID: 8056815316534549083}
   - component: {fileID: 4653748867679513095}
+  - component: {fileID: 5499184476212855876}
+  - component: {fileID: 70967954593367479}
+  - component: {fileID: 1276615063134495038}
   m_Layer: 0
   m_Name: WeaponBase
   m_TagString: Untagged
@@ -119,7 +122,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 16
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
@@ -240,6 +243,47 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
+--- !u!65 &5499184476212855876
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6966291645138990499}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.083177984, y: 0.40740687, z: 0.22113322}
+  m_Center: {x: -0.0018353164, y: -0.03890863, z: -0.051867582}
+--- !u!114 &70967954593367479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6966291645138990499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c6b6f06a342e9d4a8c9d2a5efb534f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetPosition: {fileID: 0}
+  _colliderOne: {fileID: 5499184476212855876}
+  _colliderTwo: {fileID: 0}
+--- !u!65 &1276615063134495038
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6966291645138990499}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.121655196, y: 0.14078093, z: 0.6428625}
+  m_Center: {x: 0.010995552, y: 0.12462449, z: 0.17856875}
 --- !u!1 &6966291645420918325
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +326,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6966291645420918325}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.26680887, y: 0.39712214, z: 0.6243134}
@@ -374,7 +418,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006858895138404232}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.101020664, y: 0.35874486, z: 0.17799573}
