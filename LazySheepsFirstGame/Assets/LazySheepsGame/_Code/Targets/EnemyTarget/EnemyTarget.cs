@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using com.LazyGames;
 using UnityEngine;
 
@@ -64,12 +65,14 @@ namespace com.LazyGames
             MaxHealth = targetsData.MaxHealth;
             CurrentHp = MaxHealth;
         }
+
         #endregion
 
         public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
         {
             Debug.Log($"received aggressor");
         }
+
     }
 
 }
