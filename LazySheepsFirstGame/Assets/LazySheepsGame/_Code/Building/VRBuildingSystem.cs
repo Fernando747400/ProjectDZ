@@ -13,12 +13,13 @@ public class VRBuildingSystem : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _headTiltDegrees;
 
-    private bool _hammerInHand = true;
+    [SerializeField] private bool _hammerInHand = false;
     private bool _isBuilding = false;
 
     private void OnEnable()
     {
         _hammerInHandChannel.BoolEvent += UpdateHammerInHand;
+        DroppedHammer();
     }
 
     private void OnDisable()
@@ -40,8 +41,8 @@ public class VRBuildingSystem : MonoBehaviour
         }
         else if (_vrHead.transform.rotation.eulerAngles.x > _headTiltDegrees)
         {
-            _buildingSystem.VRConfirmation = true;
             if (_isBuilding) return;
+            _buildingSystem.VRConfirmation = true;
             _buildingSystem.StartBuilding();
             _isBuilding = true;
         }
@@ -49,6 +50,7 @@ public class VRBuildingSystem : MonoBehaviour
 
     private void DroppedHammer()
     {
+        _buildingSystem.VRConfirmation = false;
         StopBuilding();
     }
 

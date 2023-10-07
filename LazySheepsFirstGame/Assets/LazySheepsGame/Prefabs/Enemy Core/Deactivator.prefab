@@ -69,6 +69,8 @@ MonoBehaviour:
   onCoreDestroyed: {fileID: 11400000, guid: e82263401804fb84792edb1e85174d80, type: 2}
   onDeactivatorIsPlaced: {fileID: 11400000, guid: ee10218df0e41bf469f7702772c8a94c, type: 2}
   grabInteractable: {fileID: 3055132493716823882}
+  nonInteractableLayers:
+    m_Bits: 0
 --- !u!54 &8435215112150212770
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -103,7 +105,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
@@ -123,7 +125,19 @@ MonoBehaviour:
       m_Calls: []
   m_LastSelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8435215112150212769}
+        m_TargetAssemblyTypeName: com.LazyGames.DeactivatorCore, Assembly-CSharp
+        m_MethodName: LastSelectedExit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls: []
