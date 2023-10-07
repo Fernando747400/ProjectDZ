@@ -26,7 +26,7 @@ public class BuildingSystem : MonoBehaviour
 
     private RaycastHit _rayHit;
     private bool _canBuild = false;
-    private bool _VRBuildConfirmartion = true;
+    private bool _VRBuildConfirmartion = false;
 
     private Vector3 _buildPosition = Vector3.zero;
 
@@ -42,6 +42,18 @@ public class BuildingSystem : MonoBehaviour
     private void OnDisable()
     {
         _hammerCollisionEvent.VoidEvent -= Build;
+    }
+
+    private void Start()
+    {
+        Prepare();
+    }
+
+    private void Prepare()
+    {
+        if (_currentGameObject == null) _currentGameObject = Instantiate(_objectToBuild);
+        FinishBuilding();
+        _VRBuildConfirmartion = false;
     }
 
     private void Update()
@@ -90,7 +102,6 @@ public class BuildingSystem : MonoBehaviour
     {
         _canBuild = false;
         _currentGameObject.SetActive(false);
-        Destroy(_currentGameObject);
     }
     private void AddCollisionChecker(GameObject gameObject)
     {
