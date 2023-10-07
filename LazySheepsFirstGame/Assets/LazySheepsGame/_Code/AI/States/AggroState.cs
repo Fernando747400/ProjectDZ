@@ -30,7 +30,8 @@ namespace com.LazyGames.DZ
         
         public override void ExitState()
         {
-            // throw new System.NotImplementedException();
+            Controller.hP = Controller.parameters.maxHp;
+            Controller.agent.speed = Controller.parameters.baseSpeed;
         }
     }
     

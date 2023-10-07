@@ -3,6 +3,7 @@
 using Lean.Pool;    
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace com.LazyGames.DZ
 {
@@ -23,9 +24,9 @@ namespace com.LazyGames.DZ
         [HideInInspector] public AlertState alertState;
         [HideInInspector] public AggroState aggroState;
         [HideInInspector] public DeadState deadState;
+        [HideInInspector]public float hP; 
         
         private bool _doChase;
-        private float _hP; 
         public NPC_TickManager tickManager;
        
     private void Start()
@@ -38,7 +39,7 @@ namespace com.LazyGames.DZ
         private void Update()
         {
             currentState.UpdateState();
-            if (_hP > 0) return;
+            if (hP > 0) return;
             currentState = deadState;
         }
         
@@ -46,7 +47,7 @@ namespace com.LazyGames.DZ
         {
             currentState.ExitState();
             currentState = newState;
-            currentState.EnterState();
+            currentState.EnterState(); 
         }
 
         private void OnGeometryChanged()
@@ -61,7 +62,7 @@ namespace com.LazyGames.DZ
 
             GetStates();
             Parameters = parameters;
-            _hP = parameters.maxHp;
+            hP = parameters.maxHp;
             agent.speed = parameters.baseSpeed;
         }
 
@@ -79,7 +80,7 @@ namespace com.LazyGames.DZ
 
         public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
         {
-            _hP -= dmg;
+            hP -= dmg;
         }
     }
 }
