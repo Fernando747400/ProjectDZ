@@ -19,9 +19,10 @@ MonoBehaviour:
     m_Bits: 4609
   weaponType: 1
   bulletSpeed: 10
-  maxDistance: 30
+  maxDistance: 3000
   shootParticle: {fileID: 0}
   hitParticle: {fileID: 0}
   cooldownPerShot: 1
   delayReload: 3
   maxAmmo: 0
+  shootPointOffset: {x: 0, y: 0, z: 0}

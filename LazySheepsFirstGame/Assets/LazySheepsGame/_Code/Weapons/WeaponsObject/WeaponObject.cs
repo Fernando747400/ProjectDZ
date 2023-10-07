@@ -65,6 +65,13 @@ namespace com.LazyGames
             }
         }
 
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.Space)) {
+                Shoot();
+            }
+        }
+
         #region public methods
 
         public void OnSelectWeapon(SelectEnterEventArgs args)
@@ -122,30 +129,32 @@ namespace com.LazyGames
             
             if (!Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
             {
-                // Debug.Log("No Hit".SetColor("#F95342"));
+                Debug.Log("No Hit".SetColor("#F95342"));
                 Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.forward * weaponData.MaxDistance, Color.red, 1f);
                 return;
             }
             //Collision Raycast
             _hitPosition = hit.point;
+            BulletTravel();
         }
         #endregion
         
-
+        
         
         protected virtual void BulletTravel()
         {
             // Debug.Log("BulletTravel".SetColor("#DB7AFF"));
-            StopAllCoroutines();
+            //StopAllCoroutines();
             Vector3 simulatedHitDir = _hitPosition - _savedFirePosition;
             Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out RaycastHit _simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
             Debug.DrawRay(_savedFirePosition, simulatedHitDir.normalized * weaponData.MaxDistance, Color.green, 1f);
         
             if (!TryGetGeneralTarget()) return;
-            // Debug.Log("Receive Damage ".SetColor("#4DF942"));
-            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(
-                (_simulatedHit.point - _savedFirePosition).normalized ,120,weaponData.Damage);
-
+             Debug.Log("Receive Damage ".SetColor("#4DF942"));
+            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(Vector3.zero, 0, weaponData.Damage);
+            //_simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(
+            // (_simulatedHit.point - _savedFirePosition).normalized ,120,weaponData.Damage);
+            SendAggression(true);
         }
 
         public bool TryGetGeneralTarget()
@@ -155,7 +164,8 @@ namespace com.LazyGames
 
         public void SendAggression(bool isTarget)
         {
-            throw new NotImplementedException();
+            if(!TryGetGeneralTarget()) return;
+            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(Vector3.zero, 0, weaponData.Damage);
         }
     }
     
