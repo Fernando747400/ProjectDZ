@@ -11,7 +11,7 @@ namespace com.LazyGames.DZ
         [SerializeField] private InputActionProperty _pinchAnimAction;
         [SerializeField] private InputActionProperty _gripAnimAction;
         [SerializeField] private InputActionProperty _indexAnimAction;
-        [SerializeField] private InputActionProperty _ThumbAnimAction;
+        [SerializeField] private InputActionProperty _thumbAnimAction;
         [SerializeField] private Animator _handAnim;
 
         void Update()
@@ -22,10 +22,10 @@ namespace com.LazyGames.DZ
             float gripValue = _gripAnimAction.action.ReadValue<float>();
             _handAnim.SetFloat("Trigger", gripValue);
 
-            float IndexValue = _gripAnimAction.action.ReadValue<float>();
+            float IndexValue = _indexAnimAction.action.ReadValue<float>();
             _handAnim.SetFloat("Index", IndexValue);
 
-            float ThumbValue = _gripAnimAction.action.ReadValue<float>();
+            float ThumbValue = _thumbAnimAction.action.ReadValue<float>();
             _handAnim.SetFloat("Thumb", ThumbValue);
         }
     }
