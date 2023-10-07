@@ -10,7 +10,7 @@ namespace com.LazyGames.DZ
       #region Variables
 
       [Header("Bolleans only Test Animayions")]
-      private bool _isIdle, _isWalk, _isAttack; 
+      [SerializeField] private bool _isIdle, _isWalk, _isAttack; 
       [Header("Enemy Animator")]
       [SerializeField] private Animator _animator;
 
