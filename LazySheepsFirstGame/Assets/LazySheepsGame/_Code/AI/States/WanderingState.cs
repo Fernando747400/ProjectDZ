@@ -13,7 +13,7 @@ namespace com.LazyGames.DZ
         #region Wander Variables
         [Header("Movement Variables")]
         [Tooltip("Distance of the circle from the _agent")]
-        [SerializeField]private float circleOffset = 1.5f;
+        [SerializeField]private float circleOffset = 2.6f;
         [Tooltip("Radius of the circle")]
         [SerializeField]private float circleRadius = 1f;
         [Tooltip("The range that the angle cam move along the circles' diameter")]
