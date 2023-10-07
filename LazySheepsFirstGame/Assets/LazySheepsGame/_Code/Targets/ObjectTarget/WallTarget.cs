@@ -51,8 +51,6 @@ public class WallTarget : MonoBehaviour, IGeneralTarget
     {
         PrepareTarget();
     }
-    
-
     #endregion
     
     #region private methods
@@ -64,6 +62,11 @@ public class WallTarget : MonoBehaviour, IGeneralTarget
         Type = targetsData.Type;
     }
     #endregion
+
+    public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
+    {
+        Debug.Log("received aggressor");
+    }
 }
   
 
