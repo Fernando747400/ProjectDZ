@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -852,7 +852,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2060947882}
   - component: {fileID: 2060947884}
-  - component: {fileID: 2060947883}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -876,20 +875,6 @@ Transform:
   m_Father: {fileID: 1322590455}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2060947883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060947881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 017c5e3933235514c9520e1dace2a4b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ActionAssets:
-  - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &2060947884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1545,7 +1530,6 @@ GameObject:
   - component: {fileID: 543450652973429716}
   - component: {fileID: 919132148716218735}
   - component: {fileID: 919132148716218736}
-  - component: {fileID: 919132148716218737}
   m_Layer: 0
   m_Name: RoboManoIzquierda
   m_TagString: Untagged
@@ -1596,7 +1580,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_Reference: {fileID: -6668587794728781183, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _gripAnimAction:
     m_UseReference: 1
     m_Action:
@@ -1608,25 +1592,32 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_Reference: {fileID: -3712437467022738922, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _indexAnimAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Index Anim
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 89af695b-7728-4730-abd3-020dae222670
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -8634454437192046212, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _ThumbAnimAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Thumb Anim
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 675a3dbe-1d96-4d84-b5b3-fd6071882615
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 1228291655951054578, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _handAnim: {fileID: 919132148716218735}
---- !u!114 &919132148716218737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148716218734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 501b2a473eda078499c797aa7b4ee09c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gripInput: {fileID: -6668587794728781183, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  _trggerInput: {fileID: -3712437467022738922, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  _indexInput: {fileID: -8634454437192046212, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  _thumbInput: {fileID: 1228291655951054578, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  _handAnimator: {fileID: 919132148716218735}
 --- !u!1 &919132148818701591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,8 +1628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450653004576685}
   - component: {fileID: 919132148818701592}
-  - component: {fileID: 919132148818701593}
-  - component: {fileID: 919132148818701594}
+  - component: {fileID: 919132148818701595}
   m_Layer: 0
   m_Name: Guante Roto Derecha
   m_TagString: Untagged
@@ -1666,7 +1656,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &919132148818701593
+--- !u!114 &919132148818701595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1684,42 +1674,49 @@ MonoBehaviour:
       m_Name: Pinch Anim
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: ae8bd6fd-e502-4cb3-8434-5320dacdc747
+      m_Id: 1914cc1a-e8ae-4e79-8837-9ef8531ea8ff
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_Reference: {fileID: -253529726579693466, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _gripAnimAction:
     m_UseReference: 1
     m_Action:
       m_Name: Grip Anim
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 7484ba12-223d-4df3-835f-2736a76f5e4c
+      m_Id: 10842809-58cf-4a48-8e93-66a0bc2c8d56
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_Reference: {fileID: -6016328927745443650, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _indexAnimAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Index Anim
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: da0f0e77-0c28-4895-8e52-135ad93140e5
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 2105317135055656558, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _ThumbAnimAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Thumb Anim
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 4b29b4ef-1560-4bdd-8c7b-8ea6c0457b47
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 8621137710843589047, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _handAnim: {fileID: 919132148818701592}
---- !u!114 &919132148818701594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148818701591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 501b2a473eda078499c797aa7b4ee09c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gripInput: {fileID: -253529726579693466, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  _trggerInput: {fileID: -6016328927745443650, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  _indexInput: {fileID: 2105317135055656558, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  _thumbInput: {fileID: 8621137710843589047, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  _handAnimator: {fileID: 919132148818701592}
 --- !u!1 &957377273390409638
 GameObject:
   m_ObjectHideFlags: 0
