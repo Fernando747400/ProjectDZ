@@ -1,6 +1,6 @@
 // Creado Raymundo Mosqueda 07/09/23
 
-using Lean.Pool;    
+using Lean.Pool;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -18,18 +18,18 @@ namespace com.LazyGames.DZ
         public EnemyParameters Parameters { get; set; }
         public EnemyParameters parameters;
         public GameObject player;
-        [HideInInspector]public EnemyState currentState;
-        [HideInInspector]public Vector3 target;
+        [HideInInspector] public EnemyState currentState;
+        [HideInInspector] public Vector3 target;
         [HideInInspector] public WanderingState wanderingState;
         [HideInInspector] public AlertState alertState;
         [HideInInspector] public AggroState aggroState;
         [HideInInspector] public DeadState deadState;
-        [HideInInspector]public float hP; 
-        
+        [HideInInspector] public float hP;
+
         private bool _doChase;
         public NPC_TickManager tickManager;
-       
-    private void Start()
+
+        private void Start()
         {
             Prepare();
             currentState = wanderingState;
@@ -42,19 +42,19 @@ namespace com.LazyGames.DZ
             if (hP > 0) return;
             currentState = deadState;
         }
-        
+
         public void ChangeState(EnemyState newState)
         {
             currentState.ExitState();
             currentState = newState;
-            currentState.EnterState(); 
+            currentState.EnterState();
         }
 
         private void OnGeometryChanged()
         {
-            
+
         }
-        
+
         private void Prepare()
         {
             agent = GetComponent<NavMeshAgent>();
@@ -81,6 +81,7 @@ namespace com.LazyGames.DZ
         public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
         {
             hP -= dmg;
+            Debug.Log("Received damage :" + dmg);
         }
     }
 }
