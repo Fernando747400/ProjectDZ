@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb57d248ac16fc45bc260c009943c63, type: 3}
   m_Name: Base Enemy Parameters
   m_EditorClassIdentifier: 
-  maxHp: 20
-  moveSpeed: 1
+  baseSpeed: 1
+  alertSpeed: 2
+  aggroSpeed: 3
+  stopDist: 3
   softDetectionRange: 20
-  hardDetectionRange: 10
+  hardDetectionRange: 8
+  oscillationSpeed: 25
+  coneAngle: 100
+  heightOffset: {x: 0, y: 0.5, z: 0}
+  maxHp: 20
   attackPower: 1
-  attackRange: 0.5
+  attackSpeed: 1.5

@@ -9,7 +9,7 @@ namespace com.LazyGames.DZ
         public override void EnterState()
         {
             Controller.agent.speed = 0;
-            LeanPool.Despawn(this.gameObject);
+            // LeanPool.Despawn(this.gameObject);
         }
         
         public override void UpdateState()

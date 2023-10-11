@@ -64,6 +64,7 @@ namespace com.LazyGames.DZ
             Parameters = parameters;
             hP = parameters.maxHp;
             agent.speed = parameters.baseSpeed;
+            agent.stoppingDistance = parameters.stopDist;
         }
 
         private void GetStates()

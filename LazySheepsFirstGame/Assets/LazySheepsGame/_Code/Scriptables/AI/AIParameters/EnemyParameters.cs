@@ -11,6 +11,7 @@ namespace com.LazyGames.DZ
         public float baseSpeed = 1f;
         public float alertSpeed = 2f;
         public float aggroSpeed = 3f;
+        public float stopDist = 2.5f;
         [Header("Detection Variables")]
         public float softDetectionRange = 20f;
         public float hardDetectionRange = 7f;

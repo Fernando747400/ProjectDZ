@@ -24,9 +24,10 @@ public class AlertState : EnemyState
     private void PlayerDetection()
     {
         float oscillationAngle = Mathf.Sin(Time.time * Controller.parameters.oscillationSpeed) * (Controller.parameters.coneAngle / 2);
-
         Vector3 rayDirection = Quaternion.Euler(0, oscillationAngle, 0) * transform.forward;
 
+        Debug.DrawRay(transform.position + Controller.parameters.heightOffset, rayDirection * Controller.parameters.softDetectionRange, Color.black);
+        
         if (!Physics.Raycast(transform.position + Controller.parameters.heightOffset, rayDirection,
                 out var hit, Controller.parameters.softDetectionRange, Physics.DefaultRaycastLayers)) return;
         if (!hit.collider.CompareTag("Player")) return;
