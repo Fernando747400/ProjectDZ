@@ -339,6 +339,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c43316ffa289a946a6f6dbb54caa2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animConfgs:
+  - nameAnim: DogFishIdle
+    nameParameter: IsIdle
+    isActive: 0
+  - nameAnim: DogFishRun
+    nameParameter: IsWalk
+    isActive: 0
+  - nameAnim: DogFishAttack
+    nameParameter: IsAttack
+    isActive: 0
+  currentAnim:
+    nameAnim: DogFishRun
+    nameParameter: IsAttack
+    isActive: 0
+  TESTAnim: DogFishRun
+  valueTestAnim: 1
   _animator: {fileID: 1128131669}
 --- !u!95 &1128131669 stripped
 Animator:
@@ -3142,6 +3158,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c43316ffa289a946a6f6dbb54caa2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animConfgs: []
+  currentAnim:
+    nameAnim: 
+    nameParameter: 
+    isActive: 0
+  TESTAnim: 
+  valueTestAnim: 0
   _animator: {fileID: 8836857391404744606}
 --- !u!95 &8836857391404744606
 Animator:
