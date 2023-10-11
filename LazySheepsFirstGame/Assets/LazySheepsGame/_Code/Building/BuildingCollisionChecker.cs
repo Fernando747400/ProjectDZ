@@ -6,7 +6,12 @@ public class BuildingCollisionChecker : MonoBehaviour
 {
     [Header("Dependencies")]
     [Header("Scriptable Objects")]
-    public VoidEventChannelSO _hammerCollisionEvent;
+    [HideInInspector] public VoidEventChannelSO HammerCollisionEvent;
+
+    [Header("Materials Dependencies")]
+    [HideInInspector] public Material ValidPlacementMaterial;
+    [HideInInspector] public Material InvalidPlacementMaterial;
+
 
     public bool IsColliding { get { return _isColliding; } }
     public LayerMask BuildingsLayerMask { set { _buildingsLayerMask = value; } }
@@ -14,14 +19,14 @@ public class BuildingCollisionChecker : MonoBehaviour
     private LayerMask _buildingsLayerMask;
 
     private MeshRenderer _myMeshRenderer;
-    private Color _initialColor;
+    private Material[] _initialMaterials; 
 
     private bool _isColliding = false;
     private BoxCollider _boxCollider;
 
     public void PlaceObjectSequence()
     {
-        this.GetComponent<MeshRenderer>().material.color = _initialColor;
+        this.GetComponent<MeshRenderer>().materials = _initialMaterials;
         Destroy(this.GetComponent<BuildingCollisionChecker>());
     }
 
@@ -33,7 +38,7 @@ public class BuildingCollisionChecker : MonoBehaviour
 
     private void Start()
     {
-        _initialColor = _myMeshRenderer.material.color;
+        _initialMaterials = _myMeshRenderer.materials;
     }
 
     private void Update()
@@ -47,11 +52,13 @@ public class BuildingCollisionChecker : MonoBehaviour
 
         if (hasOtherColliders)
         {
-            InvalidPlacement();
+            _isColliding = true;
+            ChangeMaterials(InvalidPlacementMaterial);
         }
         else
         {
-            ValidPlacement();
+            _isColliding = false;
+            ChangeMaterials(ValidPlacementMaterial);
         }
     }
 
@@ -59,7 +66,7 @@ public class BuildingCollisionChecker : MonoBehaviour
     {
         if (collision.gameObject.tag == "Hammer")
         {
-            _hammerCollisionEvent.RaiseEvent();
+            HammerCollisionEvent.RaiseEvent();
         }
     }
 
@@ -67,21 +74,20 @@ public class BuildingCollisionChecker : MonoBehaviour
     {
         if (other.gameObject.tag == "Hammer")
         {
-            _hammerCollisionEvent.RaiseEvent();
+            HammerCollisionEvent.RaiseEvent();
         }
     }
 
-
-    private void InvalidPlacement()
+    private void ChangeMaterials(Material materialToChange)
     {
-        _isColliding = true;
-        _myMeshRenderer.material.color = Color.red;
-    }
+        Material[] newMaterials = new Material[_myMeshRenderer.materials.Length];
 
-    private void ValidPlacement()
-    {
-        _isColliding = false;
-        _myMeshRenderer.material.color = Color.green;
+        for (int i = 0; i < _myMeshRenderer.materials.Length; i++)
+        {
+            newMaterials[i] = materialToChange;
+        }
+
+        _myMeshRenderer.materials = newMaterials;
     }
 }
 

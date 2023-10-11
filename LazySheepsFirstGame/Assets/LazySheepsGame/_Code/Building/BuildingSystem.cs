@@ -18,11 +18,15 @@ public class BuildingSystem : MonoBehaviour
     [Header("Dependencies Scriptable Objects")]
     [SerializeField] private VoidEventChannelSO _hammerCollisionEvent;
 
+    [Header("BuildMaterials")]
+    [SerializeField] private Material _validPlacementMaterial;
+    [SerializeField] private Material _invalidPlacementMaterials;
+
     public bool VRConfirmation {  set { _VRBuildConfirmartion = value; } }
 
     private RaycastHit _rayHit;
     private bool _canBuild = false;
-    private bool _VRBuildConfirmartion = true;
+    private bool _VRBuildConfirmartion = false;
 
     private Vector3 _buildPosition = Vector3.zero;
 
@@ -40,6 +44,18 @@ public class BuildingSystem : MonoBehaviour
         _hammerCollisionEvent.VoidEvent -= Build;
     }
 
+    private void Start()
+    {
+        Prepare();
+    }
+
+    private void Prepare()
+    {
+        if (_currentGameObject == null) _currentGameObject = Instantiate(_objectToBuild);
+        FinishBuilding();
+        _VRBuildConfirmartion = false;
+    }
+
     private void Update()
     {
         if (!_canBuild || !_VRBuildConfirmartion) return;
@@ -50,11 +66,13 @@ public class BuildingSystem : MonoBehaviour
 
         if (Physics.Raycast(raycast, out _rayHit, 1000, _groundLayerMask))
         {
-            Vector3 objectSize = _currentGameObject.GetComponent<Renderer>().bounds.size;
+            Vector3 offset = _rayHit.normal * 0.1f;
 
-            _buildPosition = _rayHit.point + Vector3.up * (objectSize.y / 2);
-
+            _buildPosition = _rayHit.point + offset;
             _currentGameObject.transform.position = _buildPosition;
+
+            Quaternion rotation = Quaternion.FromToRotation(Vector3.up, _rayHit.normal);
+            _currentGameObject.transform.rotation = rotation;
         }
     }
 
@@ -66,10 +84,25 @@ public class BuildingSystem : MonoBehaviour
         _currentGameObject.SetActive(true);
         if (_buildChecker == null) AddCollisionChecker(_currentGameObject);
         _buildChecker = _currentGameObject.GetComponent<BuildingCollisionChecker>();
-        _buildChecker._hammerCollisionEvent = _hammerCollisionEvent;
+        _buildChecker.HammerCollisionEvent = _hammerCollisionEvent;
+        _buildChecker.ValidPlacementMaterial = _validPlacementMaterial;
+        _buildChecker.InvalidPlacementMaterial = _invalidPlacementMaterials;
         _buildChecker.BuildingsLayerMask= _buildingsLayerMask;
     }
 
+
+    public void Build()
+    {
+        if (_buildChecker.IsColliding) return;
+       GameObject building = Instantiate(_objectToBuild, _buildPosition, _currentGameObject.transform.rotation);
+        BuildShader(building);
+    }
+
+    public void FinishBuilding()
+    {
+        _canBuild = false;
+        _currentGameObject.SetActive(false);
+    }
     private void AddCollisionChecker(GameObject gameObject)
     {
         if(gameObject.GetComponent<BuildingCollisionChecker>() == null) 
@@ -78,17 +111,11 @@ public class BuildingSystem : MonoBehaviour
         }
     }
 
-    public void Build()
+    private void BuildShader(GameObject building)
     {
-        if (_buildChecker.IsColliding) return;
-        Instantiate(_objectToBuild, _buildPosition, Quaternion.identity);
-    }
-
-    public void FinishBuilding()
-    {
-        _canBuild = false;
-        _currentGameObject.SetActive(false);
-        Destroy(_currentGameObject);
+        if (building.GetComponent<BuildShaderManager>() == null) building.AddComponent<BuildShaderManager>();
+        BuildShaderManager buildShaderScript = building.GetComponent<BuildShaderManager>();
+        buildShaderScript.StartBuildEffect();
     }
 
 }

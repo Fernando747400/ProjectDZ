@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using com.LazyGames;
 using com.LazyGames.Dio;
+using com.LazyGames.DZ;
 using Unity.VisualScripting;
 using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace com.LazyGames
 {
-    public class WeaponObject : AgressorBase
+    public class WeaponObject : MonoBehaviour, IGeneralAggressor
     {
         #region SerializedFields
         [Header("Weapon Object")]
@@ -30,23 +31,14 @@ namespace com.LazyGames
         private Vector3 _hitPosition;
         private Vector3 _savedFirePosition;
         private bool _isHoldingWeapon = false;
+        private RaycastHit _simulatedHit;
         
 
-        #region unity methods
-
-        private void Start()
+        private void OnEnable()
         {
             PrepareAgressor();
         }
 
-        private void Update()
-        {
-            // if (Input.GetMouseButtonDown(0))
-            // {
-            //     Shoot();
-            // }
-        }
-        
         private void OnDisable()
         {
             InputShootActionRight.IntEvent -= (value) =>
@@ -73,7 +65,12 @@ namespace com.LazyGames
             }
         }
 
-        #endregion
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.Space)) {
+                Shoot();
+            }
+        }
 
         #region public methods
 
@@ -127,43 +124,49 @@ namespace com.LazyGames
         private void Shoot()
         {
             shootParticle.Play();
-            StopAllCoroutines();
             _savedFirePosition = shootPoint.transform.position;
             RaycastHit hit;
             
             if (!Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
             {
-                // Debug.Log("No Hit".SetColor("#F95342"));
+                Debug.Log("No Hit".SetColor("#F95342"));
                 Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.forward * weaponData.MaxDistance, Color.red, 1f);
                 return;
             }
             //Collision Raycast
             _hitPosition = hit.point;
-            _travelTime = hit.distance / (weaponData.BulletSpeed) * Time.fixedDeltaTime; 
-            StartCoroutine(DelayBulletTravel());
+            BulletTravel();
         }
         #endregion
         
-        private IEnumerator DelayBulletTravel()
-        {
-            yield return new WaitForSeconds(_travelTime);
-            BulletTravel();
-        }
+        
         
         protected virtual void BulletTravel()
         {
             // Debug.Log("BulletTravel".SetColor("#DB7AFF"));
-            StopAllCoroutines();
+            //StopAllCoroutines();
             Vector3 simulatedHitDir = _hitPosition - _savedFirePosition;
-            Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out RaycastHit simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
+            Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out RaycastHit _simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
             Debug.DrawRay(_savedFirePosition, simulatedHitDir.normalized * weaponData.MaxDistance, Color.green, 1f);
         
-            if (!TryGetGeneralTarget(simulatedHit.collider.gameObject)) return;
-            // Debug.Log("Receive Damage ".SetColor("#4DF942"));
-            simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveRaycast(weaponData.Damage);
-
+            if (!TryGetGeneralTarget()) return;
+             Debug.Log("Receive Damage ".SetColor("#4DF942"));
+            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(Vector3.zero, 0, weaponData.Damage);
+            //_simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(
+            // (_simulatedHit.point - _savedFirePosition).normalized ,120,weaponData.Damage);
+            SendAggression(true);
         }
-        
+
+        public bool TryGetGeneralTarget()
+        {
+            return _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>() != null;
+        }
+
+        public void SendAggression(bool isTarget)
+        {
+            if(!TryGetGeneralTarget()) return;
+            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(Vector3.zero, 0, weaponData.Damage);
+        }
     }
     
     
