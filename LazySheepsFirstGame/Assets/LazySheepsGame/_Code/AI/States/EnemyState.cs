@@ -3,15 +3,10 @@ using UnityEngine;
 
 namespace com.LazyGames.DZ
 {
-    public abstract class EnemyState : ScriptableObject
+    public abstract class EnemyState : MonoBehaviour
     {
-        protected EnemyNavAgent _agent;
-        public float speed = 1f;
-
-        protected EnemyState (EnemyNavAgent agent)
-        {
-            _agent = agent;
-        }
+        public EnemyController Controller { get; set; }
+        
         public abstract void EnterState();
         public abstract void UpdateState();
         public abstract void ExitState();
