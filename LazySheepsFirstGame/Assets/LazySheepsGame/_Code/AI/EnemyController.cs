@@ -1,9 +1,8 @@
 // Creado Raymundo Mosqueda 07/09/23
 
-using Lean.Pool;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace com.LazyGames.DZ
 {
@@ -14,10 +13,10 @@ namespace com.LazyGames.DZ
     [RequireComponent(typeof(DeadState))]
     public class EnemyController : MonoBehaviour, IGeneralTarget
     {
-        [HideInInspector] public NavMeshAgent agent;
         public EnemyParameters Parameters { get; set; }
         public EnemyParameters parameters;
         public GameObject player;
+        [HideInInspector] public NavMeshAgent agent;
         [HideInInspector] public EnemyState currentState;
         [HideInInspector] public Vector3 target;
         [HideInInspector] public WanderingState wanderingState;
@@ -25,10 +24,11 @@ namespace com.LazyGames.DZ
         [HideInInspector] public AggroState aggroState;
         [HideInInspector] public DeadState deadState;
         [HideInInspector] public float hP;
-
+        [HideInInspector] public NPC_TickManager tickManager;
+        
         private bool _doChase;
-        public NPC_TickManager tickManager;
-
+        private List<GameObject> _walls;
+        
         private void Start()
         {
             Prepare();
@@ -38,6 +38,7 @@ namespace com.LazyGames.DZ
 
         private void Update()
         {
+            Debug.Log(agent.hasPath);
             currentState.UpdateState();
             if (hP > 0) return;
             currentState = deadState;
@@ -52,7 +53,8 @@ namespace com.LazyGames.DZ
 
         private void OnGeometryChanged()
         {
-
+            // if(agent.hasPath)return;
+            // agent.
         }
 
         private void Prepare()
@@ -64,7 +66,7 @@ namespace com.LazyGames.DZ
             Parameters = parameters;
             hP = parameters.maxHp;
             agent.speed = parameters.baseSpeed;
-            agent.stoppingDistance = parameters.stopDist;
+            agent.stoppingDistance = parameters.circleRadius - .1f;
         }
 
         private void GetStates()
