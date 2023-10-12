@@ -15,27 +15,16 @@ namespace com.LazyGames
 
         [SerializeField] private AdvanceAnimatorController animatorController;
         [SerializeField] private EnemyController enemyController;
-        public bool test;
+        // public bool test;
 
         private Vector3 currentPosition;
 
         private Mouse _mouse;
         private void Start()
         {
-            _mouse = Mouse.current;
+            enemyController.OnAnimEvent += HandleHitPoint;
         }
 
-        private void Update()
-        {
-            if (test)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    
-                    HandleHitPoint(_mouse.position.ReadValue());
-                }
-            }
-        }
 
         private void HandleHitPoint(Vector3 direction)
         {
@@ -43,7 +32,7 @@ namespace com.LazyGames
             currentPosition = transform.position;
             Vector3 hitPointPosition = direction - currentPosition;
             float angle = Vector3.Angle(hitPointPosition, transform.forward);
-            Debug.Log(angle);
+            Debug.Log(angle.ToString().SetColor("#E03BF7"));
             
             
         }
