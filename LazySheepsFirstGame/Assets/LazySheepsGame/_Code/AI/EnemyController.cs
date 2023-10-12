@@ -1,9 +1,9 @@
 // Creado Raymundo Mosqueda 07/09/23
 
-using Lean.Pool;
+using System.Collections.Generic;
+using DG.Tweening.Plugins.Core.PathCore;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace com.LazyGames.DZ
 {
@@ -14,10 +14,10 @@ namespace com.LazyGames.DZ
     [RequireComponent(typeof(DeadState))]
     public class EnemyController : MonoBehaviour, IGeneralTarget
     {
-        [HideInInspector] public NavMeshAgent agent;
         public EnemyParameters Parameters { get; set; }
         public EnemyParameters parameters;
         public GameObject player;
+        [HideInInspector] public NavMeshAgent agent;
         [HideInInspector] public EnemyState currentState;
         [HideInInspector] public Vector3 target;
         [HideInInspector] public WanderingState wanderingState;
@@ -25,10 +25,14 @@ namespace com.LazyGames.DZ
         [HideInInspector] public AggroState aggroState;
         [HideInInspector] public DeadState deadState;
         [HideInInspector] public float hP;
-
+        [HideInInspector] public NPC_TickManager tickManager;
+        
         private bool _doChase;
-        public NPC_TickManager tickManager;
-
+        private List<GameObject> _walls;
+        
+        public delegate void AdvAnimEventHandler(Vector3 dir);
+        public event AdvAnimEventHandler AnimEvent;
+        
         private void Start()
         {
             Prepare();
@@ -52,8 +56,23 @@ namespace com.LazyGames.DZ
 
         private void OnGeometryChanged()
         {
-
+            
+            if(agent.pathStatus == NavMeshPathStatus.PathComplete)return;
+            Debug.Log("pathparcial");
+            // target = 
         }
+        
+        
+        // private GameObject GetClosestWall()
+        // {
+        //     var dist = 0f;
+        //     var currentClosest = 0;
+        //     
+        //     for (int i = 0; i < _walls.Count; i++)
+        //     {
+        //         dist = Vector3.Distance(_walls[i].transform.position, player.transform.position);
+        //     }
+        // }
 
         private void Prepare()
         {
@@ -64,6 +83,7 @@ namespace com.LazyGames.DZ
             Parameters = parameters;
             hP = parameters.maxHp;
             agent.speed = parameters.baseSpeed;
+            agent.stoppingDistance = parameters.circleRadius - .1f;
         }
 
         private void GetStates()
@@ -81,6 +101,7 @@ namespace com.LazyGames.DZ
         public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
         {
             hP -= dmg;
+            AnimEvent?.Invoke(direction);
             Debug.Log("Received damage :" + dmg);
         }
     }

@@ -17,6 +17,7 @@ public class BuildingSystem : MonoBehaviour
 
     [Header("Dependencies Scriptable Objects")]
     [SerializeField] private VoidEventChannelSO _hammerCollisionEvent;
+    [SerializeField] private GameObjectEventChannelSO _buildEventChannel;
 
     [Header("BuildMaterials")]
     [SerializeField] private Material _validPlacementMaterial;
@@ -95,7 +96,8 @@ public class BuildingSystem : MonoBehaviour
     {
         if (_buildChecker.IsColliding) return;
        GameObject building = Instantiate(_objectToBuild, _buildPosition, _currentGameObject.transform.rotation);
-        BuildShader(building);
+       BuildShader(building);
+       _buildEventChannel.RaiseEvent(building);
     }
 
     public void FinishBuilding()
