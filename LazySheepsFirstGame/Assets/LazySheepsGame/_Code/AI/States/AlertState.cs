@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AlertState : EnemyState
 {
-    
     public override void EnterState()
     {
         Controller.agent.speed = Controller.parameters.alertSpeed;

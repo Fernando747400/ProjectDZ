@@ -11,17 +11,18 @@ namespace com.LazyGames.DZ
         public override void EnterState()
         {
             Controller.agent.speed = 0;
-            // Controller.col
         }
         
         public override void UpdateState()
         {
+            Controller.agent.isStopped = true;
             // listen for respawn event
             // set animator to dead pose
         }
         
         public override void ExitState()
         {
+            Controller.agent.isStopped = false;
             Controller.hP = Controller.parameters.maxHp;
             Controller.agent.speed = Controller.parameters.baseSpeed;
         }

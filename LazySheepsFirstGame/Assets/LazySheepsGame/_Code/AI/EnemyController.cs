@@ -1,6 +1,7 @@
 // Creado Raymundo Mosqueda 07/09/23
 
 using System.Collections.Generic;
+using DG.Tweening.Plugins.Core.PathCore;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,6 +30,9 @@ namespace com.LazyGames.DZ
         private bool _doChase;
         private List<GameObject> _walls;
         
+        public delegate void AdvAnimEventHandler(Vector3 dir);
+        public event AdvAnimEventHandler AnimEvent;
+        
         private void Start()
         {
             Prepare();
@@ -38,7 +42,6 @@ namespace com.LazyGames.DZ
 
         private void Update()
         {
-            Debug.Log(agent.hasPath);
             currentState.UpdateState();
             if (hP > 0) return;
             currentState = deadState;
@@ -53,9 +56,23 @@ namespace com.LazyGames.DZ
 
         private void OnGeometryChanged()
         {
-            // if(agent.hasPath)return;
-            // agent.
+            
+            if(agent.pathStatus == NavMeshPathStatus.PathComplete)return;
+            Debug.Log("pathparcial");
+            // target = 
         }
+        
+        
+        // private GameObject GetClosestWall()
+        // {
+        //     var dist = 0f;
+        //     var currentClosest = 0;
+        //     
+        //     for (int i = 0; i < _walls.Count; i++)
+        //     {
+        //         dist = Vector3.Distance(_walls[i].transform.position, player.transform.position);
+        //     }
+        // }
 
         private void Prepare()
         {
@@ -84,6 +101,7 @@ namespace com.LazyGames.DZ
         public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
         {
             hP -= dmg;
+            AnimEvent?.Invoke(direction);
             Debug.Log("Received damage :" + dmg);
         }
     }
