@@ -146,7 +146,7 @@ namespace com.LazyGames
             // Debug.Log("BulletTravel".SetColor("#DB7AFF"));
             //StopAllCoroutines();
             Vector3 simulatedHitDir = _hitPosition - _savedFirePosition;
-            Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out RaycastHit _simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
+            Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out _simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
             Debug.DrawRay(_savedFirePosition, simulatedHitDir.normalized * weaponData.MaxDistance, Color.green, 1f);
         
             if (!TryGetGeneralTarget()) return;
