@@ -31,7 +31,7 @@ namespace com.LazyGames
         private Vector3 _hitPosition;
         private Vector3 _savedFirePosition;
         private bool _isHoldingWeapon = false;
-        private RaycastHit _simulatedHit;
+        // private RaycastHit _simulatedHit;
         
 
         private void OnEnable()
@@ -137,36 +137,42 @@ namespace com.LazyGames
             _hitPosition = hit.point;
             BulletTravel();
         }
-        #endregion
-        
-        
         
         protected virtual void BulletTravel()
         {
-            // Debug.Log("BulletTravel".SetColor("#DB7AFF"));
-            //StopAllCoroutines();
+            RaycastHit simulatedHit;
+            
             Vector3 simulatedHitDir = _hitPosition - _savedFirePosition;
-            Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out _simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
+            Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
             Debug.DrawRay(_savedFirePosition, simulatedHitDir.normalized * weaponData.MaxDistance, Color.green, 1f);
         
-            if (!TryGetGeneralTarget()) return;
+            if (!TryGetGeneralTarget(simulatedHit)) return;
              Debug.Log("Receive Damage ".SetColor("#4DF942"));
-            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(Vector3.zero, 0, weaponData.Damage);
-            //_simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(
-            // (_simulatedHit.point - _savedFirePosition).normalized ,120,weaponData.Damage);
-            SendAggression(true);
+            simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(Vector3.zero, 0, weaponData.Damage);
+            SendAggression(simulatedHit);
+        }
+        #endregion
+
+
+        #region IGeneralAggressor
+        public bool TryGetGeneralTarget(RaycastHit hit)
+        {
+            if(hit.collider != null)
+            {
+                return hit.collider.gameObject.GetComponent<IGeneralTarget>() != null;
+            }
+
+            return false;
+
         }
 
-        public bool TryGetGeneralTarget()
+        public void SendAggression(RaycastHit hit)
         {
-            return _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>() != null;
+            hit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(Vector3.zero, 0, weaponData.Damage);
         }
+        #endregion
 
-        public void SendAggression(bool isTarget)
-        {
-            if(!TryGetGeneralTarget()) return;
-            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(Vector3.zero, 0, weaponData.Damage);
-        }
+        
     }
     
     
