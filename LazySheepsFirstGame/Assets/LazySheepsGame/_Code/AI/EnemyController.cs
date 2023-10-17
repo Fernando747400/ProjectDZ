@@ -1,5 +1,6 @@
 // Creado Raymundo Mosqueda 07/09/23
 
+using System;
 using System.Collections.Generic;
 using DG.Tweening.Plugins.Core.PathCore;
 using UnityEngine;
@@ -29,10 +30,8 @@ namespace com.LazyGames.DZ
         
         private bool _doChase;
         private List<GameObject> _walls;
-        
-        public delegate void AdvAnimEventHandler(Vector3 dir);
-        public event AdvAnimEventHandler AnimEvent;
-        
+
+        public event Action<Vector3> OnAnimEvent;
         private void Start()
         {
             Prepare();
@@ -101,8 +100,8 @@ namespace com.LazyGames.DZ
         public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
         {
             hP -= dmg;
-            AnimEvent?.Invoke(direction);
-            Debug.Log("Received damage :" + dmg);
+            OnAnimEvent?.Invoke(direction);
+            // Debug.Log("Received damage :" + dmg);
         }
     }
 }
