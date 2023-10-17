@@ -101,7 +101,7 @@ namespace com.LazyGames.DZ
         {
             hP -= dmg;
             OnAnimEvent?.Invoke(direction);
-            Debug.Log("Received damage :" + dmg);
+            // Debug.Log("Received damage :" + dmg);
         }
     }
 }

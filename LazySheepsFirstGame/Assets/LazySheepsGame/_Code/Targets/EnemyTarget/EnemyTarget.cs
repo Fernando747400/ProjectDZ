@@ -31,8 +31,9 @@ namespace com.LazyGames
             // handle which area of the body was hit
             currentPosition = transform.position;
             Vector3 hitPointPosition = direction - currentPosition;
-            float angle = Vector3.Angle(hitPointPosition, transform.forward);
-            Debug.Log(angle.ToString().SetColor("#E03BF7"));
+            float angle = Vector3.SignedAngle(hitPointPosition, transform.forward, Vector3.up);
+            Debug.DrawRay(transform.position, hitPointPosition, Color.red, 5f);
+            Debug.Log(angle.ToString().SetColor("#16B1F5"));
             
             
         }

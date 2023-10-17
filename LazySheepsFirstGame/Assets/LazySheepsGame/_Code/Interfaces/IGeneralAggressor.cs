@@ -6,7 +6,7 @@ namespace com.LazyGames.DZ
 {
     public interface IGeneralAggressor
     {
-        bool TryGetGeneralTarget(RaycastHit hit);
-        void SendAggression(RaycastHit hit);
+        bool TryGetGeneralTarget();
+        void SendAggression();
     }
 }
