@@ -9,7 +9,7 @@ using Unity.VisualScripting;
 using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace com.LazyGames
+namespace com.LazyGames.DZ
 {
     public class WeaponObject : MonoBehaviour, IGeneralAggressor
     {
@@ -158,7 +158,7 @@ namespace com.LazyGames
         {
             if(_simulatedHit.collider != null)
             {
-                sphereTarget.position = _simulatedHit.point;
+                if(sphereTarget != null) sphereTarget.position = _simulatedHit.point;
                 return _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>() != null;
             }
 
@@ -168,7 +168,7 @@ namespace com.LazyGames
 
         public void SendAggression()
         {
-            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(Vector3.zero, 0, weaponData.Damage);
+            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(_simulatedHit.point, 0, weaponData.Damage);
             // Debug.Log("Send Aggression to  =   ".SetColor("#F1BE50") + _simulatedHit.collider.gameObject.name);
 
         }

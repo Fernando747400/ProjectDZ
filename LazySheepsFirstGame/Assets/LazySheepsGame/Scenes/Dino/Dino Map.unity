@@ -692,6 +692,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animatorController: {fileID: 1043792288}
   enemyController: {fileID: 1043792292}
+  hitedBodyPart: 0
+  leftSide: {x: -60, y: -130}
+  rightSide: {x: 60, y: 130}
+  Head: {x: 0, y: 0}
 --- !u!114 &1043792292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1090,7 +1094,7 @@ SphereCollider:
   m_GameObject: {fileID: 1802383100}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
