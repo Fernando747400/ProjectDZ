@@ -4,18 +4,18 @@
 void CalculateMainLight_float(float3 WorldPos,out float3 Direction, out float3 Color, out half DistanceAtten, out half ShadowAtten)
 {
     #if SHADERGRAPH_PREVIEW
-    Direction = normalize(float3(0.5f, 0.5f, 0));
+    Direction = float3(0.5f, 0.5f, 0);
     Color = 1;
     DistanceAtten = 1;
     ShadowAtten = 1;
     #else
-        #if SADOWS_SCREEN
+        #if SHADOWS_SCREEN
             half4 clipPos = TransformWorldToHClip(WorldPos);
             half4 shadowCoord = ComputeScreenPos(clipPos);
         #else
-            half4 shadowcoord = TransformWorldToShadowCoord(WorldPos);
+            half4 shadowCoord = TransformWorldToShadowCoord(WorldPos);
         #endif
-    Light mainLight = GetMainLight(shadowcoord);
+    Light mainLight = GetMainLight(shadowCoord);
     Direction = mainLight.direction;
     Color = mainLight.color;
     DistanceAtten = mainLight.distanceAttenuation;
