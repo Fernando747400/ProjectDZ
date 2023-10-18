@@ -1,8 +1,7 @@
 // Creado Raymundo Mosqueda 07/09/23
 
 using System;
-using System.Collections.Generic;
-using DG.Tweening.Plugins.Core.PathCore;
+using com.LazyGames.Dz;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,6 +16,7 @@ namespace com.LazyGames.DZ
     {
         public EnemyParameters Parameters { get; set; }
         public EnemyParameters parameters;
+        public SceneWallsSO sceneWallsSo;
         public GameObject player;
         [HideInInspector] public NavMeshAgent agent;
         [HideInInspector] public EnemyState currentState;
@@ -28,9 +28,8 @@ namespace com.LazyGames.DZ
         [HideInInspector] public float hP;
         [HideInInspector] public NPC_TickManager tickManager;
         
-        private bool _doChase;
-        private List<GameObject> _walls;
 
+        private bool _doChase;
         public event Action<Vector3> OnAnimEvent;
         private void Start()
         {
@@ -52,26 +51,6 @@ namespace com.LazyGames.DZ
             currentState = newState;
             currentState.EnterState();
         }
-
-        private void OnGeometryChanged()
-        {
-            
-            if(agent.pathStatus == NavMeshPathStatus.PathComplete)return;
-            Debug.Log("pathparcial");
-            // target = 
-        }
-        
-        
-        // private GameObject GetClosestWall()
-        // {
-        //     var dist = 0f;
-        //     var currentClosest = 0;
-        //     
-        //     for (int i = 0; i < _walls.Count; i++)
-        //     {
-        //         dist = Vector3.Distance(_walls[i].transform.position, player.transform.position);
-        //     }
-        // }
 
         private void Prepare()
         {
