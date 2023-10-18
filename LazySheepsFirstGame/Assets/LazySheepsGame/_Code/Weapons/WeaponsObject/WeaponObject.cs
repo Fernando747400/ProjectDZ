@@ -9,7 +9,7 @@ using Unity.VisualScripting;
 using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace com.LazyGames
+namespace com.LazyGames.DZ
 {
     public class WeaponObject : MonoBehaviour, IGeneralAggressor
     {
@@ -21,9 +21,12 @@ namespace com.LazyGames
         [SerializeField] private IntEventChannelSO InputShootActionLeft;
         [SerializeField] private ParticleSystem shootParticle;
         
-        
         [Header("Hand Holder")]
         [SerializeField] private HandShoot currentHandHolding;
+
+
+        [Header("Test")] 
+        [SerializeField] private Transform sphereTarget;
 
         #endregion
         
@@ -129,7 +132,7 @@ namespace com.LazyGames
             
             if (!Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
             {
-                Debug.Log("No Hit".SetColor("#F95342"));
+                // Debug.Log("No Hit".SetColor("#F95342"));
                 Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.forward * weaponData.MaxDistance, Color.red, 1f);
                 return;
             }
@@ -137,36 +140,41 @@ namespace com.LazyGames
             _hitPosition = hit.point;
             BulletTravel();
         }
-        #endregion
-        
-        
         
         protected virtual void BulletTravel()
         {
-            // Debug.Log("BulletTravel".SetColor("#DB7AFF"));
-            //StopAllCoroutines();
             Vector3 simulatedHitDir = _hitPosition - _savedFirePosition;
-            Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out RaycastHit _simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
+            Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out _simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
             Debug.DrawRay(_savedFirePosition, simulatedHitDir.normalized * weaponData.MaxDistance, Color.green, 1f);
         
             if (!TryGetGeneralTarget()) return;
-             Debug.Log("Receive Damage ".SetColor("#4DF942"));
-            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(Vector3.zero, 0, weaponData.Damage);
-            //_simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(
-            // (_simulatedHit.point - _savedFirePosition).normalized ,120,weaponData.Damage);
-            SendAggression(true);
+            SendAggression();
         }
+        #endregion
 
+
+        #region IGeneralAggressor
         public bool TryGetGeneralTarget()
         {
-            return _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>() != null;
+            if(_simulatedHit.collider != null)
+            {
+                if(sphereTarget != null) sphereTarget.position = _simulatedHit.point;
+                return _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>() != null;
+            }
+
+            return false;
+
         }
 
-        public void SendAggression(bool isTarget)
+        public void SendAggression()
         {
-            if(!TryGetGeneralTarget()) return;
-            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(Vector3.zero, 0, weaponData.Damage);
+            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(_simulatedHit.point, 0, weaponData.Damage);
+            // Debug.Log("Send Aggression to  =   ".SetColor("#F1BE50") + _simulatedHit.collider.gameObject.name);
+
         }
+        #endregion
+
+        
     }
     
     
