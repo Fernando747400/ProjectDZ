@@ -628,11 +628,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doWalk: 0
-  circleOffset: 0
-  circleRadius: 2.6
-  deviationRange: 5
-  minActTime: 5
-  maxActTime: 20
 --- !u!114 &206035348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,9 +676,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f6dbbc9ed333c40a227b620334a099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
   parameters: {fileID: 11400000, guid: 20bf2c09fda47634c83e395cd5ad899f, type: 2}
+  sceneWallsSo: {fileID: 11400000, guid: b05c2442a6881cd4c942032d2ee17434, type: 2}
   player: {fileID: 1519406046}
+  agent: {fileID: 0}
   currentState: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   wanderingState: {fileID: 0}
@@ -704,10 +700,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c43316ffa289a946a6f6dbb54caa2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isIdle: 0
-  _isWalk: 1
-  _isAttack: 0
   _animator: {fileID: 206035353}
+  normalizedTransitionTime: 0.3
+  animConfgs: []
+  TESTAnim: 
+  valueTestAnim: 1
+  previousAnim:
+    nameAnim: 
 --- !u!95 &206035353
 Animator:
   serializedVersion: 4
@@ -2193,6 +2192,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4719498968730246, guid: a2fe7f9dc74a5ff4696014f411430c80, type: 3}
   m_PrefabInstance: {fileID: 431167209}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &431633670 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4807474711076484718, guid: 5612dc23ee1fd8e4e8641c622129d77a, type: 3}
+  m_PrefabInstance: {fileID: 554953873}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &483688951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2836,12 +2840,26 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5331211288721976530, guid: 5612dc23ee1fd8e4e8641c622129d77a, type: 3}
   m_PrefabInstance: {fileID: 554953873}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 431633670}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &554953880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431633670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf3fed78c0d33e49b0058d33be8d649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hammerInteractor: {fileID: 554953874}
+  _hammerInHandChannel: {fileID: 11400000, guid: 25ff584054a7b0448994a987e205bac9, type: 2}
 --- !u!1 &559749648
 GameObject:
   m_ObjectHideFlags: 0
@@ -4175,11 +4193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doWalk: 0
-  circleOffset: 0
-  circleRadius: 2.6
-  deviationRange: 5
-  minActTime: 5
-  maxActTime: 20
 --- !u!114 &875478070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4228,9 +4241,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f6dbbc9ed333c40a227b620334a099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
   parameters: {fileID: 11400000, guid: 20bf2c09fda47634c83e395cd5ad899f, type: 2}
+  sceneWallsSo: {fileID: 11400000, guid: b05c2442a6881cd4c942032d2ee17434, type: 2}
   player: {fileID: 1519406046}
+  agent: {fileID: 0}
   currentState: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   wanderingState: {fileID: 0}
@@ -4251,10 +4265,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c43316ffa289a946a6f6dbb54caa2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isIdle: 0
-  _isWalk: 1
-  _isAttack: 0
   _animator: {fileID: 875478075}
+  normalizedTransitionTime: 0.3
+  animConfgs: []
+  TESTAnim: 
+  valueTestAnim: 1
+  previousAnim:
+    nameAnim: 
 --- !u!95 &875478075
 Animator:
   serializedVersion: 4
@@ -4292,10 +4309,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c43316ffa289a946a6f6dbb54caa2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isIdle: 0
-  _isWalk: 1
-  _isAttack: 0
   _animator: {fileID: 891009388}
+  normalizedTransitionTime: 0.3
+  animConfgs: []
+  TESTAnim: 
+  valueTestAnim: 1
+  previousAnim:
+    nameAnim: 
 --- !u!95 &891009388
 Animator:
   serializedVersion: 4
@@ -4333,9 +4353,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f6dbbc9ed333c40a227b620334a099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
   parameters: {fileID: 11400000, guid: 20bf2c09fda47634c83e395cd5ad899f, type: 2}
+  sceneWallsSo: {fileID: 11400000, guid: b05c2442a6881cd4c942032d2ee17434, type: 2}
   player: {fileID: 1519406046}
+  agent: {fileID: 0}
   currentState: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   wanderingState: {fileID: 0}
@@ -4393,11 +4414,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doWalk: 0
-  circleOffset: 0
-  circleRadius: 2.6
-  deviationRange: 5
-  minActTime: 5
-  maxActTime: 20
 --- !u!195 &891009395
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8914,6 +8930,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 576
+  buildEventChannelSo: {fileID: 11400000, guid: fbbc1724148fb964494020c4c17ed4e9, type: 2}
+  destroyEventChannelSo: {fileID: 11400000, guid: 3704791fedd3eed448329975ed5fc11e, type: 2}
 --- !u!4 &1766582734
 Transform:
   m_ObjectHideFlags: 0
