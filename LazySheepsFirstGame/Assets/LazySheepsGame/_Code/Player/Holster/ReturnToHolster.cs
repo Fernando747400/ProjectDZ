@@ -64,12 +64,9 @@ public class ReturnToHolster : MonoBehaviour
         returnTween = transform.DOMove(_targetPosition.position, 1f).OnComplete(() =>
         {
             _return = false;
-            if (_rb.isKinematic)
-            {
-                returnTween.Kill();
-                StopAllCoroutines();
-            } 
-            else
+            returnTween.Kill();
+            StopAllCoroutines();
+            if (!_rb.isKinematic)
             {
                 ReturnToTargetWithTween();
             }
