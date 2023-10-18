@@ -1,9 +1,9 @@
 // Creado Raymundo Mosqueda 07/09/23
 
-using Lean.Pool;
+using System;
+using com.LazyGames.Dz;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace com.LazyGames.DZ
 {
@@ -14,10 +14,11 @@ namespace com.LazyGames.DZ
     [RequireComponent(typeof(DeadState))]
     public class EnemyController : MonoBehaviour, IGeneralTarget
     {
-        [HideInInspector] public NavMeshAgent agent;
         public EnemyParameters Parameters { get; set; }
         public EnemyParameters parameters;
+        public SceneWallsSO sceneWallsSo;
         public GameObject player;
+        [HideInInspector] public NavMeshAgent agent;
         [HideInInspector] public EnemyState currentState;
         [HideInInspector] public Vector3 target;
         [HideInInspector] public WanderingState wanderingState;
@@ -25,10 +26,11 @@ namespace com.LazyGames.DZ
         [HideInInspector] public AggroState aggroState;
         [HideInInspector] public DeadState deadState;
         [HideInInspector] public float hP;
+        [HideInInspector] public NPC_TickManager tickManager;
+        
 
         private bool _doChase;
-        public NPC_TickManager tickManager;
-
+        public event Action<Vector3> OnAnimEvent;
         private void Start()
         {
             Prepare();
@@ -50,11 +52,6 @@ namespace com.LazyGames.DZ
             currentState.EnterState();
         }
 
-        private void OnGeometryChanged()
-        {
-
-        }
-
         private void Prepare()
         {
             agent = GetComponent<NavMeshAgent>();
@@ -64,6 +61,7 @@ namespace com.LazyGames.DZ
             Parameters = parameters;
             hP = parameters.maxHp;
             agent.speed = parameters.baseSpeed;
+            agent.stoppingDistance = parameters.circleRadius - .1f;
         }
 
         private void GetStates()
@@ -81,7 +79,8 @@ namespace com.LazyGames.DZ
         public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
         {
             hP -= dmg;
-            Debug.Log("Received damage :" + dmg);
+            OnAnimEvent?.Invoke(direction);
+            // Debug.Log("Received damage :" + dmg);
         }
     }
 }

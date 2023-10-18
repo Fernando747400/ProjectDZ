@@ -1,78 +1,114 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using com.LazyGames;
+using com.LazyGames.DZ;
 using UnityEngine;
 
-namespace com.LazyGames
+namespace com.LazyGames.DZ
 {
-    public class EnemyTarget : MonoBehaviour, IGeneralTarget
+    public class EnemyTarget : MonoBehaviour
     {
+        #region Serialized Fields
 
-        [Header("Enemy Target")] 
-        [SerializeField] private TargetsData targetsData;
+        [Header(" Controllers")]
+        [SerializeField] private AdvanceAnimatorController animatorController;
+        [SerializeField] private EnemyController enemyController;
+       
+        [Header("Body Parts")]
+        [SerializeField] private EnemyBodyPart hitedBodyPart;
+        [SerializeField] private Vector2 leftSide;
+        [SerializeField] private Vector2 rightSide;
+        [SerializeField] private Vector2 Head;
 
-        private string id;
-        private int maxHealth;
-        private TargetsType type;
-        private float currentHp;
-
+        [Header("Animations")]
+        [SerializeField] private string animHead;
+        [SerializeField] private string animLeftSide;
+        [SerializeField] private string animRightSide;
         
-        #region public variables
-
-        public string ID
-        {
-            get => id;
-            set => id = value;
-        }
-
-        public int MaxHealth
-        {
-            get => maxHealth;
-            set => maxHealth = value;
-        }
-
-        public TargetsType Type
-        {
-            get => type;
-            set => type = value;
-        }
-
-        public float CurrentHp
-        {
-            get => currentHp;
-            set => currentHp = value;
-        }
-
+        [Header("Particles")]
+        [SerializeField] private ParticleSystem bloodEffect;
+       
         #endregion
 
-        #region Unity methods
 
+        #region private variables
+        
+        private Vector3 currentPosition;
+        
+        #endregion
+
+
+        #region Unity Methods
+        
         private void Start()
         {
-            PrepareTarget();
+            enemyController.OnAnimEvent += HandleHitPoint;
         }
-    
 
         #endregion
-    
+
         #region private methods
+
         
-        private void PrepareTarget()
+
+        private void HandleHitPoint(Vector3 direction)
         {
-            ID = targetsData.ID;
-            Type = targetsData.Type;
-            MaxHealth = targetsData.MaxHealth;
-            CurrentHp = MaxHealth;
+            currentPosition = transform.localPosition;
+            Vector3 hitPointPosition = direction - currentPosition;
+            float angle = Vector3.SignedAngle(hitPointPosition, transform.forward, Vector3.up);
+            
+            Debug.DrawRay(transform.localPosition, hitPointPosition, Color.red, 5f);
+            
+            hitedBodyPart = GetBodyPart(angle);
+            animatorController.SetAnim(GetAnimName());
+            SetBleedingEffect(direction);
+            
+            Debug.Log(angle.ToString().SetColor("#16B1F5") + "    =  "+ hitedBodyPart.ToString().SetColor("#16B1F5"));
+            
         }
 
+        private EnemyBodyPart GetBodyPart(float angle)
+        {
+            if (angle > rightSide.x && angle < rightSide.y)
+            {
+                return EnemyBodyPart.RightSide;
+            }
+            if (angle < leftSide.x && angle > leftSide.y)
+            {
+                return EnemyBodyPart.LeftSide;
+            }
+            
+            return EnemyBodyPart.Head;
+            
+        }
+       
+        private string GetAnimName()
+        {
+            switch (hitedBodyPart)
+            {
+                case EnemyBodyPart.Head:
+                    return animHead;
+                case EnemyBodyPart.LeftSide:
+                    return animLeftSide;
+                case EnemyBodyPart.RightSide:
+                    return animRightSide;
+                default:
+                    return "None";
+            }
+        }
+        private void SetBleedingEffect(Vector3 position)
+        {
+            
+        }
+            
+        
         #endregion
 
-        public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
-        {
-            Debug.Log($"received aggressor");
-        }
 
+        
     }
 
+    public enum EnemyBodyPart
+    {
+        Head,
+        LeftSide,
+        RightSide,
+    }
 }
