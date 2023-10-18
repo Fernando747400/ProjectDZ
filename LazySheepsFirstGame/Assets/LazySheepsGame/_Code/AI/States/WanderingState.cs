@@ -22,7 +22,7 @@ namespace com.LazyGames.DZ
         public override void EnterState()
         {
             Controller.tickManager.OnTick += TickManagerOnTick;
-            _wanderAngle = 180f;
+            _wanderAngle = 180f; //aligns the initial vector to the front of the enemy
             _visualize = true;
         }
 
@@ -110,7 +110,7 @@ namespace com.LazyGames.DZ
         private void OnDrawGizmos()
         {
             if (!_visualize) return;
-        
+                                                                            
             Gizmos.color = Color.cyan;
             Gizmos.DrawSphere(_deviation,.1f);
             Gizmos.color = Color.magenta;

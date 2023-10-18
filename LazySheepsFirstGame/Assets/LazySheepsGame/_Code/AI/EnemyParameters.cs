@@ -1,10 +1,10 @@
-// Creado Raymundo Mosqueda 028/09/23
+// Creado Raymundo Mosqueda 28/09/23
 using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace com.LazyGames.DZ
 {
-    [CreateAssetMenu(menuName = "LazySheeps/AIParameters/EnemyParameters")]
+    [CreateAssetMenu(menuName = "LazySheeps/AI/EnemyParameters")]
     public class EnemyParameters : ScriptableObject
     {
         [Header("Movement Variables")]

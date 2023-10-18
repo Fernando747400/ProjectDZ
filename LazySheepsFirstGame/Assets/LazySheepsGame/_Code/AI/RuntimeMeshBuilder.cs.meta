@@ -3,7 +3,11 @@ guid: 59dedd09652c38846b39277ba0fc63f6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - surface: {instanceID: 0}
+  - target: {instanceID: 0}
+  - buildEventChannelSo: {fileID: 11400000, guid: fbbc1724148fb964494020c4c17ed4e9, type: 2}
+  - destroyEventChannelSo: {fileID: 11400000, guid: 3704791fedd3eed448329975ed5fc11e, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

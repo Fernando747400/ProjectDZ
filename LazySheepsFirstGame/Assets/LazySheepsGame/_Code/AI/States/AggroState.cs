@@ -1,5 +1,7 @@
 // Creado Raymundo Mosqueda 07/09/23
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace com.LazyGames.DZ
 {
@@ -8,6 +10,7 @@ namespace com.LazyGames.DZ
         public override void EnterState()
         {
             Controller.agent.speed = Controller.parameters.aggroSpeed;
+            
         }
 
         public override void UpdateState()
@@ -26,6 +29,40 @@ namespace com.LazyGames.DZ
         private void Attack()
         {
             
+        }
+        
+        private void OnGeometryChanged()
+        {
+            if(Controller.agent.pathStatus == NavMeshPathStatus.PathComplete)return;
+            Controller.target = GetClosestWall().transform.position;
+        }
+        
+        private GameObject GetClosestWall()
+        {
+            List<GameObject> walls = Controller.sceneWallsSo.Walls;
+
+            if (walls.Count == 0)
+            {
+                return null;
+            }
+
+            GameObject closestObject = null;
+            float closestDistance = Mathf.Infinity;
+
+            foreach (GameObject obj in walls)
+            {
+                if (obj != null)
+                {
+                    float distance = Vector3.Distance(obj.transform.position, Controller.player.transform.position);
+
+                    if (distance < closestDistance)
+                    {
+                        closestObject = obj;
+                        closestDistance = distance;
+                    }
+                }
+            }
+            return closestObject;
         }
         
         public override void ExitState()
