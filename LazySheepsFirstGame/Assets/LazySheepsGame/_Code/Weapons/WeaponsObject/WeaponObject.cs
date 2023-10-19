@@ -5,6 +5,7 @@ using UnityEngine;
 using com.LazyGames;
 using com.LazyGames.Dio;
 using com.LazyGames.DZ;
+using Lean.Pool;
 using Unity.VisualScripting;
 using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -19,7 +20,6 @@ namespace com.LazyGames.DZ
         [SerializeField] private Transform shootPoint;
         [SerializeField] private IntEventChannelSO InputShootActionRight;
         [SerializeField] private IntEventChannelSO InputShootActionLeft;
-        [SerializeField] private ParticleSystem shootParticle;
         
         [Header("Hand Holder")]
         [SerializeField] private HandShoot currentHandHolding;
@@ -126,7 +126,7 @@ namespace com.LazyGames.DZ
         }
         private void Shoot()
         {
-            shootParticle.Play();
+            // shootParticle.Play();
             _savedFirePosition = shootPoint.transform.position;
             RaycastHit hit;
             
@@ -150,6 +150,12 @@ namespace com.LazyGames.DZ
             if (!TryGetGeneralTarget()) return;
             SendAggression();
         }
+        private void PlayParticleShoot()
+        {
+            GameObject shootParticleObject = LeanPool.Spawn(weaponData.ShootParticle);
+            shootParticleObject.transform.position = shootPoint.transform.position;
+        }
+        
         #endregion
 
 
@@ -168,7 +174,7 @@ namespace com.LazyGames.DZ
 
         public void SendAggression()
         {
-            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(_simulatedHit.point, 0, weaponData.Damage);
+            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(_simulatedHit.point, 0,weaponData.Damage);
             // Debug.Log("Send Aggression to  =   ".SetColor("#F1BE50") + _simulatedHit.collider.gameObject.name);
 
         }
