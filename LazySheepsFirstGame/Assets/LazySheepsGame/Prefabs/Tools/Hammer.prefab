@@ -377,8 +377,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf3fed78c0d33e49b0058d33be8d649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hammerInteractor: {fileID: 5331211288721976530}
-  _hammerInHandChannel: {fileID: 11400000, guid: 25ff584054a7b0448994a987e205bac9, type: 2}
+  xrGrabInteractable: {fileID: 5331211288721976530}
+  isInHandChannel: {fileID: 11400000, guid: 25ff584054a7b0448994a987e205bac9, type: 2}
+  handHolderEventSO: {fileID: 0}
 --- !u!1 &4959609604306423952
 GameObject:
   m_ObjectHideFlags: 0

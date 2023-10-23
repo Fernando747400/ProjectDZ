@@ -20,9 +20,9 @@ MonoBehaviour:
   weaponType: 1
   bulletSpeed: 10
   maxDistance: 3000
-  shootParticle: {fileID: 0}
-  hitParticle: {fileID: 0}
+  shootParticle: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+  hitParticle: BloodParticle
   cooldownPerShot: 1
   delayReload: 3
-  maxAmmo: 0
+  maxAmmo: 5
   shootPointOffset: {x: 0, y: 0, z: 0}
