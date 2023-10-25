@@ -62,7 +62,7 @@ namespace com.LazyGames.DZ
             {
                 Debug.DrawRay(transform.position + Controller.parameters.heightOffset, rayDirection * Controller.parameters.softDetectionRange, Color.yellow);
                 Controller.target = hit.collider.transform.position;
-                Controller.ChangeState(Controller.alertState);
+                Controller.ChangeState(Controller.investigatingState);
             }
         }
 
