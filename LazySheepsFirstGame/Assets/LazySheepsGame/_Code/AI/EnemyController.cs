@@ -77,11 +77,11 @@ namespace com.LazyGames.DZ
             deadState.Controller = this;
         }
 
-        public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
+        public void ReceiveAggression(Vector3 direction, float velocity,float dmg = 0)
         {
             hP -= dmg;
             OnAnimEvent?.Invoke(direction);
-            Debug.Log("Received damage :" + dmg);
+            // Debug.Log("Received damage :" + dmg);
         }
 
         public void HearNoise(float intensity, Vector3 position, bool dangerous)

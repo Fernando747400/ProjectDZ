@@ -43,15 +43,14 @@ namespace com.LazyGames.DZ
         public void SetAnim(string name)
         {
             previousAnim = _currentAnim;
-            AnimConfg config = null;
-            foreach (var anim in animConfgs)
+            AnimConfg config = animConfgs.Find(x=>x.nameAnim == name);
+            
+            if(config == null)
             {
-                if(anim.nameAnim == name)
-                {
-                    config = anim;
-
-                }
+                Debug.LogError($"Anim { name } not found from = " + gameObject.name);
+                return;
             }
+           
             _animator.CrossFade(config.nameAnim, normalizedTransitionTime);
             _currentAnim = config;
             onChangeAnim?.Invoke();
