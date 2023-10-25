@@ -4,24 +4,30 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 using com.LazyGames.DZ;
+using NaughtyAttributes;
 
 public class ObjectInHand : MonoBehaviour
 {
     [FormerlySerializedAs("interactor")]
     [FormerlySerializedAs("_hammerInteractor")]
+
     [Header("Dependencies")]
     [SerializeField] private XRGrabInteractable xrGrabInteractable;
     [SerializeField] private BoolEventChannelSO isInHandChannel;
+    [SerializeField] private bool _holdEventActive;
+    [ShowIf("_holdEventActive")]
     [SerializeField] private HandEventChannelSO handHolderEventSO;
 
     private void OnEnable()
     {
         xrGrabInteractable.selectEntered.AddListener(GrabbedObject);
+        xrGrabInteractable.selectExited.AddListener(DroppedObject);
     }
 
     private void OnDisable()
     {
-        xrGrabInteractable.selectEntered.AddListener(DroppedObject);
+        xrGrabInteractable.selectEntered?.RemoveListener(GrabbedObject);
+        xrGrabInteractable.selectExited?.RemoveListener(DroppedObject);
     }
 
     private void GrabbedObject(SelectEnterEventArgs args)
@@ -35,7 +41,7 @@ public class ObjectInHand : MonoBehaviour
         }
     }
 
-    private void DroppedObject(SelectEnterEventArgs args)
+    private void DroppedObject(SelectExitEventArgs args)
     {
         if (args.interactorObject.transform.CompareTag("HandLeft") || args.interactorObject.transform.CompareTag("HandRight"))
         {
