@@ -1,4 +1,6 @@
+using System.Collections;
 using com.LazyGames.DZ;
+using Lean.Pool;
 using UnityEngine;
 
 namespace com.LazyGames.DZ
@@ -23,7 +25,7 @@ namespace com.LazyGames.DZ
         [SerializeField] private string animRightSide;
         
         [Header("Particles")]
-        [SerializeField] private ParticleSystem bloodEffect;
+        // [SerializeField] private ParticleSystem bloodEffect;
        
         #endregion
 
@@ -95,9 +97,15 @@ namespace com.LazyGames.DZ
         }
         private void SetBleedingEffect(Vector3 position)
         {
-            
+            GameObject bloodParticle = PoolManager.Instance.SpawnPool(PoolKeys.BLOOD_PARTICLE_POOLKEY);
+            bloodParticle.transform.position = position;
+            StartCoroutine(DespawnParticle(bloodParticle));
         }
-            
+        private IEnumerator DespawnParticle(GameObject particle)
+        {
+            yield return new WaitForSeconds(1f);
+            LeanPool.Despawn(particle);
+        }
         
         #endregion
 

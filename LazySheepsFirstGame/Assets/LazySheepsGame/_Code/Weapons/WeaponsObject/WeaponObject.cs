@@ -5,6 +5,7 @@ using UnityEngine;
 using com.LazyGames;
 using com.LazyGames.Dio;
 using com.LazyGames.DZ;
+using Lean.Pool;
 using Unity.VisualScripting;
 using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -19,24 +20,45 @@ namespace com.LazyGames.DZ
         [SerializeField] private Transform shootPoint;
         [SerializeField] private IntEventChannelSO InputShootActionRight;
         [SerializeField] private IntEventChannelSO InputShootActionLeft;
-        [SerializeField] private ParticleSystem shootParticle;
+        
+        [SerializeField] private BoolEventChannelSO isInHandChannel;
+        [SerializeField] private HandEventChannelSO handHolderEventSO;
         
         [Header("Hand Holder")]
-        [SerializeField] private HandShoot currentHandHolding;
+        [SerializeField] private HandHolder currentHandHolding;
+        
+        [Header("Particles")]
+        [SerializeField] private float timeToDespawnPart = 1f;
 
 
         [Header("Test")] 
         [SerializeField] private Transform sphereTarget;
 
         #endregion
+
+        #region public variables
         
+        public int CurrentAmmo
+        {
+            get => _currentAmmo;
+            protected set => _currentAmmo = value;
+        }
+
+        #endregion
+        #region private variables
+        
+        private int _currentAmmo;
         private float _travelTime = 0.3f;
         private Vector3 _hitPosition;
         private Vector3 _savedFirePosition;
         private bool _isHoldingWeapon = false;
         private RaycastHit _simulatedHit;
-        
 
+        #endregion
+
+
+        #region Unity Methods
+        
         private void OnEnable()
         {
             PrepareAgressor();
@@ -52,22 +74,11 @@ namespace com.LazyGames.DZ
             {
                 HandleShootEvent(value);
             };
+            
+            isInHandChannel.BoolEvent -= CheckIsInHand;
+            handHolderEventSO.HandHolderEvent -= CheckCurrentHandHolder;
         }
-
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.CompareTag("HandLeft"))
-            {
-                currentHandHolding = HandShoot.Left;
-                //Debug.Log("Hand Holder Enter".SetColor("#F1BE50"));
-            }
-            if (other.CompareTag("HandRight"))
-            {
-                currentHandHolding = HandShoot.Right;
-                //Debug.Log("Hand Holder Enter".SetColor("#F1BE50"));
-            }
-        }
-
+        
         private void Update()
         {
             if(Input.GetKeyDown(KeyCode.Space)) {
@@ -75,18 +86,14 @@ namespace com.LazyGames.DZ
             }
         }
 
-        #region public methods
+        #endregion
 
-        public void OnSelectWeapon(SelectEnterEventArgs args)
-        {
-            //Debug.Log("OnSelectWeapon".SetColor("#F1BE50"));
-            _isHoldingWeapon = true;
-        }
+        #region public methods
+        
         public void OnSelectExitWeapon(SelectExitEventArgs args)
         {
-            //Debug.Log("OnSelectExitWeapon".SetColor("#50F155"));
             _isHoldingWeapon = false;
-            currentHandHolding = HandShoot.None;
+            currentHandHolding = HandHolder.None;
         }
 
         #endregion
@@ -98,16 +105,27 @@ namespace com.LazyGames.DZ
         {
             InputShootActionRight.IntEvent += HandleShootEvent;
             InputShootActionLeft.IntEvent += HandleShootEvent;
+            isInHandChannel.BoolEvent += CheckIsInHand;
+            handHolderEventSO.HandHolderEvent += CheckCurrentHandHolder;
         }
 
+        private void CheckIsInHand(bool isInHand)
+        {
+           _isHoldingWeapon = isInHand;
+        }
+        
+        private void CheckCurrentHandHolder(HandHolder handHolder)
+        {
+            currentHandHolding = handHolder;
+        }
         private void HandleShootEvent(int value)
         {
-            Debug.Log("Is Holding Weapon = " + currentHandHolding);
-            Debug.Log("Shoot = " + value);
-
-            if(currentHandHolding == HandShoot.None) return;
+            if(currentHandHolding == HandHolder.None) return;
             if (value != (int)currentHandHolding) return;
             if (!_isHoldingWeapon) return;
+         
+            // Debug.Log("Is Holding Weapon = " + currentHandHolding);
+            Debug.Log("Shoot = ".SetColor("#16CCF5"));
             
             switch (weaponData.WeaponType) 
             { 
@@ -126,7 +144,8 @@ namespace com.LazyGames.DZ
         }
         private void Shoot()
         {
-            shootParticle.Play();
+            // shootParticle.Play();
+            PlayParticleShoot();
             _savedFirePosition = shootPoint.transform.position;
             RaycastHit hit;
             
@@ -150,6 +169,18 @@ namespace com.LazyGames.DZ
             if (!TryGetGeneralTarget()) return;
             SendAggression();
         }
+        private void PlayParticleShoot()
+        {
+            GameObject shootParticleObject = LeanPool.Spawn(weaponData.ShootParticle);
+            shootParticleObject.transform.position = shootPoint.transform.position;
+            StartCoroutine(DespawnParticle(shootParticleObject));
+        }
+        
+        private IEnumerator DespawnParticle(GameObject particle)
+        {
+            yield return new WaitForSeconds(timeToDespawnPart);
+            LeanPool.Despawn(particle);
+        }
         #endregion
 
 
@@ -168,7 +199,7 @@ namespace com.LazyGames.DZ
 
         public void SendAggression()
         {
-            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(_simulatedHit.point, 0, weaponData.Damage);
+            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(_simulatedHit.point, 0,weaponData.Damage);
             // Debug.Log("Send Aggression to  =   ".SetColor("#F1BE50") + _simulatedHit.collider.gameObject.name);
 
         }
