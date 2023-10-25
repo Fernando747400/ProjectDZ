@@ -219,6 +219,8 @@ namespace com.LazyGames.DZ
         private void CallReload()
         {
             _weaponUI.NeedReload(true);
+            _weaponUI.UpdateTextMMO(CurrentAmmo);
+
             Debug.Log("Reload".SetColor("#F95342"));
         }
         
