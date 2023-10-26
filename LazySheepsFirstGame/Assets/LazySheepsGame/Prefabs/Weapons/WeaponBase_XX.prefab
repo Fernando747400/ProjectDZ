@@ -266,7 +266,7 @@ Transform:
   m_Children:
   - {fileID: 1981078340846993174}
   m_Father: {fileID: 6966291645138990496}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6966291644794083731
 GameObject:
@@ -291,12 +291,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6966291644794083731}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.196, z: 0.379}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.060845446, z: 0.22056122}
+  m_LocalScale: {x: 0.30195683, y: 0.25839514, z: 0.58195573}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6966291645420918330}
+  m_Father: {fileID: 6966291645138990496}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6966291645138990499
@@ -335,6 +335,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6966291644794083728}
   - {fileID: 6966291645420918330}
   - {fileID: 5149215939047776280}
   - {fileID: 2003495010917933992}
@@ -397,6 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xrGrabInteractable: {fileID: 4653748867679513095}
   isInHandChannel: {fileID: 11400000, guid: 2d80843320567354785e0dbdb16ab24c, type: 2}
+  _holdEventActive: 0
   handHolderEventSO: {fileID: 11400000, guid: 6dde001a78d7414449227ed5e5b6b838, type: 2}
 --- !u!114 &70967954593367479
 MonoBehaviour:
@@ -648,10 +650,9 @@ Transform:
   m_LocalScale: {x: 0.30195683, y: 0.25839514, z: 0.58195573}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 6966291644794083728}
   - {fileID: 8240192708597128589}
   m_Father: {fileID: 6966291645138990496}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6966291645420918331
 BoxCollider:
@@ -683,7 +684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4703707677970600, guid: e42189c530de6c944961b54c51a398e6, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4703707677970600, guid: e42189c530de6c944961b54c51a398e6, type: 3}
       propertyPath: m_LocalScale.x
@@ -775,7 +776,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c75ac7d79f07e564695106c27fc98897, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c75ac7d79f07e564695106c27fc98897, type: 3}
       propertyPath: m_LocalScale.x
@@ -829,10 +830,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8123237418531140632, guid: c75ac7d79f07e564695106c27fc98897, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 65bfb1057d2ac174daf7a8450683d576, type: 2}
+    - target: {fileID: -8123237418531140632, guid: c75ac7d79f07e564695106c27fc98897, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2a1d31542af9946458723f3d522f55d9, type: 2}
+    - target: {fileID: -5856538209175599927, guid: c75ac7d79f07e564695106c27fc98897, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c75ac7d79f07e564695106c27fc98897, type: 3}
       propertyPath: m_Name
       value: Revolver_Final
       objectReference: {fileID: 0}
+    - target: {fileID: 2958591995271670975, guid: c75ac7d79f07e564695106c27fc98897, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2a1d31542af9946458723f3d522f55d9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c75ac7d79f07e564695106c27fc98897, type: 3}
 --- !u!4 &8240192708597128589 stripped
