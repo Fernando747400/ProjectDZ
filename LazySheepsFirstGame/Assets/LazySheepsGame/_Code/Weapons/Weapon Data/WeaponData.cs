@@ -38,6 +38,7 @@ namespace com.LazyGames
         public GameObject ShootParticle => shootParticle;
 
         public string HitParticle => hitParticle;
+        public int MaxAmmo => maxAmmo;
 
         #endregion
 
