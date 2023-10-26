@@ -8,7 +8,7 @@ namespace com.LazyGames.DZ
 {
     public class WanderingState : EnemyState
     {
-        [HideInInspector]public bool doWalk;
+        [HideInInspector]public bool doWalk;    
 
         private float _wanderAngle;
         private Vector3 _deviation;

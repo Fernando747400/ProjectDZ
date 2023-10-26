@@ -5,6 +5,7 @@ using com.LazyGames.Dz;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 
 namespace com.LazyGames.DZ
 {
@@ -18,8 +19,8 @@ namespace com.LazyGames.DZ
         public EnemyParameters Parameters { get; set; }
         public EnemyParameters parameters;
         public SceneWallsSO sceneWallsSo;
-        public GameObject player;
         
+        [HideInInspector]public GameObject player;
         [HideInInspector]public bool doHear = true;
         [HideInInspector] public NavMeshAgent agent;
         [HideInInspector] public EnemyState currentState;
@@ -63,6 +64,7 @@ namespace com.LazyGames.DZ
             hP = parameters.maxHp;
             agent.speed = parameters.baseSpeed;
             agent.stoppingDistance = parameters.circleRadius - .1f;
+            player = GameObject.Find("DummyPlayer");
         }
 
         private void GetStates()

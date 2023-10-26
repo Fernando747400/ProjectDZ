@@ -3176,18 +3176,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 281219074889938980, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
-      propertyPath: m_AutoBraking
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 281219074889938980, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
-      propertyPath: m_Acceleration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 281219074889938980, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
-      propertyPath: m_ObstacleAvoidanceType
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3236,10 +3224,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 281219074889938990, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: player
       value: 
@@ -3248,6 +3232,5 @@ PrefabInstance:
       propertyPath: tickManager
       value: 
       objectReference: {fileID: 1905456451}
-    m_RemovedComponents:
-    - {fileID: 281219075871051868, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
