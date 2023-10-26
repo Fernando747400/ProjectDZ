@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class WeaponPistolObject : WeaponObject
 {
-    
-    // [SerializeField] private string animaReloadName;
+    [Header("Pistol Object")]
+    [SerializeField] Collider  reloadCollider;
     
     public override void Reload()
     {
