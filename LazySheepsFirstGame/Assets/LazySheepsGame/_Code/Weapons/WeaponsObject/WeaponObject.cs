@@ -1,38 +1,40 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using com.LazyGames;
 using com.LazyGames.Dio;
-using com.LazyGames.DZ;
 using Lean.Pool;
-using Unity.VisualScripting;
-using UnityEngine.Serialization;
-using UnityEngine.XR.Interaction.Toolkit;
 
 namespace com.LazyGames.DZ
 {
-    public class WeaponObject : MonoBehaviour, IGeneralAggressor
+    public class WeaponObject : WeaponBase, IGeneralAggressor
     {
         #region SerializedFields
-        [Header("Weapon Object")]
-        [SerializeField] private WeaponData weaponData;
-        [SerializeField] private Transform shootPoint;
-        [SerializeField] private IntEventChannelSO InputShootActionRight;
-        [SerializeField] private IntEventChannelSO InputShootActionLeft;
-        
-        [SerializeField] private BoolEventChannelSO isInHandChannel;
-        [SerializeField] private HandEventChannelSO handHolderEventSO;
-        
-        [Header("UI")]
-        [SerializeField] private GameObject weaponUIGO;
-        
-        [Header("Hand Holder")]
-        [SerializeField] private HandHolder currentHandHolding;
-        
-        [Header("Particles")]
-        [SerializeField] private float timeToDespawnPart = 1f;
 
+        [Header("Weapon Object")] [SerializeField]
+        private WeaponData weaponData;
+
+        [SerializeField] private Transform shootPoint;
+
+        [Header("Input Actions")] [SerializeField]
+        private IntEventChannelSO InputShootActionRight;
+
+        [SerializeField] private IntEventChannelSO InputShootActionLeft;
+
+        [Header("Hand Object")] [SerializeField]
+        private BoolEventChannelSO isInHandChannel;
+
+        [SerializeField] private HandEventChannelSO handHolderEventSO;
+        [SerializeField] private HandHolder currentHandHolding;
+
+        [Header("UI")] [SerializeField] private GameObject weaponUIGO;
+
+        [Header("Particles")] [SerializeField] private float timeToDespawnPart = 1f;
+        [SerializeField] private LineRenderer lineRenderer;
+        [SerializeField] private float lineRendererMaxDistance = 10f;
+        [SerializeField] private ParticleSystem hitLaserParticle;
+
+        [Header("Reload")]
+        [SerializeField] private Animator reloadAnimator;
+        [SerializeField] private string animaNeedReloadName = "NeedReload";
 
         [Header("Test")] 
         [SerializeField] private Transform sphereTarget;
@@ -46,6 +48,7 @@ namespace com.LazyGames.DZ
             get => _currentAmmo;
             protected set => _currentAmmo = value;
         }
+        public WeaponData WeaponData => weaponData;
 
         #endregion
         #region private variables
@@ -90,8 +93,19 @@ namespace com.LazyGames.DZ
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
                 Shoot();
+            }
+
+            if (lineRenderer.enabled)
+            {
+                Ray ray = new Ray(shootPoint.transform.position, shootPoint.transform.forward);
+                bool cast = Physics.Raycast(ray, out RaycastHit hit, lineRendererMaxDistance);
+                Vector3 endPosition = cast ? hit.point : ray.GetPoint(lineRendererMaxDistance);
+                lineRenderer.SetPosition(0, shootPoint.transform.position);
+                lineRenderer.SetPosition(1, endPosition);
+                hitLaserParticle.transform.position = endPosition;
             }
         }
 
@@ -99,21 +113,34 @@ namespace com.LazyGames.DZ
 
         #region public methods
         
-        public void OnSelectWeapon(SelectEnterEventArgs args)
+        public override void Reload()
         {
-            if (_isHoldingWeapon)
-            {
-                weaponUIGO.SetActive(true);
-            }
+            DoReload();
         }
-        
-        public void OnSelectExitWeapon(SelectExitEventArgs args)
+        public override void Shoot()
         {
-            _isHoldingWeapon = false;
-            currentHandHolding = HandHolder.None;
-            weaponUIGO.SetActive(false);
+            _savedFirePosition = shootPoint.transform.position;
+            _currentAmmo--;
+            _weaponUI.UpdateTextMMO(CurrentAmmo);
+            PlayParticleShoot();
+           
+            RaycastHit hit;
+            if (!Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
+            {
+                // Debug.Log("No Hit".SetColor("#F95342"));
+                Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.forward * weaponData.MaxDistance, Color.red, 1f);
+                return;
+            }
+            //Collision Raycast
+            _hitPosition = hit.point;
+            BulletTravel();
         }
 
+        public void PlayAnimsWeapon(string nameAnim)
+        {
+            reloadAnimator.Play(nameAnim);
+        }
+            
         #endregion
         
         
@@ -121,7 +148,12 @@ namespace com.LazyGames.DZ
 
         private void InitializeWeapon()
         {
+            EnableBeamLaser(false);
             CurrentAmmo = weaponData.MaxAmmo;
+            
+            reloadAnimator = GetComponent<Animator>();
+            reloadAnimator.runtimeAnimatorController = weaponData.ReloadAnimator;
+            
             _weaponUI = transform.GetComponent<WeaponUI>();
             _weaponUI.UpdateTextMMO(CurrentAmmo);
             
@@ -137,6 +169,18 @@ namespace com.LazyGames.DZ
         private void CheckIsInHand(bool isInHand)
         {
            _isHoldingWeapon = isInHand;
+           
+           if (_isHoldingWeapon)
+           {
+               weaponUIGO.SetActive(true);
+               EnableBeamLaser(true);
+           }
+           else
+           {
+               currentHandHolding = HandHolder.None;
+               weaponUIGO.SetActive(false);
+               EnableBeamLaser(false);
+           }
         }
         
         private void CheckCurrentHandHolder(HandHolder handHolder)
@@ -151,7 +195,7 @@ namespace com.LazyGames.DZ
 
             if (CurrentAmmo <= 0)
             {
-                CallReload();
+                CallNeedReload();
                 return;
             }
             
@@ -166,32 +210,12 @@ namespace com.LazyGames.DZ
                     break;
             }
             
-            Debug.Log("Shoot = ".SetColor("#16CCF5"));
+            // Debug.Log("Shoot".SetColor("#16CCF5"));
 
         }
-
         private void StartConstantShoot()
         {
             
-        }
-        private void Shoot()
-        {
-            _savedFirePosition = shootPoint.transform.position;
-            _currentAmmo--;
-            RaycastHit hit;
-            if (!Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
-            {
-                // Debug.Log("No Hit".SetColor("#F95342"));
-                Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.forward * weaponData.MaxDistance, Color.red, 1f);
-                return;
-            }
-            //Collision Raycast
-            _hitPosition = hit.point;
-            BulletTravel();
-            
-            _weaponUI.UpdateTextMMO(CurrentAmmo);
-            PlayParticleShoot();
-
         }
         
         protected virtual void BulletTravel()
@@ -209,20 +233,34 @@ namespace com.LazyGames.DZ
             shootParticleObject.transform.position = shootPoint.transform.position;
             StartCoroutine(DespawnParticle(shootParticleObject));
         }
-        
         private IEnumerator DespawnParticle(GameObject particle)
         {
             yield return new WaitForSeconds(timeToDespawnPart);
             LeanPool.Despawn(particle);
         }
-
-        private void CallReload()
+        private void CallNeedReload()
         {
             _weaponUI.NeedReload(true);
             _weaponUI.UpdateTextMMO(CurrentAmmo);
-
-            Debug.Log("Reload".SetColor("#F95342"));
+            PlayAnimsWeapon(weaponData.AnimationsReloads.Find(x => x.nameAnimation == animaNeedReloadName).animationClip.name);
+            
+            Debug.Log("Need Reload".SetColor("#F95342"));
         }
+        private void DoReload()
+        {
+            CurrentAmmo = weaponData.MaxAmmo;
+            _weaponUI.NeedReload(false);
+            _weaponUI.UpdateTextMMO(CurrentAmmo);
+        }
+        private void EnableBeamLaser(bool enable)
+        {
+            lineRenderer.gameObject.SetActive(enable);
+            lineRenderer.enabled = enable;
+            
+            if(enable) hitLaserParticle.Play();
+            else hitLaserParticle.Stop();
+        }
+        
         
         #endregion
 
