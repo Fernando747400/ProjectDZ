@@ -11,6 +11,7 @@ namespace com.LazyGames.DZ
         public override void EnterState()
         {
             Controller.agent.speed = 0;
+            Controller.doHear = false;
         }
         
         public override void UpdateState()
@@ -25,6 +26,7 @@ namespace com.LazyGames.DZ
             Controller.agent.isStopped = false;
             Controller.hP = Controller.parameters.maxHp;
             Controller.agent.speed = Controller.parameters.baseSpeed;
+            Controller.doHear = true;
         }
         
         private void Despawn()

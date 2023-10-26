@@ -37,9 +37,3 @@ public class ReciverInputShoot : MonoBehaviour
 }
 
 
-public enum HandShoot
-{
-    None,
-    Right,
-    Left
-}
