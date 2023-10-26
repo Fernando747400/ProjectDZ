@@ -1,7 +1,10 @@
+using com.LazyGames;
 using com.LazyGames.Dio;
+using NaughtyAttributes;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
-public class BuildingSystem : MonoBehaviour
+public class BuildingSystem : MonoBehaviour, IPausable
 {
     [Header("Dependencies Layers")]
     [Tooltip("This layer mask is used to determine if there's valid ground to place the building")]
@@ -12,18 +15,28 @@ public class BuildingSystem : MonoBehaviour
 
     [Header("Dependencies Building")]
     [Tooltip("This is the Gameobject that will be instanciated")]
+    [Required]
     [SerializeField] private GameObject _objectToBuild;
+    [Required]
     [SerializeField] private GameObject _rayCastOrigin;
 
     [Header("Dependencies Scriptable Objects")]
+    [Required]
+    [SerializeField] private BoolEventChannelSO _pauseEventChannel;
+    [Required]
     [SerializeField] private VoidEventChannelSO _hammerCollisionEvent;
+    [Required]
     [SerializeField] private GameObjectEventChannelSO _buildEventChannel;
 
     [Header("BuildMaterials")]
     [SerializeField] private Material _validPlacementMaterial;
     [SerializeField] private Material _invalidPlacementMaterials;
 
-    public bool VRConfirmation {  set { _VRBuildConfirmartion = value; } }
+    public BoolEventChannelSO PauseEventChannel { get; set; }
+    public bool VRConfirmation { set { _VRBuildConfirmartion = value; } }
+
+    [SerializeField] public BoolEventChannelSO PauseUpdateChannel { get { return _pauseEventChannel; } set { _pauseEventChannel = value; } }
+    [HideInInspector] public bool IsPaused { get; set; }
 
     private RaycastHit _rayHit;
     private bool _canBuild = false;
@@ -76,7 +89,6 @@ public class BuildingSystem : MonoBehaviour
             _currentGameObject.transform.rotation = rotation;
         }
     }
-
 
     public void StartBuilding()
     {
