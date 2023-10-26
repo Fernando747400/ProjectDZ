@@ -143,6 +143,10 @@ namespace com.LazyGames.DZ
         {
             EnableBeamLaser(false);
             CurrentAmmo = weaponData.MaxAmmo;
+            
+            reloadAnimator = GetComponent<Animator>();
+            reloadAnimator.runtimeAnimatorController = weaponData.ReloadAnimator;
+            
             _weaponUI = transform.GetComponent<WeaponUI>();
             _weaponUI.UpdateTextMMO(CurrentAmmo);
             

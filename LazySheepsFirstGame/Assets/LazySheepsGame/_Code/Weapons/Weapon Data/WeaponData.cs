@@ -16,6 +16,8 @@ namespace com.LazyGames
         [SerializeField] private float delayReload;
         [SerializeField] private int maxAmmo;
         [SerializeField] private RuntimeAnimatorController reloadAnimator;
+        [SerializeField] private AnimationsReloads[] animationsReloads;
+        
         
 
 
@@ -37,11 +39,18 @@ namespace com.LazyGames
 
         public string HitParticle => hitParticle;
         public int MaxAmmo => maxAmmo;
+        public RuntimeAnimatorController ReloadAnimator => reloadAnimator;
 
         #endregion
 
     }
 
+}
+
+public class AnimationsReloads
+{
+    public string nameAnimation;
+    public AnimationClip animationClip;
 }
 
 public enum WeaponType 
