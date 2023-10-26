@@ -34,6 +34,7 @@ namespace com.LazyGames.DZ
 
         [Header("Reload")]
         [SerializeField] private Animator reloadAnimator;
+        [SerializeField] private string animaNeedReloadName = "NeedReload";
 
         [Header("Test")] 
         [SerializeField] private Transform sphereTarget;
@@ -47,6 +48,7 @@ namespace com.LazyGames.DZ
             get => _currentAmmo;
             protected set => _currentAmmo = value;
         }
+        public WeaponData WeaponData => weaponData;
 
         #endregion
         #region private variables
@@ -134,6 +136,11 @@ namespace com.LazyGames.DZ
             BulletTravel();
         }
 
+        public void PlayAnimsWeapon(string nameAnim)
+        {
+            reloadAnimator.Play(nameAnim);
+        }
+            
         #endregion
         
         
@@ -188,7 +195,7 @@ namespace com.LazyGames.DZ
 
             if (CurrentAmmo <= 0)
             {
-                CallReload();
+                CallNeedReload();
                 return;
             }
             
@@ -231,12 +238,13 @@ namespace com.LazyGames.DZ
             yield return new WaitForSeconds(timeToDespawnPart);
             LeanPool.Despawn(particle);
         }
-        private void CallReload()
+        private void CallNeedReload()
         {
             _weaponUI.NeedReload(true);
             _weaponUI.UpdateTextMMO(CurrentAmmo);
-
-            // Debug.Log("Reload".SetColor("#F95342"));
+            PlayAnimsWeapon(weaponData.AnimationsReloads.Find(x => x.nameAnimation == animaNeedReloadName).animationClip.name);
+            
+            Debug.Log("Need Reload".SetColor("#F95342"));
         }
         private void DoReload()
         {

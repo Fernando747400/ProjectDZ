@@ -26,3 +26,6 @@ MonoBehaviour:
   delayReload: 3
   maxAmmo: 5
   reloadAnimator: {fileID: 9100000, guid: d765b3563565df648a53ea525ecaf4cd, type: 2}
+  animationsReloads:
+  - nameAnimation: NeedReload
+    animationClip: {fileID: 7400000, guid: bd1b55fb14f9c4c43841249b3e4c8e9e, type: 2}

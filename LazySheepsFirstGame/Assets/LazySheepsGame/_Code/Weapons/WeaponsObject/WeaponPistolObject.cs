@@ -4,6 +4,7 @@ using UnityEngine;
 public class WeaponPistolObject : WeaponObject
 {
     
+    // [SerializeField] private string animaReloadName;
     
     public override void Reload()
     {
