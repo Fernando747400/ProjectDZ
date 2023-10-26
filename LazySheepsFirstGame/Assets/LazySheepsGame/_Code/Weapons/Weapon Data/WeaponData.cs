@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace com.LazyGames
@@ -17,8 +15,8 @@ namespace com.LazyGames
         [SerializeField] private float cooldownPerShot;
         [SerializeField] private float delayReload;
         [SerializeField] private int maxAmmo;
-        [SerializeField] private Vector3 shootPointOffset;
-
+        [SerializeField] private RuntimeAnimatorController reloadAnimator;
+        
 
 
         #region public variables
@@ -51,4 +49,6 @@ public enum WeaponType
     None, 
     Pistol, 
     AutomaticRifle,
+    Shotgun,
+    SniperRifle,
 }
