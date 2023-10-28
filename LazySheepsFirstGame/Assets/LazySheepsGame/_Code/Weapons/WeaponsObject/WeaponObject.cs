@@ -146,7 +146,7 @@ namespace com.LazyGames.DZ
         
         #region private methods
 
-        private void InitializeWeapon()
+        public override void InitializeWeapon()
         {
             EnableBeamLaser(false);
             CurrentAmmo = weaponData.MaxAmmo;

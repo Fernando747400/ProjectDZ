@@ -1140,6 +1140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3670011952043223283}
   - component: {fileID: 4075193090671451175}
+  - component: {fileID: 2153500032114152998}
   m_Layer: 0
   m_Name: ParentChamber
   m_TagString: Untagged
@@ -1176,6 +1177,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2153500032114152998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394453073844082094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c124201518154d94e8f22cb7c55f561b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collider: {fileID: 4075193090671451175}
 --- !u!1 &7457762014689823634
 GameObject:
   m_ObjectHideFlags: 0
