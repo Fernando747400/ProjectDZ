@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -311,7 +311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &402389350
 Transform:
   m_ObjectHideFlags: 0
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c43316ffa289a946a6f6dbb54caa2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
+  _animator: {fileID: 7831379584287252132}
   normalizedTransitionTime: 0.4
   animConfgs:
   - nameAnim: DogFishIdle
@@ -552,7 +552,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animatorController: {fileID: 1043792288}
   enemyController: {fileID: 1043792292}
-  hitedBodyPart: 0
   leftSide: {x: -60, y: -130}
   rightSide: {x: 60, y: 130}
   Head: {x: 0, y: 0}
@@ -572,7 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parameters: {fileID: 11400000, guid: 20bf2c09fda47634c83e395cd5ad899f, type: 2}
-  sceneWallsSo: {fileID: 0}
+  sceneWallsSo: {fileID: 11400000, guid: c8602bf062c892c408e0fda9b653106f, type: 2}
   player: {fileID: 1136288612}
   doHear: 1
   agent: {fileID: 0}
@@ -797,12 +796,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   surface: {fileID: 413734212}
   boundsSize: 150
-  target: {fileID: 0}
+  target: {fileID: 413734207}
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  buildEventChannelSo: {fileID: 0}
-  destroyEventChannelSo: {fileID: 0}
+  buildEventChannelSo: {fileID: 11400000, guid: fbbc1724148fb964494020c4c17ed4e9, type: 2}
+  destroyEventChannelSo: {fileID: 11400000, guid: 3704791fedd3eed448329975ed5fc11e, type: 2}
 --- !u!4 &1233040646
 Transform:
   m_ObjectHideFlags: 0
@@ -1045,7 +1044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1920618032
 Transform:
   m_ObjectHideFlags: 0

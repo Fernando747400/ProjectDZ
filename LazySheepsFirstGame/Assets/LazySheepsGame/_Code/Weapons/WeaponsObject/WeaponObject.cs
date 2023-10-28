@@ -36,8 +36,8 @@ namespace com.LazyGames.DZ
         [SerializeField] private Animator reloadAnimator;
         [SerializeField] private string animaNeedReloadName = "NeedReload";
 
-        [Header("Test")] 
-        [SerializeField] private Transform sphereTarget;
+        // [Header("Test")] 
+        // [SerializeField] private Transform sphereTarget;
 
         #endregion
 
@@ -270,7 +270,7 @@ namespace com.LazyGames.DZ
         {
             if(_simulatedHit.collider != null)
             {
-                if(sphereTarget != null) sphereTarget.position = _simulatedHit.point;
+                // if(sphereTarget != null) sphereTarget.position = _simulatedHit.point;
                 return _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>() != null;
             }
 

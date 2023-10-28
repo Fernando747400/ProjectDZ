@@ -1,37 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using com.LazyGames;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
-public class InteractorReloadWeapon : MonoBehaviour
+public class InteractorReloadWeapon : XRBaseInteractable
 {
-    [SerializeField] private Collider collider;
+    public event Action<Vector3> OnHoverEnter; 
+    public event Action<Vector3> OnHoverExit;
+    public void OnHoveredEnter(HoverEnterEventArgs args)
+    {
+        Debug.Log("OnHoveredEnter".SetColor("#5DF516"));
+        OnHoverEnter?.Invoke(args.interactor.transform.position);
+    }
 
-    public event Action<Vector3> OnHandEnter;
-    public event  Action<Vector3> OnHandOut;
-    public event Action<Vector3> OnHandStay; 
+    public void OnHoverdExit()
+    {
+        Debug.Log("OnHoverdExit".SetColor("#F51686"));
+    }
+  
     
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Hand"))
-        {
-            OnHandEnter?.Invoke(other.transform.position);
-        }
-    }
-    
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Hand"))
-        {
-            OnHandOut?.Invoke(other.transform.position);
-        }
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Hand"))
-        {
-            OnHandStay?.Invoke(other.transform.position);
-        }
-    }
+
     
 }
