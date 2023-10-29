@@ -5,19 +5,21 @@ using com.LazyGames;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class InteractorReloadWeapon : XRBaseInteractable
+public class InteractorVectorReloadWeapon : XRBaseInteractable
 {
-    public event Action<Vector3> OnHoverEnter; 
-    public event Action<Vector3> OnHoverExit;
+    public event Action<Vector3> OnEnter; 
+    public event Action<Vector3> OnExit;
     public void OnHoveredEnter(HoverEnterEventArgs args)
     {
         Debug.Log("OnHoveredEnter".SetColor("#5DF516"));
-        OnHoverEnter?.Invoke(args.interactor.transform.position);
+        OnEnter?.Invoke(args.interactor.transform.position);
     }
 
-    public void OnHoverdExit()
+    public void OnHoveredExit(HoverExitEventArgs args)
     {
         Debug.Log("OnHoverdExit".SetColor("#F51686"));
+        OnExit?.Invoke(args.interactor.transform.position);
+        
     }
   
     
