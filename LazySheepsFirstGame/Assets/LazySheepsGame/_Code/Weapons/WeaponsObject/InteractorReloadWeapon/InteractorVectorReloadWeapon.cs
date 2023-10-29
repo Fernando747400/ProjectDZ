@@ -11,13 +11,13 @@ public class InteractorVectorReloadWeapon : XRBaseInteractable
     public event Action<Vector3> OnExit;
     public void OnHoveredEnter(HoverEnterEventArgs args)
     {
-        Debug.Log("OnHoveredEnter".SetColor("#5DF516"));
+        // Debug.Log("OnHoveredEnter".SetColor("#5DF516"));
         OnEnter?.Invoke(args.interactor.transform.position);
     }
 
     public void OnHoveredExit(HoverExitEventArgs args)
     {
-        Debug.Log("OnHoverdExit".SetColor("#F51686"));
+        // Debug.Log("OnHoverdExit".SetColor("#F51686"));
         OnExit?.Invoke(args.interactor.transform.position);
         
     }

@@ -8,9 +8,6 @@ using NaughtyAttributes;
 
 public class ObjectInHand : MonoBehaviour
 {
-    [FormerlySerializedAs("interactor")]
-    [FormerlySerializedAs("_hammerInteractor")]
-
     [Header("Dependencies")]
     [SerializeField] private XRGrabInteractable xrGrabInteractable;
     [SerializeField] private BoolEventChannelSO isInHandChannel;

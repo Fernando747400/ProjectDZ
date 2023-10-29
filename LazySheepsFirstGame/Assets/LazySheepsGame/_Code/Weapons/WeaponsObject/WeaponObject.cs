@@ -142,12 +142,7 @@ namespace com.LazyGames.DZ
         {
             reloadAnimator.Play(nameAnim);
         }
-            
-        #endregion
         
-        
-        #region private methods
-
         public override void InitializeWeapon()
         {
             EnableBeamLaser(false);
@@ -160,6 +155,11 @@ namespace com.LazyGames.DZ
             _weaponUI.UpdateTextMMO(CurrentAmmo);
             
         }
+        
+        #endregion
+
+        
+        #region private methods
         private void PrepareAgressor()
         {
             InputShootActionRight.IntEvent += HandleShootEvent;
@@ -180,6 +180,7 @@ namespace com.LazyGames.DZ
            else
            {
                currentHandHolding = HandHolder.None;
+               // transform.parent = null;
                weaponUIGO.SetActive(false);
                EnableBeamLaser(false);
            }
@@ -188,6 +189,16 @@ namespace com.LazyGames.DZ
         private void CheckCurrentHandHolder(HandHolder handHolder)
         {
             currentHandHolding = handHolder;
+
+            // if (currentHandHolding == HandHolder.HandLeft)
+            // {
+            //     // transform.SetParent(PlayerManager.Instance.LeftHandAttachPoint);
+            // }else
+            // if (currentHandHolding == HandHolder.HandRight)
+            // {
+            //     // transform.SetParent(PlayerManager.Instance.RightHandAttachPoint);
+            // }
+            
         }
         private void HandleShootEvent(int value)
         {
@@ -264,8 +275,11 @@ namespace com.LazyGames.DZ
             if(enable) hitLaserParticle.Play();
             else hitLaserParticle.Stop();
         }
-        
-        
+
+        private void DoRecoilWeapon()
+        {
+            
+        }
         #endregion
 
 
