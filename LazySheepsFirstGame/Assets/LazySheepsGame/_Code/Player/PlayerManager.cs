@@ -30,8 +30,6 @@ public class PlayerManager : MonoBehaviour
 
     #region Serialized Fields
 
-    [Header("Reload Position")]
-    [SerializeField] private InteractorVectorReloadWeapon reloadPosition;
 
     [Header("Right Hand")]
     [SerializeField] private Transform rightHandAttachPoint;
@@ -44,7 +42,6 @@ public class PlayerManager : MonoBehaviour
 
     #region public Variables
 
-    public InteractorVectorReloadWeapon ReloadPosition => reloadPosition;
     public Transform RightHandAttachPoint => rightHandAttachPoint;
     public Transform LeftHandAttachPoint => leftHandAttachPoint;
     #endregion
