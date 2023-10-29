@@ -156,7 +156,6 @@ namespace com.LazyGames.DZ
             
         }
         
-        
         #endregion
 
         
@@ -191,14 +190,14 @@ namespace com.LazyGames.DZ
         {
             currentHandHolding = handHolder;
 
-            if (currentHandHolding == HandHolder.HandLeft)
-            {
-                // transform.SetParent(PlayerManager.Instance.LeftHandAttachPoint);
-            }else
-            if (currentHandHolding == HandHolder.HandRight)
-            {
-                // transform.SetParent(PlayerManager.Instance.RightHandAttachPoint);
-            }
+            // if (currentHandHolding == HandHolder.HandLeft)
+            // {
+            //     // transform.SetParent(PlayerManager.Instance.LeftHandAttachPoint);
+            // }else
+            // if (currentHandHolding == HandHolder.HandRight)
+            // {
+            //     // transform.SetParent(PlayerManager.Instance.RightHandAttachPoint);
+            // }
             
         }
         private void HandleShootEvent(int value)
