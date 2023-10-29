@@ -58,7 +58,7 @@ public class WeaponPistolObject : WeaponObject
     {
         float distance = Vector3.Distance(_initialHandReloadPosition, _lastHandReloadPosition);
         float velocity = distance / _elapsedTime;
-        Debug.Log($"Velocity: {velocity}");
+        // Debug.Log($"Velocity: {velocity}");
 
         if (velocity > velocityTarget)
         {
