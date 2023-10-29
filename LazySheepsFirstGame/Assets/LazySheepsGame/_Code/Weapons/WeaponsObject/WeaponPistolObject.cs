@@ -25,7 +25,6 @@ public class WeaponPistolObject : WeaponObject
     
     private void FixedUpdate()
     {
-        
         if(!_isReloading) return;
         _elapsedTime += Time.deltaTime;
     }
@@ -46,14 +45,13 @@ public class WeaponPistolObject : WeaponObject
         interactorVectorReloadWeapon.OnEnter += OnHoveredWeaponEnter;
         interactorVectorReloadWeapon.OnExit += OnHoveredWeaponExit;
         
-        
     }
 
     public override void Reload()
     {
         base.Reload();
         PlayAnimsWeapon(animaReloadName);
-        Debug.Log("Reload Pistol");
+        // Debug.Log("Reload Pistol");
     }
 
     public override void Shoot()
@@ -88,7 +86,7 @@ public class WeaponPistolObject : WeaponObject
     {
         float distance = Vector3.Distance(_initialHandReloadPosition, _lastHandReloadPosition);
         float velocity = distance / _elapsedTime;
-        // Debug.Log($"Velocity: {velocity}");
+        Debug.Log($"Velocity: {velocity}");
 
         if (velocity > velocityTarget)
         {
@@ -99,6 +97,8 @@ public class WeaponPistolObject : WeaponObject
         _initialHandReloadPosition = Vector3.zero;
         _lastHandReloadPosition = Vector3.zero;
     }
+    
+    
 
     #endregion
 
