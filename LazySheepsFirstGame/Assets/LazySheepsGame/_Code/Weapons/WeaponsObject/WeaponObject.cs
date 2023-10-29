@@ -35,9 +35,10 @@ namespace com.LazyGames.DZ
         [Header("Reload")]
         [SerializeField] private Animator reloadAnimator;
         [SerializeField] private string animaNeedReloadName = "NeedReload";
+       
 
-        [Header("Test")] 
-        [SerializeField] private Transform sphereTarget;
+        // [Header("Test")] 
+        // [SerializeField] private Transform sphereTarget;
 
         #endregion
 
@@ -49,6 +50,7 @@ namespace com.LazyGames.DZ
             protected set => _currentAmmo = value;
         }
         public WeaponData WeaponData => weaponData;
+        public bool IsHoldingWeapon => _isHoldingWeapon;
 
         #endregion
         #region private variables
@@ -93,10 +95,10 @@ namespace com.LazyGames.DZ
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Shoot();
-            }
+            // if (Input.GetKeyDown(KeyCode.Space))
+            // {
+            //     PlayAnimsWeapon(animaNeedReloadName);
+            // }
 
             if (lineRenderer.enabled)
             {
@@ -146,7 +148,7 @@ namespace com.LazyGames.DZ
         
         #region private methods
 
-        private void InitializeWeapon()
+        public override void InitializeWeapon()
         {
             EnableBeamLaser(false);
             CurrentAmmo = weaponData.MaxAmmo;
@@ -242,9 +244,11 @@ namespace com.LazyGames.DZ
         {
             _weaponUI.NeedReload(true);
             _weaponUI.UpdateTextMMO(CurrentAmmo);
-            PlayAnimsWeapon(weaponData.AnimationsReloads.Find(x => x.nameAnimation == animaNeedReloadName).animationClip.name);
+          
+            // PlayAnimsWeapon(weaponData.AnimationsReloads.Find(x => x.nameAnimation == animaNeedReloadName).nameAnimation);
+            PlayAnimsWeapon(animaNeedReloadName);
             
-            Debug.Log("Need Reload".SetColor("#F95342"));
+            // Debug.Log("Need Reload".SetColor("#F95342"));
         }
         private void DoReload()
         {
@@ -270,7 +274,7 @@ namespace com.LazyGames.DZ
         {
             if(_simulatedHit.collider != null)
             {
-                if(sphereTarget != null) sphereTarget.position = _simulatedHit.point;
+                // if(sphereTarget != null) sphereTarget.position = _simulatedHit.point;
                 return _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>() != null;
             }
 
