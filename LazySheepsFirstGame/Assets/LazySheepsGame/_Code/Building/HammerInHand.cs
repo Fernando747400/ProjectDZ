@@ -15,7 +15,7 @@ public class HammerInHand : MonoBehaviour
 
     private void OnDisable()
     {
-        _hammerInteractor.selectEntered.AddListener(DroppedHammer);
+        _hammerInteractor.selectExited.AddListener(DroppedHammer);
     }
 
     public void GrabbedHammer(SelectEnterEventArgs args)
@@ -27,8 +27,9 @@ public class HammerInHand : MonoBehaviour
         }
     }
 
-    private void DroppedHammer(SelectEnterEventArgs args)
+    private void DroppedHammer(SelectExitEventArgs args)
     {
+        Debug.Log("Invoked Dropped Hammer Event");
         if (args.interactorObject.transform.CompareTag("HandLeft") || args.interactableObject.transform.CompareTag("HandRight"))
         {
             _hammerInHandChannel.RaiseEvent(false);
