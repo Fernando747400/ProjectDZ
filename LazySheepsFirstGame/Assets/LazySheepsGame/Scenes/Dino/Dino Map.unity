@@ -589,6 +589,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1416429966 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6493022791635176030, guid: 23de5f20d1d1df447a29a45e567bbb68, type: 3}
+  m_PrefabInstance: {fileID: 317688982}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1416429971 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6493022791635176363, guid: 23de5f20d1d1df447a29a45e567bbb68, type: 3}
+  m_PrefabInstance: {fileID: 317688982}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416429966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f6dbbc9ed333c40a227b620334a099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1416429975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416429966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c43316ffa289a946a6f6dbb54caa2af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  normalizedTransitionTime: 0.3
+  animConfgs:
+  - nameAnim: 
+  TESTAnim: 
+  valueTestAnim: 1
+  previousAnim:
+    nameAnim: 
+--- !u!114 &1416429976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416429966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4174c3d306b6ada4986bf2f733544e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatorController: {fileID: 1416429975}
+  enemyController: {fileID: 1416429971}
+  leftSide: {x: 0, y: 0}
+  rightSide: {x: 0, y: 0}
+  Head: {x: 0, y: 0}
+  animHead: 
+  animLeftSide: 
+  animRightSide: 
 --- !u!1 &1531239507
 GameObject:
   m_ObjectHideFlags: 0
