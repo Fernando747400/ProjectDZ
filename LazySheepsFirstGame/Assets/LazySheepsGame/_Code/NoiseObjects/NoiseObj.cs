@@ -39,7 +39,7 @@ public class NoiseObj : MonoBehaviour, INoiseSource
 
     public void MakeNoise(NoiseParameters noiseParameters, float velocity, Vector3 position)
     {
-        Collider[] hits = Physics.OverlapSphere(position, noiseParameters.noiseRadius * _relativeSpeed, noiseParameters.layerMask);
+        Collider[] hits = Physics.OverlapSphere(position, noiseParameters.baseRadius * _relativeSpeed, noiseParameters.layerMask);
         if(hits.Length == 0) return;
         foreach (var col in hits)
         {
@@ -53,6 +53,6 @@ public class NoiseObj : MonoBehaviour, INoiseSource
     {
         if (!_visualize) return;
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, noiseParams.noiseRadius * _relativeSpeed);
+        Gizmos.DrawWireSphere(transform.position, noiseParams.baseRadius * _relativeSpeed);
     }
 }
