@@ -95,11 +95,11 @@ namespace com.LazyGames.DZ
 
         public void HearNoise(float intensity, Vector3 position, bool dangerous)
         {
-            Debug.Log($"heardNoise {intensity}");
+            Debug.Log($"{gameObject.name} heardNoise, {intensity}");
             Debug.Log(parameters.skittish);
             // if (!doHear) return;
             if (!parameters.skittish) return;
-            Debug.Log("is skittish");
+            Debug.Log($"{gameObject.name} is skittish");
             currentState = fleeState;
             fleeState.Source = position;
 
