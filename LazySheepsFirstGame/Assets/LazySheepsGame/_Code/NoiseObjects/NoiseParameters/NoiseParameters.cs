@@ -10,7 +10,7 @@ namespace com.LazyGames.DZ
     public class NoiseParameters : ScriptableObject
     {
         public LayerMask layerMask;
-        public float noiseRadius;
+        public float baseRadius;
         public float loudness;
         public bool dangerous;
     }

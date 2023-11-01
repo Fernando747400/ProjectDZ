@@ -66,6 +66,13 @@ namespace com.LazyGames.DZ
             }
         }
 
+        private void Avoidance(bool avoid)
+        {
+            if (!avoid) return;
+            
+
+        }
+
         private void TickManagerOnTick(object sender, EventArgs e)
         {
             TickWalkState();
