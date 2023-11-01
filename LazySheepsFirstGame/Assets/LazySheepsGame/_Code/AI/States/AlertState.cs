@@ -14,14 +14,15 @@ namespace com.LazyGames.DZ
         public override void UpdateState()
         {
             //look towards noise source
+            // enter flee state
+            // enter aggro state
+            // return to wander state
             
         }
 
         public override void ExitState()
         {
-            // enter flee state
-            // enter aggro state
-            // return to wander state
+           
         }
     }
     
