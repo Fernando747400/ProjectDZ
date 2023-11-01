@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fb57d248ac16fc45bc260c009943c63, type: 3}
-  m_Name: Base Enemy Parameters
+  m_Name: RatParameters
   m_EditorClassIdentifier: 
-  skittish: 0
+  skittish: 1
   baseSpeed: 2
   alertSpeed: 4
   aggroSpeed: 6
@@ -21,12 +21,12 @@ MonoBehaviour:
   hardDetectionRange: 8
   oscillationSpeed: 25
   coneAngle: 100
-  heightOffset: {x: 0, y: 0.5, z: 0}
-  maxHp: 20
+  heightOffset: {x: 0, y: 0.3, z: 0}
+  maxHp: 1
   attackPower: 1
   attackSpeed: 1.5
   deAggroDistance: 40
   circleRadius: 3
   deviationRange: 3
-  minActTime: 30
-  maxActTime: 30
+  minActTime: 5
+  maxActTime: 20
