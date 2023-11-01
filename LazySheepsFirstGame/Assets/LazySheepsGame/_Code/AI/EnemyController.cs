@@ -90,16 +90,16 @@ namespace com.LazyGames.DZ
         {
             hP -= dmg;
             OnAnimEvent?.Invoke(direction);
-            // Debug.Log("Received damage :" + dmg);
+            Debug.Log("Received damage :" + dmg);
         }
 
         public void HearNoise(float intensity, Vector3 position, bool dangerous)
         {
-            Debug.Log($"{gameObject.name} heardNoise, {intensity}");
-            Debug.Log(parameters.skittish);
+            //Debug.Log($"{gameObject.name} heardNoise, {intensity}");
+            //Debug.Log(parameters.skittish);
             // if (!doHear) return;
             if (!parameters.skittish) return;
-            Debug.Log($"{gameObject.name} is skittish");
+            //Debug.Log($"{gameObject.name} is skittish");
             currentState = fleeState;
             fleeState.Source = position;
 

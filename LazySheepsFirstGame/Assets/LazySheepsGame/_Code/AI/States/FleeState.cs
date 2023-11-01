@@ -23,7 +23,7 @@ namespace com.LazyGames.DZ
 
         public override void UpdateState()
         {
-            Debug.Log($"{gameObject.name} is fleeing");
+            //Debug.Log($"{gameObject.name} is fleeing");
             _angleToSource = Vector3.Angle(Source, transform.position);
             _distanceToSource = Vector3.Distance(Source, transform.position);
             if (_distanceToSource >= Controller.parameters.deAggroDistance)
