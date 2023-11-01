@@ -237,7 +237,7 @@ namespace com.LazyGames.DZ
             Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out _simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
             Debug.DrawRay(_savedFirePosition, simulatedHitDir.normalized * weaponData.MaxDistance, Color.green, 1f);
         
-            if (!TryGetGeneralTarget()) return;
+            //if (!TryGetGeneralTarget()) return;
             SendAggression();
         }
         private void PlayParticleShoot()
@@ -284,22 +284,15 @@ namespace com.LazyGames.DZ
 
 
         #region IGeneralAggressor
-        public bool TryGetGeneralTarget()
-        {
-            if(_simulatedHit.collider != null)
-            {
-                // if(sphereTarget != null) sphereTarget.position = _simulatedHit.point;
-                return _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>() != null;
-            }
-
-            return false;
-
-        }
 
         public void SendAggression()
         {
-            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(_simulatedHit.point, 0,weaponData.Damage);
-            // Debug.Log("Send Aggression to  =   ".SetColor("#F1BE50") + _simulatedHit.collider.gameObject.name);
+
+            //_simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(_simulatedHit.point, 0,weaponData.Damage);
+            if (!_simulatedHit.collider.gameObject.TryGetComponent<IGeneralTarget>(out var generalTarget)) return;
+            generalTarget.ReceiveAggression(_simulatedHit.point, 23,weaponData.Damage);
+             Debug.Log("Send Aggression to  =   ".SetColor("#F1BE50") + _simulatedHit.collider.gameObject.name);
+
 
         }
         #endregion
