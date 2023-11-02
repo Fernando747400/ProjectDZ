@@ -24,6 +24,9 @@ namespace com.LazyGames.DZ
         [SerializeField] private BoolEventChannelSO isInHandChannel;
         [SerializeField] private HandEventChannelSO handHolderEventSO;
         
+        [Header("UI")]
+        [SerializeField] private GameObject weaponUIGO;
+        
         [Header("Hand Holder")]
         [SerializeField] private HandHolder currentHandHolding;
         
@@ -53,6 +56,7 @@ namespace com.LazyGames.DZ
         private Vector3 _savedFirePosition;
         private bool _isHoldingWeapon = false;
         private RaycastHit _simulatedHit;
+        private WeaponUI _weaponUI;
 
         #endregion
 
@@ -78,7 +82,12 @@ namespace com.LazyGames.DZ
             isInHandChannel.BoolEvent -= CheckIsInHand;
             handHolderEventSO.HandHolderEvent -= CheckCurrentHandHolder;
         }
-        
+
+        private void Start()
+        {
+            InitializeWeapon();
+        }
+
         private void Update()
         {
             if(Input.GetKeyDown(KeyCode.Space)) {
@@ -90,10 +99,19 @@ namespace com.LazyGames.DZ
 
         #region public methods
         
+        public void OnSelectWeapon(SelectEnterEventArgs args)
+        {
+            if (_isHoldingWeapon)
+            {
+                weaponUIGO.SetActive(true);
+            }
+        }
+        
         public void OnSelectExitWeapon(SelectExitEventArgs args)
         {
             _isHoldingWeapon = false;
             currentHandHolding = HandHolder.None;
+            weaponUIGO.SetActive(false);
         }
 
         #endregion
@@ -101,6 +119,13 @@ namespace com.LazyGames.DZ
         
         #region private methods
 
+        private void InitializeWeapon()
+        {
+            CurrentAmmo = weaponData.MaxAmmo;
+            _weaponUI = transform.GetComponent<WeaponUI>();
+            _weaponUI.UpdateTextMMO(CurrentAmmo);
+            
+        }
         private void PrepareAgressor()
         {
             InputShootActionRight.IntEvent += HandleShootEvent;
@@ -123,19 +148,26 @@ namespace com.LazyGames.DZ
             if(currentHandHolding == HandHolder.None) return;
             if (value != (int)currentHandHolding) return;
             if (!_isHoldingWeapon) return;
-         
-            // Debug.Log("Is Holding Weapon = " + currentHandHolding);
-            Debug.Log("Shoot = ".SetColor("#16CCF5"));
+
+            if (CurrentAmmo <= 0)
+            {
+                CallReload();
+                return;
+            }
             
             switch (weaponData.WeaponType) 
             { 
                 case WeaponType.Pistol: 
+                    _weaponUI.NeedReload(false);
                     Shoot();
                     break;
                 case WeaponType.AutomaticRifle: 
                     StartConstantShoot(); 
                     break;
             }
+            
+            Debug.Log("Shoot = ".SetColor("#16CCF5"));
+
         }
 
         private void StartConstantShoot()
@@ -144,11 +176,9 @@ namespace com.LazyGames.DZ
         }
         private void Shoot()
         {
-            // shootParticle.Play();
-            PlayParticleShoot();
             _savedFirePosition = shootPoint.transform.position;
+            _currentAmmo--;
             RaycastHit hit;
-            
             if (!Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
             {
                 // Debug.Log("No Hit".SetColor("#F95342"));
@@ -158,6 +188,10 @@ namespace com.LazyGames.DZ
             //Collision Raycast
             _hitPosition = hit.point;
             BulletTravel();
+            
+            _weaponUI.UpdateTextMMO(CurrentAmmo);
+            PlayParticleShoot();
+
         }
         
         protected virtual void BulletTravel()
@@ -181,6 +215,15 @@ namespace com.LazyGames.DZ
             yield return new WaitForSeconds(timeToDespawnPart);
             LeanPool.Despawn(particle);
         }
+
+        private void CallReload()
+        {
+            _weaponUI.NeedReload(true);
+            _weaponUI.UpdateTextMMO(CurrentAmmo);
+
+            Debug.Log("Reload".SetColor("#F95342"));
+        }
+        
         #endregion
 
 
