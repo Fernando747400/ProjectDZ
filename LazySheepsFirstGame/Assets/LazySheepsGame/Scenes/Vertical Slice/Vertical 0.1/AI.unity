@@ -291,7 +291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6493022791635176021, guid: 23de5f20d1d1df447a29a45e567bbb68, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.6
+      value: -24.86
       objectReference: {fileID: 0}
     - target: {fileID: 6493022791635176021, guid: 23de5f20d1d1df447a29a45e567bbb68, type: 3}
       propertyPath: m_LocalPosition.y
@@ -299,7 +299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6493022791635176021, guid: 23de5f20d1d1df447a29a45e567bbb68, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.1
+      value: -62
       objectReference: {fileID: 0}
     - target: {fileID: 6493022791635176021, guid: 23de5f20d1d1df447a29a45e567bbb68, type: 3}
       propertyPath: m_LocalRotation.w
@@ -393,6 +393,10 @@ PrefabInstance:
     - target: {fileID: 7617104413791808061, guid: 14d730f002fdee4468b307ae915c4d98, type: 3}
       propertyPath: m_Name
       value: RatEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7617104413791808061, guid: 14d730f002fdee4468b307ae915c4d98, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14d730f002fdee4468b307ae915c4d98, type: 3}

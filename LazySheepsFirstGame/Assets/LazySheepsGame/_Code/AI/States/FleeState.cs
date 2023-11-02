@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CryoStorage;
+using UnityEditor;
 
 
 namespace com.LazyGames.DZ
@@ -17,20 +18,21 @@ namespace com.LazyGames.DZ
         private float _distanceToSource;
         public override void EnterState()
         {
-            // Controller.doHear = false;
+            Controller.doHear = false;
             Controller.agent.speed = Controller.parameters.fleeSpeed;
         }
 
         public override void UpdateState()
         {
-            //Debug.Log($"{gameObject.name} is fleeing");
-            _angleToSource = Vector3.Angle(Source, transform.position);
+            _angleToSource = Vector3.Angle(Source, transform.position) + 180f;
             _distanceToSource = Vector3.Distance(Source, transform.position);
             if (_distanceToSource >= Controller.parameters.deAggroDistance)
             {
-                Controller.agent.SetDestination(CryoMath.PointOnRadius(transform.position, 60, _angleToSource));
+                Controller.agent.SetDestination(CryoMath.PointOnRadius(transform.position, Controller.parameters.circleRadius, _angleToSource));
             }
-            // Controller.target = CryoMath.PointOnRadius(transform.position, 100,)
+            if (_distanceToSource <= Controller.parameters.deAggroDistance) return;
+            Controller.ChangeState(Controller.wanderingState);
+            
         }
 
         public override void ExitState()
@@ -38,11 +40,12 @@ namespace com.LazyGames.DZ
             Controller.doHear = true;
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.green;
-            Debug.DrawLine(transform.position, CryoMath.PointOnRadius(transform.position, 60, _angleToSource), Color.green);
-            Gizmos.DrawSphere(CryoMath.PointOnRadius(transform.position, 60, _angleToSource) , .3f);
-        }
+        // private void OnDrawGizmos()
+        // {
+        //     if(!Application.isPlaying) return;
+        //     Gizmos.color = Color.green;
+        //     Debug.DrawLine(transform.position, CryoMath.PointOnRadius(transform.position, Controller.parameters.circleRadius, _angleToSource), Color.green);
+        //     Gizmos.DrawSphere(CryoMath.PointOnRadius(transform.position, Controller.parameters.circleRadius, _angleToSource) , .3f);
+        // }
     }
 }
