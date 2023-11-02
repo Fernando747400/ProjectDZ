@@ -19,12 +19,12 @@ MonoBehaviour:
     m_Bits: 4609
   weaponType: 1
   bulletSpeed: 10
-  maxDistance: 3000
+  maxDistance: 30
   shootParticle: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
   hitParticle: BloodParticle
   cooldownPerShot: 1
   delayReload: 3
-  maxAmmo: 5
+  maxAmmo: 10
   reloadAnimator: {fileID: 9100000, guid: d765b3563565df648a53ea525ecaf4cd, type: 2}
   animationsReloads:
   - nameAnimation: NeedReload
