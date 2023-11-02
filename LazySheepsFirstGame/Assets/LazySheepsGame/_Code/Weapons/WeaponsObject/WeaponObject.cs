@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using com.LazyGames.Dio;
 using Lean.Pool;
+using UnityEngine.Serialization;
 
 namespace com.LazyGames.DZ
 {
@@ -29,7 +30,6 @@ namespace com.LazyGames.DZ
 
         [Header("Particles")] [SerializeField] private float timeToDespawnPart = 1f;
         [SerializeField] private LineRenderer lineRenderer;
-        [SerializeField] private float lineRendererMaxDistance = 10f;
         [SerializeField] private ParticleSystem hitLaserParticle;
 
         [Header("Reload")]
@@ -62,6 +62,8 @@ namespace com.LazyGames.DZ
         private bool _isHoldingWeapon = false;
         private RaycastHit _simulatedHit;
         private WeaponUI _weaponUI;
+        private float _lineRendererMaxDistance = 10f;
+
 
         #endregion
 
@@ -103,8 +105,8 @@ namespace com.LazyGames.DZ
             if (lineRenderer.enabled)
             {
                 Ray ray = new Ray(shootPoint.transform.position, shootPoint.transform.forward);
-                bool cast = Physics.Raycast(ray, out RaycastHit hit, lineRendererMaxDistance);
-                Vector3 endPosition = cast ? hit.point : ray.GetPoint(lineRendererMaxDistance);
+                bool cast = Physics.Raycast(ray, out RaycastHit hit, _lineRendererMaxDistance);
+                Vector3 endPosition = cast ? hit.point : ray.GetPoint(_lineRendererMaxDistance);
                 lineRenderer.SetPosition(0, shootPoint.transform.position);
                 lineRenderer.SetPosition(1, endPosition);
                 hitLaserParticle.transform.position = endPosition;
@@ -121,6 +123,7 @@ namespace com.LazyGames.DZ
         }
         public override void Shoot()
         {
+            // Debug.Log("Shoot".SetColor("#16CCF5"));
             _savedFirePosition = shootPoint.transform.position;
             _currentAmmo--;
             _weaponUI.UpdateTextMMO(CurrentAmmo);
@@ -147,13 +150,14 @@ namespace com.LazyGames.DZ
         {
             EnableBeamLaser(false);
             CurrentAmmo = weaponData.MaxAmmo;
+
             
-            reloadAnimator = GetComponent<Animator>();
+            reloadAnimator = GetComponent<Animator>(); 
             reloadAnimator.runtimeAnimatorController = weaponData.ReloadAnimator;
             
             _weaponUI = transform.GetComponent<WeaponUI>();
             _weaponUI.UpdateTextMMO(CurrentAmmo);
-            
+            _lineRendererMaxDistance = weaponData.MaxDistance;
         }
         
         #endregion
@@ -202,6 +206,7 @@ namespace com.LazyGames.DZ
         }
         private void HandleShootEvent(int value)
         {
+            // Debug.Log("HandleShootEvent".SetColor("#F1BE50"));
             if(currentHandHolding == HandHolder.None) return;
             if (value != (int)currentHandHolding) return;
             if (!_isHoldingWeapon) return;
@@ -212,18 +217,21 @@ namespace com.LazyGames.DZ
                 return;
             }
             
+            _weaponUI.NeedReload(false);
+
             switch (weaponData.WeaponType) 
             { 
                 case WeaponType.Pistol: 
-                    _weaponUI.NeedReload(false);
                     Shoot();
                     break;
                 case WeaponType.AutomaticRifle: 
                     StartConstantShoot(); 
                     break;
+                case WeaponType.Shotgun:
+                    Shoot();
+                    break;
             }
             
-            // Debug.Log("Shoot".SetColor("#16CCF5"));
 
         }
         private void StartConstantShoot()

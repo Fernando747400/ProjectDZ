@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using com.LazyGames.DZ;
 using UnityEngine;
 
-public class WeaponShotGunObject : MonoBehaviour
+public class WeaponShotGunObject : WeaponObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   [Header("ShotGun Object")]
+   [SerializeField] private int positionShoots = 3;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   public override void Shoot()
+   {
+      base.Shoot();
+      Debug.Log("Shoot ShotGun");
+   }
 }
