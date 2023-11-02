@@ -266,7 +266,7 @@ namespace com.LazyGames.DZ
             // PlayAnimsWeapon(weaponData.AnimationsReloads.Find(x => x.nameAnimation == animaNeedReloadName).nameAnimation);
             PlayAnimsWeapon(animaNeedReloadName);
             
-            // Debug.Log("Need Reload".SetColor("#F95342"));
+            Debug.Log("Need Reload".SetColor("#F95342"));
         }
         private void DoReload()
         {
