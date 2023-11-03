@@ -24,6 +24,8 @@ namespace com.LazyGames.DZ
         public float oscillationSpeed = 25f; 
         public float coneAngle = 100f; 
         public Vector3 heightOffset = new Vector3(0, .5f, 0);
+        [Tooltip("The time in seconds the enemy will look for the source hearing a dangerous noise")]
+        public float alertTime = 5f;
         
         [Header("Combat Variables")]
         public float maxHp = 20f;

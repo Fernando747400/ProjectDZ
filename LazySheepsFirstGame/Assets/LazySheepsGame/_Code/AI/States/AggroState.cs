@@ -36,7 +36,8 @@ namespace com.LazyGames.DZ
 
         private void Attack()
         {
-            
+            // play attack animation
+            // deal damage to player
         }
         
         private void OnGeometryChanged()
