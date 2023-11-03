@@ -20,6 +20,7 @@ public class PlayerReferenceInit : MonoBehaviour
     {
         GetReferences();
         LinkReferences();
+        _playerReferences.ClearAllReferences();
     }
 
     private void GetReferences()
