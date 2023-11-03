@@ -6,7 +6,7 @@ public class NPC_TickManager : MonoBehaviour
 {
     public event EventHandler OnTick;
     [Tooltip("The time between each tick in seconds")]
-    [SerializeField]private int tickRate = 3;
+    [SerializeField]private float tickRate = 3;
     void Start()
     {
         StartCoroutine(Tick());
