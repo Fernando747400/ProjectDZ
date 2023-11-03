@@ -2,50 +2,67 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public abstract class StateManager<BState> : MonoBehaviour where BState : Enum
+public abstract class StateManager<BState, TContext> : MonoBehaviour where BState : Enum
 {
-    protected Dictionary<BState, BaseState<BState>> States = new Dictionary<BState, BaseState<BState>>();
-    protected BaseState<BState> CurrentState;
-    protected BaseState<BState> LastState;
+    public BaseState<BState, TContext> CurrentState;
+    protected Dictionary<BState, BaseState<BState, TContext>> States = new Dictionary<BState, BaseState<BState, TContext>>();
+    internal BaseState<BState, TContext> LastState { get; private set; }
 
-    private bool _inTransition;
+    private BState _queuedState;
+    protected TContext Context;
 
-    #region Unity Methods
-
-    private void Start()
+    protected void Start()
     {
-        CurrentState.EnterSate();
+        EnterState(CurrentState);
     }
 
-    private void Update()
+    protected void Update()
     {
-        BState nextStateKey = CurrentState.GetNextState();
-
-        if (!_inTransition && nextStateKey.Equals(CurrentState.StateKey))
+        if (ShouldTransition())
         {
-            CurrentState.UpdateState();
+            ExecuteTransition(_queuedState);
         }
         else
         {
-            TransitionToState(nextStateKey);
+            UpdateState(CurrentState);
         }
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
-        CurrentState.FixedUpdateState();
+        FixedUpdateState(CurrentState);
     }
-    #endregion
 
-    #region Public Methods
     public void TransitionToState(BState stateKey)
     {
-        _inTransition = true;
-        CurrentState.ExitState();
-        LastState = CurrentState;
-        CurrentState = States[stateKey];
-        CurrentState.EnterSate();
-        _inTransition = false;
+        _queuedState = stateKey;
     }
-    #endregion
+
+    protected virtual void EnterState(BaseState<BState, TContext> state)
+    {
+        state.EnterState();
+    }
+
+    protected virtual void UpdateState(BaseState<BState, TContext> state)
+    {
+        state.UpdateState();
+    }
+
+    protected virtual void FixedUpdateState(BaseState<BState, TContext> state)
+    {
+        state.FixedUpdateState();
+    }
+
+    protected virtual bool ShouldTransition()
+    {
+        return !_queuedState.Equals(CurrentState.StateKey);
+    }
+
+    protected virtual void ExecuteTransition(BState stateKey)
+    {
+        LastState = CurrentState;
+        CurrentState.ExitState();
+        CurrentState = States[stateKey];
+        EnterState(CurrentState);
+    }
 }

@@ -1,13 +1,14 @@
 using System;
 using UnityEngine;
 
-public class GameTabernState : BaseState<GameStates>
+public class GameTabernState : BaseState<GameStates, GameManager>
 {
-    public GameTabernState(GameStates key) : base(key)
+    public GameTabernState(GameStates key, GameManager context) : base(key, context)
     {
+
     }
 
-    public override void EnterSate()
+    public override void EnterState()
     {
         throw new NotImplementedException();
     }
@@ -18,11 +19,6 @@ public class GameTabernState : BaseState<GameStates>
     }
 
     public override void FixedUpdateState()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override GameStates GetNextState()
     {
         throw new NotImplementedException();
     }

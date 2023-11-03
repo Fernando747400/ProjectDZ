@@ -1,13 +1,14 @@
 using System;
 using UnityEngine;
 
-public class GameWonState : BaseState<GameStates>
+public class GameWonState : BaseState<GameStates, GameManager>
 {
-    public GameWonState(GameStates key) : base(key)
+    public GameWonState(GameStates key, GameManager context) : base(key, context)
     {
+
     }
 
-    public override void EnterSate()
+    public override void EnterState()
     {
         throw new NotImplementedException();
     }
@@ -18,11 +19,6 @@ public class GameWonState : BaseState<GameStates>
     }
 
     public override void FixedUpdateState()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override GameStates GetNextState()
     {
         throw new NotImplementedException();
     }

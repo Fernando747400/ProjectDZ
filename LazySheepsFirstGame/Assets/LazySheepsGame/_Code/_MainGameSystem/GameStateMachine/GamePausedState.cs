@@ -1,20 +1,22 @@
 using System;
 using UnityEngine;
 
-public class GamePausedState : BaseState<GameStates>
+public class GamePausedState : BaseState<GameStates, GameManager>
 {
-    public GamePausedState(GameStates key) : base(key)
+    public GamePausedState(GameStates key, GameManager context) : base(key, context)
     {
     }
 
-    public override void EnterSate()
+    public override void EnterState()
     {
-        throw new NotImplementedException();
+        Context.PauseEventChannel.RaiseEvent(true);
+        Context.PauseInputChannel.VoidEvent += PauseInput;
     }
 
     public override void ExitState()
     {
-        throw new NotImplementedException();
+        Context.PauseEventChannel.RaiseEvent(false);
+        Context.PauseInputChannel.VoidEvent -= PauseInput;
     }
 
     public override void FixedUpdateState()
@@ -22,13 +24,13 @@ public class GamePausedState : BaseState<GameStates>
         throw new NotImplementedException();
     }
 
-    public override GameStates GetNextState()
+    public override void UpdateState()
     {
         throw new NotImplementedException();
     }
 
-    public override void UpdateState()
+    private void PauseInput()
     {
-        throw new NotImplementedException();
+        Context.TransitionToState(Context.LastState.StateKey);
     }
 }

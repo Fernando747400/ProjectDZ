@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 
-public class GameMainMenuState : BaseState<GameStates>
+public class GameMainMenuState : BaseState<GameStates, GameManager>
 {
-    public GameMainMenuState(GameStates key) : base(key)
+    public GameMainMenuState(GameStates key, GameManager context) : base(key, context)
     {
     }
 
-    public override void EnterSate()
+    public override void EnterState()
     {
         throw new NotImplementedException();
     }
@@ -18,11 +18,6 @@ public class GameMainMenuState : BaseState<GameStates>
     }
 
     public override void FixedUpdateState()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override GameStates GetNextState()
     {
         throw new NotImplementedException();
     }
