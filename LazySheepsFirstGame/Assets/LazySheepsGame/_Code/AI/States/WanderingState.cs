@@ -2,7 +2,9 @@
 using UnityEngine;
 using CryoStorage;
 using System;
+using UnityEngine.AI;
 using UnityEngine.Audio;
+using UnityEngine.Networking.PlayerConnection;
 using Random = UnityEngine.Random;
 
 namespace com.LazyGames.DZ
@@ -16,13 +18,14 @@ namespace com.LazyGames.DZ
         private float _elapsedTime;
         private float _actTime;
         private bool _detected;
+        private float _deviationForce;
         
         private Transform _agentTransform;
         
         public override void EnterState()
         {
             Controller.tickManager.OnTick += TickManagerOnTick;
-            // _wanderAngle = 180f; //aligns the initial vector to the front of the enemy
+            Controller.agent.speed = Controller.parameters.baseSpeed;
         }
 
         public override void UpdateState()
@@ -72,9 +75,8 @@ namespace com.LazyGames.DZ
         private void Avoidance(RaycastHit hit)
         {
             if(!_detected) return;
-            if (hit.distance <= Controller.parameters.hardDetectionRange) return;
-                
-            _deviation *= 10;
+            if (hit.distance >= Controller.parameters.hardDetectionRange) return;
+            _deviationForce *= 10;
         }
 
         private void TickManagerOnTick(object sender, EventArgs e)
@@ -112,21 +114,20 @@ namespace com.LazyGames.DZ
             return result;
         }
         
-        private void OnDrawGizmos()
-        {
-            if (!Application.isPlaying) return;
-                                                                            
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawSphere(_deviation,.1f);
-            Gizmos.color = Color.magenta;
-            Debug.DrawLine(transform.position, GetCircleCenter(), Color.magenta);
-            Gizmos.DrawWireSphere(GetCircleCenter(), Controller.parameters.circleRadius);
-        }
+        // private void OnDrawGizmos()
+        // {
+        //     if (!Application.isPlaying) return;
+        //     Gizmos.color = Color.cyan;
+        //     Gizmos.DrawSphere(_deviation,.1f);
+        //     Gizmos.color = Color.magenta;
+        //     Debug.DrawLine(transform.position, GetCircleCenter(), Color.magenta);
+        //     Gizmos.DrawWireSphere(GetCircleCenter(), Controller.parameters.circleRadius);
+        // }
 
         private Vector3 Wander()
         {
-            float deviationForce = Random.Range(Controller.parameters.deviationRange * -1, Controller.parameters.deviationRange);
-            _wanderAngle += deviationForce;
+            _deviationForce = Random.Range(Controller.parameters.deviationRange * -1, Controller.parameters.deviationRange);
+            _wanderAngle += _deviationForce;
             _deviation = CryoMath.PointOnRadius(GetCircleCenter(), Controller.parameters.circleRadius, _wanderAngle);
             return _deviation;
         }
