@@ -1,19 +1,23 @@
 using com.LazyGames.Dio;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class VRBuildingSystem : MonoBehaviour
 {
     [Header("Dependenices")]
+
+    [Required]
     [SerializeField] private BuildingSystem _buildingSystem;
+    [Required]
     [SerializeField] private GameObject _vrHead;
 
     [Header("Scriptable Objects")]
     [SerializeField] private BoolEventChannelSO _hammerInHandChannel;
 
     [Header("Settings")]
-    [SerializeField] private float _headTiltDegrees;
+    [SerializeField] private float _headTiltDegrees = 35.0f;
 
-    [SerializeField] private bool _hammerInHand = false;
+    private bool _hammerInHand = false;
     private bool _isBuilding = false;
 
     private void OnEnable()
