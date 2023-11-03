@@ -16,6 +16,11 @@ public class ReferencePool : ScriptableObject
         CurrentReferences.Remove(reference);
     }
 
+    public void ClearAllReferences()
+    {
+        CurrentReferences.Clear();
+    }
+
     public List<GameObject> SearchAllReferencesByGameObject(GameObject objectReference)
     {
         List<GameObject> references = new List<GameObject>();

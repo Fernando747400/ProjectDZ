@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using System.Linq;
 using com.LazyGames.Dio;
 
@@ -18,27 +19,27 @@ public class BuildingCollisionChecker : MonoBehaviour
     
     private LayerMask _buildingsLayerMask;
 
-    private MeshRenderer _myMeshRenderer;
-    private Material[] _initialMaterials; 
+    private List<MeshRenderer> _myMeshRenderers;
+    private List<Material[]> _initialMaterials; 
 
     private bool _isColliding = false;
     private BoxCollider _boxCollider;
 
     public void PlaceObjectSequence()
     {
-        this.GetComponent<MeshRenderer>().materials = _initialMaterials;
+        RestoreMaterials();
         Destroy(this.GetComponent<BuildingCollisionChecker>());
     }
 
     private void OnEnable()
     {
-        _myMeshRenderer = this.GetComponent<MeshRenderer>();
+        GetMeshRenderers();
         _boxCollider = this.GetComponent<BoxCollider>();
     }
 
     private void Start()
     {
-        _initialMaterials = _myMeshRenderer.materials;
+        GetMaterials();
     }
 
     private void Update()
@@ -80,14 +81,41 @@ public class BuildingCollisionChecker : MonoBehaviour
 
     private void ChangeMaterials(Material materialToChange)
     {
-        Material[] newMaterials = new Material[_myMeshRenderer.materials.Length];
-
-        for (int i = 0; i < _myMeshRenderer.materials.Length; i++)
+        foreach (MeshRenderer renderer in _myMeshRenderers)
         {
-            newMaterials[i] = materialToChange;
-        }
+            Material[] newMaterials = new Material[renderer.materials.Length];
 
-        _myMeshRenderer.materials = newMaterials;
+            for (int i = 0; i < renderer.materials.Length; i++)
+            {
+                newMaterials[i] = materialToChange;
+            }
+
+            renderer.materials = newMaterials;
+        }
+    }
+
+    private void GetMeshRenderers()
+    {
+        foreach(MeshRenderer renderer in this.GetComponentsInChildren<MeshRenderer>())
+        {
+            _myMeshRenderers.Add(renderer);
+        }
+    }
+
+    private void GetMaterials()
+    {
+        foreach (MeshRenderer renderer in _myMeshRenderers)
+        {
+            _initialMaterials.Add(renderer.materials);
+        }
+    }
+
+    private void RestoreMaterials()
+    {
+        for (int i = 0; i < _myMeshRenderers.Count; i++)
+        {
+            _myMeshRenderers[i].materials = _initialMaterials[i];
+        }
     }
 }
 
