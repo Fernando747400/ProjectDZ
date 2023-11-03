@@ -1435,7 +1435,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 69db61770188ada4b964ca898e7c558d, type: 2}
+  - {fileID: 2100000, guid: 150cdc0ffd3ba094ab5855516c8b4b81, type: 2}
   - {fileID: 2100000, guid: d74dab10eae54b845af1af177b448944, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -2689,15 +2689,15 @@ MonoBehaviour:
   _animator: {fileID: 7831379584854990650}
   normalizedTransitionTime: 0.3
   animConfgs:
-  - nameAnim: DogFishIdle
+  - nameAnim: lddle
   - nameAnim: Walking
-  - nameAnim: DogFishAttack
-  - nameAnim: DogFishAttack 2
+  - nameAnim: Runing
+  - nameAnim: FishAttack
+  - nameAnim: FishAttack 2
   - nameAnim: Hit_Right
   - nameAnim: Hit_Up
   - nameAnim: Hit_Left
   - nameAnim: Hit_Down
-  - nameAnim: Runing
   TESTAnim: DogFishRun
   valueTestAnim: 1
   previousAnim:

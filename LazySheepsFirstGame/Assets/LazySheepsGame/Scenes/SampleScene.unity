@@ -464,6 +464,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1143489520 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 518625959294480632, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+  m_PrefabInstance: {fileID: 1154664870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1151409529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -532,6 +537,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 518625958178820596, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_UIScrollAction.m_Action.m_Id
+      value: 194ca563-d360-41a1-bc94-658476ce1c5b
+      objectReference: {fileID: 0}
+    - target: {fileID: 518625958178820596, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_IsTrackedAction.m_Action.m_Id
+      value: 855c6b77-531a-4582-8949-800aa168e214
+      objectReference: {fileID: 0}
+    - target: {fileID: 518625958178820596, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_DirectionalAnchorRotationAction.m_Action.m_Id
+      value: 6a2ea23d-7a37-4057-bd80-b632f72aea8a
+      objectReference: {fileID: 0}
     - target: {fileID: 518625959033579564, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
       propertyPath: m_Name
       value: XR Origin
@@ -580,8 +597,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 518625959601947504, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_UIScrollAction.m_Action.m_Id
+      value: b95b340b-5535-478a-8213-7bc0f7044824
+      objectReference: {fileID: 0}
+    - target: {fileID: 518625959601947504, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_IsTrackedAction.m_Action.m_Id
+      value: aa872583-7a91-483d-9a2d-493675c65344
+      objectReference: {fileID: 0}
+    - target: {fileID: 518625959601947504, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_DirectionalAnchorRotationAction.m_Action.m_Id
+      value: 040ed476-97c6-4b24-b7bc-0c3bb8f8dfe9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+--- !u!4 &1294315690 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 518625959196801886, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+  m_PrefabInstance: {fileID: 1154664870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1583634057
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,6 +845,120 @@ Transform:
   m_Father: {fileID: 1588113128}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1885927513
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1294315690}
+    m_Modifications:
+    - target: {fileID: 1655430663505977473, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655430663505977473, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655430663505977473, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655430663505977473, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655430663505977473, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655430663505977473, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655430663505977473, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655430663505977473, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655430663505977473, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655430663505977473, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655430663505977473, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139937452505201211, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: m_Name
+      value: Glove Hand V2 Right
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+--- !u!1001 &1887906786
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1143489520}
+    m_Modifications:
+    - target: {fileID: 4001734855168697693, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001734855168697693, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001734855168697693, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001734855168697693, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001734855168697693, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001734855168697693, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001734855168697693, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001734855168697693, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001734855168697693, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001734855168697693, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001734855168697693, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378294929673256935, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: m_Name
+      value: Robo Hand V2 Left
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
 --- !u!1001 &3379662828230207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -818,6 +966,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1138518597}
     m_Modifications:
+    - target: {fileID: 1218367115679968041, guid: 67fdcb90e24277741814d46635472ec0, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5046475501814870355, guid: 67fdcb90e24277741814d46635472ec0, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1781,6 +1933,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hand V2  Left
       objectReference: {fileID: 0}
+    - target: {fileID: 4942282807421165992, guid: 4061912e0ab50444da97950cd901ec69, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4061912e0ab50444da97950cd901ec69, type: 3}
 --- !u!1 &2495044286979329154
@@ -1953,6 +2109,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: c4b6d928c33d49a4aaede716f34fb387, type: 2}
+    - target: {fileID: 4238209495224492281, guid: 630debf71fd3e744fbdc590f625a4eab, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7456511193784950841, guid: 630debf71fd3e744fbdc590f625a4eab, type: 3}
       propertyPath: m_Name
       value: Glove Hand V2 Left
@@ -2323,6 +2483,10 @@ PrefabInstance:
     - target: {fileID: 2139937452505201211, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
       propertyPath: m_Name
       value: Glove Hand V2 Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 4618839159454169851, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
@@ -2921,6 +3085,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1138518597}
     m_Modifications:
+    - target: {fileID: 1484588409945322166, guid: 336b2229aad9f3747b5643f0d1f93afb, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4790279277814622412, guid: 336b2229aad9f3747b5643f0d1f93afb, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3367,6 +3535,10 @@ PrefabInstance:
     - target: {fileID: 4378294929673256935, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
       propertyPath: m_Name
       value: Robo Hand V2 Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019185966654750503, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
