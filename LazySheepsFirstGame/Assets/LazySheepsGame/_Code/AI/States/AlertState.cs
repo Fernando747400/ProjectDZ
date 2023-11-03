@@ -17,27 +17,48 @@ namespace com.LazyGames.DZ
             //look towards noise source
             transform.LookAt(Controller.target);
             _elapsedTime += Time.fixedDeltaTime;
-            Debug.Log(_elapsedTime);
             FindSource();   
         }
+        
+        // private void FindSource()
+        // {
+        //     var oscillationAngle = Mathf.Sin(Time.time * Controller.parameters.oscillationSpeed) * (Controller.parameters.coneAngle / 2);
+        //     var rayDirection = Quaternion.Euler(0, oscillationAngle, 0) * transform.forward;
+        //     var pos = transform.position;
+        //     Physics.Raycast(pos + Controller.parameters.heightOffset, rayDirection, out var hit, Controller.parameters.softDetectionRange, Physics.DefaultRaycastLayers);
+        //     if (ReferenceEquals(hit.collider, null)) return;
+        //     if (hit.collider.CompareTag("Player"))
+        //     {
+        //         Controller.ChangeState(Controller.aggroState);
+        //     }
+        //     else
+        //     {
+        //         if(_elapsedTime < Controller.parameters.alertTime) return;
+        //         Debug.Log("VAR");
+        //         Controller.ChangeState(Controller.investigatingState);
+        //     }
+        // }
         
         private void FindSource()
         {
             var oscillationAngle = Mathf.Sin(Time.time * Controller.parameters.oscillationSpeed) * (Controller.parameters.coneAngle / 2);
             var rayDirection = Quaternion.Euler(0, oscillationAngle, 0) * transform.forward;
             var pos = transform.position;
-            var detected = Physics.Raycast(pos + Controller.parameters.heightOffset, rayDirection, out var hit, Controller.parameters.softDetectionRange, Physics.DefaultRaycastLayers);
-            if (!detected) return;
-            if (hit.collider.CompareTag("Player"))
+            Physics.Raycast(pos + Controller.parameters.heightOffset, rayDirection, out var hit, Controller.parameters.softDetectionRange, Physics.DefaultRaycastLayers);
+
+            if (!ReferenceEquals(hit.collider, null))
             {
-                Controller.ChangeState(Controller.aggroState);
+                if (hit.collider.CompareTag("Player"))
+                {
+                    Controller.ChangeState(Controller.aggroState);
+                    return;
+                }
             }
-            else
-            {
-                if(_elapsedTime < Controller.parameters.alertTime) return;
-                Controller.ChangeState(Controller.wanderingState);
-            }
+            if (_elapsedTime < Controller.parameters.alertTime) return;
+            Debug.Log("VAR");
+            Controller.ChangeState(Controller.investigatingState);
         }
+
 
         public override void ExitState()
         {
