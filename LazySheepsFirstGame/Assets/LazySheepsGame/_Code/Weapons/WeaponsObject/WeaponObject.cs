@@ -1,41 +1,44 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using com.LazyGames;
 using com.LazyGames.Dio;
-using com.LazyGames.DZ;
 using Lean.Pool;
-using Unity.VisualScripting;
 using UnityEngine.Serialization;
-using UnityEngine.XR.Interaction.Toolkit;
 
 namespace com.LazyGames.DZ
 {
-    public class WeaponObject : MonoBehaviour, IGeneralAggressor
+    public class WeaponObject : WeaponBase, IGeneralAggressor
     {
         #region SerializedFields
-        [Header("Weapon Object")]
-        [SerializeField] private WeaponData weaponData;
+
+        [Header("Weapon Object")] [SerializeField]
+        private WeaponData weaponData;
+
         [SerializeField] private Transform shootPoint;
-        [SerializeField] private IntEventChannelSO InputShootActionRight;
+
+        [Header("Input Actions")] [SerializeField]
+        private IntEventChannelSO InputShootActionRight;
+
         [SerializeField] private IntEventChannelSO InputShootActionLeft;
-        
-        [SerializeField] private BoolEventChannelSO isInHandChannel;
+
+        [Header("Hand Object")] [SerializeField]
+        private BoolEventChannelSO isInHandChannel;
+
         [SerializeField] private HandEventChannelSO handHolderEventSO;
-        
-        [Header("UI")]
-        [SerializeField] private GameObject weaponUIGO;
-        
-        [Header("Hand Holder")]
         [SerializeField] private HandHolder currentHandHolding;
-        
-        [Header("Particles")]
-        [SerializeField] private float timeToDespawnPart = 1f;
 
+        [Header("UI")] [SerializeField] private GameObject weaponUIGO;
 
-        [Header("Test")] 
-        [SerializeField] private Transform sphereTarget;
+        [Header("Particles")] [SerializeField] private float timeToDespawnPart = 1f;
+        [SerializeField] private LineRenderer lineRenderer;
+        [SerializeField] private ParticleSystem hitLaserParticle;
+
+        [Header("Reload")]
+        [SerializeField] private Animator reloadAnimator;
+        [SerializeField] private string animaNeedReloadName = "NeedReload";
+       
+
+        // [Header("Test")] 
+        // [SerializeField] private Transform sphereTarget;
 
         #endregion
 
@@ -46,6 +49,8 @@ namespace com.LazyGames.DZ
             get => _currentAmmo;
             protected set => _currentAmmo = value;
         }
+        public WeaponData WeaponData => weaponData;
+        public bool IsHoldingWeapon => _isHoldingWeapon;
 
         #endregion
         #region private variables
@@ -57,6 +62,8 @@ namespace com.LazyGames.DZ
         private bool _isHoldingWeapon = false;
         private RaycastHit _simulatedHit;
         private WeaponUI _weaponUI;
+        private float _lineRendererMaxDistance = 10f;
+
 
         #endregion
 
@@ -90,8 +97,19 @@ namespace com.LazyGames.DZ
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space)) {
-                Shoot();
+            // if (Input.GetKeyDown(KeyCode.Space))
+            // {
+            //     PlayAnimsWeapon(animaNeedReloadName);
+            // }
+
+            if (lineRenderer.enabled)
+            {
+                Ray ray = new Ray(shootPoint.transform.position, shootPoint.transform.forward);
+                bool cast = Physics.Raycast(ray, out RaycastHit hit, _lineRendererMaxDistance);
+                Vector3 endPosition = cast ? hit.point : ray.GetPoint(_lineRendererMaxDistance);
+                lineRenderer.SetPosition(0, shootPoint.transform.position);
+                lineRenderer.SetPosition(1, endPosition);
+                hitLaserParticle.transform.position = endPosition;
             }
         }
 
@@ -99,33 +117,53 @@ namespace com.LazyGames.DZ
 
         #region public methods
         
-        public void OnSelectWeapon(SelectEnterEventArgs args)
+        public override void Reload()
         {
-            if (_isHoldingWeapon)
+            DoReload();
+        }
+        public override void Shoot()
+        {
+            // Debug.Log("Shoot".SetColor("#16CCF5"));
+            _savedFirePosition = shootPoint.transform.position;
+            _currentAmmo--;
+            _weaponUI.UpdateTextMMO(CurrentAmmo);
+            PlayParticleShoot();
+           
+            RaycastHit hit;
+            if (!Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
             {
-                weaponUIGO.SetActive(true);
+                // Debug.Log("No Hit".SetColor("#F95342"));
+                Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.forward * weaponData.MaxDistance, Color.red, 1f);
+                return;
             }
-        }
-        
-        public void OnSelectExitWeapon(SelectExitEventArgs args)
-        {
-            _isHoldingWeapon = false;
-            currentHandHolding = HandHolder.None;
-            weaponUIGO.SetActive(false);
+            //Collision Raycast
+            _hitPosition = hit.point;
+            BulletTravel();
         }
 
-        #endregion
-        
-        
-        #region private methods
-
-        private void InitializeWeapon()
+        public void PlayAnimsWeapon(string nameAnim)
         {
+            reloadAnimator.Play(nameAnim);
+        }
+        
+        public override void InitializeWeapon()
+        {
+            EnableBeamLaser(false);
             CurrentAmmo = weaponData.MaxAmmo;
+
+            
+            reloadAnimator = GetComponent<Animator>(); 
+            reloadAnimator.runtimeAnimatorController = weaponData.ReloadAnimator;
+            
             _weaponUI = transform.GetComponent<WeaponUI>();
             _weaponUI.UpdateTextMMO(CurrentAmmo);
-            
+            _lineRendererMaxDistance = weaponData.MaxDistance;
         }
+        
+        #endregion
+
+        
+        #region private methods
         private void PrepareAgressor()
         {
             InputShootActionRight.IntEvent += HandleShootEvent;
@@ -137,61 +175,68 @@ namespace com.LazyGames.DZ
         private void CheckIsInHand(bool isInHand)
         {
            _isHoldingWeapon = isInHand;
+           
+           if (_isHoldingWeapon)
+           {
+               weaponUIGO.SetActive(true);
+               EnableBeamLaser(true);
+           }
+           else
+           {
+               currentHandHolding = HandHolder.None;
+               // transform.parent = null;
+               weaponUIGO.SetActive(false);
+               EnableBeamLaser(false);
+           }
         }
         
         private void CheckCurrentHandHolder(HandHolder handHolder)
         {
             currentHandHolding = handHolder;
+
+            // if (currentHandHolding == HandHolder.HandLeft)
+            // {
+            //     // transform.SetParent(PlayerManager.Instance.LeftHandAttachPoint);
+            // }else
+            // if (currentHandHolding == HandHolder.HandRight)
+            // {
+            //     // transform.SetParent(PlayerManager.Instance.RightHandAttachPoint);
+            // }
+            
         }
         private void HandleShootEvent(int value)
         {
+            // Debug.Log("HandleShootEvent".SetColor("#F1BE50"));
             if(currentHandHolding == HandHolder.None) return;
             if (value != (int)currentHandHolding) return;
             if (!_isHoldingWeapon) return;
 
             if (CurrentAmmo <= 0)
             {
-                CallReload();
+                CallNeedReload();
                 return;
             }
             
+            _weaponUI.NeedReload(false);
+
             switch (weaponData.WeaponType) 
             { 
                 case WeaponType.Pistol: 
-                    _weaponUI.NeedReload(false);
                     Shoot();
                     break;
                 case WeaponType.AutomaticRifle: 
                     StartConstantShoot(); 
                     break;
+                case WeaponType.Shotgun:
+                    Shoot();
+                    break;
             }
             
-            Debug.Log("Shoot = ".SetColor("#16CCF5"));
 
         }
-
         private void StartConstantShoot()
         {
             
-        }
-        private void Shoot()
-        {
-            _savedFirePosition = shootPoint.transform.position;
-            _currentAmmo--;
-            RaycastHit hit;
-            if (!Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
-            {
-                // Debug.Log("No Hit".SetColor("#F95342"));
-                Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.forward * weaponData.MaxDistance, Color.red, 1f);
-                return;
-            }
-            //Collision Raycast
-            _hitPosition = hit.point;
-            BulletTravel();
-            
-            _weaponUI.UpdateTextMMO(CurrentAmmo);
-            PlayParticleShoot();
-
         }
         
         protected virtual void BulletTravel()
@@ -199,8 +244,7 @@ namespace com.LazyGames.DZ
             Vector3 simulatedHitDir = _hitPosition - _savedFirePosition;
             Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out _simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
             Debug.DrawRay(_savedFirePosition, simulatedHitDir.normalized * weaponData.MaxDistance, Color.green, 1f);
-        
-            if (!TryGetGeneralTarget()) return;
+            if(_simulatedHit.distance > weaponData.MaxDistance) return;
             SendAggression();
         }
         private void PlayParticleShoot()
@@ -209,42 +253,55 @@ namespace com.LazyGames.DZ
             shootParticleObject.transform.position = shootPoint.transform.position;
             StartCoroutine(DespawnParticle(shootParticleObject));
         }
-        
         private IEnumerator DespawnParticle(GameObject particle)
         {
             yield return new WaitForSeconds(timeToDespawnPart);
             LeanPool.Despawn(particle);
         }
-
-        private void CallReload()
+        private void CallNeedReload()
         {
             _weaponUI.NeedReload(true);
             _weaponUI.UpdateTextMMO(CurrentAmmo);
-
-            Debug.Log("Reload".SetColor("#F95342"));
+          
+            // PlayAnimsWeapon(weaponData.AnimationsReloads.Find(x => x.nameAnimation == animaNeedReloadName).nameAnimation);
+            PlayAnimsWeapon(animaNeedReloadName);
+            
+            Debug.Log("Need Reload".SetColor("#F95342"));
         }
-        
+        private void DoReload()
+        {
+            CurrentAmmo = weaponData.MaxAmmo;
+            _weaponUI.NeedReload(false);
+            _weaponUI.UpdateTextMMO(CurrentAmmo);
+        }
+        private void EnableBeamLaser(bool enable)
+        {
+            lineRenderer.gameObject.SetActive(enable);
+            lineRenderer.enabled = enable;
+            
+            if(enable) hitLaserParticle.Play();
+            else hitLaserParticle.Stop();
+        }
+
+        private void DoRecoilWeapon()
+        {
+            
+        }
         #endregion
 
 
         #region IGeneralAggressor
-        public bool TryGetGeneralTarget()
-        {
-            if(_simulatedHit.collider != null)
-            {
-                if(sphereTarget != null) sphereTarget.position = _simulatedHit.point;
-                return _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>() != null;
-            }
-
-            return false;
-
-        }
 
         public void SendAggression()
         {
-            _simulatedHit.collider.gameObject.GetComponent<IGeneralTarget>().ReceiveAggression(_simulatedHit.point, 0,weaponData.Damage);
-            // Debug.Log("Send Aggression to  =   ".SetColor("#F1BE50") + _simulatedHit.collider.gameObject.name);
-
+            if (_simulatedHit.collider == null)
+            {
+                Debug.Log("No Hit".SetColor("#F95342"));
+                return;
+            }
+            if (!_simulatedHit.collider.gameObject.TryGetComponent<IGeneralTarget>(out var generalTarget)) return;
+            generalTarget.ReceiveAggression(_simulatedHit.point, 23,weaponData.Damage);
+            Debug.Log("Send Aggression to  =   ".SetColor("#F1BE50") + _simulatedHit.collider.gameObject.name);
         }
         #endregion
 

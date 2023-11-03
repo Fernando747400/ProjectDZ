@@ -10,8 +10,9 @@ Material:
   m_Name: SirenShaderMat
   m_Shader: {fileID: -6465566751694194690, guid: 2f2371a431094af47844f98f2717097e, type: 3}
   m_ValidKeywords:
-  - MAIN_LIGHT_CALUCULATE_SHADOW
-  m_InvalidKeywords: []
+  - MAIN_LIGHT_CALCULATE_SHADOW
+  m_InvalidKeywords:
+  - 
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -51,12 +52,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - MAIN_LIGHT_CALCULATE_SHADOW: 1
     - MAIN_LIGHT_CALUCULATE_SHADOW: 1
     - _MAIN_LIGHT_SHADOWS_CASCADE: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SHADOWS_SOFT: 0
-    m_Colors: []
+    - _Smothness: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6138251167973502311
 MonoBehaviour:

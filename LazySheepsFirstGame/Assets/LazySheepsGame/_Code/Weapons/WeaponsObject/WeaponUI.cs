@@ -31,7 +31,7 @@ public class WeaponUI : MonoBehaviour
     {
         if (value)
         {
-            Debug.Log("Need Reload");
+            // Debug.Log("Need Reload");
             ammoText.color = colorNeedReload;
             ammoText.gameObject.transform.DOShakePosition(durationShake, strengthShake, vibratoShake, randomShake, snappingShake, fadeOutShake);
 
