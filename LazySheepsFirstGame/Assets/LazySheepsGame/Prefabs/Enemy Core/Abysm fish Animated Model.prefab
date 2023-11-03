@@ -1435,8 +1435,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 2100000, guid: 69db61770188ada4b964ca898e7c558d, type: 2}
   - {fileID: 2100000, guid: d74dab10eae54b845af1af177b448944, type: 2}
-  - {fileID: 1788269377728665300, guid: 65b459cc6bd7baa43924e62b09352e32, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2629,6 +2629,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7486520324645143951}
   - component: {fileID: 7831379584854990650}
+  - component: {fileID: 1128131668}
   m_Layer: 0
   m_Name: Abysm fish Animated Model
   m_TagString: Untagged
@@ -2662,7 +2663,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7831379584854990645}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 65b459cc6bd7baa43924e62b09352e32, type: 3}
   m_Controller: {fileID: 9100000, guid: 06fef087cf6de2e47a95055c551b6333, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -2673,6 +2674,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1128131668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7831379584854990645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c43316ffa289a946a6f6dbb54caa2af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 7831379584854990650}
+  normalizedTransitionTime: 0.3
+  animConfgs:
+  - nameAnim: DogFishIdle
+  - nameAnim: Walking
+  - nameAnim: DogFishAttack
+  - nameAnim: DogFishAttack 2
+  - nameAnim: Hit_Right
+  - nameAnim: Hit_Up
+  - nameAnim: Hit_Left
+  - nameAnim: Hit_Down
+  - nameAnim: Runing
+  TESTAnim: DogFishRun
+  valueTestAnim: 1
+  previousAnim:
+    nameAnim: 
 --- !u!1 &7894121494084487402
 GameObject:
   m_ObjectHideFlags: 0

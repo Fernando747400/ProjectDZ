@@ -6,7 +6,7 @@ namespace com.LazyGames
 {
     public interface IGeneralTarget
     {
-        void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0);
+        void ReceiveAggression(Vector3 direction, float velocity,float dmg = 0);
     }
     
 }

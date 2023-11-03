@@ -26,6 +26,7 @@ public class ReturnToHolster : MonoBehaviour
             _colliderTwo.enabled = false;
             _return = false;
             if(returnTween != null) returnTween.Kill();
+            StopAllCoroutines();
         }
         if (!_rb.isKinematic) 
         {
@@ -44,11 +45,15 @@ public class ReturnToHolster : MonoBehaviour
     {
         if (!_return)
         {
-            if(returnTween != null) returnTween.Kill();
+            _colliderOne.enabled = true;
+            _colliderTwo.enabled = true;
+            if (returnTween != null) returnTween.Kill();
             yield return null;
         }
         if (_return)
         {
+            _colliderOne.enabled = false;
+            _colliderTwo.enabled = false;
             yield return new WaitForSeconds(_secondsToReturn);
             ReturnToTargetWithTween();
         }  
@@ -58,10 +63,13 @@ public class ReturnToHolster : MonoBehaviour
     {
         returnTween = transform.DOMove(_targetPosition.position, 1f).OnComplete(() =>
         {
-            _colliderOne.enabled = false;
-            _colliderTwo.enabled = false;
             _return = false;
             returnTween.Kill();
+            StopAllCoroutines();
+            if (!_rb.isKinematic)
+            {
+                ReturnToTargetWithTween();
+            }
             return;
         });
     }

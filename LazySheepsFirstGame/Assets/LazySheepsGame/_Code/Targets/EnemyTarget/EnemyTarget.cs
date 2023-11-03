@@ -1,5 +1,8 @@
+using System.Collections;
 using com.LazyGames.DZ;
+using Lean.Pool;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace com.LazyGames.DZ
 {
@@ -12,7 +15,7 @@ namespace com.LazyGames.DZ
         [SerializeField] private EnemyController enemyController;
        
         [Header("Body Parts")]
-        [SerializeField] private EnemyBodyPart hitedBodyPart;
+        [HideInInspector] private EnemyBodyPart hittedBodyPart;
         [SerializeField] private Vector2 leftSide;
         [SerializeField] private Vector2 rightSide;
         [SerializeField] private Vector2 Head;
@@ -23,7 +26,7 @@ namespace com.LazyGames.DZ
         [SerializeField] private string animRightSide;
         
         [Header("Particles")]
-        [SerializeField] private ParticleSystem bloodEffect;
+        // [SerializeField] private ParticleSystem bloodEffect;
        
         #endregion
 
@@ -56,11 +59,11 @@ namespace com.LazyGames.DZ
             
             Debug.DrawRay(transform.localPosition, hitPointPosition, Color.red, 5f);
             
-            hitedBodyPart = GetBodyPart(angle);
+            hittedBodyPart = GetBodyPart(angle);
             animatorController.SetAnim(GetAnimName());
             SetBleedingEffect(direction);
             
-            Debug.Log(angle.ToString().SetColor("#16B1F5") + "    =  "+ hitedBodyPart.ToString().SetColor("#16B1F5"));
+            Debug.Log(angle.ToString().SetColor("#16B1F5") + "    =  "+ hittedBodyPart.ToString().SetColor("#16B1F5"));
             
         }
 
@@ -81,7 +84,7 @@ namespace com.LazyGames.DZ
        
         private string GetAnimName()
         {
-            switch (hitedBodyPart)
+            switch (hittedBodyPart)
             {
                 case EnemyBodyPart.Head:
                     return animHead;
@@ -95,9 +98,15 @@ namespace com.LazyGames.DZ
         }
         private void SetBleedingEffect(Vector3 position)
         {
-            
+            GameObject bloodParticle = PoolManager.Instance.SpawnPool(PoolKeys.BLOOD_PARTICLE_POOLKEY);
+            bloodParticle.transform.position = position;
+            StartCoroutine(DespawnParticle(bloodParticle));
         }
-            
+        private IEnumerator DespawnParticle(GameObject particle)
+        {
+            yield return new WaitForSeconds(1f);
+            LeanPool.Despawn(particle);
+        }
         
         #endregion
 

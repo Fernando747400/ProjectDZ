@@ -18,12 +18,14 @@ namespace com.LazyGames.Dz
 
         private void OnEnable()
         {
+            if (Application.isEditor) return;
             buildEventChannelSo.GameObjectEvent += AddWall;
             destroyEventChannelSo.GameObjectEvent += RemoveWall;
         }
 
         private void OnDisable()
         {
+            if (Application.isEditor) return;
             buildEventChannelSo.GameObjectEvent -= AddWall;
             destroyEventChannelSo.GameObjectEvent -= RemoveWall;
         }

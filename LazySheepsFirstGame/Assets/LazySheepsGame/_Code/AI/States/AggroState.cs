@@ -10,13 +10,21 @@ namespace com.LazyGames.DZ
         public override void EnterState()
         {
             Controller.agent.speed = Controller.parameters.aggroSpeed;
-            
+            Controller.doHear = false;
+
         }
 
         public override void UpdateState()
         {
             Controller.agent.SetDestination(Controller.player.transform.position);
             CheckDistance();
+        }
+        
+        public override void ExitState()
+        {
+            Controller.hP = Controller.parameters.maxHp;
+            Controller.agent.speed = Controller.parameters.baseSpeed;
+            Controller.doHear = true;
         }
         
         private void CheckDistance()
@@ -65,11 +73,6 @@ namespace com.LazyGames.DZ
             return closestObject;
         }
         
-        public override void ExitState()
-        {
-            Controller.hP = Controller.parameters.maxHp;
-            Controller.agent.speed = Controller.parameters.baseSpeed;
-        }
     }
     
 }
