@@ -36,6 +36,7 @@ namespace com.LazyGames.DZ
             CountTime();
             if (!doWalk) return;
             Controller.agent.SetDestination(Wander());
+            
         }
 
         public override void ExitState()

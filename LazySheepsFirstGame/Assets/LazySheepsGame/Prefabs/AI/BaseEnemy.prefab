@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 6855957886672403402}
   - component: {fileID: 4132955951962112892}
   - component: {fileID: -7439231909585177860}
+  - component: {fileID: 1157796155901694149}
+  - component: {fileID: 6017015347244132625}
   m_Layer: 0
   m_Name: BaseEnemy
   m_TagString: Enemy
@@ -177,6 +179,45 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1157796155901694149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281219074889938990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4174c3d306b6ada4986bf2f733544e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatorController: {fileID: 0}
+  enemyController: {fileID: 281219074889939419}
+  leftSide: {x: 0, y: 0}
+  rightSide: {x: 0, y: 0}
+  Head: {x: 0, y: 0}
+  animHead: 
+  animLeftSide: 
+  animRightSide: 
+--- !u!114 &6017015347244132625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281219074889938990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c43316ffa289a946a6f6dbb54caa2af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  normalizedTransitionTime: 0.3
+  animConfgs: []
+  TESTAnim: 
+  valueTestAnim: 1
+  previousAnim:
+    nameAnim: 
 --- !u!1 &281219075871051866
 GameObject:
   m_ObjectHideFlags: 0

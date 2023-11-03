@@ -23,18 +23,29 @@ namespace com.LazyGames.DZ
 
         [HideInInspector] public GameObject player;
         [HideInInspector] public bool doHear = true;
-        [HideInInspector] public NavMeshAgent agent;
-        public EnemyState currentState;
         [HideInInspector] public Vector3 target;
-        [HideInInspector] public WanderingState wanderingState;
-        [HideInInspector] public InvestigatingState investigatingState;
-        [HideInInspector] public AggroState aggroState;
-        [HideInInspector] public AlertState alertState;
-        [HideInInspector] public FleeState fleeState;
-        [HideInInspector] public DeadState deadState;
         [HideInInspector] public float hP;
-        [HideInInspector] public NPC_TickManager tickManager;
-
+        
+        # region "Components"
+        
+            [HideInInspector] public NavMeshAgent agent;
+            [HideInInspector] public NPC_TickManager tickManager;
+            [HideInInspector]public AdvanceAnimatorController animController;
+        
+        # endregion
+        
+        # region "EnemyStates"
+        
+            public EnemyState currentState;
+            [HideInInspector] public WanderingState wanderingState;
+            [HideInInspector] public InvestigatingState investigatingState;
+            [HideInInspector] public AggroState aggroState;
+            [HideInInspector] public AlertState alertState;
+            [HideInInspector] public FleeState fleeState;
+            [HideInInspector] public DeadState deadState;
+            
+        #endregion
+        
         public event Action<Vector3> OnAnimEvent;
 
         private void Start()
@@ -47,8 +58,9 @@ namespace com.LazyGames.DZ
         private void Update()
         {
             currentState.UpdateState();
+            SetMovementAnim();
             if (hP > 0) return;
-            currentState = deadState;
+            ChangeState(deadState);
         }
 
         public void ChangeState(EnemyState newState)
@@ -57,19 +69,7 @@ namespace com.LazyGames.DZ
             currentState = newState;
             currentState.EnterState();
         }
-
-        private void Prepare()
-        {
-            agent = GetComponent<NavMeshAgent>();
-            tickManager = FindObjectOfType<NPC_TickManager>();
-
-            GetStates();
-            hP = parameters.maxHp;
-            agent.speed = parameters.baseSpeed;
-            agent.stoppingDistance = parameters.circleRadius - .1f;
-            player = GameObject.Find("DummyPlayer");
-        }
-
+        
         private void GetStates()
         {
             wanderingState = GetComponent<WanderingState>();
@@ -84,6 +84,35 @@ namespace com.LazyGames.DZ
             fleeState.Controller = this;
             deadState = GetComponent<DeadState>();
             deadState.Controller = this;
+        }
+        
+        private void Prepare()
+        {
+            agent = GetComponent<NavMeshAgent>();
+            tickManager = FindObjectOfType<NPC_TickManager>();
+
+            GetStates();
+            animController = GetComponent<AdvanceAnimatorController>();
+            hP = parameters.maxHp;
+            agent.speed = parameters.baseSpeed;
+            agent.stoppingDistance = parameters.circleRadius - .1f;
+            player = GameObject.Find("DummyPlayer");
+        }
+
+        private void SetMovementAnim()
+        {
+            switch (agent.velocity.magnitude)
+            {
+                case var n when n <= .1f:
+                    animController.SetAnim("DogFishIdle");
+                    break;
+                case var n when n > 0f && n <= 1f:
+                    animController.SetAnim("DogFishRun");
+                    break;
+                // case var n when n > 1f:
+                //     animController.SetAnim("Run");
+                //     break;
+            }
         }
 
         public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
@@ -129,7 +158,6 @@ namespace com.LazyGames.DZ
                         break;
                 }
             }
-
         }
     }
 }

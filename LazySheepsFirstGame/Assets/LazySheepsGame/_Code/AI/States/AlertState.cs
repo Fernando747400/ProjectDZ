@@ -17,6 +17,7 @@ namespace com.LazyGames.DZ
             //look towards noise source
             transform.LookAt(Controller.target);
             _elapsedTime += Time.fixedDeltaTime;
+            Debug.Log(_elapsedTime);
             FindSource();   
         }
         
