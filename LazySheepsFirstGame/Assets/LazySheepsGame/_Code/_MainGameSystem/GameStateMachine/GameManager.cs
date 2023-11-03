@@ -9,7 +9,7 @@ public class GameManager : StateManager<GameStates, GameManager>
     [Required]
     [SerializeField] internal BoolEventChannelSO PauseEventChannel;
 
-    [Required]
+    //[Required]
     [SerializeField] internal VoidEventChannelSO PauseInputChannel;
 
 
