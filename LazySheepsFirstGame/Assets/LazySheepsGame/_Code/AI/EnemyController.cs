@@ -105,11 +105,29 @@ namespace com.LazyGames.DZ
             }
             else
             {
-                // currentState = alertState;
-                // target = position;
-                if(intensity < .2f) return;
-                currentState = investigatingState;
-                target = position;
+                switch (intensity)
+                {
+                    case var n when n > .3f:
+                        if (dangerous)
+                        {
+                            ChangeState(alertState); 
+                            target = position;
+                        }
+                        else
+                        {
+                            ChangeState(investigatingState); 
+                            target = position;
+                        }
+                        break;
+                        
+                    case var n when n <= .3f:
+                        currentState = investigatingState;
+                        target = position;
+                        break;
+                    
+                    case var n when n <= .2f:
+                        break;
+                }
             }
 
         }
