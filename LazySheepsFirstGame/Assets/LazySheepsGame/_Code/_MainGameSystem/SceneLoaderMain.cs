@@ -22,6 +22,12 @@ public class SceneLoaderMain : MonoBehaviour
         StartCoroutine(LoadScenesAsync());
     }
 
+    [Button]
+    public void TestLoad()
+    {
+        StartCoroutine(LoadScenesAsync());
+    }
+
     private IEnumerator UnloadScenesAsync() 
     {
         for (int i = 0; i < SceneManager.sceneCount; i++)
