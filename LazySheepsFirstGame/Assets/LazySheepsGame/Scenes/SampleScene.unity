@@ -609,6 +609,14 @@ PrefabInstance:
       propertyPath: m_DirectionalAnchorRotationAction.m_Action.m_Id
       value: 040ed476-97c6-4b24-b7bc-0c3bb8f8dfe9
       objectReference: {fileID: 0}
+    - target: {fileID: 1810579611070949727, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210864267210098529, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
 --- !u!4 &1294315690 stripped
@@ -900,6 +908,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Glove Hand V2 Right
       objectReference: {fileID: 0}
+    - target: {fileID: 3004537288729128444, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: _gripAnimAction.m_Reference
+      value: 
+      objectReference: {fileID: -5184892307391932883, guid: ecfc6cc1a9fddd445911051eca73cebf, type: 3}
+    - target: {fileID: 3004537288729128444, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: _indexAnimAction.m_Reference
+      value: 
+      objectReference: {fileID: -3439105676566306868, guid: ecfc6cc1a9fddd445911051eca73cebf, type: 3}
+    - target: {fileID: 3004537288729128444, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: _pinchAnimAction.m_Reference
+      value: 
+      objectReference: {fileID: -3490449306019630667, guid: ecfc6cc1a9fddd445911051eca73cebf, type: 3}
+    - target: {fileID: 3004537288729128444, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
+      propertyPath: _thumbAnimAction.m_Reference
+      value: 
+      objectReference: {fileID: -2987280335128797056, guid: ecfc6cc1a9fddd445911051eca73cebf, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30197cb2d7ca5024aab1ed552688e015, type: 3}
 --- !u!1001 &1887906786
@@ -909,6 +933,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1143489520}
     m_Modifications:
+    - target: {fileID: 1250224247248009449, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: _gripAnimAction.m_Reference
+      value: 
+      objectReference: {fileID: -192780358957490959, guid: ecfc6cc1a9fddd445911051eca73cebf, type: 3}
+    - target: {fileID: 1250224247248009449, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: _indexAnimAction.m_Reference
+      value: 
+      objectReference: {fileID: -7325491854552211566, guid: ecfc6cc1a9fddd445911051eca73cebf, type: 3}
+    - target: {fileID: 1250224247248009449, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: _pinchAnimAction.m_Reference
+      value: 
+      objectReference: {fileID: -2374359797458362537, guid: ecfc6cc1a9fddd445911051eca73cebf, type: 3}
+    - target: {fileID: 1250224247248009449, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
+      propertyPath: _thumbAnimAction.m_Reference
+      value: 
+      objectReference: {fileID: 8485305723100389380, guid: ecfc6cc1a9fddd445911051eca73cebf, type: 3}
     - target: {fileID: 4001734855168697693, guid: a9c6bbfc1e2868545ab273f1a682a2d8, type: 3}
       propertyPath: m_RootOrder
       value: 2
