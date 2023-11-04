@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731715, g: 0.13414735, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -375,6 +375,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 518625957552047995, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
   m_PrefabInstance: {fileID: 220177137}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &220177141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8709439837250297814, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+  m_PrefabInstance: {fileID: 220177137}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &545792918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -642,7 +647,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _objectToBuild: {fileID: 8299726551003245268, guid: 64edb73ff5a2008438ac45bfb36a30d3, type: 3}
-  _rayCastOrigin: {fileID: 220177140}
+  _rayCastOrigin: {fileID: 220177141}
   _pauseEventChannel: {fileID: 11400000, guid: 10481b0f5b44a274c942a8819c0bdcda, type: 2}
   _hammerCollisionEvent: {fileID: 11400000, guid: 5b24cce30355d6048acf64b9f46b7b29, type: 2}
   _buildEventChannel: {fileID: 11400000, guid: fbbc1724148fb964494020c4c17ed4e9, type: 2}

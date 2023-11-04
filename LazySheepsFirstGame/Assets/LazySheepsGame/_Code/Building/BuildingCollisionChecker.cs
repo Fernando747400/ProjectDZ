@@ -71,6 +71,7 @@ public class BuildingCollisionChecker : MonoBehaviour
         if (collision.gameObject.tag == "Hammer")
         {
             HammerCollisionEvent.RaiseEvent();
+            Debug.Log("Collision with hammer");
         }
     }
 
@@ -79,6 +80,7 @@ public class BuildingCollisionChecker : MonoBehaviour
         if (other.gameObject.tag == "Hammer")
         {
             HammerCollisionEvent.RaiseEvent();
+            Debug.Log("Trigger with hammer");
         }
     }
 
