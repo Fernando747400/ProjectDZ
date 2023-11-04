@@ -70,28 +70,19 @@ namespace com.LazyGames.DZ
 
         #region Unity Methods
         
-        private void OnEnable()
+        private void OnDestroy()
         {
-            PrepareAgressor();
-        }
-
-        private void OnDisable()
-        {
-            InputShootActionRight.IntEvent -= (value) =>
-            {
-                HandleShootEvent(value);
-            };
-            InputShootActionLeft.IntEvent -= (value) =>
-            {
-                HandleShootEvent(value);
-            };
+            // Debug.Log("OnDestroy = ".SetColor("#F95342") + weaponData.ID);
             
+            InputShootActionRight.IntEvent -= HandleShootEvent;
+            InputShootActionLeft.IntEvent -= HandleShootEvent;
             isInHandChannel.BoolEvent -= CheckIsInHand;
             handHolderEventSO.HandHolderEvent -= CheckCurrentHandHolder;
         }
 
         private void Start()
         {
+            PrepareAgressor();
             InitializeWeapon();
         }
 
@@ -123,7 +114,7 @@ namespace com.LazyGames.DZ
         }
         public override void Shoot()
         {
-            // Debug.Log("Shoot".SetColor("#16CCF5"));
+            // Debug.Log("Shoot = ".SetColor("#16CCF5") + weaponData.ID);
             _savedFirePosition = shootPoint.transform.position;
             _currentAmmo--;
             _weaponUI.UpdateTextMMO(CurrentAmmo);
@@ -152,10 +143,10 @@ namespace com.LazyGames.DZ
             CurrentAmmo = weaponData.MaxAmmo;
 
             
-            reloadAnimator = GetComponent<Animator>(); 
+            if(reloadAnimator == null) reloadAnimator = GetComponent<Animator>();
             reloadAnimator.runtimeAnimatorController = weaponData.ReloadAnimator;
             
-            _weaponUI = transform.GetComponent<WeaponUI>();
+            if(_weaponUI == null) _weaponUI = transform.GetComponent<WeaponUI>();
             _weaponUI.UpdateTextMMO(CurrentAmmo);
             _lineRendererMaxDistance = weaponData.MaxDistance;
         }
@@ -166,6 +157,7 @@ namespace com.LazyGames.DZ
         #region private methods
         private void PrepareAgressor()
         {
+            // Debug.Log("PrepareAgressor = ".SetColor("#F1BE50") +  weaponData.ID);
             InputShootActionRight.IntEvent += HandleShootEvent;
             InputShootActionLeft.IntEvent += HandleShootEvent;
             isInHandChannel.BoolEvent += CheckIsInHand;
@@ -266,7 +258,7 @@ namespace com.LazyGames.DZ
             // PlayAnimsWeapon(weaponData.AnimationsReloads.Find(x => x.nameAnimation == animaNeedReloadName).nameAnimation);
             PlayAnimsWeapon(animaNeedReloadName);
             
-            Debug.Log("Need Reload".SetColor("#F95342"));
+            // Debug.Log("Need Reload".SetColor("#F95342"));
         }
         private void DoReload()
         {

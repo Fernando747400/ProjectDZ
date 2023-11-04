@@ -91,6 +91,7 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
             if (weapon.WeaponData.ID == weaponID)
             {
                 weapon.gameObject.SetActive(true);
+                weapon.InitializeWeapon();
                 currentWeaponData = weapon.WeaponData;
             }
             else
