@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using com.LazyGames;
+using com.LazyGames.DZ;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, IGeneralTarget
@@ -38,6 +39,10 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
     
     [Header("Left Hand")]
     [SerializeField] private Transform leftHandAttachPoint;
+
+    [Header("Weapons")] 
+    [SerializeField] private WeaponData currentWeaponData;
+    [SerializeField] private List<WeaponObject> weapons;
     
     #endregion
 
@@ -49,24 +54,14 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
     #endregion
 
     #region Unity Methods
-
-    
-
     private void Awake()
     {
        CreateInstance();
     }
-
     void Start()
     {
-        
+        InitializePlayer();
     }
-
-    void Update()
-    {
-        
-    }
-    
     #endregion
 
     #region private Methods
@@ -79,6 +74,34 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
         }
         _instance = this;
     }
+    
+    private void InitializePlayer()
+    {
+        currentWeaponData = weapons[0].WeaponData;
+        SelectWeapon(currentWeaponData.ID);   
+    }
+    #endregion
+
+
+    #region Public Methods
+    public void SelectWeapon(string weaponID)
+    {
+        foreach (var weapon in weapons)
+        {
+            if (weapon.WeaponData.ID == weaponID)
+            {
+                weapon.gameObject.SetActive(true);
+                currentWeaponData = weapon.WeaponData;
+            }
+            else
+            {
+                weapon.gameObject.SetActive(false);
+            }
+        }
+        
+    }
+    
+
     #endregion
 
     public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)

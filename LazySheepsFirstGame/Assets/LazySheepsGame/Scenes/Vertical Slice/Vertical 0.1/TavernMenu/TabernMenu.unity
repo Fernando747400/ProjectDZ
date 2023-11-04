@@ -1889,7 +1889,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Tri-Kamit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3790,6 +3790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 845146472}
   - component: {fileID: 845146473}
+  - component: {fileID: 845146474}
   m_Layer: 5
   m_Name: HandMenuUI
   m_TagString: Untagged
@@ -3831,9 +3832,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0151091ca3775854fa8945974eb3cec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _handsMenuUI: {fileID: 0}
-  weapon_Chambeadora_Button: {fileID: 0}
-  weapon_Shotgun_Button: {fileID: 0}
+  _handsMenuUI: {fileID: 1068532041}
+  _handsMenuCanvasGroup: {fileID: 845146474}
+  _fadeDuration: 0.5
+--- !u!225 &845146474
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845146471}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &856319641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6165,6 +6178,7 @@ GameObject:
   - component: {fileID: 1343092597}
   - component: {fileID: 1343092596}
   - component: {fileID: 1343092595}
+  - component: {fileID: 1343092598}
   m_Layer: 5
   m_Name: Weapon_ButtonSelect_1
   m_TagString: Untagged
@@ -6240,13 +6254,13 @@ MonoBehaviour:
       - m_Target: {fileID: 845146473}
         m_TargetAssemblyTypeName: HandsMenuUI, Assembly-CSharp
         m_MethodName: OnClickWeapon
-        m_Mode: 5
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 8a6ea979d3d5bcd43814fbd3f89ebec6, type: 2}
+          m_ObjectArgumentAssemblyTypeName: com.LazyGames.WeaponData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Tri-Kamit
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1343092596
@@ -6287,6 +6301,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343092593}
   m_CullTransparentMesh: 1
+--- !u!114 &1343092598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343092593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bccbac3164f59844baa0ea20ff3aecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponData: {fileID: 11400000, guid: 8a6ea979d3d5bcd43814fbd3f89ebec6, type: 2}
 --- !u!1 &1373016352
 GameObject:
   m_ObjectHideFlags: 0
@@ -7086,6 +7113,7 @@ GameObject:
   - component: {fileID: 1592100256}
   - component: {fileID: 1592100255}
   - component: {fileID: 1592100254}
+  - component: {fileID: 1592100257}
   m_Layer: 5
   m_Name: Weapon_ButtonSelect
   m_TagString: Untagged
@@ -7161,13 +7189,13 @@ MonoBehaviour:
       - m_Target: {fileID: 845146473}
         m_TargetAssemblyTypeName: HandsMenuUI, Assembly-CSharp
         m_MethodName: OnClickWeapon
-        m_Mode: 5
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: ee54a6c4ce24c80409600d56311189e7, type: 2}
+          m_ObjectArgumentAssemblyTypeName: com.LazyGames.WeaponData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Chambeadora
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1592100255
@@ -7208,6 +7236,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592100252}
   m_CullTransparentMesh: 1
+--- !u!114 &1592100257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592100252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bccbac3164f59844baa0ea20ff3aecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponData: {fileID: 11400000, guid: ee54a6c4ce24c80409600d56311189e7, type: 2}
 --- !u!1 &1592399688
 GameObject:
   m_ObjectHideFlags: 0
