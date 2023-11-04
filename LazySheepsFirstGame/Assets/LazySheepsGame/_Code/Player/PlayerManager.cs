@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using com.LazyGames;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour, IGeneralTarget
 {
     private static PlayerManager _instance;
+    
     public static PlayerManager Instance
     {
 
@@ -78,4 +80,9 @@ public class PlayerManager : MonoBehaviour
         _instance = this;
     }
     #endregion
+
+    public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
+    {
+        
+    }
 }
