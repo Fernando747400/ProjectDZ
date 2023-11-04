@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoaderMain : MonoBehaviour
 {
+    [Header("For Testing Only")]
+    [SerializeField] private bool _loadOnAwake = false;
+
+
     [Header("Dependencies")]
     [Scene]
     [SerializeField] private string _mainManagersScene;
@@ -15,6 +19,12 @@ public class SceneLoaderMain : MonoBehaviour
     [SerializeField] private List<string> _scenesToLoad;
 
     public List<string> ScenesToLoad { get { return _scenesToLoad; }  set { _scenesToLoad = value; } }
+
+    private void Start()
+    {
+        if (_loadOnAwake)
+            BeginLoad(true);
+    }
 
     public void BeginLoad(bool unloadCurrentScenes)
     {
