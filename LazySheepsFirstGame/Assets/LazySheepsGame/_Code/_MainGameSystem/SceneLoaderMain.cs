@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using com.LazyGames.Dio;
+using System.Linq;
 
 public class SceneLoaderMain : MonoBehaviour
 {
@@ -89,7 +90,19 @@ public class SceneLoaderMain : MonoBehaviour
 
             Debug.Log("Finished loading " + sceneToLoad + " scene async");
         }
-
+        List<string> loadedScenes = new List<string>();
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            loadedScenes.Add(SceneManager.GetSceneAt(i).name);
+        }
+        if (loadedScenes.Contains("VerticalSlice_0.1"))
+        {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("VerticalSlice_0.1"));
+        }
+        else if(loadedScenes.Contains("Tabern"))
+        {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Tabern"));
+        }
         _scenesToLoad.Clear();
     }
 

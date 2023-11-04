@@ -33,7 +33,8 @@ public class HandsMenuUI : MonoBehaviour
         _runButton.gameObject.SetActive(false);
         PlayerManager.Instance.ResetPlayersPosition();
         changeSceneChannel.RaiseStringEvent(sceneRun);
-        changeSceneChannel.RaiseBoolEvent(true);    
+        changeSceneChannel.RaiseStringEvent("AI");
+        changeSceneChannel.RaiseBoolEvent(true);
     }
     
     public void OnClickReturn()
