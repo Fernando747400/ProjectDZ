@@ -235,7 +235,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 16
+    m_Bits: 64
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -1183,6 +1183,10 @@ PrefabInstance:
     - target: {fileID: 1981078340846993174, guid: 5fa9440b4cba8c14596bbd54fd9c5375, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.179
+      objectReference: {fileID: 0}
+    - target: {fileID: 4653748867679513095, guid: 5fa9440b4cba8c14596bbd54fd9c5375, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5499184476212855876, guid: 5fa9440b4cba8c14596bbd54fd9c5375, type: 3}
       propertyPath: m_Size.y
