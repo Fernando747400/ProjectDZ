@@ -57,14 +57,20 @@ public class BuildingSystem : MonoBehaviour, IPausable
         _hammerCollisionEvent.VoidEvent -= Build;
     }
 
-    private void Start()
+    private void Awake()
     {
         Prepare();
+    }
+
+    private void Start()
+    {
+
     }
 
     private void Prepare()
     {
         if (_currentGameObject == null) _currentGameObject = Instantiate(_objectToBuild);
+        _currentGameObject.SetActive(false);
         FinishBuilding();
         _VRBuildConfirmartion = false;
     }
@@ -107,7 +113,7 @@ public class BuildingSystem : MonoBehaviour, IPausable
     {
         if (_buildChecker.IsColliding) return;
        GameObject building = Instantiate(_objectToBuild, _buildPosition, _currentGameObject.transform.rotation);
-       BuildShader(building);
+       //BuildShader(building);
        _buildEventChannel.RaiseEvent(building);
     }
 
