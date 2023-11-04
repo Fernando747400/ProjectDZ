@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: _targetPosition
       value: 
       objectReference: {fileID: 220177139}
+    - target: {fileID: 6131411008624420908, guid: 3d93dc1969038cc4da20398f704a6c7c, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6518281322275424212, guid: 3d93dc1969038cc4da20398f704a6c7c, type: 3}
       propertyPath: m_Name
       value: WeaponBase_ShotGun_01
@@ -499,6 +503,10 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1995483889}
+    - target: {fileID: 3608641830601295995, guid: 514687e948f9ae143ba37d25f6562f5b, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4428950623176304512, guid: 514687e948f9ae143ba37d25f6562f5b, type: 3}
       propertyPath: m_RootOrder
       value: 1

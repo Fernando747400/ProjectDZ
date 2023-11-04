@@ -104,6 +104,10 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
         
     }
     
+    public void ResetPlayersPosition()
+    {
+        transform.parent.position = Vector3.zero;
+    }
 
     #endregion
 
