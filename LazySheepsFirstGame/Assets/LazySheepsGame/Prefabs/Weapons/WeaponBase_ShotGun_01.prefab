@@ -1341,6 +1341,7 @@ MonoBehaviour:
   hitLaserParticle: {fileID: 4626934142889249050}
   reloadAnimator: {fileID: 2968767472622853896}
   animaNeedReloadName: NeedReload
+  _grabInteractable: {fileID: 8812916598452279408}
   positionShoots: 3
   interactorVectorReloadWeapon: {fileID: 4871288823214332944}
   animaReloadName: Reload
@@ -1365,3 +1366,14 @@ LineRenderer:
   m_CorrespondingSourceObject: {fileID: 5235802197488476490, guid: 5fa9440b4cba8c14596bbd54fd9c5375, type: 3}
   m_PrefabInstance: {fileID: 4240327084281279095}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8812916598452279408 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4653748867679513095, guid: 5fa9440b4cba8c14596bbd54fd9c5375, type: 3}
+  m_PrefabInstance: {fileID: 4240327084281279095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6518281322275424212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

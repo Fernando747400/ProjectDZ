@@ -3,6 +3,7 @@ using UnityEngine;
 using com.LazyGames.Dio;
 using Lean.Pool;
 using UnityEngine.Serialization;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace com.LazyGames.DZ
 {
@@ -50,6 +51,8 @@ namespace com.LazyGames.DZ
             protected set => _currentAmmo = value;
         }
         public WeaponData WeaponData => weaponData;
+        
+        
         public bool IsHoldingWeapon => _isHoldingWeapon;
 
         #endregion
@@ -63,6 +66,7 @@ namespace com.LazyGames.DZ
         private RaycastHit _simulatedHit;
         private WeaponUI _weaponUI;
         private float _lineRendererMaxDistance = 10f;
+        [SerializeField] private XRGrabInteractable _grabInteractable;
 
 
         #endregion
@@ -107,7 +111,11 @@ namespace com.LazyGames.DZ
         #endregion
 
         #region public methods
-        
+
+        public void EnableGrabInteractable(bool value)
+        {
+            _grabInteractable.enabled = value;
+        }
         public override void Reload()
         {
             DoReload();
@@ -142,6 +150,7 @@ namespace com.LazyGames.DZ
             EnableBeamLaser(false);
             CurrentAmmo = weaponData.MaxAmmo;
 
+            if(_grabInteractable ==  null) _grabInteractable = GetComponent<XRGrabInteractable>();
             
             if(reloadAnimator == null) reloadAnimator = GetComponent<Animator>();
             reloadAnimator.runtimeAnimatorController = weaponData.ReloadAnimator;
