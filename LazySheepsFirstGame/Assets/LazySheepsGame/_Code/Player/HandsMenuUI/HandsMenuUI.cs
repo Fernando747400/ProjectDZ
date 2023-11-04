@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using com.LazyGames;
 using com.LazyGames.Dio;
-using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using NaughtyAttributes;
 
@@ -30,7 +26,8 @@ public class HandsMenuUI : MonoBehaviour
     {
         PlayerManager.Instance.SelectWeapon(weaponData.ID);
     }
-   
+
+    [Button]
     public void OnClickRun()
     {
         _runButton.gameObject.SetActive(false);
@@ -39,7 +36,8 @@ public class HandsMenuUI : MonoBehaviour
         _changeSceneChannel.RaiseStringEvent(_sceneAI);
         _changeSceneChannel.RaiseBoolEvent(true);
     }
-    
+
+    [Button]
     public void OnClickReturn()
     {
         _runButton.gameObject.SetActive(true);
