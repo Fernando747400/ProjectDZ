@@ -5,7 +5,7 @@ using UnityEngine.Events;
 namespace com.LazyGames.DZ
 {
     [CreateAssetMenu(menuName = "ScriptableObject/Events/GameState Event Channel")]
-    public class GameStateEventChannelSO : MonoBehaviour
+    public class GameStateEventChannelSO : ScriptableObject
     {
         public UnityAction<Enum, GameObject> GameStateEvent;
 
