@@ -17,18 +17,23 @@ public class VRBuildingSystem : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _headTiltDegrees = 35.0f;
 
-    private bool _hammerInHand = false;
+    //[SerializeField]
+    private bool _hammerInHand = false; //serialized for testing only
     private bool _isBuilding = false;
 
     private void OnEnable()
     {
         _hammerInHandChannel.BoolEvent += UpdateHammerInHand;
-        DroppedHammer();
     }
 
     private void OnDisable()
     {
         _hammerInHandChannel.BoolEvent -= UpdateHammerInHand;
+    }
+
+    private void Start()
+    {
+        DroppedHammer();
     }
 
     private void Update()
