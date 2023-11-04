@@ -3,6 +3,7 @@
 using UnityEngine;
 using System.Collections;
 using Lean.Pool;
+using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 
 namespace com.LazyGames.DZ
 {
@@ -28,7 +29,15 @@ namespace com.LazyGames.DZ
             Controller.agent.speed = Controller.parameters.baseSpeed;
             Controller.doHear = true;
         }
-        
+
+        public override void SetAnimation()
+        {
+            var newAnimState = "Dead";
+            if (newAnimState == Controller.currentAnimState) return;
+            Controller.animController.SetAnim(newAnimState);
+            Controller.currentAnimState = newAnimState; // Update the current state
+        }
+
         private void Despawn()
         {
             LeanPool.Despawn(this.gameObject);
