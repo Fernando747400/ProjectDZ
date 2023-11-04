@@ -1,3 +1,4 @@
+using com.LazyGames.Dio;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +7,13 @@ namespace com.LazyGames.DZ
     [CreateAssetMenu(menuName = "ScriptableObject/Systems/Reference Pool")]
     public class ReferencePool : ScriptableObject
     {
+        public GameObjectEventChannelSO NewReferenceRaiserChannel;   
         public List<GameObject> CurrentReferences;
 
         public void AddReference(GameObject reference)
         {
             CurrentReferences.Add(reference);
+            NewReferenceRaiserChannel.GameObjectEvent(reference);
         }
 
         public void RemoveReference(GameObject reference)

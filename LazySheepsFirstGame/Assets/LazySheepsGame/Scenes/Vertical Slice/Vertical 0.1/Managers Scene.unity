@@ -257,11 +257,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadOnAwake: 1
-  _mainManagersScene: Managers Scene
-  _scenesToLoad:
+  _sceneLoaderChannel: {fileID: 11400000, guid: b2e1fb687f5e1ef428cc05076b45321d, type: 2}
+  _alwaysLoadedScenes:
+  - Managers Scene
   - PlayerScene
-  - VerticalSlice_0.1
-  - AI
+  _scenesToLoad:
   - TabernMenu
 --- !u!4 &1530712355
 Transform:
