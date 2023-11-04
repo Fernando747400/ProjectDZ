@@ -21,9 +21,8 @@ namespace com.LazyGames.DZ
 
         [SerializeField] private IntEventChannelSO InputShootActionLeft;
 
-        [Header("Hand Object")] [SerializeField]
-        private BoolEventChannelSO isInHandChannel;
-
+        [Header("Hand Object")]
+        [SerializeField] private BoolEventChannelSO isInHandChannel;
         [SerializeField] private HandEventChannelSO handHolderEventSO;
         [SerializeField] private HandHolder currentHandHolding;
 
@@ -36,11 +35,9 @@ namespace com.LazyGames.DZ
         [Header("Reload")]
         [SerializeField] private Animator reloadAnimator;
         [SerializeField] private string animaNeedReloadName = "NeedReload";
-       
-
-        // [Header("Test")] 
-        // [SerializeField] private Transform sphereTarget;
-
+        
+        [Header("XRGrabInteractable")]
+        [SerializeField] private XRGrabInteractable _grabInteractable;
         #endregion
 
         #region public variables
@@ -66,8 +63,6 @@ namespace com.LazyGames.DZ
         private RaycastHit _simulatedHit;
         private WeaponUI _weaponUI;
         private float _lineRendererMaxDistance = 10f;
-        [SerializeField] private XRGrabInteractable _grabInteractable;
-
 
         #endregion
 
