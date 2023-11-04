@@ -13,7 +13,6 @@ public class PlayerReferenceInit : MonoBehaviour
     [Required]
     [SerializeField] private XRInteractionManager _interactionManager;
     
-    private XRBaseInteractable _componentToSearch;
     private List<GameObject> _references;
 
     private void OnEnable()
@@ -25,15 +24,14 @@ public class PlayerReferenceInit : MonoBehaviour
 
     private void GetReferences()
     {
-        _references = _playerReferences.SearchAllReferencesByComponent(_componentToSearch.GetType());
+        _references = _playerReferences.SearchAllReferencesByComponent(typeof(XRBaseInteractable));
     }
 
     private void LinkReferences()
     {
         foreach (GameObject reference in _references) 
         { 
-            reference.GetComponent<XRBaseInteractable>().interactionManager = _interactionManager;
-            
+            reference.GetComponent<XRBaseInteractable>().interactionManager = _interactionManager;          
         }
     }
 }
