@@ -104,6 +104,7 @@ public class SceneLoaderMain : MonoBehaviour
     {
         foreach(string sceneToLoad in _alwaysLoadedScenes)
         {
+            if(SceneManager.GetSceneByName(sceneToLoad).isLoaded) { continue; }
             AsyncOperation sceneLoader = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
 
             while (!sceneLoader.isDone)
