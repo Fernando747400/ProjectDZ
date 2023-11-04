@@ -1,10 +1,12 @@
 using UnityEngine;
 using NaughtyAttributes;
 using com.LazyGames.Dio;
+using com.LazyGames.DZ;
 
 public class GameManager : StateManager<GameStates, GameManager>
 {
     [Header("Dependencies")]
+
 
     [Required]
     [SerializeField] internal BoolEventChannelSO PauseEventChannel;
