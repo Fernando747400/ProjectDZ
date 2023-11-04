@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using com.LazyGames.Dio;
-using System.Linq;
 
 public class SceneLoaderMain : MonoBehaviour
 {
@@ -62,13 +61,14 @@ public class SceneLoaderMain : MonoBehaviour
  
     private IEnumerator UnloadScenesAsync() 
     {
-        for (int i = 0; i < SceneManager.sceneCount; i++)
+        for (int i = SceneManager.sceneCount - 1; i >= 0; i--)
         {
             Scene currentSceneToUnload = SceneManager.GetSceneAt(i);
-            if (_alwaysLoadedScenes.Contains(currentSceneToUnload.name)) { continue; } //Prevent unloading the current scene where this manager exits. It should be the main SceneManager. 
-            AsyncOperation scenedUnloader = SceneManager.UnloadSceneAsync(currentSceneToUnload);
+            if (_alwaysLoadedScenes.Contains(currentSceneToUnload.name)) { continue; } // Prevent unloading the current scene where this manager exists; it should be the main SceneManager.
 
-            while (!scenedUnloader.isDone)
+            AsyncOperation sceneUnloader = SceneManager.UnloadSceneAsync(currentSceneToUnload);
+
+            while (!sceneUnloader.isDone)
             {
                 yield return null;
             }
@@ -91,6 +91,7 @@ public class SceneLoaderMain : MonoBehaviour
             Debug.Log("Finished loading " + sceneToLoad + " scene async");
         }
         List<string> loadedScenes = new List<string>();
+
         for (int i = 0; i < SceneManager.sceneCount; i++)
         {
             loadedScenes.Add(SceneManager.GetSceneAt(i).name);
@@ -99,10 +100,11 @@ public class SceneLoaderMain : MonoBehaviour
         {
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("VerticalSlice_0.1"));
         }
-        else if(loadedScenes.Contains("Tabern"))
+        else if(loadedScenes.Contains("TabernMenu"))
         {
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Tabern"));
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("TabernMenu"));
         }
+
         _scenesToLoad.Clear();
     }
 
