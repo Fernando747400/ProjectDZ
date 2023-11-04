@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace com.LazyGames.DZ
 {
-    public class WeaponObject : WeaponBase, IGeneralAggressor
+    public class WeaponObject : WeaponBase, IGeneralAggressor, INoiseSource
     {
         #region SerializedFields
 
@@ -38,6 +38,9 @@ namespace com.LazyGames.DZ
         
         [Header("XRGrabInteractable")]
         [SerializeField] private XRGrabInteractable _grabInteractable;
+        
+        [SerializeField] private NoiseParameters noiseParameters;
+
         #endregion
 
         #region public variables
@@ -123,6 +126,7 @@ namespace com.LazyGames.DZ
             _currentAmmo--;
             _weaponUI.UpdateTextMMO(CurrentAmmo);
             PlayParticleShoot();
+            MakeNoise(noiseParameters, 23, shootPoint.transform.position);
            
             RaycastHit hit;
             if (!Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
@@ -305,7 +309,18 @@ namespace com.LazyGames.DZ
         }
         #endregion
 
-        
+
+        public void MakeNoise(NoiseParameters noiseParameters, float velocity, Vector3 position)
+        {
+            Collider[] hits = Physics.OverlapSphere(position, noiseParameters.baseRadius * noiseParameters.loudness, noiseParameters.layerMask);
+            if(hits.Length == 0) return;
+            foreach (var col in hits)
+            {
+                if (!col.gameObject.TryGetComponent<INoiseSensitive>(out var noiseSensitive)) continue;
+                var dist = Vector3.Distance(position, col.transform.position);
+                noiseSensitive.HearNoise(noiseParameters.loudness / dist, position, noiseParameters.dangerous);
+            }
+        }
     }
     
     
