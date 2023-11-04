@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using com.LazyGames;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HandsMenuUI : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private GameObject _handsMenuUI;
+    [SerializeField] private CanvasGroup _handsMenuCanvasGroup;
+    [SerializeField] private float _fadeDuration = 0.5f;
     void Start()
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public void OnClickWeapon(WeaponData weaponData)
     {
-        
+        PlayerManager.Instance.SelectWeapon(weaponData.ID);
     }
+   
+
+    public void DoFadeOut()
+    {
+        _handsMenuCanvasGroup.DOFade(_fadeDuration, 0f).OnComplete(
+            () => _handsMenuUI.SetActive(false)
+            );
+    }
+    public void DoFadeIn()
+    {
+        _handsMenuUI.SetActive(true);
+        _handsMenuCanvasGroup.DOFade(_fadeDuration, 1f);
+    }
+    
 }
