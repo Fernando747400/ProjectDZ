@@ -29,15 +29,20 @@ public class HandsMenuUI : MonoBehaviour
     public void OnClickRun()
     {
         _runButton.gameObject.SetActive(false);
+        PlayerManager.Instance.ResetPlayersPosition();
         changeSceneChannel.RaiseStringEvent(sceneRun);
         changeSceneChannel.RaiseBoolEvent(true);
+        
+        
     }
     
     public void OnClickReturn()
     {
         _runButton.gameObject.SetActive(true);
+        PlayerManager.Instance.ResetPlayersPosition();
         changeSceneChannel.RaiseStringEvent(sceneTabern);
         changeSceneChannel.RaiseBoolEvent(true);
+        
     }
     
 }

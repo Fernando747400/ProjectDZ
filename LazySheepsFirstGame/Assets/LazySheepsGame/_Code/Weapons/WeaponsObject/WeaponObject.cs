@@ -63,6 +63,7 @@ namespace com.LazyGames.DZ
         private RaycastHit _simulatedHit;
         private WeaponUI _weaponUI;
         private float _lineRendererMaxDistance = 10f;
+        private Rigidbody _rigidbody;
 
         #endregion
 
@@ -145,12 +146,14 @@ namespace com.LazyGames.DZ
             EnableBeamLaser(false);
             CurrentAmmo = weaponData.MaxAmmo;
 
+            if(_rigidbody == null) _rigidbody = GetComponent<Rigidbody>();
             if(_grabInteractable ==  null) _grabInteractable = GetComponent<XRGrabInteractable>();
             
             if(reloadAnimator == null) reloadAnimator = GetComponent<Animator>();
             reloadAnimator.runtimeAnimatorController = weaponData.ReloadAnimator;
             
             if(_weaponUI == null) _weaponUI = transform.GetComponent<WeaponUI>();
+            
             _weaponUI.UpdateTextMMO(CurrentAmmo);
             _lineRendererMaxDistance = weaponData.MaxDistance;
         }
@@ -176,6 +179,7 @@ namespace com.LazyGames.DZ
            {
                weaponUIGO.SetActive(true);
                EnableBeamLaser(true);
+
            }
            else
            {
