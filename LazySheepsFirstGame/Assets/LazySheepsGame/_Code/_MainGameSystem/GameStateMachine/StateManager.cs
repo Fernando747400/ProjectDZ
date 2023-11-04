@@ -1,9 +1,17 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using com.LazyGames.DZ;
+using NaughtyAttributes;
 
 public abstract class StateManager<BState, TContext> : MonoBehaviour where BState : Enum
 {
+
+    [Header("Base Dependencies")]
+
+    [Required]
+    [SerializeField] private GameStateEventChannelSO _stateChangedEventChannel;
+
     public BaseState<BState, TContext> CurrentState;
     protected Dictionary<BState, BaseState<BState, TContext>> States = new Dictionary<BState, BaseState<BState, TContext>>();
     internal BaseState<BState, TContext> LastState { get; private set; }
@@ -63,6 +71,7 @@ public abstract class StateManager<BState, TContext> : MonoBehaviour where BStat
         LastState = CurrentState;
         CurrentState.ExitState();
         CurrentState = States[stateKey];
+        _stateChangedEventChannel.RaiseEvent(CurrentState.StateKey, this.gameObject);
         EnterState(CurrentState);
     }
 }

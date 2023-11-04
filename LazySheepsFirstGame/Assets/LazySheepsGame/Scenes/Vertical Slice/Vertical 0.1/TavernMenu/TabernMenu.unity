@@ -3223,17 +3223,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_ShootingRangeNoPics (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4450266320011366656, guid: 43c518cffdf63ff41a7f231efaa7b2db, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4450266320011366657, guid: 43c518cffdf63ff41a7f231efaa7b2db, type: 3}
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4450266320011366657, guid: 43c518cffdf63ff41a7f231efaa7b2db, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4.99
+      value: 4.053177
       objectReference: {fileID: 0}
     - target: {fileID: 4450266320011366657, guid: 43c518cffdf63ff41a7f231efaa7b2db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.6891
+      value: -7.9163
       objectReference: {fileID: 0}
     - target: {fileID: 4450266320011366657, guid: 43c518cffdf63ff41a7f231efaa7b2db, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5938,17 +5942,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_ShootingRangeNoPics
       objectReference: {fileID: 0}
+    - target: {fileID: 4450266320011366656, guid: 43c518cffdf63ff41a7f231efaa7b2db, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4450266320011366657, guid: 43c518cffdf63ff41a7f231efaa7b2db, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4450266320011366657, guid: 43c518cffdf63ff41a7f231efaa7b2db, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4.989235
+      value: 3.9995205
       objectReference: {fileID: 0}
     - target: {fileID: 4450266320011366657, guid: 43c518cffdf63ff41a7f231efaa7b2db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.725
+      value: -8.0779
       objectReference: {fileID: 0}
     - target: {fileID: 4450266320011366657, guid: 43c518cffdf63ff41a7f231efaa7b2db, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9604,7 +9612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6040763018362142539}
   m_LocalRotation: {x: -0.6517124, y: 0.2743551, z: 0.27435505, w: 0.6517127}
-  m_LocalPosition: {x: -16.1, y: 0.13, z: -4.29}
+  m_LocalPosition: {x: -16.1, y: 0.05, z: -4.29}
   m_LocalScale: {x: 278.53998, y: 278.53998, z: 335.69638}
   m_ConstrainProportionsScale: 0
   m_Children: []

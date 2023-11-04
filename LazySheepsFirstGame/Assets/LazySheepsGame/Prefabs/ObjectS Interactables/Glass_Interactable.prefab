@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 4979452039151341768}
   - component: {fileID: 5488883570877245}
   - component: {fileID: 1409171982469697495}
+  - component: {fileID: 1362064221824483757}
   m_Layer: 0
   m_Name: Glass_Interactable
   m_TagString: Untagged
@@ -296,3 +297,16 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &1362064221824483757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8872865872820213605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d980808969c1e345a548efd466dec67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _referencePool: {fileID: 11400000, guid: 3f9b3892c853252478590d5d7947b1a2, type: 2}

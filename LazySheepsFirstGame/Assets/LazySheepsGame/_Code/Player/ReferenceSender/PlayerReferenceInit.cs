@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using com.LazyGames.DZ;
 using UnityEngine;
 using NaughtyAttributes;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -11,9 +12,7 @@ public class PlayerReferenceInit : MonoBehaviour
     [SerializeField] private ReferencePool _playerReferences;
     [Required]
     [SerializeField] private XRInteractionManager _interactionManager;
-    [Required]
-    [SerializeField] private Component _componentToSearch;
-
+    
     private List<GameObject> _references;
 
     private void OnEnable()
@@ -25,14 +24,14 @@ public class PlayerReferenceInit : MonoBehaviour
 
     private void GetReferences()
     {
-        _references = _playerReferences.SearchAllReferencesByComponent(_componentToSearch.GetType());
+        _references = _playerReferences.SearchAllReferencesByComponent(typeof(XRBaseInteractable));
     }
 
     private void LinkReferences()
     {
         foreach (GameObject reference in _references) 
         { 
-            reference.GetComponent<XRGrabInteractable>().interactionManager = _interactionManager;
+            reference.GetComponent<XRBaseInteractable>().interactionManager = _interactionManager;          
         }
     }
 }
