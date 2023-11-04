@@ -39,13 +39,30 @@ namespace com.LazyGames.DZ
         {
             Controller.doHear = true;
         }
+        
+        public override void SetAnimation()
+        {
+            var newAnimState = "";
+            
+            switch ( Controller.agent.velocity.magnitude)
+            {
+                case var n when n <= 0.1f:
+                    newAnimState = "Idle";
+                    break;
+                case var n when n > 0.1f && n <= 2.1f:
+                    newAnimState = "Walking";
+                    break;
+                case var n when n > 2.1f:
+                    newAnimState = "Running";
+                    break;
+                default:
+                    newAnimState = "Idle";
+                    break;
+            }
 
-        // private void OnDrawGizmos()
-        // {
-        //     if(!Application.isPlaying) return;
-        //     Gizmos.color = Color.green;
-        //     Debug.DrawLine(transform.position, CryoMath.PointOnRadius(transform.position, Controller.parameters.circleRadius, _angleToSource), Color.green);
-        //     Gizmos.DrawSphere(CryoMath.PointOnRadius(transform.position, Controller.parameters.circleRadius, _angleToSource) , .3f);
-        // }
+            if (newAnimState == Controller.currentAnimState) return;
+            Controller.animController.SetAnim(newAnimState);
+            Controller.currentAnimState = newAnimState; // Update the current state
+        }
     }
 }
