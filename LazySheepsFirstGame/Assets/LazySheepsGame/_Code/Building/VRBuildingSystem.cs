@@ -17,7 +17,7 @@ public class VRBuildingSystem : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _headTiltDegrees = 35.0f;
 
-    //[SerializeField]
+    [SerializeField]
     private bool _hammerInHand = false; //serialized for testing only
     private bool _isBuilding = false;
 
