@@ -16,17 +16,17 @@ namespace com.LazyGames.DZ
 
         void Update()
         {
-            float triggerValue = _pinchAnimAction.action.ReadValue<float>();
-            _handAnim.SetFloat("Grip", triggerValue);
-
-            float gripValue = _gripAnimAction.action.ReadValue<float>();
-            _handAnim.SetFloat("Trigger", gripValue);
-
-            float IndexValue = _indexAnimAction.action.ReadValue<float>();
-            _handAnim.SetFloat("Index", IndexValue);
-
-            float ThumbValue = _thumbAnimAction.action.ReadValue<float>();
-            _handAnim.SetFloat("Thumb", ThumbValue);
+            // float triggerValue = _pinchAnimAction.action.ReadValue<float>();
+            // _handAnim.SetFloat("Grip", triggerValue);
+            //
+            // float gripValue = _gripAnimAction.action.ReadValue<float>();
+            // _handAnim.SetFloat("Trigger", gripValue);
+            //
+            // float IndexValue = _indexAnimAction.action.ReadValue<float>();
+            // _handAnim.SetFloat("Index", IndexValue);
+            //
+            // float ThumbValue = _thumbAnimAction.action.ReadValue<float>();
+            // _handAnim.SetFloat("Thumb", ThumbValue);
         }
     }
 }

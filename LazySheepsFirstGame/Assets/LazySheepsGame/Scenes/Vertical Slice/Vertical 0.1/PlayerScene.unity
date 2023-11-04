@@ -182,6 +182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8812916598452279408, guid: 3d93dc1969038cc4da20398f704a6c7c, type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 1995483889}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d93dc1969038cc4da20398f704a6c7c, type: 3}
 --- !u!114 &56250242 stripped
@@ -202,6 +206,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 518625957552047997, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_TrackingStateInput.m_Action.m_Id
+      value: b53bba62-1118-474d-ac1f-77bf5f1a886e
+      objectReference: {fileID: 0}
+    - target: {fileID: 518625957552047997, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_TrackingStateInput.m_Action.m_Name
+      value: Tracking State Input
+      objectReference: {fileID: 0}
     - target: {fileID: 518625959033579564, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
       propertyPath: m_Name
       value: XR Origin
@@ -266,6 +278,42 @@ PrefabInstance:
       propertyPath: weapons.Array.data[1]
       value: 
       objectReference: {fileID: 56250242}
+    - target: {fileID: 5571341361179772700, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571341361179772700, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571341361179772700, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571341361179772700, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571341361344919027, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571341361344919027, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571341361344919027, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571341361344919027, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987157608870207395, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 1995483889}
     - target: {fileID: 5987157608870207395, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
       propertyPath: m_StartingSelectedInteractable
       value: 
@@ -406,6 +454,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2111794082857957415, guid: 514687e948f9ae143ba37d25f6562f5b, type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 1995483889}
     - target: {fileID: 4428950623176304512, guid: 514687e948f9ae143ba37d25f6562f5b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -560,3 +612,14 @@ MonoBehaviour:
   _buildEventChannel: {fileID: 11400000, guid: fbbc1724148fb964494020c4c17ed4e9, type: 2}
   _validPlacementMaterial: {fileID: 2100000, guid: 53b377d8c88fa5e4b9561f9c992608d8, type: 2}
   _invalidPlacementMaterials: {fileID: 2100000, guid: 7a3ac71e384adb74fbc93944ce580958, type: 2}
+--- !u!114 &1995483889 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 518625957521995190, guid: a906d7cf22ed65c44bdeb426e8060f1a, type: 3}
+  m_PrefabInstance: {fileID: 220177137}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e4e6cca11330d4088d729ab4fc9d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
