@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1172,7 +1172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904243447}
   m_LocalRotation: {x: 0.39756325, y: -0, z: -0, w: 0.9175748}
-  m_LocalPosition: {x: 0.356, y: 2.27, z: -1.1}
+  m_LocalPosition: {x: 1.597, y: 2.27, z: -1.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2348,9 +2348,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buildingSystem: {fileID: 1966314958}
-  _vrHead: {fileID: 1051425203}
+  _xrPlayerHead: {fileID: 1051425203}
   _hammerInHandChannel: {fileID: 11400000, guid: 25ff584054a7b0448994a987e205bac9, type: 2}
-  _headTiltDegrees: 35
+  _xrConfirmationChannel: {fileID: 11400000, guid: f6f250252565b334ebe635678774be88, type: 2}
+  _headTiltDegrees: 20
   _hammerInHand: 0
 --- !u!114 &1966314958
 MonoBehaviour:
@@ -2370,11 +2371,12 @@ MonoBehaviour:
   _buildingsLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  _objectToBuild: {fileID: 8299726551003245268, guid: 64edb73ff5a2008438ac45bfb36a30d3, type: 3}
+  _prefabToBuild: {fileID: 8299726551003245268, guid: 64edb73ff5a2008438ac45bfb36a30d3, type: 3}
   _rayCastOrigin: {fileID: 1051425203}
-  _pauseEventChannel: {fileID: 11400000, guid: 10481b0f5b44a274c942a8819c0bdcda, type: 2}
-  _hammerCollisionEvent: {fileID: 11400000, guid: 5b24cce30355d6048acf64b9f46b7b29, type: 2}
+  _hammerCollisionChannel: {fileID: 11400000, guid: 5b24cce30355d6048acf64b9f46b7b29, type: 2}
   _buildEventChannel: {fileID: 11400000, guid: fbbc1724148fb964494020c4c17ed4e9, type: 2}
+  _xrConfirmationChannel: {fileID: 11400000, guid: f6f250252565b334ebe635678774be88, type: 2}
+  _pauseEventChannel: {fileID: 11400000, guid: 10481b0f5b44a274c942a8819c0bdcda, type: 2}
   _validPlacementMaterial: {fileID: 2100000, guid: 53b377d8c88fa5e4b9561f9c992608d8, type: 2}
   _invalidPlacementMaterials: {fileID: 2100000, guid: 7a3ac71e384adb74fbc93944ce580958, type: 2}
 --- !u!4 &1966314959

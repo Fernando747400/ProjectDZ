@@ -13,10 +13,6 @@ public class BuildingCollisionChecker : MonoBehaviour
     [HideInInspector] public Material ValidPlacementMaterial;
     [HideInInspector] public Material InvalidPlacementMaterial;
 
-
-    public bool IsColliding { get { return _isColliding; } }
-    public LayerMask BuildingsLayerMask { set { _buildingsLayerMask = value; } }
-    
     private LayerMask _buildingsLayerMask;
 
     private List<MeshRenderer> _myMeshRenderers = new List<MeshRenderer>();
@@ -25,15 +21,16 @@ public class BuildingCollisionChecker : MonoBehaviour
     private bool _isColliding = false;
     private BoxCollider _boxCollider;
 
+    public bool IsColliding { get { return _isColliding; } }
+    public LayerMask BuildingsLayerMask { set { _buildingsLayerMask = value; } }
+    
+
     public void PlaceObjectSequence()
     {
         RestoreMaterials();
         Destroy(this.GetComponent<BuildingCollisionChecker>());
     }
 
-    private void OnEnable()
-    {
-    }
 
     private void Start()
     {
@@ -66,7 +63,7 @@ public class BuildingCollisionChecker : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) //TODO change hammer to iBuilder
     {
         if (collision.gameObject.tag == "Hammer")
         {
