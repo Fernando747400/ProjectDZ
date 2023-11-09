@@ -57,6 +57,7 @@ public class WeaponPistolObject : WeaponObject
     public override void Shoot()
     {
         base.Shoot();
+        PhysicShoot();
         // Debug.Log("Shoot Pistol");
     }
     
