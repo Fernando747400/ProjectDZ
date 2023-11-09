@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using com.LazyGames;
 using com.LazyGames.DZ;
 using UnityEngine;
 
@@ -51,11 +52,18 @@ public class WeaponShotGunObject : WeaponObject
    public override void Shoot()
    {
       base.Shoot();
-      Debug.Log("Shoot ShotGun");
+      Debug.Log("Shoot ShotGun".SetColor("#6BE720"));
       ShotGunShoot(positionShoots);
 
    }
-   
+
+   public override void PhysicShoot()
+   {
+      base.PhysicShoot();
+      Debug.Log("Shoot ShotGun".SetColor(""));
+
+   }
+
    public override void Reload()
    {
       base.Reload();
@@ -72,7 +80,6 @@ public class WeaponShotGunObject : WeaponObject
       {
          _savedFirePosition = pos.position;
          PhysicShoot();
-         Debug.Log("Shoot ShotGun");
       }
    }
    

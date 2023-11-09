@@ -135,7 +135,7 @@ namespace com.LazyGames.DZ
             RaycastHit hit;
             if (!Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
             {
-                // Debug.Log("No Hit".SetColor("#F95342"));
+                Debug.Log("No Hit".SetColor("#F95342"));
                 Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.forward * weaponData.MaxDistance, Color.red, 1f);
                 return;
             }
