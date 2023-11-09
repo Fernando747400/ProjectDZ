@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using System.Linq;
 using com.LazyGames.Dio;
 
@@ -18,31 +19,34 @@ public class BuildingCollisionChecker : MonoBehaviour
     
     private LayerMask _buildingsLayerMask;
 
-    private MeshRenderer _myMeshRenderer;
-    private Material[] _initialMaterials; 
+    private List<MeshRenderer> _myMeshRenderers = new List<MeshRenderer>();
+    private List<Material[]> _initialMaterials = new List<Material[]>(); 
 
     private bool _isColliding = false;
     private BoxCollider _boxCollider;
 
     public void PlaceObjectSequence()
     {
-        this.GetComponent<MeshRenderer>().materials = _initialMaterials;
+        RestoreMaterials();
         Destroy(this.GetComponent<BuildingCollisionChecker>());
     }
 
     private void OnEnable()
     {
-        _myMeshRenderer = this.GetComponent<MeshRenderer>();
-        _boxCollider = this.GetComponent<BoxCollider>();
     }
 
     private void Start()
     {
-        _initialMaterials = _myMeshRenderer.materials;
+        _boxCollider = this.gameObject.GetComponent<BoxCollider>();
+        CheckRendererDependencies();
     }
 
     private void Update()
     {
+        if (_boxCollider == null)
+        {
+            _boxCollider = this.GetComponent<BoxCollider>();
+        }
         Vector3 boxSize = _boxCollider.size;
         Vector3 center = transform.TransformPoint(_boxCollider.center);
 
@@ -67,6 +71,7 @@ public class BuildingCollisionChecker : MonoBehaviour
         if (collision.gameObject.tag == "Hammer")
         {
             HammerCollisionEvent.RaiseEvent();
+            Debug.Log("Collision with hammer");
         }
     }
 
@@ -75,19 +80,57 @@ public class BuildingCollisionChecker : MonoBehaviour
         if (other.gameObject.tag == "Hammer")
         {
             HammerCollisionEvent.RaiseEvent();
+            Debug.Log("Trigger with hammer");
         }
     }
 
     private void ChangeMaterials(Material materialToChange)
     {
-        Material[] newMaterials = new Material[_myMeshRenderer.materials.Length];
-
-        for (int i = 0; i < _myMeshRenderer.materials.Length; i++)
+        foreach (MeshRenderer renderer in _myMeshRenderers)
         {
-            newMaterials[i] = materialToChange;
-        }
+            Material[] newMaterials = new Material[renderer.materials.Length];
 
-        _myMeshRenderer.materials = newMaterials;
+            for (int i = 0; i < renderer.materials.Length; i++)
+            {
+                newMaterials[i] = materialToChange;
+            }
+
+            renderer.materials = newMaterials;
+        }
+    }
+
+    private void GetMeshRenderers()
+    {
+        foreach(MeshRenderer renderer in this.gameObject.GetComponentsInChildren<MeshRenderer>())
+        {
+            _myMeshRenderers.Add(renderer);
+        }
+    }
+
+    private void GetMaterials()
+    {
+        foreach (MeshRenderer renderer in _myMeshRenderers)
+        {
+            _initialMaterials.Add(renderer.materials);
+        }
+    }
+
+    private void RestoreMaterials()
+    {
+        for (int i = 0; i < _myMeshRenderers.Count; i++)
+        {
+            _myMeshRenderers[i].materials = _initialMaterials[i];
+        }
+    }
+
+    private void CheckRendererDependencies()
+    {
+        do
+        {
+            GetMeshRenderers();
+        } while (_myMeshRenderers == null || _myMeshRenderers.Count == 0);
+
+        GetMaterials();
     }
 }
 

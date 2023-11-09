@@ -1,49 +1,76 @@
-// Creado Raymundo Mosqueda 07/09/23
-using com.LazyGames.DZ;
 using UnityEngine;
 
-public class AlertState : EnemyState
+namespace com.LazyGames.DZ
 {
-    public override void EnterState()
+    public class AlertState : EnemyState
     {
-        Controller.agent.speed = Controller.parameters.alertSpeed;
-    }
-
-    public override void UpdateState()
-    {
-        Controller.agent.SetDestination(Controller.target);
-        PlayerDetection();
-        float dist = Vector3.Distance(transform.position,Controller.target);
-        if (dist <= Controller.agent.stoppingDistance)
+        private float _elapsedTime;
+        public override void EnterState()
         {
-            Controller.ChangeState(Controller.wanderingState);
+            //perform alerted animation
+            Controller.agent.isStopped = true;
+            _elapsedTime = 0f;
         }
-    }   
-    
-    private void PlayerDetection()
-    {
-        float oscillationAngle = Mathf.Sin(Time.time * Controller.parameters.oscillationSpeed) * (Controller.parameters.coneAngle / 2);
-        Vector3 rayDirection = Quaternion.Euler(0, oscillationAngle, 0) * transform.forward;
 
-        Debug.DrawRay(transform.position + Controller.parameters.heightOffset, rayDirection * Controller.parameters.softDetectionRange, Color.black);
+        public override void UpdateState()
+        {
+            //look towards noise source
+            transform.LookAt(Controller.target);
+            _elapsedTime += Time.fixedDeltaTime;
+            FindSource();   
+        }
         
-        if (!Physics.Raycast(transform.position + Controller.parameters.heightOffset, rayDirection,
-                out var hit, Controller.parameters.softDetectionRange, Physics.DefaultRaycastLayers)) return;
-        if (!hit.collider.CompareTag("Player")) return;
-        if (hit.distance <= Controller.parameters.hardDetectionRange)
+        public override void SetAnimation()
         {
-            Debug.DrawRay(transform.position + Controller.parameters.heightOffset, rayDirection * Controller.parameters.softDetectionRange, Color.red);
-            Controller.ChangeState(Controller.aggroState);
-        }
-        else
-        {
-            Debug.DrawRay(transform.position + Controller.parameters.heightOffset, rayDirection * Controller.parameters.softDetectionRange, Color.yellow);
-            Controller.target = hit.collider.transform.position;
-        }
-    }
+            var newAnimState = "";
+            
+            switch ( Controller.agent.velocity.magnitude)
+            {
+                case var n when n <= 0.1f:
+                    newAnimState = "Idle";
+                    break;
+                case var n when n > 0.1f && n <= 2.1f:
+                    newAnimState = "Walking";
+                    break;
+                case var n when n > 2.1f:
+                    newAnimState = "Running";
+                    break;
+                default:
+                    newAnimState = "Idle";
+                    break;
+            }
 
-    public override void ExitState()
-    {
-        Controller.agent.speed = Controller.parameters.baseSpeed;
+            if (newAnimState == Controller.currentAnimState) return;
+            Controller.animController.SetAnim(newAnimState);
+            Controller.currentAnimState = newAnimState; // Update the current state
+        }
+        
+        private void FindSource()
+        {
+            var oscillationAngle = Mathf.Sin(Time.time * Controller.parameters.oscillationSpeed) * (Controller.parameters.coneAngle / 2);
+            var rayDirection = Quaternion.Euler(0, oscillationAngle, 0) * transform.forward;
+            var pos = transform.position;
+            Physics.Raycast(pos + Controller.parameters.heightOffset, rayDirection, out var hit, Controller.parameters.softDetectionRange, Physics.DefaultRaycastLayers);
+
+            if (!ReferenceEquals(hit.collider, null))
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    Controller.ChangeState(Controller.aggroState);
+                    return;
+                }
+            }
+            if (_elapsedTime < Controller.parameters.alertTime) return;
+            Debug.Log("VAR");
+            Controller.ChangeState(Controller.investigatingState);
+        }
+
+
+        public override void ExitState()
+        {
+            Controller.agent.isStopped = false;
+            
+        }
     }
+    
 }

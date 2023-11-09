@@ -1,5 +1,5 @@
 // Creado Raymundo Mosqueda 07/09/23
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,30 +7,80 @@ namespace com.LazyGames.DZ
 {
     public class AggroState : EnemyState
     {
+        private bool _attacking;
         public override void EnterState()
         {
             Controller.agent.speed = Controller.parameters.aggroSpeed;
+            Controller.doHear = false;
             
         }
 
         public override void UpdateState()
         {
             Controller.agent.SetDestination(Controller.player.transform.position);
-            CheckDistance();
+            if(CheckDistance())
+                Attack();
         }
         
-        private void CheckDistance()
+        public override void ExitState()
         {
-            var dist = Vector3.Distance(transform.position, Controller.player.transform.position);
-            if(dist > Controller.agent.stoppingDistance) return;
-            Attack();
+            Controller.hP = Controller.parameters.maxHp;
+            Controller.agent.speed = Controller.parameters.baseSpeed;
+            Controller.doHear = true;
+        }
+        
+        public override void SetAnimation()
+        {
+            
+            if(_attacking)return;
+            var newAnimState = "";
+            
+            switch ( Controller.agent.velocity.magnitude)
+            {
+                case var n when n <= 0.1f:
+                    newAnimState = "Idle";
+                    break;
+                case var n when n > 0.1f && n <= 2.1f:
+                    newAnimState = "Walking";
+                    break;
+                case var n when n > 2.1f:
+                    newAnimState = "Running";
+                    break;
+                default:
+                    newAnimState = "Idle";
+                    break;
+            }
+            
+            if (newAnimState == Controller.currentAnimState) return;
+            Controller.animController.SetAnim(newAnimState);
+            Controller.currentAnimState = newAnimState; // Update the current state
         }
 
         private void Attack()
         {
-            
+            var newAnimState = "";
+
+            _attacking = true;
+            Controller.SendAggression();
+            newAnimState = "FishAttacK 2";
+            if (newAnimState == Controller.currentAnimState) return;
+            Controller.animController.SetAnim(newAnimState);
+            Controller.currentAnimState = newAnimState; // Update the current state
+            StartCoroutine(corWaitForAttack());
         }
         
+        private IEnumerator corWaitForAttack()
+        {
+            yield return new WaitForSeconds(1.5f);
+            _attacking = false;
+        }
+        private bool CheckDistance()
+        {
+            var dist = Vector3.Distance(transform.position, Controller.player.transform.position);
+            if(dist > Controller.agent.stoppingDistance) return false;
+            return true;
+        }
+
         private void OnGeometryChanged()
         {
             if(Controller.agent.pathStatus == NavMeshPathStatus.PathComplete)return;
@@ -39,7 +89,7 @@ namespace com.LazyGames.DZ
         
         private GameObject GetClosestWall()
         {
-            List<GameObject> walls = Controller.sceneWallsSo.Walls;
+            System.Collections.Generic.List<GameObject> walls = Controller.sceneWallsSo.Walls;
 
             if (walls.Count == 0)
             {
@@ -64,12 +114,5 @@ namespace com.LazyGames.DZ
             }
             return closestObject;
         }
-        
-        public override void ExitState()
-        {
-            Controller.hP = Controller.parameters.maxHp;
-            Controller.agent.speed = Controller.parameters.baseSpeed;
-        }
     }
-    
 }

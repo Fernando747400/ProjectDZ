@@ -8,9 +8,6 @@ using NaughtyAttributes;
 
 public class ObjectInHand : MonoBehaviour
 {
-    [FormerlySerializedAs("interactor")]
-    [FormerlySerializedAs("_hammerInteractor")]
-
     [Header("Dependencies")]
     [SerializeField] private XRGrabInteractable xrGrabInteractable;
     [SerializeField] private BoolEventChannelSO isInHandChannel;
@@ -37,7 +34,7 @@ public class ObjectInHand : MonoBehaviour
             isInHandChannel.RaiseEvent(true);
             if (handHolderEventSO != null) handHolderEventSO.RaiseEvent(GetHandHolder(args.interactorObject));
             
-            Debug.Log("Object ".SetColor("#F5DD16")+ transform.name +  " Grabbed by =".SetColor("#F5DD16") + GetHandHolder(args.interactorObject));
+            // Debug.Log("Object ".SetColor("#F5DD16")+ transform.name +  " Grabbed by =".SetColor("#F5DD16") + GetHandHolder(args.interactorObject));
         }
     }
 
@@ -47,7 +44,7 @@ public class ObjectInHand : MonoBehaviour
         {
             isInHandChannel.RaiseEvent(false);
             if (handHolderEventSO != null) handHolderEventSO.RaiseEvent(GetHandHolder(args.interactorObject));
-            Debug.Log("Object ".SetColor("#F5DD16") + transform.name + " Dropped by =".SetColor("#F5DD16") + GetHandHolder(args.interactorObject));
+            // Debug.Log("Object ".SetColor("#F5DD16") + transform.name + " Dropped by =".SetColor("#F5DD16") + GetHandHolder(args.interactorObject));
 
         }
     }
