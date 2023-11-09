@@ -114,6 +114,7 @@ public class BuildingSystem : MonoBehaviour, IPausable
         if (_buildChecker.IsColliding) return;
        GameObject building = Instantiate(_objectToBuild, _buildPosition, _currentGameObject.transform.rotation);
        //BuildShader(building);
+       building.GetComponent<BoxCollider>().isTrigger = false;
        _buildEventChannel.RaiseEvent(building);
     }
 

@@ -49,8 +49,8 @@ public class SceneLoaderMain : MonoBehaviour
 
     private void Start()
     {
-        if (_loadOnAwake)
-            BeginLoad(true);
+        StartCoroutine(LoadAlwaysLoadedScenes());
+        if (_loadOnAwake) BeginLoad(true);
     }
 
     public void BeginLoad(bool unloadCurrentScenes)
@@ -61,13 +61,14 @@ public class SceneLoaderMain : MonoBehaviour
  
     private IEnumerator UnloadScenesAsync() 
     {
-        for (int i = 0; i < SceneManager.sceneCount; i++)
+        for (int i = SceneManager.sceneCount - 1; i >= 0; i--)
         {
             Scene currentSceneToUnload = SceneManager.GetSceneAt(i);
-            if (_alwaysLoadedScenes.Contains(currentSceneToUnload.name)) { continue; } //Prevent unloading the current scene where this manager exits. It should be the main SceneManager. 
-            AsyncOperation scenedUnloader = SceneManager.UnloadSceneAsync(currentSceneToUnload);
+            if (_alwaysLoadedScenes.Contains(currentSceneToUnload.name)) { continue; } // Prevent unloading the current scene where this manager exists; it should be the main SceneManager.
 
-            while (!scenedUnloader.isDone)
+            AsyncOperation sceneUnloader = SceneManager.UnloadSceneAsync(currentSceneToUnload);
+
+            while (!sceneUnloader.isDone)
             {
                 yield return null;
             }
@@ -90,6 +91,7 @@ public class SceneLoaderMain : MonoBehaviour
             Debug.Log("Finished loading " + sceneToLoad + " scene async");
         }
 
+        SetActiveScene();
         _scenesToLoad.Clear();
     }
 
@@ -97,5 +99,30 @@ public class SceneLoaderMain : MonoBehaviour
     {
         _scenesToLoad.Add(scene);
     }
+
+    private IEnumerator LoadAlwaysLoadedScenes()
+    {
+        foreach(string sceneToLoad in _alwaysLoadedScenes)
+        {
+            if(SceneManager.GetSceneByName(sceneToLoad).isLoaded) { continue; }
+            AsyncOperation sceneLoader = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
+
+            while (!sceneLoader.isDone)
+            {
+                yield return null;
+            }
+        }
+    }
     
+    private void SetActiveScene()
+    {
+        if (_scenesToLoad.Contains("VerticalSlice_0.1"))
+        {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("VerticalSlice_0.1"));
+        }
+        else if (_scenesToLoad.Contains("TabernMenu"))
+        {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("TabernMenu"));
+        }
+    }
 }
