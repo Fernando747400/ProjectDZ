@@ -68,7 +68,7 @@ public class WeaponShotGunObject : WeaponObject
    {
       base.Reload();
       PlayAnimsWeapon(animaReloadName);
-      // Debug.Log("Reload ShotGun");
+      Debug.Log("Reload ShotGun");
    }
    #endregion
    
