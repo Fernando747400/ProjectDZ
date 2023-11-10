@@ -51,13 +51,14 @@ public class WeaponPistolObject : WeaponObject
     {
         base.Reload();
         PlayAnimsWeapon(animaReloadName);
-        // Debug.Log("Reload Pistol");
+        Debug.Log("Reload Pistol");
     }
 
     public override void Shoot()
     {
         base.Shoot();
-        // Debug.Log("Shoot Pistol");
+        PhysicShoot();
+        Debug.Log("Shoot Pistol");
     }
     
     #endregion
