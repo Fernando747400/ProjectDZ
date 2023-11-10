@@ -16,9 +16,8 @@ namespace com.LazyGames.DZ
 
         [SerializeField] private Transform shootPoint;
 
-        [Header("Input Actions")] [SerializeField]
-        private IntEventChannelSO InputShootActionRight;
-
+        [Header("Input Actions")] 
+        [SerializeField] private IntEventChannelSO InputShootActionRight;
         [SerializeField] private IntEventChannelSO InputShootActionLeft;
 
         [Header("Hand Object")]
@@ -39,6 +38,7 @@ namespace com.LazyGames.DZ
         [Header("XRGrabInteractable")]
         [SerializeField] private XRGrabInteractable _grabInteractable;
         
+        [Header("Noise")]
         [SerializeField] private NoiseParameters noiseParameters;
 
         #endregion
@@ -51,6 +51,7 @@ namespace com.LazyGames.DZ
             protected set => _currentAmmo = value;
         }
         public WeaponData WeaponData => weaponData;
+        public XRGrabInteractable GrabInteractable => _grabInteractable;
         
         
         public bool IsHoldingWeapon => _isHoldingWeapon;

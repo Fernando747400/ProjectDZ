@@ -3467,6 +3467,8 @@ MonoBehaviour:
   leftHandAttachPoint: {fileID: 5677170550083725992}
   currentWeaponData: {fileID: 0}
   weapons: []
+  holsterWeapons: {fileID: 5987157608870207407}
+  holsterWeapon: {fileID: 0}
 --- !u!1001 &878043716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3749,6 +3751,11 @@ PrefabInstance:
 --- !u!1 &5987157608870207396 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6063023293893065853, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
+  m_PrefabInstance: {fileID: 518625958498296793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5987157608870207407 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6063023293893065846, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
   m_PrefabInstance: {fileID: 518625958498296793}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &518625958765537178
