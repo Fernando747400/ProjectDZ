@@ -108,11 +108,13 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
             if (weapon.WeaponData.ID == weaponID)
             {
                 weapon.gameObject.SetActive(true);
-                weapon.gameObject.transform.position = holsterWeapons.position;
                 weapon.EnableGrabInteractable(true);
-                // socketInteractorWeapon.
+                weapon.gameObject.transform.position = holsterWeapons.position;
+
                 weapon.InitializeWeapon();
                 currentWeaponData = weapon.WeaponData;
+                
+                Debug.Log("Select Weapon: ".SetColor("#87E720") + weaponID);
             }
             else
             {

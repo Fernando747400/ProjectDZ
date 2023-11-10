@@ -11,10 +11,10 @@ namespace com.LazyGames.DZ
     {
         #region SerializedFields
 
-        [Header("Weapon Object")] [SerializeField]
-        private WeaponData weaponData;
-
+        [Header("Weapon Object")] 
+        [SerializeField] private WeaponData weaponData;
         [SerializeField] private Transform shootPoint;
+        [SerializeField] private GameObject visualWeapon;
 
         [Header("Input Actions")] 
         [SerializeField] private IntEventChannelSO InputShootActionRight;
@@ -115,6 +115,10 @@ namespace com.LazyGames.DZ
         public void EnableGrabInteractable(bool value)
         {
             _grabInteractable.enabled = value;
+        }
+        public void EnableVisual(bool value)
+        {
+            visualWeapon.SetActive(value);
         }
         public override void Reload()
         {
