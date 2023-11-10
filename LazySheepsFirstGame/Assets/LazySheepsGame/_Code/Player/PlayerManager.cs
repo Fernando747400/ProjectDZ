@@ -2,8 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using com.LazyGames;
+using com.LazyGames.Dio;
 using com.LazyGames.DZ;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class PlayerManager : MonoBehaviour, IGeneralTarget
 {
@@ -43,6 +46,13 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
     [Header("Weapons")] 
     [SerializeField] private WeaponData currentWeaponData;
     [SerializeField] private List<WeaponObject> weapons;
+    [SerializeField] private Transform holsterWeapons;
+    
+    [Header("Holster")]
+    [SerializeField] private XRSocketInteractor socketInteractorWeapon;
+    
+    [Header("Weapon ID Channel")]
+    [SerializeField] private GenericDataEventChannelSO weaponSelectChannel;
     
     #endregion
 
@@ -58,6 +68,12 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
     {
        CreateInstance();
     }
+
+    private void OnDisable()
+    {
+        weaponSelectChannel.StringEvent -= SelectWeapon;
+    }
+
     void Start()
     {
         InitializePlayer();
@@ -78,7 +94,8 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
     private void InitializePlayer()
     {
         currentWeaponData = weapons[0].WeaponData;
-        SelectWeapon(currentWeaponData.ID);   
+        SelectWeapon(currentWeaponData.ID); 
+        weaponSelectChannel.StringEvent += SelectWeapon;
     }
     #endregion
 
@@ -92,8 +109,12 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
             {
                 weapon.gameObject.SetActive(true);
                 weapon.EnableGrabInteractable(true);
+                weapon.gameObject.transform.position = holsterWeapons.position;
+
                 weapon.InitializeWeapon();
                 currentWeaponData = weapon.WeaponData;
+                
+                Debug.Log("Select Weapon: ".SetColor("#87E720") + weaponID);
             }
             else
             {
