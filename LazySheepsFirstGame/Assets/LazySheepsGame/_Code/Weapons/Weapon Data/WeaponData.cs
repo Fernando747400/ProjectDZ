@@ -13,15 +13,14 @@ namespace com.LazyGames
         [SerializeField] private float bulletSpeed;
         [SerializeField] private float maxDistance;
         [SerializeField] private GameObject shootParticle;
-        [SerializeField] private string hitParticle;
         [SerializeField] private float cooldownPerShot;
         [SerializeField] private float delayReload;
         [SerializeField] private int maxAmmo;
         [SerializeField] private RuntimeAnimatorController reloadAnimator;
         [SerializeField] private List<AnimationsReloads> animationsReloads;
         
-        
-
+        [Header("Cost")]
+        [SerializeField] private int cost;
 
         #region public variables
 
@@ -36,9 +35,10 @@ namespace com.LazyGames
         {
             get => maxDistance;
         }
+        public int Cost => cost;
 
         public GameObject ShootParticle => shootParticle;
-        public string HitParticle => hitParticle;
+        // public string HitParticle => hitParticle;
         public int MaxAmmo => maxAmmo;
         public RuntimeAnimatorController ReloadAnimator => reloadAnimator;
         public List<AnimationsReloads> AnimationsReloads => animationsReloads;

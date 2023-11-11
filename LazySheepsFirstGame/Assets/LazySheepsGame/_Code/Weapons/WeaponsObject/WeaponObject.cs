@@ -11,14 +11,13 @@ namespace com.LazyGames.DZ
     {
         #region SerializedFields
 
-        [Header("Weapon Object")] [SerializeField]
-        private WeaponData weaponData;
-
+        [Header("Weapon Object")] 
+        [SerializeField] private WeaponData weaponData;
         [SerializeField] private Transform shootPoint;
+        [SerializeField] private GameObject visualWeapon;
 
-        [Header("Input Actions")] [SerializeField]
-        private IntEventChannelSO InputShootActionRight;
-
+        [Header("Input Actions")] 
+        [SerializeField] private IntEventChannelSO InputShootActionRight;
         [SerializeField] private IntEventChannelSO InputShootActionLeft;
 
         [Header("Hand Object")]
@@ -39,6 +38,7 @@ namespace com.LazyGames.DZ
         [Header("XRGrabInteractable")]
         [SerializeField] private XRGrabInteractable _grabInteractable;
         
+        [Header("Noise")]
         [SerializeField] private NoiseParameters noiseParameters;
 
         #endregion
@@ -51,6 +51,7 @@ namespace com.LazyGames.DZ
             protected set => _currentAmmo = value;
         }
         public WeaponData WeaponData => weaponData;
+        public XRGrabInteractable GrabInteractable => _grabInteractable;
         
         
         public bool IsHoldingWeapon => _isHoldingWeapon;
@@ -61,7 +62,7 @@ namespace com.LazyGames.DZ
         private int _currentAmmo;
         private float _travelTime = 0.3f;
         private Vector3 _hitPosition;
-        private Vector3 _savedFirePosition;
+        private protected Vector3 _savedFirePosition;
         private bool _isHoldingWeapon = false;
         private RaycastHit _simulatedHit;
         private WeaponUI _weaponUI;
@@ -115,6 +116,10 @@ namespace com.LazyGames.DZ
         {
             _grabInteractable.enabled = value;
         }
+        public void EnableVisual(bool value)
+        {
+            visualWeapon.SetActive(value);
+        }
         public override void Reload()
         {
             DoReload();
@@ -122,16 +127,20 @@ namespace com.LazyGames.DZ
         public override void Shoot()
         {
             // Debug.Log("Shoot = ".SetColor("#16CCF5") + weaponData.ID);
-            _savedFirePosition = shootPoint.transform.position;
             _currentAmmo--;
             _weaponUI.UpdateTextMMO(CurrentAmmo);
             PlayParticleShoot();
-            MakeNoise(noiseParameters, 23, shootPoint.transform.position);
-           
+            MakeNoise(noiseParameters, 23, transform.position);
+            // PhysicShoot();
+        }
+
+        public override void PhysicShoot()
+        {
+            _savedFirePosition = shootPoint.transform.position;
             RaycastHit hit;
             if (!Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
             {
-                // Debug.Log("No Hit".SetColor("#F95342"));
+                Debug.Log("No Hit".SetColor("#F95342"));
                 Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.forward * weaponData.MaxDistance, Color.red, 1f);
                 return;
             }
@@ -139,7 +148,6 @@ namespace com.LazyGames.DZ
             _hitPosition = hit.point;
             BulletTravel();
         }
-
         public void PlayAnimsWeapon(string nameAnim)
         {
             reloadAnimator.Play(nameAnim);
@@ -243,7 +251,7 @@ namespace com.LazyGames.DZ
             
         }
         
-        protected virtual void BulletTravel()
+        protected void BulletTravel()
         {
             Vector3 simulatedHitDir = _hitPosition - _savedFirePosition;
             Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out _simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
@@ -266,8 +274,6 @@ namespace com.LazyGames.DZ
         {
             _weaponUI.NeedReload(true);
             _weaponUI.UpdateTextMMO(CurrentAmmo);
-          
-            // PlayAnimsWeapon(weaponData.AnimationsReloads.Find(x => x.nameAnimation == animaNeedReloadName).nameAnimation);
             PlayAnimsWeapon(animaNeedReloadName);
             
             // Debug.Log("Need Reload".SetColor("#F95342"));
