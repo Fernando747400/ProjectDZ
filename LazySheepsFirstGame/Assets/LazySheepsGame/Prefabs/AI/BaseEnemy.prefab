@@ -77,21 +77,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f6dbbc9ed333c40a227b620334a099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parameters: {fileID: 11400000, guid: 20bf2c09fda47634c83e395cd5ad899f, type: 2}
+  parameters: {fileID: 11400000, guid: 56f1744ad0ebdee4da32ba0c02dbb9f4, type: 2}
   sceneWallsSo: {fileID: 11400000, guid: c8602bf062c892c408e0fda9b653106f, type: 2}
   player: {fileID: 0}
   doHear: 1
-  agent: {fileID: 0}
-  currentState: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
+  hP: 0
+  currentAnimState: 
+  agent: {fileID: 0}
+  tickManager: {fileID: 0}
+  animController: {fileID: 0}
+  currentState: {fileID: 0}
   wanderingState: {fileID: 0}
   investigatingState: {fileID: 0}
   aggroState: {fileID: 0}
   alertState: {fileID: 0}
   fleeState: {fileID: 0}
   deadState: {fileID: 0}
-  hP: 0
-  tickManager: {fileID: 0}
 --- !u!114 &281219074889939416
 MonoBehaviour:
   m_ObjectHideFlags: 0

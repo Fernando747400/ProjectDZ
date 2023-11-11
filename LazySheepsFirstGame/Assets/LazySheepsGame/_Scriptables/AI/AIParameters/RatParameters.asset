@@ -22,10 +22,11 @@ MonoBehaviour:
   oscillationSpeed: 25
   coneAngle: 100
   heightOffset: {x: 0, y: 0.3, z: 0}
+  alertTime: 5
   maxHp: 1
   attackPower: 1
   attackSpeed: 1.5
-  deAggroDistance: 40
+  deAggroDistance: 10
   circleRadius: 3
   deviationRange: 3
   minActTime: 5

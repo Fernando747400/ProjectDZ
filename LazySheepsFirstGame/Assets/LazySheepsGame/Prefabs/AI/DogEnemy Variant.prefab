@@ -107,31 +107,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.17
+      value: -9.56
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.498
+      value: 0.49800003
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -44.1
+      value: 12.19
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.21782546
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.97598773
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -139,7 +139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 154.837
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -147,8 +147,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938990, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_Name
-      value: DogEnemy Variant
+      value: DogEnemy Variant (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: parameters
+      value: 
+      objectReference: {fileID: 11400000, guid: 20bf2c09fda47634c83e395cd5ad899f, type: 2}
     - target: {fileID: 281219075871051866, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_Name
       value: VFX
@@ -183,7 +187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1157796155901694149, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: animHead
-      value: Hit_Down
+      value: Hit_Up
       objectReference: {fileID: 0}
     - target: {fileID: 1157796155901694149, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: leftSide.x
@@ -219,7 +223,7 @@ PrefabInstance:
       objectReference: {fileID: 3842248523439483285}
     - target: {fileID: 6017015347244132625, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: animConfgs.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6017015347244132625, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: animConfgs.Array.data[0].nameAnim
@@ -247,11 +251,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6017015347244132625, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: animConfgs.Array.data[6].nameAnim
-      value: Hit_Right
+      value: FishAttacK 2
       objectReference: {fileID: 0}
     - target: {fileID: 6017015347244132625, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: animConfgs.Array.data[7].nameAnim
-      value: FishAttacK 2
+      value: Dead
       objectReference: {fileID: 0}
     - target: {fileID: 6017015347244132625, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: animConfgs.Array.data[8].nameAnim
