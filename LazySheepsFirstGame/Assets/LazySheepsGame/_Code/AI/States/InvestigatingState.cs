@@ -19,6 +19,35 @@ public class InvestigatingState : EnemyState
             Controller.ChangeState(Controller.wanderingState);
         }
     }   
+    public override void ExitState()
+    {
+        Controller.agent.speed = Controller.parameters.baseSpeed;
+    }
+    
+    public override void SetAnimation()
+    {
+        var newAnimState = "";
+            
+        switch ( Controller.agent.velocity.magnitude)
+        {
+            case var n when n <= 0.1f:
+                newAnimState = "Idle";
+                break;
+            case var n when n > 0.1f && n <= 2.1f:
+                newAnimState = "Walking";
+                break;
+            case var n when n > 2.1f:
+                newAnimState = "Running";
+                break;
+            default:
+                newAnimState = "Idle";
+                break;
+        }
+
+        if (newAnimState == Controller.currentAnimState) return;
+        Controller.animController.SetAnim(newAnimState);
+        Controller.currentAnimState = newAnimState; // Update the current state
+    }
     
     private void PlayerDetection()
     {
@@ -42,8 +71,4 @@ public class InvestigatingState : EnemyState
         }
     }
 
-    public override void ExitState()
-    {
-        Controller.agent.speed = Controller.parameters.baseSpeed;
-    }
 }

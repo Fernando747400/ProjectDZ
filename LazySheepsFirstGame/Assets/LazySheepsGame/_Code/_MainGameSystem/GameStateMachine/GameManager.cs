@@ -23,7 +23,7 @@ public class GameManager : StateManager<GameStates, GameManager>
         States.Add(GameStates.Tabern, new GameTabernState(GameStates.Tabern, this));
         States.Add(GameStates.Playing, new GamePlayingState(GameStates.Playing, this));
         States.Add(GameStates.Paused, new GamePausedState(GameStates.Paused, this));
-        States.Add(GameStates.Tabern, new GameWonState(GameStates.Won, this));
+        States.Add(GameStates.Won, new GameWonState(GameStates.Won, this));
         States.Add(GameStates.Lost, new GameLostState(GameStates.Lost, this));
 
         CurrentState = States[GameStates.Tabern];

@@ -20,6 +20,12 @@ public class PlayerReferenceInit : MonoBehaviour
         GetReferences();
         LinkReferences();
         _playerReferences.ClearAllReferences();
+        _playerReferences.NewReferenceRaiserChannel.GameObjectEvent += LinkNewReference;
+    }
+
+    private void OnDisable()
+    {
+        _playerReferences.NewReferenceRaiserChannel.GameObjectEvent -= LinkNewReference;
     }
 
     private void GetReferences()
@@ -33,5 +39,13 @@ public class PlayerReferenceInit : MonoBehaviour
         { 
             reference.GetComponent<XRBaseInteractable>().interactionManager = _interactionManager;          
         }
+    }
+
+    private void LinkNewReference(GameObject newReference)
+    {
+        XRBaseInteractable newReferenceInteractable = newReference.GetComponent<XRBaseInteractable>();
+
+        if (newReferenceInteractable == null) return;
+        newReferenceInteractable.interactionManager = _interactionManager;
     }
 }

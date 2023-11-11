@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: WeaponData_Shotgun_02
   m_EditorClassIdentifier: 
   id: Tri-Kamit
-  damage: 35
+  damage: 15
   layerMasks:
     serializedVersion: 2
     m_Bits: 4609
   weaponType: 3
   bulletSpeed: 10
-  maxDistance: 10
-  shootParticle: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+  maxDistance: 3
+  shootParticle: {fileID: 1792092052645256, guid: 0e56aef02a6fcc6408400ea7c75e13a7, type: 3}
   hitParticle: BloodParticle
   cooldownPerShot: 0
   delayReload: 0

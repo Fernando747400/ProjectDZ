@@ -10,21 +10,21 @@ public class GameTabernState : BaseState<GameStates, GameManager>
 
     public override void EnterState()
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
     public override void ExitState()
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
     public override void FixedUpdateState()
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
     public override void UpdateState()
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 }

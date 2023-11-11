@@ -2,6 +2,8 @@
 
 using System;
 using com.LazyGames.Dz;
+using com.LazyGames.DZ;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -16,7 +18,9 @@ namespace com.LazyGames.DZ
     [RequireComponent(typeof(AlertState))]
     [RequireComponent(typeof(FleeState))]
     [RequireComponent(typeof(DeadState))]
-    public class EnemyController : MonoBehaviour, IGeneralTarget, INoiseSensitive
+    
+    
+    public class EnemyController : MonoBehaviour, IGeneralTarget, INoiseSensitive, IGeneralAggressor
     {
         public AiParameters parameters;
         public SceneWallsSO sceneWallsSo;
@@ -25,6 +29,8 @@ namespace com.LazyGames.DZ
         [HideInInspector] public bool doHear = true;
         [HideInInspector] public Vector3 target;
         [HideInInspector] public float hP;
+        [HideInInspector]public string currentAnimState;
+        
         
         # region "Components"
         
@@ -58,7 +64,7 @@ namespace com.LazyGames.DZ
         private void Update()
         {
             currentState.UpdateState();
-            SetMovementAnim();
+            currentState.SetAnimation();
             if (hP > 0) return;
             ChangeState(deadState);
         }
@@ -96,30 +102,15 @@ namespace com.LazyGames.DZ
             hP = parameters.maxHp;
             agent.speed = parameters.baseSpeed;
             agent.stoppingDistance = parameters.circleRadius - .1f;
-            player = GameObject.Find("DummyPlayer");
+            player = GameObject.Find("XR Origin");
         }
-
-        private void SetMovementAnim()
+        
+        public void ReceiveAggression(Vector3 direction, float velocity,float dmg = 0)
         {
-            switch (agent.velocity.magnitude)
-            {
-                case var n when n <= .1f:
-                    animController.SetAnim("DogFishIdle");
-                    break;
-                case var n when n > 0f && n <= 1f:
-                    animController.SetAnim("DogFishRun");
-                    break;
-                // case var n when n > 1f:
-                //     animController.SetAnim("Run");
-                //     break;
-            }
-        }
-
-        public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
-        {
+            if (currentState == deadState) return;
             hP -= dmg;
             OnAnimEvent?.Invoke(direction);
-            Debug.Log("Received damage :" + dmg);
+            // Debug.Log("Received damage :" + dmg);
         }
 
         public void HearNoise(float intensity, Vector3 position, bool dangerous)
@@ -158,6 +149,11 @@ namespace com.LazyGames.DZ
                         break;
                 }
             }
+        }
+
+        public void SendAggression()
+        {
+            Debug.Log("attacked");
         }
     }
 }

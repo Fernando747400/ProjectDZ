@@ -3,26 +3,25 @@ using UnityEngine;
 using com.LazyGames.Dio;
 using Lean.Pool;
 using UnityEngine.Serialization;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace com.LazyGames.DZ
 {
-    public class WeaponObject : WeaponBase, IGeneralAggressor
+    public class WeaponObject : WeaponBase, IGeneralAggressor, INoiseSource
     {
         #region SerializedFields
 
-        [Header("Weapon Object")] [SerializeField]
-        private WeaponData weaponData;
-
+        [Header("Weapon Object")] 
+        [SerializeField] private WeaponData weaponData;
         [SerializeField] private Transform shootPoint;
+        [SerializeField] private GameObject visualWeapon;
 
-        [Header("Input Actions")] [SerializeField]
-        private IntEventChannelSO InputShootActionRight;
-
+        [Header("Input Actions")] 
+        [SerializeField] private IntEventChannelSO InputShootActionRight;
         [SerializeField] private IntEventChannelSO InputShootActionLeft;
 
-        [Header("Hand Object")] [SerializeField]
-        private BoolEventChannelSO isInHandChannel;
-
+        [Header("Hand Object")]
+        [SerializeField] private BoolEventChannelSO isInHandChannel;
         [SerializeField] private HandEventChannelSO handHolderEventSO;
         [SerializeField] private HandHolder currentHandHolding;
 
@@ -35,10 +34,12 @@ namespace com.LazyGames.DZ
         [Header("Reload")]
         [SerializeField] private Animator reloadAnimator;
         [SerializeField] private string animaNeedReloadName = "NeedReload";
-       
-
-        // [Header("Test")] 
-        // [SerializeField] private Transform sphereTarget;
+        
+        [Header("XRGrabInteractable")]
+        [SerializeField] private XRGrabInteractable _grabInteractable;
+        
+        [Header("Noise")]
+        [SerializeField] private NoiseParameters noiseParameters;
 
         #endregion
 
@@ -50,6 +51,9 @@ namespace com.LazyGames.DZ
             protected set => _currentAmmo = value;
         }
         public WeaponData WeaponData => weaponData;
+        public XRGrabInteractable GrabInteractable => _grabInteractable;
+        
+        
         public bool IsHoldingWeapon => _isHoldingWeapon;
 
         #endregion
@@ -58,40 +62,31 @@ namespace com.LazyGames.DZ
         private int _currentAmmo;
         private float _travelTime = 0.3f;
         private Vector3 _hitPosition;
-        private Vector3 _savedFirePosition;
+        private protected Vector3 _savedFirePosition;
         private bool _isHoldingWeapon = false;
         private RaycastHit _simulatedHit;
         private WeaponUI _weaponUI;
         private float _lineRendererMaxDistance = 10f;
-
+        private Rigidbody _rigidbody;
 
         #endregion
 
 
         #region Unity Methods
         
-        private void OnEnable()
+        private void OnDestroy()
         {
-            PrepareAgressor();
-        }
-
-        private void OnDisable()
-        {
-            InputShootActionRight.IntEvent -= (value) =>
-            {
-                HandleShootEvent(value);
-            };
-            InputShootActionLeft.IntEvent -= (value) =>
-            {
-                HandleShootEvent(value);
-            };
+            // Debug.Log("OnDestroy = ".SetColor("#F95342") + weaponData.ID);
             
+            InputShootActionRight.IntEvent -= HandleShootEvent;
+            InputShootActionLeft.IntEvent -= HandleShootEvent;
             isInHandChannel.BoolEvent -= CheckIsInHand;
             handHolderEventSO.HandHolderEvent -= CheckCurrentHandHolder;
         }
 
         private void Start()
         {
+            PrepareAgressor();
             InitializeWeapon();
         }
 
@@ -116,23 +111,36 @@ namespace com.LazyGames.DZ
         #endregion
 
         #region public methods
-        
+
+        public void EnableGrabInteractable(bool value)
+        {
+            _grabInteractable.enabled = value;
+        }
+        public void EnableVisual(bool value)
+        {
+            visualWeapon.SetActive(value);
+        }
         public override void Reload()
         {
             DoReload();
         }
         public override void Shoot()
         {
-            // Debug.Log("Shoot".SetColor("#16CCF5"));
-            _savedFirePosition = shootPoint.transform.position;
+            // Debug.Log("Shoot = ".SetColor("#16CCF5") + weaponData.ID);
             _currentAmmo--;
             _weaponUI.UpdateTextMMO(CurrentAmmo);
             PlayParticleShoot();
-           
+            MakeNoise(noiseParameters, 23, transform.position);
+            // PhysicShoot();
+        }
+
+        public override void PhysicShoot()
+        {
+            _savedFirePosition = shootPoint.transform.position;
             RaycastHit hit;
             if (!Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
             {
-                // Debug.Log("No Hit".SetColor("#F95342"));
+                Debug.Log("No Hit".SetColor("#F95342"));
                 Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.forward * weaponData.MaxDistance, Color.red, 1f);
                 return;
             }
@@ -140,7 +148,6 @@ namespace com.LazyGames.DZ
             _hitPosition = hit.point;
             BulletTravel();
         }
-
         public void PlayAnimsWeapon(string nameAnim)
         {
             reloadAnimator.Play(nameAnim);
@@ -151,11 +158,14 @@ namespace com.LazyGames.DZ
             EnableBeamLaser(false);
             CurrentAmmo = weaponData.MaxAmmo;
 
+            if(_rigidbody == null) _rigidbody = GetComponent<Rigidbody>();
+            if(_grabInteractable ==  null) _grabInteractable = GetComponent<XRGrabInteractable>();
             
-            reloadAnimator = GetComponent<Animator>(); 
+            if(reloadAnimator == null) reloadAnimator = GetComponent<Animator>();
             reloadAnimator.runtimeAnimatorController = weaponData.ReloadAnimator;
             
-            _weaponUI = transform.GetComponent<WeaponUI>();
+            if(_weaponUI == null) _weaponUI = transform.GetComponent<WeaponUI>();
+            
             _weaponUI.UpdateTextMMO(CurrentAmmo);
             _lineRendererMaxDistance = weaponData.MaxDistance;
         }
@@ -166,6 +176,7 @@ namespace com.LazyGames.DZ
         #region private methods
         private void PrepareAgressor()
         {
+            // Debug.Log("PrepareAgressor = ".SetColor("#F1BE50") +  weaponData.ID);
             InputShootActionRight.IntEvent += HandleShootEvent;
             InputShootActionLeft.IntEvent += HandleShootEvent;
             isInHandChannel.BoolEvent += CheckIsInHand;
@@ -180,6 +191,7 @@ namespace com.LazyGames.DZ
            {
                weaponUIGO.SetActive(true);
                EnableBeamLaser(true);
+
            }
            else
            {
@@ -239,7 +251,7 @@ namespace com.LazyGames.DZ
             
         }
         
-        protected virtual void BulletTravel()
+        protected void BulletTravel()
         {
             Vector3 simulatedHitDir = _hitPosition - _savedFirePosition;
             Physics.Raycast(_savedFirePosition, simulatedHitDir.normalized,out _simulatedHit, weaponData.MaxDistance, weaponData.LayerMasks);
@@ -262,11 +274,9 @@ namespace com.LazyGames.DZ
         {
             _weaponUI.NeedReload(true);
             _weaponUI.UpdateTextMMO(CurrentAmmo);
-          
-            // PlayAnimsWeapon(weaponData.AnimationsReloads.Find(x => x.nameAnimation == animaNeedReloadName).nameAnimation);
             PlayAnimsWeapon(animaNeedReloadName);
             
-            Debug.Log("Need Reload".SetColor("#F95342"));
+            // Debug.Log("Need Reload".SetColor("#F95342"));
         }
         private void DoReload()
         {
@@ -305,7 +315,18 @@ namespace com.LazyGames.DZ
         }
         #endregion
 
-        
+
+        public void MakeNoise(NoiseParameters noiseParameters, float velocity, Vector3 position)
+        {
+            Collider[] hits = Physics.OverlapSphere(position, noiseParameters.baseRadius * noiseParameters.loudness, noiseParameters.layerMask);
+            if(hits.Length == 0) return;
+            foreach (var col in hits)
+            {
+                if (!col.gameObject.TryGetComponent<INoiseSensitive>(out var noiseSensitive)) continue;
+                var dist = Vector3.Distance(position, col.transform.position);
+                noiseSensitive.HearNoise(noiseParameters.loudness / dist, position, noiseParameters.dangerous);
+            }
+        }
     }
     
     
