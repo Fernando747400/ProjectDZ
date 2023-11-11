@@ -101,6 +101,21 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
 
 
     #region Public Methods
+    public GameObject GetWeaponObject(string weaponID)
+    {
+        foreach (var weapon in weapons)
+        {
+            if (weapon.WeaponData.ID == weaponID)
+            {
+                if(weapon.gameObject.activeSelf == false)
+                    weapon.gameObject.SetActive(true);
+                
+                return weapon.gameObject;
+            }
+        }
+
+        return null;
+    }
     public void SelectWeapon(string weaponID)
     {
         foreach (var weapon in weapons)
@@ -124,7 +139,14 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
         }
         
     }
-    
+    public void DisableAllWeapons()
+    {
+        foreach (var weapon in weapons)
+        {
+            weapon.gameObject.SetActive(false);
+            weapon.EnableGrabInteractable(false);
+        }
+    }
     public void ResetPlayersPosition()
     {
         transform.parent.position = Vector3.zero;
