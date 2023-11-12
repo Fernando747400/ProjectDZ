@@ -9,6 +9,9 @@ namespace com.LazyGames.DZ
     [CreateAssetMenu(menuName = "LazySheeps/AI/AiParameters")]
     public class AiParameters : ScriptableObject
     {
+        [Header("Economy Variables")] 
+        public int killValue = 1;
+        
         [Header("Perception Variables")] 
         public bool skittish;
         

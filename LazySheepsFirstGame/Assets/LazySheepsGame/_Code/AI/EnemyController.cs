@@ -2,12 +2,9 @@
 
 using System;
 using com.LazyGames.Dz;
-using com.LazyGames.DZ;
-using UnityEditor;
+using com.LazyGames.Dio;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
 
 namespace com.LazyGames.DZ
 {
@@ -22,6 +19,9 @@ namespace com.LazyGames.DZ
     
     public class EnemyController : MonoBehaviour, IGeneralTarget, INoiseSensitive, IGeneralAggressor
     {
+        
+        public IntEventChannelSO onDeathScriptableChannel;
+        
         public AiParameters parameters;
         public SceneWallsSO sceneWallsSo;
 
