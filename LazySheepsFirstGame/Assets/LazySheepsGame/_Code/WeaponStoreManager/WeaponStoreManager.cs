@@ -9,7 +9,7 @@ public class WeaponStoreManager : MonoBehaviour
 {
     [SerializeField] private GenericDataEventChannelSO weaponSelectChannel;
     [SerializeField] private List<WeaponData> weaponsData;
-    [SerializeField] private List<GameObject> weaponsVisuals;
+    // [SerializeField] private List<GameObject> weaponsVisuals;
     [SerializeField] private Transform weaponShowPosition;
     
     void Start()
@@ -30,11 +30,12 @@ public class WeaponStoreManager : MonoBehaviour
         var weaponData = weaponsData.Find(x => x.ID == weaponID);
         if (weaponData != null)
         {
-            if (CurrencyManager.Instance.TryBuy(weaponData.Cost))
+            if (CurrencyManager.Instance.TryBuy(weaponData.CurrencyData))
             {
                 GameObject weapon = PlayerManager.Instance.GetWeaponObject(weaponData.ID);
                 PlayerManager.Instance.DisableAllWeapons();
                 weapon.transform.position = weaponShowPosition.position;
+                
                 // weaponSelectChannel.RaiseStringEvent(weaponID);
             }
             
