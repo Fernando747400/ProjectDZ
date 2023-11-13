@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb57d248ac16fc45bc260c009943c63, type: 3}
   m_Name: RatParameters
   m_EditorClassIdentifier: 
+  killValue: 0
   skittish: 1
   baseSpeed: 2
   alertSpeed: 4
@@ -22,10 +23,11 @@ MonoBehaviour:
   oscillationSpeed: 25
   coneAngle: 100
   heightOffset: {x: 0, y: 0.3, z: 0}
+  alertTime: 5
   maxHp: 1
   attackPower: 1
   attackSpeed: 1.5
-  deAggroDistance: 40
+  deAggroDistance: 10
   circleRadius: 3
   deviationRange: 3
   minActTime: 5

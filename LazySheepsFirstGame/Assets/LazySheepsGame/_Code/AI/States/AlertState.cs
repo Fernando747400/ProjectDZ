@@ -51,7 +51,9 @@ namespace com.LazyGames.DZ
             var rayDirection = Quaternion.Euler(0, oscillationAngle, 0) * transform.forward;
             var pos = transform.position;
             Physics.Raycast(pos + Controller.parameters.heightOffset, rayDirection, out var hit, Controller.parameters.softDetectionRange, Physics.DefaultRaycastLayers);
-
+            
+            Debug.DrawRay(pos + Controller.parameters.heightOffset, rayDirection * Controller.parameters.softDetectionRange, Color.red);
+            
             if (!ReferenceEquals(hit.collider, null))
             {
                 if (hit.collider.CompareTag("Player"))

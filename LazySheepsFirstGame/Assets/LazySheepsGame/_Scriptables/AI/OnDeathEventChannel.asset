@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3e849d3bde08af4c8080819faae58de, type: 3}
-  m_Name: BulletImpact Noise Parameters
+  m_Script: {fileID: 11500000, guid: e5c88ed1112d9e3428aeb73178bd2eca, type: 3}
+  m_Name: OnDeathEventChannel
   m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  baseRadius: 1
-  loudness: 4
-  dangerous: 1
