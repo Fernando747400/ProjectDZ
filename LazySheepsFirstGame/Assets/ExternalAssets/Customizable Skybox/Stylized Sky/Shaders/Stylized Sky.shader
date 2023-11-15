@@ -35,7 +35,9 @@
         {
             CGPROGRAM
             #pragma vertex vert
+            #pragma exclude_renderers gles xbox360 ps3
             #pragma fragment frag
+            #pragma multi_compile_instancing
 
             #include "UnityCG.cginc"
             
@@ -58,21 +60,22 @@
             struct appdata
             {
                 float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
             };
 
             struct v2f
             {
-                float4 vertex : SV_POSITION;
-                float2 uv : TEXCOORD0;
+                
+                float4 pos : POSITION;
+                float4 stereoPos : TEXCOORD0;
                 float3 worldPosition : TEXCOORD1;
             };
 
             v2f vert (appdata v)
             {
                 v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                UNITY_SETUP_INSTANCE_ID(v);
+                o.pos =  UnityObjectToClipPos(v.vertex);
+                o.stereoPos = ComputeGrabScreenPos(o.pos);
                 o.worldPosition = mul(unity_ObjectToWorld, v.vertex).xyz;
                 return o;
             }
