@@ -8311,6 +8311,7 @@ MonoBehaviour:
   weaponsData:
   - {fileID: 11400000, guid: ee54a6c4ce24c80409600d56311189e7, type: 2}
   - {fileID: 11400000, guid: 8a6ea979d3d5bcd43814fbd3f89ebec6, type: 2}
+  weaponsVisuals: []
   weaponShowPosition: {fileID: 1322811741}
 --- !u!1001 &2099672392
 PrefabInstance:
@@ -8374,52 +8375,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5631283887419172339, guid: 005234f71e8c74d40b3d0effaa745e7f, type: 3}
   m_PrefabInstance: {fileID: 2099672392}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2114750782
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2114750783}
-  - component: {fileID: 2114750784}
-  m_Layer: 0
-  m_Name: Currency Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2114750783
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2114750782}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2114750784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2114750782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b351fd9e8dcdd54c8953d3b6f3bbd9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currencyData: {fileID: 11400000, guid: 72378a94e840d1a468c9f2092bebfd1a, type: 2}
-  currentCurrency: 0
 --- !u!1 &2127756839
 GameObject:
   m_ObjectHideFlags: 0
