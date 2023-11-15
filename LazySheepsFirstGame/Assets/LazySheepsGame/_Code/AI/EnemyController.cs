@@ -2,12 +2,9 @@
 
 using System;
 using com.LazyGames.Dz;
-using com.LazyGames.DZ;
-using UnityEditor;
+using com.LazyGames.Dio;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
 
 namespace com.LazyGames.DZ
 {
@@ -22,6 +19,9 @@ namespace com.LazyGames.DZ
     
     public class EnemyController : MonoBehaviour, IGeneralTarget, INoiseSensitive, IGeneralAggressor
     {
+        
+        public IntEventChannelSO onDeathScriptableChannel;
+        
         public AiParameters parameters;
         public SceneWallsSO sceneWallsSo;
 
@@ -109,14 +109,17 @@ namespace com.LazyGames.DZ
         {
             if (currentState == deadState) return;
             hP -= dmg;
+            doHear = false;
+            target = direction;
             OnAnimEvent?.Invoke(direction);
+            ChangeState(alertState);
             // Debug.Log("Received damage :" + dmg);
         }
 
         public void HearNoise(float intensity, Vector3 position, bool dangerous)
         {
             if (!doHear) return;
-            Debug.Log($"{gameObject.name} heard a noise of intensity {intensity}");
+            // Debug.Log($"{gameObject.name} heard a noise of intensity {intensity}");
             if (parameters.skittish)
             {
                 if(intensity < .1f) return;

@@ -13,6 +13,7 @@ namespace com.LazyGames.DZ
         {
             Controller.agent.speed = 0;
             Controller.doHear = false;
+            Controller.onDeathScriptableChannel.RaiseEvent(Controller.parameters.killValue);
         }
         
         public override void UpdateState()

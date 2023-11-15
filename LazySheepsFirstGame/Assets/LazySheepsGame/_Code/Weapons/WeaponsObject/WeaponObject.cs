@@ -169,7 +169,11 @@ namespace com.LazyGames.DZ
             _weaponUI.UpdateTextMMO(CurrentAmmo);
             _lineRendererMaxDistance = weaponData.MaxDistance;
         }
-        
+
+        public void MakeWeaponStatic(bool value)
+        {
+            _rigidbody.isKinematic = value;
+        }
         #endregion
 
         
@@ -191,6 +195,7 @@ namespace com.LazyGames.DZ
            {
                weaponUIGO.SetActive(true);
                EnableBeamLaser(true);
+               MakeWeaponStatic(false);
 
            }
            else

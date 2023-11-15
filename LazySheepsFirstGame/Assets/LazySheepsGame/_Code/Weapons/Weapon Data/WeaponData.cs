@@ -19,8 +19,8 @@ namespace com.LazyGames
         [SerializeField] private RuntimeAnimatorController reloadAnimator;
         [SerializeField] private List<AnimationsReloads> animationsReloads;
         
-        [Header("Cost")]
-        [SerializeField] private int cost;
+        [Header("Currency Data")]
+        [SerializeField] private CurrencyData currencyData;
 
         #region public variables
 
@@ -35,7 +35,9 @@ namespace com.LazyGames
         {
             get => maxDistance;
         }
-        public int Cost => cost;
+        
+        public CurrencyData CurrencyData => currencyData;
+        public float CooldownPerShot => cooldownPerShot;
 
         public GameObject ShootParticle => shootParticle;
         // public string HitParticle => hitParticle;

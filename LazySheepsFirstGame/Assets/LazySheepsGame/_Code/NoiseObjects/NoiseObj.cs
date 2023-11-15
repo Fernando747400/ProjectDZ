@@ -34,7 +34,7 @@ public class NoiseObj : MonoBehaviour, INoiseSource
 
     private void Prepare()
     {
-        _rb = GetComponent<Rigidbody>();
+        _rb = GetComponentInChildren<Rigidbody>();
     }
 
     public void MakeNoise(NoiseParameters noiseParameters, float velocity, Vector3 position)

@@ -5,63 +5,106 @@ using com.LazyGames;
 using com.LazyGames.Dio;
 using UnityEngine;
 
-public class CurrencyManager : MonoBehaviour
+public class CurrencyManager : ManagerBase
 {
-    [SerializeField] private CurrencyData currencyData;
-    [SerializeField] private int currentCurrency;
+    [Header("Currency")]
+    [SerializeField] private AddCurrencyEventChannel addCurrencyEventChannel;
+    [SerializeField] private RemoveCurrencyEventChannel removeCurrencyEventChannel;
     
-    public static CurrencyManager Instance;
-    public int CurrentCurrency
+    private int _currentCurrency;
+    public static CurrencyManager Instance
     {
         get
         {
-            return currentCurrency;
-        }
-        set
-        {
-            currentCurrency = value;
+            
+            if (_instance != null) return _instance;
+            
+            var singletonObject = new GameObject(); 
+            _instance = singletonObject.AddComponent<CurrencyManager>(); 
+            singletonObject.name = typeof(CurrencyManager).ToString(); 
+            DontDestroyOnLoad(singletonObject);
 
+            return _instance;
+           
         }
     }
+    public int CurrentCurrency
+    {
+        get { return _currentCurrency; }
+        
+        protected set { _currentCurrency = value; }
+    }
 
+    
+    private static CurrencyManager _instance;
 
     private void OnDisable()
     {
-    }
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-    }
-
-    void Start()
-    {
-        currentCurrency = currencyData.InitialCurrency;
+        addCurrencyEventChannel.AddCurrencyEvent -= AddCurrency;
+        removeCurrencyEventChannel.RemoveCurrencyEvent -= RemoveCurrency;
     }
     
-   public void AddCurrency(int currency)
+    private void Start()
+    {
+        addCurrencyEventChannel.AddCurrencyEvent += AddCurrency;
+        removeCurrencyEventChannel.RemoveCurrencyEvent += RemoveCurrency;
+    }
+    
+   public void AddCurrency(CurrencyData currencyData)
    {
-       currentCurrency += currency; 
-   }
-   public void RemoveCurrency(int currency)
-   {
-       currentCurrency -= currency;
+       _currentCurrency += currencyData.ValueCurrency;
    }
    
-   public bool TryBuy(int price)
-   { 
-       if (currentCurrency >= price)
+   public void RemoveCurrency(CurrencyData currencyData)
+   {
+       _currentCurrency -= currencyData.ValueCurrency;
+   }
+  
+   public bool TryBuy(CurrencyData currencyData)
+   {
+       switch (currencyData.CurrencyType)
        {
-           RemoveCurrency(price);
-           return true;
-       } 
+           case CurrencyType.Iron:
+               if (_currentCurrency >= currencyData.ValueCurrency)
+               {
+                   RemoveCurrency(currencyData);
+                   return true;
+               }
+               break;
+       }
+       // if (_currentCurrency >= currencyData.ValueCurrency)
+       // {
+       //     RemoveCurrency(currencyData);
+       //     return true;
+       // }
+       
        return false;
    }
+
+   private void CreateInstance()
+   {
+         if (_instance != null)
+         {
+              Destroy(gameObject);
+              return;
+         }
+         _instance = this;
+   }
    
+
+   #region ManagerBase
    
-   
+    public override void Init()
+    {
+        if (FinishedLoading) return;
+        CreateInstance();
+        FinishedLoading = true;
+        FinishLoading?.Invoke();
+        
+        Debug.Log("CurrencyManager Initialized");
+        
+    }
+
+   #endregion
 }
 

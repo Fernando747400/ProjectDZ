@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class PlayerManager : MonoBehaviour, IGeneralTarget
+public class PlayerManager : ManagerBase, IGeneralTarget
 {
     private static PlayerManager _instance;
     
@@ -17,16 +17,18 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
 
         get
         {
+
+            if (_instance != null) return _instance;
+             
+            var singletonObject = new GameObject(); 
+            _instance = singletonObject.AddComponent<PlayerManager>(); 
+            singletonObject.name = typeof(PlayerManager).ToString(); 
+            DontDestroyOnLoad(singletonObject);
+            
             if (_instance == null)
             {
                 _instance = FindObjectOfType<PlayerManager>();
-                if (_instance == null)
-                {
-                    var singletonObject = new GameObject();
-                    _instance = singletonObject.AddComponent<PlayerManager>();
-                    singletonObject.name = typeof(PlayerManager).ToString();
-                    DontDestroyOnLoad(singletonObject);
-                }
+                
             }
 
             return _instance;
@@ -54,6 +56,12 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
     [Header("Weapon ID Channel")]
     [SerializeField] private GenericDataEventChannelSO weaponSelectChannel;
     
+    
+    [Header("Currency")]
+    [SerializeField] private GenericDataEventChannelSO onDeathEnemyChannel;
+    [SerializeField] private AddCurrencyEventChannel addCurrencyEventChannel;
+    [SerializeField] private CurrencyData enemyCurrencyData;
+    
     #endregion
 
 
@@ -64,11 +72,7 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
     #endregion
 
     #region Unity Methods
-    private void Awake()
-    {
-       CreateInstance();
-    }
-
+   
     private void OnDisable()
     {
         weaponSelectChannel.StringEvent -= SelectWeapon;
@@ -96,6 +100,7 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
         currentWeaponData = weapons[0].WeaponData;
         SelectWeapon(currentWeaponData.ID); 
         weaponSelectChannel.StringEvent += SelectWeapon;
+        onDeathEnemyChannel.IntEvent += OnKilledEnemy;
     }
     #endregion
 
@@ -154,8 +159,41 @@ public class PlayerManager : MonoBehaviour, IGeneralTarget
 
     #endregion
 
+    #region private Methods
+
+    private void OnKilledEnemy(int currency)
+    {
+        //Add if player needs to do something after killing enemy
+        
+        enemyCurrencyData.ValueCurrency = currency;
+        addCurrencyEventChannel.RaiseAddCurrencyEvent(enemyCurrencyData);
+        
+    }
+    
+
+    #endregion
+    
+    #region IGeneralTarget
     public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
     {
         
     }
+    #endregion
+
+
+    #region Manager Base
+    public override void Init()
+    {
+        if (FinishedLoading) return;
+        CreateInstance();
+        FinishedLoading = true;
+        FinishLoading?.Invoke();
+        
+        Debug.Log("PlayerManager Initialized");
+        
+    }
+
+    #endregion
+    
+
 }

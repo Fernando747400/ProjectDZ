@@ -30,9 +30,8 @@ namespace com.LazyGames.DZ
             {
                 Controller.agent.SetDestination(CryoMath.PointOnRadius(transform.position, Controller.parameters.circleRadius, _angleToSource));
             }
-            if (_distanceToSource <= Controller.parameters.deAggroDistance) return;
+            if (_distanceToSource <= Controller.parameters.deAggroDistance - Controller.parameters.circleRadius) return;
             Controller.ChangeState(Controller.wanderingState);
-            
         }
 
         public override void ExitState()
