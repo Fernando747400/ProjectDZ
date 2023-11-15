@@ -38,15 +38,10 @@ public class LevelGeneratorManager : ManagerBase
 
     void Awake()
     {
-        if (Instance == null || Instance != this)
-        {
-            Instance = this;
-        }else if (Instance == this)
-        {
-            Destroy(gameObject);
-        }
+        
     }
 
+   
     void Start()
     {
         Debug.Log("LevelGeneratorManager Started".SetColor("#CFD93C"));
@@ -139,6 +134,31 @@ public class LevelGeneratorManager : ManagerBase
         return null;
     }
     
+    private void CreateInstance()
+    {
+        if (Instance == null || Instance != this)
+        {
+            Instance = this;
+        }else if (Instance == this)
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+    
+    #region ManagerBase
+   
+    public override void Init()
+    {
+        if (FinishedLoading) return;
+        CreateInstance();
+        FinishedLoading = true;
+        FinishLoading?.Invoke();
+        
+        Debug.Log("Level Generator Initialized");
+        
+    }
+
     #endregion
     
     

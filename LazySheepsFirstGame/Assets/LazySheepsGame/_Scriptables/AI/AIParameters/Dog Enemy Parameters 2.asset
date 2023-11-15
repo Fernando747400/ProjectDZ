@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb57d248ac16fc45bc260c009943c63, type: 3}
+  m_Name: Dog Enemy Parameters 2
+  m_EditorClassIdentifier: 
+  killValue: 10
+  skittish: 0
+  baseSpeed: 2
+  alertSpeed: 4
+  aggroSpeed: 6
+  fleeSpeed: 8
+  softDetectionRange: 20
+  hardDetectionRange: 8
+  oscillationSpeed: 15
+  coneAngle: 100
+  heightOffset: {x: 0, y: 0.5, z: 0}
+  alertTime: 5
+  maxHp: 10
+  attackPower: 1
+  attackSpeed: 1.5
+  deAggroDistance: 10
+  circleRadius: 3
+  deviationRange: 3
+  minActTime: 30
+  maxActTime: 30

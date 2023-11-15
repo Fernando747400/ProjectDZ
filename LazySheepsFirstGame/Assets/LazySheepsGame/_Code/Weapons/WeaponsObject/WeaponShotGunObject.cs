@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using com.LazyGames;
 using com.LazyGames.DZ;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class WeaponShotGunObject : WeaponObject
    #region Serialized Fields
 
    [Header("ShotGun Object")]
-   [SerializeField] private int positionShoots = 3;
+   [SerializeField] private List<Transform> positionShoots = new List<Transform>();
    [SerializeField] private InteractorVectorReloadWeapon interactorVectorReloadWeapon;
    [SerializeField] private string animaReloadName = "Reload";
    [SerializeField] private float velocityTarget = 0.5f;
@@ -51,19 +52,37 @@ public class WeaponShotGunObject : WeaponObject
    public override void Shoot()
    {
       base.Shoot();
-      // Debug.Log("Shoot ShotGun");
+      Debug.Log("Shoot ShotGun".SetColor("#6BE720"));
+      ShotGunShoot(positionShoots);
+
    }
-   
+
+   public override void PhysicShoot()
+   {
+      base.PhysicShoot();
+      Debug.Log("Shoot ShotGun".SetColor(""));
+
+   }
+
    public override void Reload()
    {
       base.Reload();
       PlayAnimsWeapon(animaReloadName);
-      // Debug.Log("Reload ShotGun");
+      Debug.Log("Reload ShotGun");
    }
    #endregion
    
    #region private methods
-    
+
+   private void ShotGunShoot(List<Transform> transforms)
+   {
+      foreach (var pos in transforms)
+      {
+         _savedFirePosition = pos.position;
+         PhysicShoot();
+      }
+   }
+   
    private void OnHoveredWeaponEnter(Vector3 position)
    {
       if(!IsHoldingWeapon) return;

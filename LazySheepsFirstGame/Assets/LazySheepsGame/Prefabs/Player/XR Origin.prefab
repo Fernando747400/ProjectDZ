@@ -3467,6 +3467,9 @@ MonoBehaviour:
   leftHandAttachPoint: {fileID: 5677170550083725992}
   currentWeaponData: {fileID: 0}
   weapons: []
+  holsterWeapons: {fileID: 5987157608870207407}
+  socketInteractorWeapon: {fileID: 5987157608870207395}
+  weaponSelectChannel: {fileID: 11400000, guid: 6a2bcbeed6654154ba7a0e506bfdbd6d, type: 2}
 --- !u!1001 &878043716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3746,9 +3749,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
+--- !u!114 &5987157608870207395 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6063023293893065850, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
+  m_PrefabInstance: {fileID: 518625958498296793}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5987157608870207396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60523e0647cc6ab43acc73cb266a32a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5987157608870207396 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6063023293893065853, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
+  m_PrefabInstance: {fileID: 518625958498296793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5987157608870207407 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6063023293893065846, guid: d5e321ee969d242439cdfdea99cba470, type: 3}
   m_PrefabInstance: {fileID: 518625958498296793}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &518625958765537178
