@@ -8,6 +8,7 @@ public abstract class WeaponBase : MonoBehaviour
     public abstract void InitializeWeapon();
     public abstract void Reload();
     public abstract void Shoot();
-    
-    
+    public abstract void PhysicShoot();
+
+
 }
