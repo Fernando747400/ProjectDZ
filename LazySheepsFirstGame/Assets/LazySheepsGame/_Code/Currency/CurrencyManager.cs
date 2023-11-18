@@ -11,7 +11,10 @@ public class CurrencyManager : ManagerBase
     [SerializeField] private AddCurrencyEventChannel addCurrencyEventChannel;
     [SerializeField] private RemoveCurrencyEventChannel removeCurrencyEventChannel;
     
+    [SerializeField] private int initialCurrency = 5000;
+    
     private int _currentCurrency;
+    private AddCurrencyEventChannel AddCurrencyChannel => addCurrencyEventChannel;
     public static CurrencyManager Instance
     {
         get
@@ -22,6 +25,8 @@ public class CurrencyManager : ManagerBase
             var singletonObject = new GameObject(); 
             _instance = singletonObject.AddComponent<CurrencyManager>(); 
             singletonObject.name = typeof(CurrencyManager).ToString(); 
+            _instance.addCurrencyEventChannel = Resources.Load<AddCurrencyEventChannel>("Assets/LazySheepsGame/_Scriptables/Currency/AddCurrencyEventChannel");
+            _instance.removeCurrencyEventChannel = Resources.Load<RemoveCurrencyEventChannel>("Assets/LazySheepsGame/_Scriptables/Currency/RemoveCurrencyEventChannel");
             DontDestroyOnLoad(singletonObject);
 
             return _instance;
@@ -46,8 +51,15 @@ public class CurrencyManager : ManagerBase
     
     private void Start()
     {
+        InitializeStore();
+    }
+
+    public void InitializeStore()
+    {
         addCurrencyEventChannel.AddCurrencyEvent += AddCurrency;
         removeCurrencyEventChannel.RemoveCurrencyEvent += RemoveCurrency;
+        
+        CurrentCurrency = initialCurrency;
     }
     
    public void AddCurrency(CurrencyData currencyData)
@@ -90,6 +102,8 @@ public class CurrencyManager : ManagerBase
          }
          _instance = this;
    }
+   
+   
    
 
    #region ManagerBase
