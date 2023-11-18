@@ -58,9 +58,9 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     
     
     [Header("Currency")]
-    [SerializeField] private GenericDataEventChannelSO onDeathEnemyChannel;
+    [SerializeField] private IntEventChannelSO onDeathEnemyChannel;
     [SerializeField] private AddCurrencyEventChannel addCurrencyEventChannel;
-    [SerializeField] private CurrencyData enemyCurrencyData;
+    
     
     #endregion
 
@@ -98,7 +98,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     private void InitializePlayer()
     {
         currentWeaponData = weapons[0].WeaponData;
-        SelectWeapon(currentWeaponData.ID); 
+        // SelectWeapon(currentWeaponData.ID); 
         weaponSelectChannel.StringEvent += SelectWeapon;
         onDeathEnemyChannel.IntEvent += OnKilledEnemy;
     }
@@ -164,7 +164,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     private void OnKilledEnemy(int currency)
     {
         //Add if player needs to do something after killing enemy
-        
+        CurrencyData enemyCurrencyData = new CurrencyData();
         enemyCurrencyData.ValueCurrency = currency;
         addCurrencyEventChannel.RaiseAddCurrencyEvent(enemyCurrencyData);
         
