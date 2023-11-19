@@ -88,7 +88,7 @@ namespace com.LazyGames
         #region private methods
         private void Initialized()
         {
-            EnemyCoreState = EnemyCoreState.Idle;
+            EnemyCoreState = EnemyCoreState.BlockedCore;
             enemyCoreUI.SetMaxValue(enemyCoreData.TimerLifeCoreSec);
             // SetTimers();
         }
@@ -143,7 +143,7 @@ namespace com.LazyGames
         {
             switch (EnemyCoreState)
             {
-                case EnemyCoreState.Idle:
+                case EnemyCoreState.BlockedCore:
                     // enemyCoreUI.EnableLifeTimeUI(false);
                     break;
                 case EnemyCoreState.WaveDelay:
@@ -167,7 +167,7 @@ namespace com.LazyGames
   public enum EnemyCoreState
   {
       None,
-      Idle,
+      BlockedCore,
       WaveDelay,
       Destroyed
       
