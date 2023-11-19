@@ -335,7 +335,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &6244903019882391465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,6 +745,22 @@ PrefabInstance:
     - target: {fileID: 3392931163640755147, guid: 716fe504ae958cb45ab39276aea1140c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: com.LazyGames.WeaponData, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578393721264315854, guid: 716fe504ae958cb45ab39276aea1140c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578393721264315854, guid: 716fe504ae958cb45ab39276aea1140c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578393721264315854, guid: 716fe504ae958cb45ab39276aea1140c, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5661814839252041404, guid: 716fe504ae958cb45ab39276aea1140c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 716fe504ae958cb45ab39276aea1140c, type: 3}
