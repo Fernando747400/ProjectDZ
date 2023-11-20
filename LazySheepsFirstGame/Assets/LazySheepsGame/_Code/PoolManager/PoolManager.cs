@@ -22,8 +22,8 @@ namespace com.LazyGames.DZ
                 {
                     var singletonObject = new GameObject();
                     _instance = singletonObject.AddComponent<PoolManager>();
-                    singletonObject.name = typeof(PoolManager).ToString();
-                    _instance.poolManagerData = Resources.Load<PoolManagerData>("LazySheepsGame/_Scriptables/Pools/PoolManagerData");
+                    singletonObject.name = "PoolManager";
+                    _instance.poolManagerData = Resources.Load("PoolManagerData") as PoolManagerData;
                     _instance.InitManager();
                     
                     DontDestroyOnLoad(singletonObject);
