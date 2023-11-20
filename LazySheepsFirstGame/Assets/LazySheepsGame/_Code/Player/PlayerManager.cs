@@ -98,7 +98,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     private void InitializePlayer()
     {
         currentWeaponData = weapons[0].WeaponData;
-        // SelectWeapon(currentWeaponData.ID); 
+        SelectWeapon(currentWeaponData.ID); 
         weaponSelectChannel.StringEvent += SelectWeapon;
         onDeathEnemyChannel.IntEvent += OnKilledEnemy;
     }
@@ -150,6 +150,21 @@ public class PlayerManager : ManagerBase, IGeneralTarget
         {
             weapon.gameObject.SetActive(false);
             weapon.EnableGrabInteractable(false);
+        }
+    }
+    public void EnableWeapon(string weaponID)
+    {
+        foreach (var weapon in weapons)
+        {
+            if (weapon.WeaponData.ID == weaponID)
+            {
+                weapon.gameObject.SetActive(true);
+                weapon.EnableGrabInteractable(true);
+                // weapon.InitializeWeapon();
+                // currentWeaponData = weapon.WeaponData;
+                
+                Debug.Log("Select Weapon: ".SetColor("#87E720") + weaponID);
+            }
         }
     }
     public void ResetPlayersPosition()

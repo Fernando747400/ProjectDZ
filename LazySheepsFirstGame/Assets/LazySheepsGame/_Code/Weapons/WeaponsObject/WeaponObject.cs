@@ -40,6 +40,9 @@ namespace com.LazyGames.DZ
         
         [Header("Noise")]
         [SerializeField] private NoiseParameters noiseParameters;
+        
+        [Header("Weapon Store")]
+        [SerializeField] private GenericDataEventChannelSO onGrabWeaponFromStoreChannel;
 
         #endregion
 
@@ -52,6 +55,7 @@ namespace com.LazyGames.DZ
         }
         public WeaponData WeaponData => weaponData;
         public XRGrabInteractable GrabInteractable => _grabInteractable;
+        public Rigidbody Rigidbody => _rigidbody;
         
         
         public bool IsHoldingWeapon => _isHoldingWeapon;
@@ -193,6 +197,12 @@ namespace com.LazyGames.DZ
            
            if (_isHoldingWeapon)
            {
+               if (_rigidbody.isKinematic)
+               {
+                   _rigidbody.isKinematic = false;
+                   onGrabWeaponFromStoreChannel.RaiseStringEvent(weaponData.ID);
+               }
+               
                weaponUIGO.SetActive(true);
                EnableBeamLaser(true);
                MakeWeaponStatic(false);
@@ -210,15 +220,6 @@ namespace com.LazyGames.DZ
         private void CheckCurrentHandHolder(HandHolder handHolder)
         {
             currentHandHolding = handHolder;
-
-            // if (currentHandHolding == HandHolder.HandLeft)
-            // {
-            //     // transform.SetParent(PlayerManager.Instance.LeftHandAttachPoint);
-            // }else
-            // if (currentHandHolding == HandHolder.HandRight)
-            // {
-            //     // transform.SetParent(PlayerManager.Instance.RightHandAttachPoint);
-            // }
             
         }
         private void HandleShootEvent(int value)

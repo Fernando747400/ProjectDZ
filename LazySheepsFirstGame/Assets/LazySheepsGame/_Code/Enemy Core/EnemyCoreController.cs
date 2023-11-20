@@ -18,6 +18,7 @@ namespace com.LazyGames
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private GameObject ringVisual;
         [SerializeField] private ParticleSystem explosionParticle;
+        [SerializeField] private GameObject barrierVisual;
         
         [Header("UI")]
         [SerializeField] private EnemyCoreUI enemyCoreUI;
@@ -45,6 +46,11 @@ namespace com.LazyGames
         
         #endregion
 
+        #region public variables
+        public EnemyCoreData EnemyCoreData => enemyCoreData;
+
+        #endregion
+        
         #region unity methods
 
         private void Start()
@@ -80,6 +86,10 @@ namespace com.LazyGames
 
         #region public methods
 
+        public void BarrierDestroyed()
+        {
+            barrierVisual.SetActive(false);
+        }
        
       
         
