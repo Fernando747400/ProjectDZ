@@ -1,3 +1,4 @@
+using System;
 using Autohand;
 using com.LazyGames;
 using com.LazyGames.Dio;
@@ -10,7 +11,6 @@ using NaughtyAttributes;
 public class ObjectInHand : MonoBehaviour
 {
     [Header("Dependencies")]
-    // [SerializeField] private XRGrabInteractable xrGrabInteractable;
     [SerializeField] private Grabbable autoHandGrabbable;
     [SerializeField] private BoolEventChannelSO isInHandChannel;
     [SerializeField] private bool _holdEventActive;
@@ -18,6 +18,12 @@ public class ObjectInHand : MonoBehaviour
     [SerializeField] private HandEventChannelSO handHolderEventSO;
 
     private void OnEnable()
+    {
+        // autoHandGrabbable.OnGrabEvent += GrabbedObject;
+        // autoHandGrabbable.OnReleaseEvent += DroppedObject;
+    }
+
+    private void Start()
     {
         autoHandGrabbable.OnGrabEvent += GrabbedObject;
         autoHandGrabbable.OnReleaseEvent += DroppedObject;
@@ -38,7 +44,7 @@ public class ObjectInHand : MonoBehaviour
             
             if (handHolderEventSO != null) handHolderEventSO.RaiseEvent(GetHandHolder(hand));
             
-            Debug.Log("Object ".SetColor("#F5DD16")+ transform.name +  " Grabbed by =".SetColor("#F5DD16") + GetHandHolder(hand));
+            // Debug.Log("Object ".SetColor("#F5DD16")+ transform.name +  " Grabbed by =".SetColor("#F5DD16") + GetHandHolder(hand));
         }
         
         
@@ -51,7 +57,7 @@ public class ObjectInHand : MonoBehaviour
         {
             isInHandChannel.RaiseEvent(false);
             if (handHolderEventSO != null) handHolderEventSO.RaiseEvent(GetHandHolder(hand));
-            Debug.Log("Object ".SetColor("#F5DD16") + transform.name + " Dropped by =".SetColor("#F5DD16") + GetHandHolder(hand));
+            // Debug.Log("Object ".SetColor("#F5DD16") + transform.name + " Dropped by =".SetColor("#F5DD16") + GetHandHolder(hand));
 
         }
     }

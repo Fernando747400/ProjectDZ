@@ -5,8 +5,6 @@ using com.LazyGames;
 using com.LazyGames.Dio;
 using com.LazyGames.DZ;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class PlayerManager : ManagerBase, IGeneralTarget
 {
@@ -39,23 +37,24 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     #region Serialized Fields
 
 
-    [Header("Right Hand")]
-    [SerializeField] private Transform rightHandAttachPoint;
+    // [Header("Right Hand")]
+    // [SerializeField] private Transform rightHandAttachPoint;
     
-    [Header("Left Hand")]
-    [SerializeField] private Transform leftHandAttachPoint;
+    // [Header("Left Hand")]
+    // [SerializeField] private Transform leftHandAttachPoint;
 
+    [Header("Player")]
+    [SerializeField] int playerHealth = 100;
+    
     [Header("Weapons")] 
     [SerializeField] private WeaponData currentWeaponData;
     [SerializeField] private List<WeaponObject> weapons;
-    [SerializeField] private Transform holsterWeapons;
-    
-    [Header("Holster")]
-    [SerializeField] private XRSocketInteractor socketInteractorWeapon;
+    [SerializeField] private Transform playerHolsterWeapon;
+    // [Header("Holster")]
+    // [SerializeField] private XRSocketInteractor socketInteractorWeapon;
     
     [Header("Weapon ID Channel")]
     [SerializeField] private GenericDataEventChannelSO weaponSelectChannel;
-    
     
     [Header("Currency")]
     [SerializeField] private IntEventChannelSO onDeathEnemyChannel;
@@ -64,18 +63,22 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     
     #endregion
 
+    #region private Variables
+    private int _currentHealth;
+
+    #endregion
 
     #region public Variables
 
-    public Transform RightHandAttachPoint => rightHandAttachPoint;
-    public Transform LeftHandAttachPoint => leftHandAttachPoint;
+    // public Transform RightHandAttachPoint => rightHandAttachPoint;
+    // public Transform LeftHandAttachPoint => leftHandAttachPoint;
     #endregion
 
     #region Unity Methods
    
     private void OnDisable()
     {
-        weaponSelectChannel.StringEvent -= SelectWeapon;
+        weaponSelectChannel.StringEvent -= SelectWeaponPlayerHolster;
     }
 
     void Start()
@@ -97,10 +100,13 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     
     private void InitializePlayer()
     {
-        currentWeaponData = weapons[0].WeaponData;
-        SelectWeapon(currentWeaponData.ID); 
-        weaponSelectChannel.StringEvent += SelectWeapon;
+        _currentHealth = playerHealth;
+        weaponSelectChannel.StringEvent += SelectWeaponPlayerHolster;
         onDeathEnemyChannel.IntEvent += OnKilledEnemy;
+        
+        currentWeaponData = weapons[0].WeaponData;
+        SelectWeaponPlayerHolster(currentWeaponData.ID); 
+        
     }
     #endregion
 
@@ -121,7 +127,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
 
         return null;
     }
-    public void SelectWeapon(string weaponID)
+    public void SelectWeaponPlayerHolster(string weaponID)
     {
         foreach (var weapon in weapons)
         {
@@ -129,7 +135,9 @@ public class PlayerManager : ManagerBase, IGeneralTarget
             {
                 weapon.gameObject.SetActive(true);
                 weapon.EnableGrabInteractable(true);
-                weapon.gameObject.transform.position = holsterWeapons.position;
+                
+                if(playerHolsterWeapon != null) weapon.gameObject.transform.position = playerHolsterWeapon.position;
+                weapon.gameObject.transform.position = new Vector3(0, 1, 0);
 
                 weapon.InitializeWeapon();
                 currentWeaponData = weapon.WeaponData;
@@ -160,10 +168,8 @@ public class PlayerManager : ManagerBase, IGeneralTarget
             {
                 weapon.gameObject.SetActive(true);
                 weapon.EnableGrabInteractable(true);
-                // weapon.InitializeWeapon();
-                // currentWeaponData = weapon.WeaponData;
                 
-                Debug.Log("Select Weapon: ".SetColor("#87E720") + weaponID);
+                Debug.Log("Enable Weapon: ".SetColor("#87E720") + weaponID);
             }
         }
     }
@@ -189,15 +195,21 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     #endregion
     
     #region IGeneralTarget
+
     public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
     {
-        
+        _currentHealth -= (int) dmg;
+        if (_currentHealth <= 0)
+        {
+            Debug.Log("Player Dead".SetColor("#F51858"));
+        }
+
     }
     #endregion
 
 
     #region Manager Base
-    public override void Init()
+    public override void InitManager()
     {
         if (FinishedLoading) return;
         CreateInstance();

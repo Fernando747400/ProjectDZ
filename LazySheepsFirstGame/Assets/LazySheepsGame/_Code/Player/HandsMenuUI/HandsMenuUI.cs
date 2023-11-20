@@ -24,7 +24,7 @@ public class HandsMenuUI : MonoBehaviour
     
     public void OnClickWeapon(WeaponData weaponData)
     {
-        PlayerManager.Instance.SelectWeapon(weaponData.ID);
+        PlayerManager.Instance.SelectWeaponPlayerHolster(weaponData.ID);
     }
 
     [Button]
