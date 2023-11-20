@@ -10,9 +10,8 @@ using UnityEngine.Serialization;
 
 public class WeaponStoreManager : MonoBehaviour
 {
-    [FormerlySerializedAs("weaponSelectChannel")] [SerializeField] private GenericDataEventChannelSO weaponSelectPlayerChannel;
+    [SerializeField] private GenericDataEventChannelSO weaponSelectPlayerChannel;
     [SerializeField] private List<WeaponData> weaponsData;
-    // [SerializeField] private List<GameObject> weaponsVisuals;
     [SerializeField] private Transform weaponShowPosition;
     [SerializeField] private GenericDataEventChannelSO onGrabWeaponFromStoreChannel;
     
@@ -51,7 +50,6 @@ public class WeaponStoreManager : MonoBehaviour
                 
                 Debug.Log("Buy Weapon: ".SetColor("#96E542") + weaponID);
 
-                // weaponSelectChannel.RaiseStringEvent(weaponID);
             }
             
         }

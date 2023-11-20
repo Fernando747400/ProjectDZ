@@ -114,7 +114,7 @@ public class CurrencyManager : ManagerBase
 
    #region ManagerBase
    
-    public override void Init()
+    public override void InitManager()
     {
         if (FinishedLoading) return;
         CreateInstance();
