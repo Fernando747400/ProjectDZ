@@ -191,6 +191,7 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: ee54a6c4ce24c80409600d56311189e7, type: 2}
   weaponNameText: {fileID: 6535422203264962349}
   weaponPriceText: {fileID: 765163791570554501}
+  WeaponImage: {fileID: 3578393721264315854}
 --- !u!1 &2804771774314284143
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +280,7 @@ GameObject:
   - component: {fileID: 7815461701523226137}
   - component: {fileID: 3578393721264315854}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: ImageWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,9 +334,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 540791939, guid: 508fcd50c6ae5104a94ca6bf6860f201, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

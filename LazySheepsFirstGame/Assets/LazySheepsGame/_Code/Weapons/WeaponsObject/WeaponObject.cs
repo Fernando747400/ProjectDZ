@@ -1,4 +1,5 @@
 using System.Collections;
+using Autohand;
 using UnityEngine;
 using com.LazyGames.Dio;
 using Lean.Pool;
@@ -35,11 +36,14 @@ namespace com.LazyGames.DZ
         [SerializeField] private Animator reloadAnimator;
         [SerializeField] private string animaNeedReloadName = "NeedReload";
         
-        [Header("XRGrabInteractable")]
-        [SerializeField] private XRGrabInteractable _grabInteractable;
+        [Header("Grabbable")]
+        [SerializeField] private Grabbable autoHandGrabbable;
         
         [Header("Noise")]
         [SerializeField] private NoiseParameters noiseParameters;
+        
+        [Header("Weapon Store")]
+        [SerializeField] private GenericDataEventChannelSO onGrabWeaponFromStoreChannel;
 
         #endregion
 
@@ -51,7 +55,8 @@ namespace com.LazyGames.DZ
             protected set => _currentAmmo = value;
         }
         public WeaponData WeaponData => weaponData;
-        public XRGrabInteractable GrabInteractable => _grabInteractable;
+        public Grabbable AutoHandGrabbable => autoHandGrabbable;
+        public Rigidbody Rigidbody => _rigidbody;
         
         
         public bool IsHoldingWeapon => _isHoldingWeapon;
@@ -114,7 +119,7 @@ namespace com.LazyGames.DZ
 
         public void EnableGrabInteractable(bool value)
         {
-            _grabInteractable.enabled = value;
+            autoHandGrabbable.enabled = value;
         }
         public void EnableVisual(bool value)
         {
@@ -131,7 +136,6 @@ namespace com.LazyGames.DZ
             _weaponUI.UpdateTextMMO(CurrentAmmo);
             PlayParticleShoot();
             MakeNoise(noiseParameters, 23, transform.position);
-            // PhysicShoot();
         }
 
         public override void PhysicShoot()
@@ -140,7 +144,7 @@ namespace com.LazyGames.DZ
             RaycastHit hit;
             if (!Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward, out hit, weaponData.MaxDistance ,Physics.DefaultRaycastLayers))
             {
-                Debug.Log("No Hit".SetColor("#F95342"));
+                // Debug.Log("No Hit".SetColor("#F95342"));
                 Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.forward * weaponData.MaxDistance, Color.red, 1f);
                 return;
             }
@@ -159,12 +163,14 @@ namespace com.LazyGames.DZ
             CurrentAmmo = weaponData.MaxAmmo;
 
             if(_rigidbody == null) _rigidbody = GetComponent<Rigidbody>();
-            if(_grabInteractable ==  null) _grabInteractable = GetComponent<XRGrabInteractable>();
+            if(autoHandGrabbable ==  null) autoHandGrabbable = GetComponent<Grabbable>();
             
             if(reloadAnimator == null) reloadAnimator = GetComponent<Animator>();
             reloadAnimator.runtimeAnimatorController = weaponData.ReloadAnimator;
             
             if(_weaponUI == null) _weaponUI = transform.GetComponent<WeaponUI>();
+
+            if (autoHandGrabbable == null) autoHandGrabbable = GetComponent<Grabbable>();
             
             _weaponUI.UpdateTextMMO(CurrentAmmo);
             _lineRendererMaxDistance = weaponData.MaxDistance;
@@ -193,6 +199,12 @@ namespace com.LazyGames.DZ
            
            if (_isHoldingWeapon)
            {
+               if (_rigidbody.isKinematic)
+               {
+                   _rigidbody.isKinematic = false;
+                   onGrabWeaponFromStoreChannel.RaiseStringEvent(weaponData.ID);
+               }
+               
                weaponUIGO.SetActive(true);
                EnableBeamLaser(true);
                MakeWeaponStatic(false);
@@ -201,7 +213,6 @@ namespace com.LazyGames.DZ
            else
            {
                currentHandHolding = HandHolder.None;
-               // transform.parent = null;
                weaponUIGO.SetActive(false);
                EnableBeamLaser(false);
            }
@@ -210,15 +221,6 @@ namespace com.LazyGames.DZ
         private void CheckCurrentHandHolder(HandHolder handHolder)
         {
             currentHandHolding = handHolder;
-
-            // if (currentHandHolding == HandHolder.HandLeft)
-            // {
-            //     // transform.SetParent(PlayerManager.Instance.LeftHandAttachPoint);
-            // }else
-            // if (currentHandHolding == HandHolder.HandRight)
-            // {
-            //     // transform.SetParent(PlayerManager.Instance.RightHandAttachPoint);
-            // }
             
         }
         private void HandleShootEvent(int value)
@@ -311,7 +313,7 @@ namespace com.LazyGames.DZ
         {
             if (_simulatedHit.collider == null)
             {
-                Debug.Log("No Hit".SetColor("#F95342"));
+                // Debug.Log("No Hit".SetColor("#F95342"));
                 return;
             }
             if (!_simulatedHit.collider.gameObject.TryGetComponent<IGeneralTarget>(out var generalTarget)) return;
