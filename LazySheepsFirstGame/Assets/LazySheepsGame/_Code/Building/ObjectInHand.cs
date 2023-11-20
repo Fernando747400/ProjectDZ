@@ -25,8 +25,8 @@ public class ObjectInHand : MonoBehaviour
 
     private void OnDisable()
     {
-        // xrGrabInteractable.selectEntered?.RemoveListener(GrabbedObject);
-        // xrGrabInteractable.selectExited?.RemoveListener(DroppedObject);
+        autoHandGrabbable.OnGrabEvent -= GrabbedObject;
+        autoHandGrabbable.OnReleaseEvent -= DroppedObject;
     }
 
     private void GrabbedObject(Hand hand, Grabbable grabbable)
