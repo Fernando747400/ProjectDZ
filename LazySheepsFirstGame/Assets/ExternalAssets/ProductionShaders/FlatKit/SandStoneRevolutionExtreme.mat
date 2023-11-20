@@ -11,6 +11,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
   m_ValidKeywords:
   - DR_OUTLINE_ON
+  - DR_OUTLINE_SMOOTH_NORMALS
   - _CELPRIMARYMODE_SINGLE
   - _DETAILMAPBLENDINGMODE_MULTIPLY
   - _GRADIENTSPACE_WORLD
@@ -135,7 +136,7 @@ Material:
     - _OutlineEnabled: 1
     - _OutlineScale: 1
     - _OutlineSpace: 0
-    - _OutlineWidth: 0.04
+    - _OutlineWidth: 0.01
     - _OverrideLightmapDir: 0
     - _OverrideShadows: 1
     - _OverrideShadowsEnabled: 1
@@ -163,7 +164,7 @@ Material:
     - _UnityShadowPower: 0.77
     - _UnityShadowSharpness: 2.8
     - _VertexColorsEnabled: 0
-    - _VertexExtrusionSmoothNormals: 0
+    - _VertexExtrusionSmoothNormals: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.8008188, g: 0.8301887, b: 0.6148096, a: 1}
