@@ -18,6 +18,7 @@ namespace com.LazyGames
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private GameObject ringVisual;
         [SerializeField] private ParticleSystem explosionParticle;
+        [SerializeField] private GameObject barrierVisual;
         
         [Header("UI")]
         [SerializeField] private EnemyCoreUI enemyCoreUI;
@@ -45,6 +46,11 @@ namespace com.LazyGames
         
         #endregion
 
+        #region public variables
+        public EnemyCoreData EnemyCoreData => enemyCoreData;
+
+        #endregion
+        
         #region unity methods
 
         private void Start()
@@ -80,6 +86,10 @@ namespace com.LazyGames
 
         #region public methods
 
+        public void BarrierDestroyed()
+        {
+            barrierVisual.SetActive(false);
+        }
        
       
         
@@ -88,7 +98,7 @@ namespace com.LazyGames
         #region private methods
         private void Initialized()
         {
-            EnemyCoreState = EnemyCoreState.Idle;
+            EnemyCoreState = EnemyCoreState.BlockedCore;
             enemyCoreUI.SetMaxValue(enemyCoreData.TimerLifeCoreSec);
             // SetTimers();
         }
@@ -143,7 +153,7 @@ namespace com.LazyGames
         {
             switch (EnemyCoreState)
             {
-                case EnemyCoreState.Idle:
+                case EnemyCoreState.BlockedCore:
                     // enemyCoreUI.EnableLifeTimeUI(false);
                     break;
                 case EnemyCoreState.WaveDelay:
@@ -167,7 +177,7 @@ namespace com.LazyGames
   public enum EnemyCoreState
   {
       None,
-      Idle,
+      BlockedCore,
       WaveDelay,
       Destroyed
       

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof(ReferenceRaiser))] 
 public abstract class ManagerBase : MonoBehaviour
 {
     public delegate void OnFinishedLoading();

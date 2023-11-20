@@ -58,9 +58,9 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     
     
     [Header("Currency")]
-    [SerializeField] private GenericDataEventChannelSO onDeathEnemyChannel;
+    [SerializeField] private IntEventChannelSO onDeathEnemyChannel;
     [SerializeField] private AddCurrencyEventChannel addCurrencyEventChannel;
-    [SerializeField] private CurrencyData enemyCurrencyData;
+    
     
     #endregion
 
@@ -152,6 +152,21 @@ public class PlayerManager : ManagerBase, IGeneralTarget
             weapon.EnableGrabInteractable(false);
         }
     }
+    public void EnableWeapon(string weaponID)
+    {
+        foreach (var weapon in weapons)
+        {
+            if (weapon.WeaponData.ID == weaponID)
+            {
+                weapon.gameObject.SetActive(true);
+                weapon.EnableGrabInteractable(true);
+                // weapon.InitializeWeapon();
+                // currentWeaponData = weapon.WeaponData;
+                
+                Debug.Log("Select Weapon: ".SetColor("#87E720") + weaponID);
+            }
+        }
+    }
     public void ResetPlayersPosition()
     {
         transform.parent.position = Vector3.zero;
@@ -164,7 +179,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     private void OnKilledEnemy(int currency)
     {
         //Add if player needs to do something after killing enemy
-        
+        CurrencyData enemyCurrencyData = new CurrencyData();
         enemyCurrencyData.ValueCurrency = currency;
         addCurrencyEventChannel.RaiseAddCurrencyEvent(enemyCurrencyData);
         

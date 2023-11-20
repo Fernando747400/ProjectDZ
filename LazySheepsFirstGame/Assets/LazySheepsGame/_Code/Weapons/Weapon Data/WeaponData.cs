@@ -21,6 +21,9 @@ namespace com.LazyGames
         
         [Header("Currency Data")]
         [SerializeField] private CurrencyData currencyData;
+        
+        [Header("UI")]
+        [SerializeField] private Sprite weaponSprite;
 
         #region public variables
 
@@ -36,6 +39,7 @@ namespace com.LazyGames
             get => maxDistance;
         }
         
+        public Sprite WeaponSprite => weaponSprite;
         public CurrencyData CurrencyData => currencyData;
         public float CooldownPerShot => cooldownPerShot;
 

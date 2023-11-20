@@ -1461,6 +1461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 8a6ea979d3d5bcd43814fbd3f89ebec6, type: 2}
   shootPoint: {fileID: 6518281322668272615}
+  visualWeapon: {fileID: 0}
   InputShootActionRight: {fileID: 11400000, guid: 0258a7e845767c04bb6ceee9bd535df8, type: 2}
   InputShootActionLeft: {fileID: 11400000, guid: 5e263acad89f17940a4b79fd10193db4, type: 2}
   isInHandChannel: {fileID: 11400000, guid: 2d80843320567354785e0dbdb16ab24c, type: 2}
@@ -1474,6 +1475,7 @@ MonoBehaviour:
   animaNeedReloadName: NeedReload
   _grabInteractable: {fileID: 8812916598452279408}
   noiseParameters: {fileID: 11400000, guid: 23efc78bb9d9f09499a4548256eb22af, type: 2}
+  onGrabWeaponFromStoreChannel: {fileID: 11400000, guid: 980050dd2941aab46a6002d99023853e, type: 2}
   positionShoots:
   - {fileID: 3243515089989941125}
   - {fileID: 5322063426659569889}
