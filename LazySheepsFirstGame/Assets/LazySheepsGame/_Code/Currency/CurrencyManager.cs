@@ -10,6 +10,7 @@ public class CurrencyManager : ManagerBase
     [Header("Currency")]
     [SerializeField] private AddCurrencyEventChannel addCurrencyEventChannel;
     [SerializeField] private RemoveCurrencyEventChannel removeCurrencyEventChannel;
+    [SerializeField] private IntEventChannelSO onUpdateCurrencyChannel;
     
     [SerializeField] private int initialCurrency = 5000;
     
@@ -36,8 +37,13 @@ public class CurrencyManager : ManagerBase
     public int CurrentCurrency
     {
         get { return _currentCurrency; }
-        
-        protected set { _currentCurrency = value; }
+
+        protected set
+        {
+            _currentCurrency = value;
+            onUpdateCurrencyChannel.RaiseEvent(_currentCurrency);
+            
+        }
     }
 
     
