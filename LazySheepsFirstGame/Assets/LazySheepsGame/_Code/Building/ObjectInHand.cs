@@ -1,3 +1,4 @@
+using Autohand;
 using com.LazyGames;
 using com.LazyGames.Dio;
 using UnityEngine;
@@ -9,7 +10,8 @@ using NaughtyAttributes;
 public class ObjectInHand : MonoBehaviour
 {
     [Header("Dependencies")]
-    [SerializeField] private XRGrabInteractable xrGrabInteractable;
+    // [SerializeField] private XRGrabInteractable xrGrabInteractable;
+    [SerializeField] private Grabbable autoHandGrabbable;
     [SerializeField] private BoolEventChannelSO isInHandChannel;
     [SerializeField] private bool _holdEventActive;
     [ShowIf("_holdEventActive")]
@@ -17,51 +19,55 @@ public class ObjectInHand : MonoBehaviour
 
     private void OnEnable()
     {
-        xrGrabInteractable.selectEntered.AddListener(GrabbedObject);
-        xrGrabInteractable.selectExited.AddListener(DroppedObject);
+        autoHandGrabbable.OnGrabEvent += GrabbedObject;
+        autoHandGrabbable.OnReleaseEvent += DroppedObject;
     }
 
     private void OnDisable()
     {
-        xrGrabInteractable.selectEntered?.RemoveListener(GrabbedObject);
-        xrGrabInteractable.selectExited?.RemoveListener(DroppedObject);
+        // xrGrabInteractable.selectEntered?.RemoveListener(GrabbedObject);
+        // xrGrabInteractable.selectExited?.RemoveListener(DroppedObject);
     }
 
-    private void GrabbedObject(SelectEnterEventArgs args)
+    private void GrabbedObject(Hand hand, Grabbable grabbable)
     {
-        if(args.interactorObject.transform.CompareTag("HandLeft") || args.interactorObject.transform.CompareTag("HandRight"))
+        
+        if(hand.left || !hand.left)
         {
             isInHandChannel.RaiseEvent(true);
-            if (handHolderEventSO != null) handHolderEventSO.RaiseEvent(GetHandHolder(args.interactorObject));
             
-            // Debug.Log("Object ".SetColor("#F5DD16")+ transform.name +  " Grabbed by =".SetColor("#F5DD16") + GetHandHolder(args.interactorObject));
+            if (handHolderEventSO != null) handHolderEventSO.RaiseEvent(GetHandHolder(hand));
+            
+            Debug.Log("Object ".SetColor("#F5DD16")+ transform.name +  " Grabbed by =".SetColor("#F5DD16") + GetHandHolder(hand));
         }
+        
+        
+        
     }
 
-    private void DroppedObject(SelectExitEventArgs args)
+    private void DroppedObject(Hand hand, Grabbable grabbable)
     {
-        if (args.interactorObject.transform.CompareTag("HandLeft") || args.interactorObject.transform.CompareTag("HandRight"))
+        if(hand.left || !hand.left)
         {
             isInHandChannel.RaiseEvent(false);
-            if (handHolderEventSO != null) handHolderEventSO.RaiseEvent(GetHandHolder(args.interactorObject));
-            // Debug.Log("Object ".SetColor("#F5DD16") + transform.name + " Dropped by =".SetColor("#F5DD16") + GetHandHolder(args.interactorObject));
+            if (handHolderEventSO != null) handHolderEventSO.RaiseEvent(GetHandHolder(hand));
+            Debug.Log("Object ".SetColor("#F5DD16") + transform.name + " Dropped by =".SetColor("#F5DD16") + GetHandHolder(hand));
 
         }
     }
     
-    private HandHolder GetHandHolder(IXRSelectInteractor interactor)
+    private HandHolder GetHandHolder(Hand hand)
     {
         HandHolder handHolder = HandHolder.None;
-        string interactorTag = interactor.transform.tag;
-        switch (interactorTag)
+        if (hand.left)
         {
-            case "HandLeft":
-                handHolder = HandHolder.HandLeft;
-                break;
-            case "HandRight":
-                handHolder = HandHolder.HandRight;
-                break;
+            handHolder = HandHolder.HandLeft;
         }
+        else 
+        {
+            handHolder = HandHolder.HandRight;
+        }
+       
         
         return handHolder;
     }
