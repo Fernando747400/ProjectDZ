@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using com.LazyGames;
 using com.LazyGames.Dio;
 using UnityEditor;
 using UnityEngine;
@@ -13,10 +15,17 @@ namespace com.LazyGames
 
         [SerializeField] private int maxHealth = 100;
         [SerializeField] private Collider collider;
+        
+        [Header("Trigger")]
+        [SerializeField] private Rigidbody triggerRigidbody;
+        [SerializeField] private GameObject triggerGO;
+        
+        [Header("Events")]
         [SerializeField] private VoidEventChannelSO onCoreDestroyed;
         [SerializeField] private VoidEventChannelSO onDeactivatorIsPlaced;
-        [SerializeField] private XRGrabInteractable grabInteractable;
-        [SerializeField] private InteractionLayerMask nonInteractableLayers;
+
+        // [SerializeField] private XRGrabInteractable grabInteractable;
+        // [SerializeField] private InteractionLayerMask nonInteractableLayers;
 
 
 
@@ -31,11 +40,11 @@ namespace com.LazyGames
 
         #region public variables
 
-        public XRGrabInteractable GrabInteractable
-        {
-            get => grabInteractable;
-            set => grabInteractable = value;
-        }
+        // public XRGrabInteractable GrabInteractable
+        // {
+        //     get => grabInteractable;
+        //     set => grabInteractable = value;
+        // }
         public Collider Collider => collider;
         public int CurrentHealth => _currentHealth;
         public Action OnDeactivatorDestroyed;
@@ -53,8 +62,8 @@ namespace com.LazyGames
             onDeactivatorIsPlaced.VoidEvent += () =>
             {
                 _deactivatorIsPlaced = true;
-                // grabInteractable.interactionLayers = nonInteractableLayers;
-                Debug.Log("Deactivator Is Placed ".SetColor("#FE0D4F") + nonInteractableLayers);
+                AddForceTrigger();
+                // Debug.Log("Deactivator Is Placed ".SetColor("#FE0D4F") + nonInteractableLayers);
             };
         }
         private void OnTriggerEnter(Collider other)
@@ -67,7 +76,12 @@ namespace com.LazyGames
         }
        
         #endregion
-        
+        public void AddForceTrigger()
+        {
+            triggerRigidbody.isKinematic = false;
+            Vector3 direction = new Vector3(triggerGO.transform.position.x, triggerGO.transform.position.y + 1, triggerGO.transform.position.z);
+            triggerRigidbody.AddForce(direction, ForceMode.Impulse);
+        }
         public void ReceiveDamage(int damage)
         {
             if(_currentHealth <= 0) return;
@@ -82,13 +96,13 @@ namespace com.LazyGames
             }
         }
 
-        public void LastSelectedExit(SelectExitEventArgs arg)
+        public void LastSelectedExit()
         {
             if (_deactivatorIsPlaced)
             {
                 gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 gameObject.GetComponent<Rigidbody>().useGravity = false;
-                grabInteractable.interactionLayers = nonInteractableLayers;
+                // grabInteractable.interactionLayers = nonInteractableLayers;
                 
             }
             Debug.Log("LastSelectedExit".SetColor("#FE0D4F"));
@@ -99,7 +113,6 @@ namespace com.LazyGames
 
         #region private methods
 
-        
 
         #endregion
     }
@@ -107,20 +120,20 @@ namespace com.LazyGames
     
 }
 
-// #if UNITY_EDITOR_WIN
-// [CustomEditor(typeof(DeactivatorCore))]
-// public class DeactivatorCoreEditor : Editor
-// {
-//     public override void OnInspectorGUI()
-//     {
-//         DrawDefaultInspector();
-//         DeactivatorCore deactivatorCore = (DeactivatorCore) target;
-//         
-//         if (GUILayout.Button("Receive Damage"))
-//         {
-//             deactivatorCore.ReceiveDamage(5);
-//         }
-//     }
-// }
-//
-// #endif
+#if UNITY_EDITOR_WIN
+[CustomEditor(typeof(DeactivatorCore))]
+public class DeactivatorCoreEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+        DeactivatorCore deactivatorCore = (DeactivatorCore) target;
+        
+        if (GUILayout.Button("Add force on trigger"))
+        {
+            deactivatorCore.AddForceTrigger();
+        }
+    }
+}
+
+#endif
