@@ -6,25 +6,49 @@ using UnityEngine;
 
 namespace com.LazyGames.DZ
 {
-    public class PoolManager : MonoBehaviour
+    public class PoolManager : ManagerBase
     {
-        
-        public static PoolManager Instance;
-        [SerializeField] private List<Pools> pools;
-        void Awake()
+        [SerializeField] private PoolManagerData poolManagerData;
+
+        private static PoolManager _instance;
+
+        public static PoolManager Instance
         {
-            if (Instance == null)
+            get
             {
-                Instance = this;
+                // if (_instance != null) return _instance;
+
+                if (_instance == null)
+                {
+                    var singletonObject = new GameObject();
+                    _instance = singletonObject.AddComponent<PoolManager>();
+                    singletonObject.name = typeof(PoolManager).ToString();
+                    _instance.poolManagerData = Resources.Load<PoolManagerData>("LazySheepsGame/_Scriptables/Pools/PoolManagerData");
+                    _instance.InitManager();
+                    
+                    DontDestroyOnLoad(singletonObject);
+
+                }
+                
+                return _instance;
             }
-            else
-            {
-                Destroy(this);
-            }
-            
-            DontDestroyOnLoad(this);
         }
         
+
+        #region private Methods
+        
+        private void CreateInstance()
+        {
+            if (_instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            _instance = this;
+        }
+        
+        #endregion
+
         public GameObject SpawnPool(string pool)
         {
            GameObject leanPoolGameObject = LeanPool.Spawn(GetPrefab(pool));
@@ -34,7 +58,7 @@ namespace com.LazyGames.DZ
         
         public GameObject GetPrefab(string poolID)
         {
-            foreach (var pool in pools)
+            foreach (var pool in poolManagerData.Pools)
             {
                 if (pool.poolID == poolID)
                 {
@@ -45,7 +69,25 @@ namespace com.LazyGames.DZ
             return null;
         }
 
+
+        #region ManagerBase
+
+        public override void InitManager()
+        {
+            if (FinishedLoading) return;
+            CreateInstance();
+            FinishedLoading = true;
+            FinishLoading?.Invoke();
+            Debug.Log("PoolManager Initialized");
+                
+        }
+
+        #endregion
+        
     }
+    
+    
+    
 
     [Serializable]
     public class Pools
