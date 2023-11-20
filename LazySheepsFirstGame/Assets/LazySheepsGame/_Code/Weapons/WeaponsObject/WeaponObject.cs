@@ -130,7 +130,7 @@ namespace com.LazyGames.DZ
         }
         public override void Shoot()
         {
-            // Debug.Log("Shoot = ".SetColor("#16CCF5") + weaponData.ID);
+            Debug.Log("Shoot = ".SetColor("#16CCF5") + weaponData.ID);
             _currentAmmo--;
             _weaponUI.UpdateTextMMO(CurrentAmmo);
             PlayParticleShoot();
@@ -224,7 +224,7 @@ namespace com.LazyGames.DZ
         }
         private void HandleShootEvent(int value)
         {
-            // Debug.Log("HandleShootEvent".SetColor("#F1BE50"));
+            Debug.Log("HandleShootEvent".SetColor("#F1BE50"));
             if(currentHandHolding == HandHolder.None) return;
             if (value != (int)currentHandHolding) return;
             if (!_isHoldingWeapon) return;
