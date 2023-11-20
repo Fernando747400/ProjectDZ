@@ -26,8 +26,9 @@ public class CurrencyManager : ManagerBase
             var singletonObject = new GameObject(); 
             _instance = singletonObject.AddComponent<CurrencyManager>(); 
             singletonObject.name = typeof(CurrencyManager).ToString(); 
-            _instance.addCurrencyEventChannel = Resources.Load<AddCurrencyEventChannel>("Assets/LazySheepsGame/_Scriptables/Currency/AddCurrencyEventChannel");
-            _instance.removeCurrencyEventChannel = Resources.Load<RemoveCurrencyEventChannel>("Assets/LazySheepsGame/_Scriptables/Currency/RemoveCurrencyEventChannel");
+            _instance.addCurrencyEventChannel = Resources.Load<AddCurrencyEventChannel>("LazySheepsGame/_Scriptables/Currency/AddCurrencyEventChannel");
+            _instance.removeCurrencyEventChannel = Resources.Load<RemoveCurrencyEventChannel>("LazySheepsGame/_Scriptables/Currency/RemoveCurrencyEventChannel");
+            _instance.InitManager();
             DontDestroyOnLoad(singletonObject);
 
             return _instance;
