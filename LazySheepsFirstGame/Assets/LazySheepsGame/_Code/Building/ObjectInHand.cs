@@ -25,14 +25,19 @@ public class ObjectInHand : MonoBehaviour
 
     private void Start()
     {
-        autoHandGrabbable.OnGrabEvent += GrabbedObject;
-        autoHandGrabbable.OnReleaseEvent += DroppedObject;
+       PrepareObjectInHand();   
     }
 
     private void OnDisable()
     {
         autoHandGrabbable.OnGrabEvent -= GrabbedObject;
         autoHandGrabbable.OnReleaseEvent -= DroppedObject;
+    }
+    
+    public void PrepareObjectInHand()
+    {
+        autoHandGrabbable.OnGrabEvent += GrabbedObject;
+        autoHandGrabbable.OnReleaseEvent += DroppedObject;
     }
 
     private void GrabbedObject(Hand hand, Grabbable grabbable)
@@ -44,7 +49,7 @@ public class ObjectInHand : MonoBehaviour
             
             if (handHolderEventSO != null) handHolderEventSO.RaiseEvent(GetHandHolder(hand));
             
-            // Debug.Log("Object ".SetColor("#F5DD16")+ transform.name +  " Grabbed by =".SetColor("#F5DD16") + GetHandHolder(hand));
+            Debug.Log("Object ".SetColor("#F5DD16")+ transform.name +  " Grabbed by =".SetColor("#F5DD16") + GetHandHolder(hand));
         }
         
         
@@ -57,7 +62,7 @@ public class ObjectInHand : MonoBehaviour
         {
             isInHandChannel.RaiseEvent(false);
             if (handHolderEventSO != null) handHolderEventSO.RaiseEvent(GetHandHolder(hand));
-            // Debug.Log("Object ".SetColor("#F5DD16") + transform.name + " Dropped by =".SetColor("#F5DD16") + GetHandHolder(hand));
+            Debug.Log("Object ".SetColor("#F5DD16") + transform.name + " Dropped by =".SetColor("#F5DD16") + GetHandHolder(hand));
 
         }
     }

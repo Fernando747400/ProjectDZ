@@ -16,25 +16,33 @@ public class DialogueTrigger : MonoBehaviour
     public CanvasGroup dialogueCanvasGroup;
     private Dialogue _currentDialogue;
     public UnityEvent OnDialoguesCompleted;
+    
+    private bool _isDialogueActive;
     void Start()
     {
         dialogueCanvasGroup.alpha = 0;
     }
 
-    public void TestDialogue()
+    // public void TestDialogue()
+    // {
+    //     _currentDialogue = dialogueData.Dialogues[0];
+    //     ShowDialogue(_currentDialogue);
+    // }
+
+    public void ShowDialogue()
     {
+        if(_isDialogueActive) return;
         _currentDialogue = dialogueData.Dialogues[0];
         ShowDialogue(_currentDialogue);
+        _isDialogueActive = true;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _currentDialogue = dialogueData.Dialogues[0];
-            ShowDialogue(_currentDialogue);
-        }
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.CompareTag("Player"))
+    //     {
+    //         ShowDialogue(_currentDialogue);
+    //     }
+    // }
     
     private void ShowDialogue(Dialogue dialogue)
     {
@@ -47,7 +55,7 @@ public class DialogueTrigger : MonoBehaviour
     
     private IEnumerator DelayDialogue()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         dialogueCanvasGroup.DOFade(0, 1f).OnComplete(() =>
         {
             GetNextDialogue(_currentDialogue);
@@ -67,6 +75,7 @@ public class DialogueTrigger : MonoBehaviour
             dialogueCanvasGroup.DOFade(0, 1f).OnComplete(() =>
             {
                 OnDialoguesCompleted?.Invoke();
+                _isDialogueActive = false;
 
             });
         }
@@ -74,20 +83,20 @@ public class DialogueTrigger : MonoBehaviour
     }
 }
 
-#if UNITY_EDITOR_WIN
-[CustomEditor(typeof(DialogueTrigger))]
-public class DeactivatorCoreEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-        DialogueTrigger dialogueTrigger = (DialogueTrigger) target;
-        
-        if (GUILayout.Button("Add force on trigger"))
-        {
-            dialogueTrigger.TestDialogue();
-        }
-    }
-}
-
-#endif
+// #if UNITY_EDITOR_WIN
+// [CustomEditor(typeof(DialogueTrigger))]
+// public class DeactivatorCoreEditor : Editor
+// {
+//     public override void OnInspectorGUI()
+//     {
+//         DrawDefaultInspector();
+//         DialogueTrigger dialogueTrigger = (DialogueTrigger) target;
+//         
+//         if (GUILayout.Button("Add force on trigger"))
+//         {
+//             dialogueTrigger.TestDialogue();
+//         }
+//     }
+// }
+//
+// #endif
