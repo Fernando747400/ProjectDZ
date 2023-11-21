@@ -5313,7 +5313,7 @@ MonoBehaviour:
   hitLaserParticle: {fileID: 8858166032557669229}
   reloadAnimator: {fileID: 1435387475570126207}
   animaNeedReloadName: NeedReload
-  _grabInteractable: {fileID: 4653748867679513095}
+  autoHandGrabbable: {fileID: 0}
   noiseParameters: {fileID: 0}
   onGrabWeaponFromStoreChannel: {fileID: 11400000, guid: 980050dd2941aab46a6002d99023853e, type: 2}
   interactorVectorReloadWeapon: {fileID: 0}
@@ -5351,7 +5351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf3fed78c0d33e49b0058d33be8d649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xrGrabInteractable: {fileID: 4653748867679513095}
+  autoHandGrabbable: {fileID: 0}
   isInHandChannel: {fileID: 11400000, guid: 2d80843320567354785e0dbdb16ab24c, type: 2}
   _holdEventActive: 0
   handHolderEventSO: {fileID: 11400000, guid: 6dde001a78d7414449227ed5e5b6b838, type: 2}

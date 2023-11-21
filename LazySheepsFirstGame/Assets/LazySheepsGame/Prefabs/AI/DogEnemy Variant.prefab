@@ -55,6 +55,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Abysm fish Animated Model
       objectReference: {fileID: 0}
+    - target: {fileID: 8132001106527078363, guid: 5c82ea130cd246d45956c0590c64cc86, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3e524498d8aaaa54691662102fa7ea07, type: 2}
+    - target: {fileID: 8132001106527078363, guid: 5c82ea130cd246d45956c0590c64cc86, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31a30d74ed9a2ea4b97babcafaa5516b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c82ea130cd246d45956c0590c64cc86, type: 3}
 --- !u!95 &3842248523439483285 stripped
@@ -147,12 +155,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938990, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_Name
-      value: DogEnemy Variant (1)
+      value: DogEnemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: parameters
       value: 
       objectReference: {fileID: 11400000, guid: 20bf2c09fda47634c83e395cd5ad899f, type: 2}
+    - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: playerName
+      value: Player_Zenith
+      objectReference: {fileID: 0}
     - target: {fileID: 281219075871051866, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_Name
       value: VFX

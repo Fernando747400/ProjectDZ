@@ -517,18 +517,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17a0ad6a563fc584980b12f96c641cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pinchAnimAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Pinch Anim
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: fbc871b2-7035-4d50-84c5-6dde47f76652
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -253529726579693466, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _gripAnimAction:
     m_UseReference: 1
     m_Action:
@@ -541,6 +529,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -6016328927745443650, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _triggerAnimAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Trigger Anim
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 262866e9-ca14-4120-a0e1-5bce40b1cf3a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   _indexAnimAction:
     m_UseReference: 1
     m_Action:
@@ -650,7 +650,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c4b6d928c33d49a4aaede716f34fb387, type: 2}
+  - {fileID: 2100000, guid: c9804b4535698864d8c1e5cae0710223, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
