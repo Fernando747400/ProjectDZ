@@ -210,11 +210,11 @@ namespace com.LazyGames.DZ
            
            if (_isHoldingWeapon)
            {
-               OnGrabStoreWeapon();
+               //OnGrabStoreWeapon();
 
                weaponUIGO.SetActive(true);
                EnableBeamLaser(true);
-               MakeWeaponStatic(false);
+               //MakeWeaponStatic(false);
 
            }
            else
