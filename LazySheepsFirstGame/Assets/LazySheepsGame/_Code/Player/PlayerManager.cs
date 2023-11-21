@@ -104,8 +104,8 @@ public class PlayerManager : ManagerBase, IGeneralTarget
         weaponSelectChannel.StringEvent += SelectWeaponPlayerHolster;
         onDeathEnemyChannel.IntEvent += OnKilledEnemy;
         
-        currentWeaponData = weapons[0].WeaponData;
-        SelectWeaponPlayerHolster(currentWeaponData.ID); 
+        // currentWeaponData = weapons[0].WeaponData;
+        // SelectWeaponPlayerHolster(currentWeaponData.ID); 
         
     }
     #endregion
