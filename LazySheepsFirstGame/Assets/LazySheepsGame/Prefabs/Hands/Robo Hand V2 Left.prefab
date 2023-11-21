@@ -515,18 +515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17a0ad6a563fc584980b12f96c641cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pinchAnimAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Pinch Anim
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: fbc871b2-7035-4d50-84c5-6dde47f76652
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -6668587794728781183, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _gripAnimAction:
     m_UseReference: 1
     m_Action:
@@ -539,6 +527,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -3712437467022738922, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _triggerAnimAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Trigger Anim
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: b36b4404-b8fe-4a6a-a6d0-4e0d3303ea8c
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   _indexAnimAction:
     m_UseReference: 1
     m_Action:
