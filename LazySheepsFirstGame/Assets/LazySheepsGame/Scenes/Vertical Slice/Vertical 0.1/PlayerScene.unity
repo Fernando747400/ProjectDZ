@@ -588,6 +588,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3668036660118512636, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c9804b4535698864d8c1e5cae0710223, type: 2}
     - target: {fileID: 4420150813075050635, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: weapons.Array.size
       value: 2
@@ -612,6 +616,26 @@ PrefabInstance:
       propertyPath: addCurrencyEventChannel
       value: 
       objectReference: {fileID: 11400000, guid: ec70b6bb937a4da4794a261356edb8ac, type: 2}
+    - target: {fileID: 5177231207826133815, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: e2bbf4e52b0d1a9408cee06dc546f18e, type: 2}
+    - target: {fileID: 5177231207826133815, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 53de49d9b646d7646aa8b88cf5844cbd, type: 2}
+    - target: {fileID: 5177231207826133815, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: cc08371e6f1f74f49af8404f6825c176, type: 2}
+    - target: {fileID: 5177231207826133815, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 857ce3f89065d0e478656a056bb488c6, type: 2}
+    - target: {fileID: 5177231207826133815, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: c9804b4535698864d8c1e5cae0710223, type: 2}
     - target: {fileID: 6133733061732126598, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: m_Name
       value: Player_Zenith
