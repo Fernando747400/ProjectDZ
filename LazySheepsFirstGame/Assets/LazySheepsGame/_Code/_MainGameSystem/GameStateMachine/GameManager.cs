@@ -6,11 +6,8 @@ using com.LazyGames.DZ;
 public class GameManager : StateManager<GameStates, GameManager>
 {
     [Header("Dependencies")]
-
-
     [Required]
     [SerializeField] internal BoolEventChannelSO PauseEventChannel;
-
     //[Required]
     [SerializeField] internal VoidEventChannelSO PauseInputChannel;
 
@@ -26,7 +23,7 @@ public class GameManager : StateManager<GameStates, GameManager>
         States.Add(GameStates.Won, new GameWonState(GameStates.Won, this));
         States.Add(GameStates.Lost, new GameLostState(GameStates.Lost, this));
 
-        CurrentState = States[GameStates.Tabern];
+        CurrentState = States[GameStates.Playing];
     }
     private void OnEnable()
     {
