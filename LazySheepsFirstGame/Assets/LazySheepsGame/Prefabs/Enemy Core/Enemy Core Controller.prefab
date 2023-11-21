@@ -639,12 +639,12 @@ MonoBehaviour:
   - {fileID: 2521251837129601971}
   - {fileID: 2521251838131372558}
   - {fileID: 2521251838497362797}
-  ringVisual: {fileID: 0}
   explosionParticle: {fileID: 1532215574476323773}
   barrierVisual: {fileID: 5897070776756606057}
   enemyCoreUI: {fileID: 2521251838806435661}
   onCoreDestroyed: {fileID: 11400000, guid: e82263401804fb84792edb1e85174d80, type: 2}
-  onDeactivatorEnter: {fileID: 11400000, guid: ee10218df0e41bf469f7702772c8a94c, type: 2}
+  onDeactivatorEnterCore: {fileID: 11400000, guid: ee10218df0e41bf469f7702772c8a94c, type: 2}
+  DeactivatorSender: {fileID: 11400000, guid: 5cc62efce00895a41be6f16cdfe25db7, type: 2}
 --- !u!114 &525374288854864531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,7 +838,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2521251838806435659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.044, y: 2.164, z: 0}
+  m_LocalPosition: {x: 0.044, y: 1.62, z: 0}
   m_LocalScale: {x: 0.010234964, y: 0.010234964, z: 0.010234964}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1101,7 +1101,7 @@ MonoBehaviour:
   OnPlace:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: ee10218df0e41bf469f7702772c8a94c, type: 2}
+      - m_Target: {fileID: 11400000, guid: ee9ad631bf3e79f44aa7c8b69e0b72a6, type: 2}
         m_TargetAssemblyTypeName: com.LazyGames.Dio.VoidEventChannelSO, Assembly-CSharp
         m_MethodName: RaiseEvent
         m_Mode: 1
