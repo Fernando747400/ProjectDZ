@@ -1078,7 +1078,7 @@ MonoBehaviour:
   radiusOffset: {x: 0, y: 0, z: 0}
   parentOnPlace: 1
   forcePlace: 1
-  forceHandRelease: 1
+  forceHandRelease: 0
   destroyObjectOnPlace: 0
   disableRigidbodyOnPlace: 1
   disableGrabOnPlace: 1
@@ -1089,7 +1089,8 @@ MonoBehaviour:
   showPlaceRequirements: 1
   heldPlaceOnly: 0
   nameCompareType: 0
-  placeNames: []
+  placeNames:
+  - Granade
   blacklistNames: []
   onlyAllows: []
   dontAllows: []
