@@ -19,7 +19,7 @@ namespace com.LazyGames.DZ
     
     public class EnemyController : MonoBehaviour, IGeneralTarget, INoiseSensitive, IGeneralAggressor
     {
-        
+        public string playerName = "Player_Zenith";
         public IntEventChannelSO onDeathScriptableChannel;
         
         public AiParameters parameters;
@@ -102,7 +102,7 @@ namespace com.LazyGames.DZ
             hP = parameters.maxHp;
             agent.speed = parameters.baseSpeed;
             agent.stoppingDistance = parameters.circleRadius - .1f;
-            player = GameObject.Find("XR Origin");
+            player = GameObject.Find(playerName);
         }
         
         public void ReceiveAggression(Vector3 direction, float velocity,float dmg = 0)

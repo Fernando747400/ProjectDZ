@@ -26,13 +26,13 @@ public class InteractorVectorReloadWeapon : MonoBehaviour
     }
     public void OnHoveredEnter(Hand hand)
     {
-        Debug.Log("OnHoveredEnter".SetColor("#5DF516"));
+        // Debug.Log("OnHoveredEnter".SetColor("#5DF516"));
         OnEnter?.Invoke(hand.transform.position);
     }
 
     public void OnHoveredExit(Hand hand)
     {
-        Debug.Log("OnHoverdExit".SetColor("#F51686"));
+        // Debug.Log("OnHoverdExit".SetColor("#F51686"));
         OnExit?.Invoke(hand.transform.position);
         
     }
