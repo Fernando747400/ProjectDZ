@@ -15,8 +15,9 @@ namespace com.LazyGames
 
         [SerializeField] private int maxHealth = 100;
         [SerializeField] private Collider collider;
-        
-        [Header("Trigger")]
+
+        [Header("Trigger")] 
+        [SerializeField] private Animator animator;
         [SerializeField] private Rigidbody triggerRigidbody;
         [SerializeField] private GameObject triggerGO;
         
@@ -59,10 +60,11 @@ namespace com.LazyGames
         {
             _currentHealth = maxHealth;
             onCoreDestroyed.VoidEvent += () => { Destroy(gameObject); };
+            
             onDeactivatorIsPlaced.VoidEvent += () =>
             {
                 _deactivatorIsPlaced = true;
-                AddForceTrigger();
+                SetTriggerAnimator();
                 // Debug.Log("Deactivator Is Placed ".SetColor("#FE0D4F") + nonInteractableLayers);
             };
         }
@@ -76,11 +78,20 @@ namespace com.LazyGames
         }
        
         #endregion
-        public void AddForceTrigger()
+        private void AddForceTrigger()
         {
+            triggerRigidbody.useGravity = true;
             triggerRigidbody.isKinematic = false;
-            Vector3 direction = new Vector3(triggerGO.transform.position.x, triggerGO.transform.position.y + 1, triggerGO.transform.position.z);
+            
+            Vector3 direction = new Vector3(triggerGO.transform.position.x -1 , triggerGO.transform.position.y + 1, triggerGO.transform.position.z - 0.5f);
             triggerRigidbody.AddForce(direction, ForceMode.Impulse);
+        }
+        
+        public void SetTriggerAnimator()
+        {
+            animator.Play("GranadeCore");
+            AddForceTrigger();
+            StartCoroutine(EnableTrigger());
         }
         public void ReceiveDamage(int damage)
         {
@@ -113,7 +124,14 @@ namespace com.LazyGames
 
         #region private methods
 
-
+        IEnumerator EnableTrigger()
+        {
+            yield return new WaitForSeconds(1);
+            triggerRigidbody.useGravity = false;
+            triggerRigidbody.isKinematic = true;
+            triggerGO.SetActive(false);
+        }
+        
         #endregion
     }
     
@@ -131,7 +149,7 @@ public class DeactivatorCoreEditor : Editor
         
         if (GUILayout.Button("Add force on trigger"))
         {
-            deactivatorCore.AddForceTrigger();
+            deactivatorCore.SetTriggerAnimator();
         }
     }
 }
