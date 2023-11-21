@@ -39,6 +39,7 @@ public class WeaponStoreManager : MonoBehaviour
                 GameObject o = PlayerManager.Instance.GetWeaponObject(weaponData.ID);
                 WeaponObject weaponObject = o.GetComponent<WeaponObject>();
                 weaponObject.EnableGrabInteractable(true);
+                weaponObject.EnableWeaponStorePart(true);
                 weaponObject.InitializeWeapon();
                 onGrabWeaponFromStoreChannel.StringEvent += OnGrabWeapon;
                 o.transform.position = weaponShowPosition.position;
@@ -48,7 +49,7 @@ public class WeaponStoreManager : MonoBehaviour
                 
                 DoWeaponRotation(o);
                 
-                Debug.Log("Buy Weapon: ".SetColor("#96E542") + weaponID);
+                Debug.Log("Buy Weapon: ".SetColor("#96E542") + weaponObject.WeaponData.ID);
 
             }
             
@@ -75,9 +76,10 @@ public class WeaponStoreManager : MonoBehaviour
         {
             GameObject o = PlayerManager.Instance.GetWeaponObject(weaponData.ID);
             WeaponObject weaponObject = o.GetComponent<WeaponObject>();
-            weaponObject.Rigidbody.isKinematic = false;
+            // weaponObject.Rigidbody.isKinematic = false;
+            // weaponObject.EnableGrabInteractable(true);
             o.transform.DOKill();
-            // Debug.Log("OnGrabWeapon: ".SetColor("#96E542") + weaponID);
+            Debug.Log("OnGrabWeapon: ".SetColor("#96E542") + weaponID);
         }
 
         

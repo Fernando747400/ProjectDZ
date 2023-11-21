@@ -25,12 +25,14 @@ namespace com.LazyGames.DZ
         [SerializeField] private BoolEventChannelSO isInHandChannel;
         [SerializeField] private HandEventChannelSO handHolderEventSO;
         [SerializeField] private HandHolder currentHandHolding;
+        [SerializeField]private ObjectInHand objectInHand;
 
         [Header("UI")] [SerializeField] private GameObject weaponUIGO;
 
         [Header("Particles")] [SerializeField] private float timeToDespawnPart = 1f;
         [SerializeField] private LineRenderer lineRenderer;
         [SerializeField] private ParticleSystem hitLaserParticle;
+        [SerializeField] private GameObject weaponsStoreLight;
 
         [Header("Reload")]
         [SerializeField] private Animator reloadAnimator;
@@ -125,6 +127,11 @@ namespace com.LazyGames.DZ
         {
             visualWeapon.SetActive(value);
         }
+
+        public void EnableWeaponStorePart(bool value)
+        {
+            weaponsStoreLight.SetActive(value);
+        }
         public override void Reload()
         {
             DoReload();
@@ -171,9 +178,13 @@ namespace com.LazyGames.DZ
             if(_weaponUI == null) _weaponUI = transform.GetComponent<WeaponUI>();
 
             if (autoHandGrabbable == null) autoHandGrabbable = GetComponent<Grabbable>();
-            
+            if (objectInHand == null) objectInHand = GetComponent<ObjectInHand>();
+                
+            objectInHand.PrepareObjectInHand();
             _weaponUI.UpdateTextMMO(CurrentAmmo);
             _lineRendererMaxDistance = weaponData.MaxDistance;
+            
+            
         }
 
         public void MakeWeaponStatic(bool value)
@@ -199,12 +210,8 @@ namespace com.LazyGames.DZ
            
            if (_isHoldingWeapon)
            {
-               if (_rigidbody.isKinematic)
-               {
-                   _rigidbody.isKinematic = false;
-                   onGrabWeaponFromStoreChannel.RaiseStringEvent(weaponData.ID);
-               }
-               
+               OnGrabStoreWeapon();
+
                weaponUIGO.SetActive(true);
                EnableBeamLaser(true);
                MakeWeaponStatic(false);
@@ -217,7 +224,19 @@ namespace com.LazyGames.DZ
                EnableBeamLaser(false);
            }
         }
-        
+
+        public void OnGrabStoreWeapon()
+        {
+            //Has been grabbed in store
+            if (_rigidbody.isKinematic)
+            {
+                _rigidbody.isKinematic = false;
+                EnableWeaponStorePart(false);
+                Debug.Log("Grabbed Weapon From Store = ".SetColor("#F1BE50") + weaponData.ID);
+                onGrabWeaponFromStoreChannel.RaiseStringEvent(weaponData.ID);
+            }
+        }
+
         private void CheckCurrentHandHolder(HandHolder handHolder)
         {
             currentHandHolding = handHolder;
