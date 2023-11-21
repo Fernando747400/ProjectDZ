@@ -10,7 +10,6 @@ Material:
   m_Name: GunMetal_Dark
   m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
   m_ValidKeywords:
-  - DR_OUTLINE_ON
   - DR_OUTLINE_SMOOTH_NORMALS
   - _CELPRIMARYMODE_SINGLE
   - _DETAILMAPBLENDINGMODE_MULTIPLY
@@ -27,7 +26,8 @@ Material:
   m_CustomRenderQueue: 2000
   stringTagMap:
     RenderType: Opaque
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - SRPDEFAULTUNLIT
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -133,7 +133,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _OutlineDepthOffset: 0
-    - _OutlineEnabled: 1
+    - _OutlineEnabled: 0
     - _OutlineScale: 1
     - _OutlineSpace: 0
     - _OutlineWidth: 0.01
@@ -170,7 +170,7 @@ Material:
     - _BaseColor: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 1}
     - _Color: {r: 0.45119697, g: 0.6698113, b: 0.3254272, a: 1}
     - _ColorCelShadow: {r: 0.49056602, g: 0.34478462, b: 0.4476891, a: 1}
-    - _ColorDim: {r: 0.08708616, g: 0.13097148, b: 0.1792453, a: 1}
+    - _ColorDim: {r: 0.14150941, g: 0.019357424, b: 0.11097141, a: 1}
     - _ColorDimCurve: {r: 0.85, g: 0.85, b: 0.85, a: 0.85}
     - _ColorDimExtra: {r: 0.05678178, g: 0.41509432, b: 0.1945803, a: 1}
     - _ColorDimSteps: {r: 0.4339623, g: 0.01842292, b: 0.07126967, a: 0.85}
