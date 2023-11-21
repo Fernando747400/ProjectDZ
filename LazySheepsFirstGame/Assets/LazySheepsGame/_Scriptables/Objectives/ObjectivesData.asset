@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c56ca9d79957bf48b7b3786e6805ae2, type: 3}
+  m_Name: ObjectivesData
+  m_EditorClassIdentifier: 
+  objectives:
+  - ID: Presentation
+    Objective: Go meet the bartender.
+    IsCompleted: 0
+  - ID: Run
+    Objective: Start your first run.
+    IsCompleted: 0
+  - ID: EnemyCore
+    Objective: Find and destroy the enemy core.
+    IsCompleted: 0
+  - ID: Weapon
+    Objective: Gear up with X.
+    IsCompleted: 0
