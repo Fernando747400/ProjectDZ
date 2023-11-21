@@ -60,11 +60,14 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     [SerializeField] private IntEventChannelSO onDeathEnemyChannel;
     [SerializeField] private AddCurrencyEventChannel addCurrencyEventChannel;
     
+    [Header("Heal")]
+    [SerializeField] private IntEventChannelSO onHealPlayerChannel;
     
     #endregion
 
     #region private Variables
     private int _currentHealth;
+    
 
     #endregion
 
@@ -103,6 +106,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
         _currentHealth = playerHealth;
         weaponSelectChannel.StringEvent += SelectWeaponPlayerHolster;
         onDeathEnemyChannel.IntEvent += OnKilledEnemy;
+        onHealPlayerChannel.IntEvent += HealPlayer;
         
         // currentWeaponData = weapons[0].WeaponData;
         // SelectWeaponPlayerHolster(currentWeaponData.ID); 
@@ -152,6 +156,8 @@ public class PlayerManager : ManagerBase, IGeneralTarget
         }
         
     }
+    
+    
     public void DisableAllWeapons()
     {
         foreach (var weapon in weapons)
@@ -181,6 +187,21 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     #endregion
 
     #region private Methods
+    private void HealPlayer(int heal)
+    {
+        if (_currentHealth < playerHealth)
+        {
+            _currentHealth += heal;
+            Debug.Log("Heal Player".SetColor("#87E720") + heal);
+        }
+        else
+        {
+            _currentHealth = playerHealth;
+            Debug.Log("Set max health".SetColor("#87E720"));
+        }
+        
+       
+    }
 
     private void OnKilledEnemy(int currency)
     {
