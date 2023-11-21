@@ -89,6 +89,7 @@ namespace com.LazyGames
         public void BarrierDestroyed()
         {
             barrierVisual.SetActive(false);
+            collider.enabled = false;
         }
        
       
