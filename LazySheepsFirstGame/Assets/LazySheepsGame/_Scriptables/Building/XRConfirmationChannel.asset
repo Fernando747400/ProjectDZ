@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3374afd9551bca146ab2c7f06e8911d2, type: 3}
-  m_Name: EnemyCoreData
+  m_Script: {fileID: 11500000, guid: a8a97677f517ef9479807a6c8296bedb, type: 3}
+  m_Name: XRConfirmationChannel
   m_EditorClassIdentifier: 
-  barrierHealth: 35
-  enemyPerWave: 10
-  enemyPrefab: {fileID: 6517521779524120107, guid: 67fec238e57b147459c7299458d083f7, type: 3}
-  waveDelay: 3
-  enemySpawnDelay: 0.5
-  timerLifeCoreSec: 90

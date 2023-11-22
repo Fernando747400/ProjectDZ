@@ -218,6 +218,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     
     private void OnCompletedObjective(string objectiveID)
     {
+        Debug.Log("Completed Objective: ".SetColor("#87E720") + objectiveID);
         Objectives objective = objectivesData.Objectives.Find(x => x.ID == objectiveID);
         
         if(objective.IsCompleted) return;
