@@ -49,7 +49,7 @@ public class ObjectInHand : MonoBehaviour
             
             if (handHolderEventSO != null) handHolderEventSO.RaiseEvent(GetHandHolder(hand));
             
-            Debug.Log("Object ".SetColor("#F5DD16")+ transform.name +  " Grabbed by =".SetColor("#F5DD16") + GetHandHolder(hand));
+            // Debug.Log("Object ".SetColor("#F5DD16")+ transform.name +  " Grabbed by =".SetColor("#F5DD16") + GetHandHolder(hand));
         }
         
         
@@ -62,7 +62,7 @@ public class ObjectInHand : MonoBehaviour
         {
             isInHandChannel.RaiseEvent(false);
             if (handHolderEventSO != null) handHolderEventSO.RaiseEvent(GetHandHolder(hand));
-            Debug.Log("Object ".SetColor("#F5DD16") + transform.name + " Dropped by =".SetColor("#F5DD16") + GetHandHolder(hand));
+            // Debug.Log("Object ".SetColor("#F5DD16") + transform.name + " Dropped by =".SetColor("#F5DD16") + GetHandHolder(hand));
 
         }
     }

@@ -63,6 +63,12 @@ namespace com.LazyGames.DZ
         
         public bool IsHoldingWeapon => _isHoldingWeapon;
 
+        public bool IsInStore
+        {
+            get => _isInStore;
+            set => _isInStore = value;
+        }
+
         #endregion
         #region private variables
         
@@ -75,6 +81,7 @@ namespace com.LazyGames.DZ
         private WeaponUI _weaponUI;
         private float _lineRendererMaxDistance = 10f;
         private Rigidbody _rigidbody;
+        private bool _isInStore = false;
 
         #endregion
 
@@ -210,11 +217,10 @@ namespace com.LazyGames.DZ
            
            if (_isHoldingWeapon)
            {
-               //OnGrabStoreWeapon();
+               if(IsInStore) OnGrabStoreWeapon();
 
                weaponUIGO.SetActive(true);
                EnableBeamLaser(true);
-               //MakeWeaponStatic(false);
 
            }
            else
@@ -225,16 +231,15 @@ namespace com.LazyGames.DZ
            }
         }
 
-        public void OnGrabStoreWeapon()
+        private void OnGrabStoreWeapon()
         {
             //Has been grabbed in store
-            if (_rigidbody.isKinematic)
-            {
-                _rigidbody.isKinematic = false;
-                EnableWeaponStorePart(false);
-                Debug.Log("Grabbed Weapon From Store = ".SetColor("#F1BE50") + weaponData.ID);
-                onGrabWeaponFromStoreChannel.RaiseStringEvent(weaponData.ID);
-            }
+            EnableWeaponStorePart(false); 
+            IsInStore = false;
+            onGrabWeaponFromStoreChannel.RaiseStringEvent(weaponData.ID);
+
+            Debug.Log("Grabbed Weapon From Store = ".SetColor("#F1BE50") + weaponData.ID); 
+
         }
 
         private void CheckCurrentHandHolder(HandHolder handHolder)
