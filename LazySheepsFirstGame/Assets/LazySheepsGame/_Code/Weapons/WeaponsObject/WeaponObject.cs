@@ -238,7 +238,7 @@ namespace com.LazyGames.DZ
             IsInStore = false;
             onGrabWeaponFromStoreChannel.RaiseStringEvent(weaponData.ID);
 
-            Debug.Log("Grabbed Weapon From Store = ".SetColor("#F1BE50") + weaponData.ID); 
+            // Debug.Log("Grabbed Weapon From Store = ".SetColor("#F1BE50") + weaponData.ID); 
 
         }
 

@@ -43,7 +43,7 @@ public class CurrencyManager : ManagerBase
         {
             _currentCurrency = value;
             onUpdateCurrencyChannel.RaiseEvent(_currentCurrency);
-            
+           
         }
     }
 
