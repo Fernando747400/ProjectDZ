@@ -15,6 +15,8 @@ namespace com.LazyGames
     public class EnemyCoreController : MonoBehaviour
     {
         #region Serialized Fields
+        
+        [SerializeField] private GenericDataEventChannelSO onObjectiveCompletedChannel;
 
         [Header("Enemy Core")]
         [SerializeField] private EnemyCoreData enemyCoreData;
@@ -186,7 +188,7 @@ namespace com.LazyGames
           
           agent.Warp(spawnPoints[randomPlace].position);
 
-          Debug.Log("SpawnEnemyWave".SetColor("#FE0D4F"));
+          // Debug.Log("SpawnEnemyWave".SetColor("#FE0D4F"));
         }
 
       
@@ -198,6 +200,9 @@ namespace com.LazyGames
             collider.enabled = false;
             onCoreDestroyed.RaiseEvent();
             explosionParticle.Play();
+            
+            onObjectiveCompletedChannel.RaiseStringEvent("EnemyCore");
+
             // Debug.Log("Enemy Core Destroyed".SetColor("#FE0D4F"));
         }
         private void CheckEnemyCoreState()
