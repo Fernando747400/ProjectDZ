@@ -14,6 +14,7 @@ namespace com.LazyGames.DZ
             Controller.agent.speed = 0;
             Controller.doHear = false;
             Controller.onDeathScriptableChannel.RaiseEvent(Controller.parameters.killValue);
+            Controller.Collider.enabled = false;
         }
         
         public override void UpdateState()
@@ -37,6 +38,7 @@ namespace com.LazyGames.DZ
             if (newAnimState == Controller.currentAnimState) return;
             Controller.animController.SetAnim(newAnimState);
             Controller.currentAnimState = newAnimState; // Update the current state
+            
         }
 
         private void Despawn()
