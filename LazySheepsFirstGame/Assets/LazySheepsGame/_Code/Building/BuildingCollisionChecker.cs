@@ -12,18 +12,21 @@ public class BuildingCollisionChecker : MonoBehaviour
     [Header("Materials Dependencies")]
     [HideInInspector] public Material ValidPlacementMaterial;
     [HideInInspector] public Material InvalidPlacementMaterial;
+    [HideInInspector] public Material CooldownMaterial;
 
-
-    public bool IsColliding { get { return _isColliding; } }
-    public LayerMask BuildingsLayerMask { set { _buildingsLayerMask = value; } }
-    
     private LayerMask _buildingsLayerMask;
 
     private List<MeshRenderer> _myMeshRenderers = new List<MeshRenderer>();
     private List<Material[]> _initialMaterials = new List<Material[]>(); 
 
     private bool _isColliding = false;
+    private bool _onCooldown = false;
     private BoxCollider _boxCollider;
+
+    public bool IsColliding { get { return _isColliding; } }
+    public bool OnCooldown { get { return _onCooldown; } set { _onCooldown = value; } }
+    public LayerMask BuildingsLayerMask { set { _buildingsLayerMask = value; } }
+    
 
     public void PlaceObjectSequence()
     {
@@ -31,9 +34,6 @@ public class BuildingCollisionChecker : MonoBehaviour
         Destroy(this.GetComponent<BuildingCollisionChecker>());
     }
 
-    private void OnEnable()
-    {
-    }
 
     private void Start()
     {
@@ -59,16 +59,20 @@ public class BuildingCollisionChecker : MonoBehaviour
             _isColliding = true;
             ChangeMaterials(InvalidPlacementMaterial);
         }
-        else
+        else if (!_onCooldown)
         {
             _isColliding = false;
             ChangeMaterials(ValidPlacementMaterial);
+        } else
+        {
+            _isColliding = false;
+            ChangeMaterials(CooldownMaterial);
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) //TODO change hammer to iBuilder
     {
-        if (collision.gameObject.tag == "Hammer")
+        if (collision.gameObject.tag == "Hammer" || collision.gameObject.GetComponent<IBuilder>() != null)
         {
             HammerCollisionEvent.RaiseEvent();
             Debug.Log("Collision with hammer");
@@ -77,7 +81,7 @@ public class BuildingCollisionChecker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Hammer")
+        if (other.gameObject.tag == "Hammer" || other.gameObject.GetComponent<IBuilder>() != null)
         {
             HammerCollisionEvent.RaiseEvent();
             Debug.Log("Trigger with hammer");
