@@ -48,8 +48,8 @@ public class HandsMenuUI : MonoBehaviour
         SetObjective(_playerManager.CurrentObjective);
         onObjectiveCompletedChannel.StringEvent += OnCompletedObjective;
         _playerCurrencyText.text = CurrencyManager.Instance.CurrentCurrency.ToString();
-        _playerHealthText.text = _playerManager.CurrentHealth.ToString();
-        SetLifeValue(_playerManager.CurrentHealth);
+        _playerHealthText.text = 100f.ToString();
+        SetLifeValue(100);
 
     }
 
@@ -57,6 +57,12 @@ public class HandsMenuUI : MonoBehaviour
     public void GetEvent()
     {
         onObjectiveCompletedChannel.StringEvent += OnCompletedObjective;
+        _playerManager.OnSetObjective += SetObjective;
+        
+        onUpdatePlayerHealth.IntEvent += UpdatePlayerHealth;
+        onUpdatePlayerCurrency.IntEvent += UpdatePlayerCurrency;
+
+        
 
     }
 
