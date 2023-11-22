@@ -30,4 +30,8 @@ public class WeaponButtonUI : MonoBehaviour
         weaponPriceText.text = weaponData.CurrencyData.ValueCurrency.ToString();
         WeaponImage.sprite = weaponData.WeaponSprite;
     }
+    public void InteractButton()
+    {
+        Debug.Log("Interact Button".SetColor("#44F0F8"));
+    }
 }

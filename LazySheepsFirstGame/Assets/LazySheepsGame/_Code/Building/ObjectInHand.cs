@@ -25,14 +25,19 @@ public class ObjectInHand : MonoBehaviour
 
     private void Start()
     {
-        autoHandGrabbable.OnGrabEvent += GrabbedObject;
-        autoHandGrabbable.OnReleaseEvent += DroppedObject;
+       PrepareObjectInHand();   
     }
 
     private void OnDisable()
     {
         autoHandGrabbable.OnGrabEvent -= GrabbedObject;
         autoHandGrabbable.OnReleaseEvent -= DroppedObject;
+    }
+    
+    public void PrepareObjectInHand()
+    {
+        autoHandGrabbable.OnGrabEvent += GrabbedObject;
+        autoHandGrabbable.OnReleaseEvent += DroppedObject;
     }
 
     private void GrabbedObject(Hand hand, Grabbable grabbable)
