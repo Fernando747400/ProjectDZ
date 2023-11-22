@@ -68,19 +68,24 @@ public class HandsMenuUI : MonoBehaviour
         _runButton.gameObject.SetActive(false);
         exitButton.gameObject.SetActive(true);
 
-        _playerManager.ResetPlayersPosition();
+        _playerManager.ResetPlayersPosition(new Vector3(0,1.5f,0));
         _changeSceneChannel.RaiseStringEvent(_sceneRun);
         _changeSceneChannel.RaiseStringEvent(_sceneAI);
         _changeSceneChannel.RaiseBoolEvent(true);
+        
+        onObjectiveCompletedChannel.RaiseStringEvent("Run");
     }
 
     [Button]
     public void OnClickReturn()
     {
         _runButton.gameObject.SetActive(true);
-        _playerManager.ResetPlayersPosition();
+        _playerManager.ResetPlayersPosition(new Vector3(0,1.5f,0));
         _changeSceneChannel.RaiseStringEvent(_sceneTabern);
-        _changeSceneChannel.RaiseBoolEvent(true);        
+        _changeSceneChannel.RaiseBoolEvent(true);  
+        
+        onObjectiveCompletedChannel.RaiseStringEvent("EnemyCore");
+
     }
 
     private void OnCompletedObjective(string objective)

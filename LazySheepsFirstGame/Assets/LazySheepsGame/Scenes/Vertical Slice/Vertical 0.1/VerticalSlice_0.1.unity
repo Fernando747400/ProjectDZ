@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: d1166cd31eb77a549a17ad0841e84b2d, type: 2}
 --- !u!1001 &13518953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,6 +133,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_Name
       value: Rock_2 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_RootOrder
@@ -292,6 +296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 117
@@ -366,6 +374,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_3 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
       propertyPath: m_RootOrder
       value: 49
@@ -431,6 +443,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 2625675649529510760, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4928433073562714996, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
       propertyPath: m_RootOrder
       value: 147
@@ -475,9 +491,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -195.388
       objectReference: {fileID: 0}
+    - target: {fileID: 5421803451544240375, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5705673047525972430, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
       propertyPath: m_Name
       value: Train (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5705673047525972430, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
@@ -501,6 +525,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_Name
       value: Rock_5 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_RootOrder
@@ -576,6 +604,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 59
@@ -644,6 +676,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_Name
       value: Rock_2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_RootOrder
@@ -724,6 +760,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_2 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
       value: 91
@@ -803,6 +843,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_5 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_RootOrder
       value: 42
@@ -877,6 +921,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -945,6 +993,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (35)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -1104,6 +1156,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -1177,6 +1233,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_Name
       value: Rock_5 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_RootOrder
@@ -1257,6 +1317,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -1331,6 +1395,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4300000, guid: c7e5ff7d76e240747a75d1adc3204af2, type: 2}
+    - target: {fileID: 2625675649529510760, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4895402597730706585, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -1379,9 +1447,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -165.919
       objectReference: {fileID: 0}
+    - target: {fileID: 5421803451544240375, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5705673047525972430, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
       propertyPath: m_Name
       value: Train
+      objectReference: {fileID: 0}
+    - target: {fileID: 5705673047525972430, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
@@ -1400,6 +1476,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -1469,6 +1549,10 @@ PrefabInstance:
     - target: {fileID: 6874353247688259573, guid: 25ada70fc6fd2ab499ea4461ca8b6171, type: 3}
       propertyPath: m_Name
       value: WorldBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874353247688259573, guid: 25ada70fc6fd2ab499ea4461ca8b6171, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6874353247688259582, guid: 25ada70fc6fd2ab499ea4461ca8b6171, type: 3}
       propertyPath: m_RootOrder
@@ -1544,6 +1628,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_1 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_RootOrder
       value: 63
@@ -1612,6 +1700,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -1692,6 +1784,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 109
@@ -1762,9 +1858,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_Name
       value: Train_Chest_Lid (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7953405617008657613, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_RootOrder
@@ -1832,9 +1944,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 126359156636825227, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 472280540133439934, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
       propertyPath: m_Name
       value: Train_Chest (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 472280540133439934, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 992533590582223620, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
       propertyPath: m_RootOrder
@@ -1879,6 +1999,26 @@ PrefabInstance:
     - target: {fileID: 992533590582223620, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -66.498
+      objectReference: {fileID: 0}
+    - target: {fileID: 2286633918040413325, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924328692339711111, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104365781506951919, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184994673178620553, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8258188780660442367, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
@@ -1931,6 +2071,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -2000,6 +2144,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
       propertyPath: m_Name
       value: Rock_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
       propertyPath: m_RootOrder
@@ -2075,6 +2223,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_2 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
       value: 38
@@ -2148,6 +2300,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_Name
       value: Rock_5 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_RootOrder
@@ -2333,6 +2489,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 26
@@ -2402,6 +2562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 39
@@ -2470,6 +2634,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -2544,6 +2712,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -2624,6 +2796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_3 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
       propertyPath: m_RootOrder
       value: 61
@@ -2693,6 +2869,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_5 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2761,6 +2941,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -3014,9 +3198,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 126359156636825227, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 472280540133439934, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
       propertyPath: m_Name
       value: Train_Chest (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 472280540133439934, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 992533590582223620, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
       propertyPath: m_RootOrder
@@ -3062,6 +3254,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 178.384
       objectReference: {fileID: 0}
+    - target: {fileID: 2286633918040413325, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924328692339711111, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104365781506951919, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184994673178620553, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8258188780660442367, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
 --- !u!4 &668868611 stripped
@@ -3089,6 +3301,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
       propertyPath: m_Name
       value: Rock_3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
       propertyPath: m_RootOrder
@@ -3164,6 +3380,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_4 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
       propertyPath: m_RootOrder
       value: 36
@@ -3232,6 +3452,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_Name
       value: Big_Piedretion_1 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_RootOrder
@@ -3307,6 +3531,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_4 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
       propertyPath: m_RootOrder
       value: 48
@@ -3375,6 +3603,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_Name
       value: Rock_2 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_RootOrder
@@ -3449,6 +3681,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_Name
       value: Big_Piedretion_1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_RootOrder
@@ -3675,6 +3911,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 52
@@ -3744,6 +3984,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_4
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -3809,13 +4053,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 1018512198788774499, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178061734450616421, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_Name
       value: Train_Chest_No_Lid (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_RootOrder
-      value: 150
+      value: 149
       objectReference: {fileID: 0}
     - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3857,6 +4113,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -273.54
       objectReference: {fileID: 0}
+    - target: {fileID: 2984788083165225985, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134617621730535953, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
 --- !u!4 &796879685 stripped
@@ -3879,6 +4143,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_Name
       value: Rock_2 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_RootOrder
@@ -3948,6 +4216,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_Name
       value: Rock_2 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_RootOrder
@@ -4019,9 +4291,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 126359156636825227, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 472280540133439934, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
       propertyPath: m_Name
       value: Train_Chest (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 472280540133439934, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 992533590582223620, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
       propertyPath: m_RootOrder
@@ -4066,6 +4346,26 @@ PrefabInstance:
     - target: {fileID: 992533590582223620, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -60.853
+      objectReference: {fileID: 0}
+    - target: {fileID: 2286633918040413325, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924328692339711111, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104365781506951919, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184994673178620553, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8258188780660442367, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
@@ -4160,9 +4460,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_Name
       value: Train_Chest_Lid (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7953405617008657613, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_RootOrder
@@ -4237,6 +4553,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -4473,6 +4793,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_1 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_RootOrder
       value: 56
@@ -4538,9 +4862,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 1018512198788774499, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178061734450616421, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_Name
       value: Train_Chest_No_Lid (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_RootOrder
@@ -4586,6 +4922,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -89.44
       objectReference: {fileID: 0}
+    - target: {fileID: 2984788083165225985, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134617621730535953, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
 --- !u!4 &879022387 stripped
@@ -4600,9 +4944,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 126359156636825227, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 472280540133439934, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
       propertyPath: m_Name
       value: Train_Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 472280540133439934, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 992533590582223620, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
       propertyPath: m_RootOrder
@@ -4648,6 +5000,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 154.797
       objectReference: {fileID: 0}
+    - target: {fileID: 2286633918040413325, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924328692339711111, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104365781506951919, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184994673178620553, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8258188780660442367, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ba29e4bd48f644d82981881af9547a, type: 3}
 --- !u!4 &891394774 stripped
@@ -4665,6 +5037,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_Name
       value: Rock_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_RootOrder
@@ -4734,6 +5110,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_Name
       value: Rock_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_RootOrder
@@ -4808,6 +5188,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -4888,6 +5272,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 67
@@ -4953,9 +5341,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 1018512198788774499, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178061734450616421, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_Name
       value: Train_Chest_No_Lid (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_RootOrder
@@ -5000,6 +5400,14 @@ PrefabInstance:
     - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 6.536
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984788083165225985, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134617621730535953, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
@@ -5094,13 +5502,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 1018512198788774499, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178061734450616421, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_Name
       value: Train_Chest_No_Lid (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005565747491432975, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_Size.y
+      value: 0.16045995
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005565747491432975, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_Center.x
+      value: 0.0000000014316164
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005565747491432975, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_Center.y
+      value: 0.0552299
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005565747491432975, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_Center.z
+      value: 1.4601584e-11
+      objectReference: {fileID: 0}
     - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_RootOrder
-      value: 151
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5142,7 +5578,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.771
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2654151799676320974, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984788083165225985, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134617621730535953, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2005565747491432975, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
 --- !u!4 &973525621 stripped
 Transform:
@@ -5159,6 +5608,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_Name
       value: Big_Piedretion_1 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_RootOrder
@@ -5234,6 +5687,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 112
@@ -5304,13 +5761,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_Name
       value: Train_Chest_Lid (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7953405617008657613, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_RootOrder
-      value: 157
+      value: 156
       objectReference: {fileID: 0}
     - target: {fileID: 7953405617008657613, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_LocalScale.x
@@ -5386,6 +5859,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
       propertyPath: m_RootOrder
       value: 137
@@ -5460,6 +5937,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 44
@@ -5529,6 +6010,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_1
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5597,6 +6082,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -5676,6 +6165,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -5825,6 +6318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 58
@@ -5893,6 +6390,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
       propertyPath: m_Name
       value: Rock_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
       propertyPath: m_RootOrder
@@ -5976,6 +6477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 106
@@ -6051,13 +6556,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 1018512198788774499, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178061734450616421, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_Name
       value: Train_Chest_No_Lid (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_RootOrder
-      value: 152
+      value: 151
       objectReference: {fileID: 0}
     - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6099,6 +6616,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -23.061
       objectReference: {fileID: 0}
+    - target: {fileID: 2984788083165225985, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134617621730535953, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
 --- !u!4 &1091797386 stripped
@@ -6116,6 +6641,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -6242,8 +6771,36 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 632921695327237099, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118472363626806494, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296675113886621400, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796800480855037650, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940883479664263354, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310231476124465372, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8998065313803423402, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998065313803423402, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
+      propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -6293,6 +6850,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_Name
       value: Big_Piedretion_1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_RootOrder
@@ -6362,6 +6923,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -6436,6 +7001,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -6516,6 +7085,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 120
@@ -6595,6 +7168,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_5 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_RootOrder
       value: 98
@@ -6668,6 +7245,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_Name
       value: Big_Piedretion_2 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
@@ -6748,6 +7329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_2 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
       value: 45
@@ -6822,6 +7407,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 62
@@ -6891,6 +7480,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 65
@@ -6956,6 +7549,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 2625675649529510760, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4928433073562714996, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
       propertyPath: m_RootOrder
       value: 144
@@ -7000,9 +7597,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -440.353
       objectReference: {fileID: 0}
+    - target: {fileID: 5421803451544240375, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5705673047525972430, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
       propertyPath: m_Name
       value: Train (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5705673047525972430, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
@@ -7021,6 +7626,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_Name
       value: Big_Piedretion_1 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_RootOrder
@@ -7100,6 +7709,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 80
@@ -7173,6 +7786,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_Name
       value: Rock_5 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_RootOrder
@@ -7248,6 +7865,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_4 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
       propertyPath: m_RootOrder
       value: 100
@@ -7322,9 +7943,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_5 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_RootOrder
-      value: 158
+      value: 157
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_LocalScale.x
@@ -7396,6 +8021,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 32
@@ -7464,6 +8093,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_Name
       value: Rock_5 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_RootOrder
@@ -7539,6 +8172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_1 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_RootOrder
       value: 54
@@ -7602,6 +8239,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
   m_PrefabInstance: {fileID: 1877250487}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1348957360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1178061734450616421, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+  m_PrefabInstance: {fileID: 973525620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1348957364
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348957360}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: edd524518b0eac84195838624609f36e, type: 3}
 --- !u!1001 &1369126083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7612,6 +8268,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -7687,6 +8347,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_2 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
       value: 46
@@ -7755,6 +8419,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
       propertyPath: m_Name
       value: Rock_4 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
       propertyPath: m_RootOrder
@@ -7830,6 +8498,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 51
@@ -7898,6 +8570,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -7973,6 +8649,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_2
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -8047,6 +8727,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_2 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -8115,6 +8799,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
       propertyPath: m_Name
       value: Rock_3 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
       propertyPath: m_RootOrder
@@ -8195,6 +8883,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -8263,6 +8955,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -8334,9 +9030,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 1018512198788774499, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178061734450616421, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_Name
       value: Train_Chest_No_Lid (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_RootOrder
@@ -8382,6 +9090,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 25.805
       objectReference: {fileID: 0}
+    - target: {fileID: 2984788083165225985, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134617621730535953, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
 --- !u!4 &1487135321 stripped
@@ -8404,6 +9120,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_Name
       value: Rock_2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_RootOrder
@@ -8484,6 +9204,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -8558,6 +9282,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_2 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
       value: 86
@@ -8628,13 +9356,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_Name
       value: Train_Chest_Lid (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7953405617008657613, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_RootOrder
-      value: 156
+      value: 155
       objectReference: {fileID: 0}
     - target: {fileID: 7953405617008657613, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_LocalScale.x
@@ -8899,7 +9643,6 @@ Transform:
   - {fileID: 1661085911}
   - {fileID: 81496958}
   - {fileID: 879022387}
-  - {fileID: 1764100695}
   - {fileID: 796879685}
   - {fileID: 973525621}
   - {fileID: 1091797386}
@@ -8922,6 +9665,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -8993,13 +9740,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_Name
       value: Train_Chest_Lid (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7953405617008657613, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_RootOrder
-      value: 154
+      value: 153
       objectReference: {fileID: 0}
     - target: {fileID: 7953405617008657613, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_LocalScale.y
@@ -9066,6 +9829,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -9136,6 +9903,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_2 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
       value: 25
@@ -9204,6 +9975,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_Name
       value: Rock_2 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_RootOrder
@@ -9289,6 +10064,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 95
@@ -9368,6 +10147,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_2 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -9433,6 +10216,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 2625675649529510760, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4928433073562714996, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
       propertyPath: m_RootOrder
       value: 146
@@ -9477,9 +10264,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -523.016
       objectReference: {fileID: 0}
+    - target: {fileID: 5421803451544240375, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5705673047525972430, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
       propertyPath: m_Name
       value: Train (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5705673047525972430, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
@@ -9503,6 +10298,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_Name
       value: Rock_5 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_RootOrder
@@ -9658,9 +10457,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_Name
       value: Train_Chest_Lid (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7953405617008657613, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_RootOrder
@@ -9736,6 +10551,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_5 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -9794,72 +10613,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
---- !u!1001 &1764100694
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1594405198}
-    m_Modifications:
-    - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
-      propertyPath: m_Name
-      value: Train_Chest_No_Lid (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
-      propertyPath: m_RootOrder
-      value: 149
-      objectReference: {fileID: 0}
-    - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 51.927387
-      objectReference: {fileID: 0}
-    - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -30.973461
-      objectReference: {fileID: 0}
-    - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.5191824
-      objectReference: {fileID: 0}
-    - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.8546635
-      objectReference: {fileID: 0}
-    - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -52.555
-      objectReference: {fileID: 0}
-    - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5896193862631153681, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 43faa833d8257d94f923804bda9260a5, type: 2}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
---- !u!4 &1764100695 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
-  m_PrefabInstance: {fileID: 1764100694}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1773757572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7807629996734426091, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
@@ -9875,6 +10628,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_Name
       value: Big_Piedretion_2 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
@@ -9950,6 +10707,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_3 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
       propertyPath: m_RootOrder
       value: 35
@@ -10018,6 +10779,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -10092,6 +10857,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
       propertyPath: m_Name
       value: Rock_4 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
       propertyPath: m_RootOrder
@@ -10168,9 +10937,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_Name
       value: Train_Chest_Lid (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7953405617008657613, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_RootOrder
@@ -10246,6 +11031,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 9b7f8dfe6ecec7346bcb27ccc3efdcd1, type: 3}
       propertyPath: m_RootOrder
       value: 143
@@ -10316,9 +11105,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_Name
       value: Train_Chest_Lid (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7953405617008657613, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_RootOrder
@@ -10394,6 +11199,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -10459,9 +11268,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 3758064935957816272, guid: 807379bca0baa044699bc5b44efdbfc6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5617424637766884902, guid: 807379bca0baa044699bc5b44efdbfc6, type: 3}
       propertyPath: m_Name
       value: Estructura_Metal
+      objectReference: {fileID: 0}
+    - target: {fileID: 5617424637766884902, guid: 807379bca0baa044699bc5b44efdbfc6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8912131265923755061, guid: 807379bca0baa044699bc5b44efdbfc6, type: 3}
       propertyPath: m_RootOrder
@@ -10524,6 +11341,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_Name
       value: Rock_2 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_RootOrder
@@ -10594,6 +11415,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_5 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_RootOrder
       value: 47
@@ -10662,6 +11487,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_Name
       value: Big_Piedretion_2 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
@@ -10816,6 +11645,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -10889,6 +11722,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -10964,6 +11801,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_1 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: e034712d0cb537c4f96e7f36426ed3c1, type: 3}
       propertyPath: m_RootOrder
       value: 30
@@ -11032,6 +11873,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (40)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -11108,13 +11953,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415652718092440626, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_Name
       value: Train_Chest_Lid (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685687901000956476, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7953405617008657613, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_RootOrder
-      value: 155
+      value: 154
       objectReference: {fileID: 0}
     - target: {fileID: 7953405617008657613, guid: beafda48774d65a4097b7cb9ddd38082, type: 3}
       propertyPath: m_LocalScale.x
@@ -11183,9 +12044,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 1018512198788774499, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178061734450616421, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_Name
       value: Train_Chest_No_Lid (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_RootOrder
@@ -11231,6 +12104,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2984788083165225985, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134617621730535953, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
 --- !u!4 &1994336531 stripped
@@ -11253,6 +12134,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_Name
       value: Rock_5 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: c4f23f0cb6930a84584e39e9ed675650, type: 3}
       propertyPath: m_RootOrder
@@ -11322,6 +12207,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_Name
       value: Rock_2 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_RootOrder
@@ -11396,6 +12285,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
       propertyPath: m_Name
       value: Rock_4 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
       propertyPath: m_RootOrder
@@ -11515,6 +12408,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Train_Chest 1
       objectReference: {fileID: 0}
+    - target: {fileID: 632921695327237099, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118472363626806494, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296675113886621400, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796800480855037650, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940883479664263354, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310231476124465372, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998065313803423402, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fcb51d2d8e9c694a9f38ceb2cb8fbf3, type: 3}
 --- !u!4 &2025384527 stripped
@@ -11532,6 +12453,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -11602,6 +12527,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big_Piedretion_2 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
       value: 37
@@ -11670,6 +12599,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_Name
       value: Rock_1 (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
@@ -11745,6 +12678,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 90
@@ -11819,6 +12756,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_4 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 86916304fcb6dab4ca5e3d520adc5c12, type: 3}
       propertyPath: m_RootOrder
       value: 97
@@ -11889,13 +12830,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 1018512198788774499, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178061734450616421, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_Name
       value: Train_Chest_No_Lid (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1663053917399275344, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_RootOrder
-      value: 153
+      value: 152
       objectReference: {fileID: 0}
     - target: {fileID: 2044504585599946218, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11937,6 +12890,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 27.019
       objectReference: {fileID: 0}
+    - target: {fileID: 2984788083165225985, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134617621730535953, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e6f3362e80f0e4db663d7608710016, type: 3}
 --- !u!4 &2085051159 stripped
@@ -11956,6 +12917,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594405198}
     m_Modifications:
+    - target: {fileID: 2625675649529510760, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4928433073562714996, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
       propertyPath: m_RootOrder
       value: 145
@@ -12000,9 +12965,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -459.57
       objectReference: {fileID: 0}
+    - target: {fileID: 5421803451544240375, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5705673047525972430, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
       propertyPath: m_Name
       value: Train (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5705673047525972430, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baaae8c53b3b79a46afd7fa64c69c514, type: 3}
@@ -12026,6 +12999,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_Name
       value: Big_Piedretion_2 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 7cae9698514b63342ab55a4378b4ba5e, type: 3}
       propertyPath: m_RootOrder
@@ -12095,6 +13072,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_Name
       value: Rock_2 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_RootOrder
@@ -12247,6 +13228,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1 (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: 8a96660a68f4eb247b76abda848938ab, type: 3}
       propertyPath: m_RootOrder
       value: 105
@@ -12320,6 +13305,10 @@ PrefabInstance:
     - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_Name
       value: Rock_2 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426882947862131025, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7807629996734426091, guid: b9571ce3efb541940a62ee164d173fc5, type: 3}
       propertyPath: m_RootOrder
@@ -12395,6 +13384,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1594405197}
     - target: {fileID: 1583122755559281121, guid: d18512bd6c6b55d49835c6476eee0899, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1583122755559281121, guid: d18512bd6c6b55d49835c6476eee0899, type: 3}
       propertyPath: boundsSize
       value: 150
       objectReference: {fileID: 0}
@@ -12445,6 +13438,10 @@ PrefabInstance:
     - target: {fileID: 1583122755559281123, guid: d18512bd6c6b55d49835c6476eee0899, type: 3}
       propertyPath: m_Name
       value: ===NavMeshManager===
+      objectReference: {fileID: 0}
+    - target: {fileID: 1583122755559281123, guid: d18512bd6c6b55d49835c6476eee0899, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d18512bd6c6b55d49835c6476eee0899, type: 3}
