@@ -9,6 +9,7 @@ namespace com.LazyGames.DZ
         {
             //perform alerted animation
             Controller.agent.isStopped = true;
+            Controller.doHear = false;
             _elapsedTime = 0f;
         }
 
@@ -71,7 +72,8 @@ namespace com.LazyGames.DZ
         public override void ExitState()
         {
             Controller.agent.isStopped = false;
-            
+            Controller.doHear = true;
+
         }
     }
     
