@@ -301,6 +301,18 @@ PrefabInstance:
       propertyPath: weapons.Array.data[1]
       value: 
       objectReference: {fileID: 2010147638}
+    - target: {fileID: 4491987855441714600, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491987855441714600, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491987855441714600, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6133733061732126598, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: m_Name
       value: Player_Zenith
@@ -347,6 +359,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6133733061732126599, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841617216684692060, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841617216684692060, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961948622140516921, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: OnHide.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961948622140516921, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: OnHide.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961948622140516921, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: OnHide.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1547242469}
+    - target: {fileID: 6961948622140516921, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: OnHide.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961948622140516921, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: OnHide.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961948622140516921, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: OnHide.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961948622140516921, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: OnHide.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070425959719401371, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -472,7 +524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1530712354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,6 +557,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1547242469 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8070425959719401371, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+  m_PrefabInstance: {fileID: 585584826}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1870636828
 GameObject:
   m_ObjectHideFlags: 0

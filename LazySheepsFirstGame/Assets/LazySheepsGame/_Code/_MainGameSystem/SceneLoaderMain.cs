@@ -71,6 +71,7 @@ public class SceneLoaderMain : MonoBehaviour
             while (!sceneUnloader.isDone)
             {
                 yield return null;
+                
             }
 
             Debug.Log("Finished unloading " + currentSceneToUnload.name + " scene async");
