@@ -46,20 +46,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2658857726072966256, guid: 637ad5a197a749d469f44b386b827158, type: 3}
       propertyPath: m_Size.y
-      value: -2.34
+      value: -1.97
       objectReference: {fileID: 0}
     - target: {fileID: 2658857726072966256, guid: 637ad5a197a749d469f44b386b827158, type: 3}
       propertyPath: m_Size.z
-      value: 4.61
+      value: 2.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658857726072966256, guid: 637ad5a197a749d469f44b386b827158, type: 3}
+      propertyPath: m_Center.x
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 2658857726072966256, guid: 637ad5a197a749d469f44b386b827158, type: 3}
       propertyPath: m_Center.z
-      value: -0.6
+      value: -0.66
       objectReference: {fileID: 0}
     - target: {fileID: 2658857726072966256, guid: 637ad5a197a749d469f44b386b827158, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2658857726072966257, guid: 637ad5a197a749d469f44b386b827158, type: 3}
+      propertyPath: dialogueData
+      value: 
+      objectReference: {fileID: 11400000, guid: fc39549ef3a789f478d6a665d9636708, type: 2}
     - target: {fileID: 2658857726072966257, guid: 637ad5a197a749d469f44b386b827158, type: 3}
       propertyPath: OnDialoguesCompleted.m_PersistentCalls.m_Calls.Array.size
       value: 0
