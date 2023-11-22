@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731715, g: 0.13414735, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.18279177, g: 0.22849512, b: 0.3070189, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 8c5dcf30d401c824f99caec0f2ad5ab8, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e6227a1686e29594794f8fa16918b524, type: 2}
 --- !u!1001 &311267161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -289,6 +289,10 @@ PrefabInstance:
       propertyPath: maxMoveSpeed
       value: 2.6
       objectReference: {fileID: 0}
+    - target: {fileID: 3667990794516128502, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 3667990794516128506, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: m_Height
       value: 1.8
@@ -317,13 +321,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Zenith
       objectReference: {fileID: 0}
+    - target: {fileID: 6133733061732126598, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6133733061732126599, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6133733061732126599, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.94
+      value: -15.3
       objectReference: {fileID: 0}
     - target: {fileID: 6133733061732126599, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: m_LocalPosition.y
@@ -331,7 +339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6133733061732126599, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.27
+      value: -76
       objectReference: {fileID: 0}
     - target: {fileID: 6133733061732126599, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: m_LocalRotation.w

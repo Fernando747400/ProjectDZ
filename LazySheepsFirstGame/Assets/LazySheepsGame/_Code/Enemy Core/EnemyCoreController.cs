@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using com.LazyGames.Dio;
+using com.LazyGames.DZ;
 using Lean.Pool;
 using UnityEditor;
+using UnityEngine.AI;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -172,24 +175,21 @@ namespace com.LazyGames
         }
         private void SpawnEnemyWave()
         {
-            // // foreach (var placesToSpawnPoint in spawnPoints)
-            // // {
-            // //     var enemy = LeanPool.Spawn(enemyCoreData.EnemyPrefab); 
-            // //     enemy.transform.position = placesToSpawnPoint.position;
-            // // }
-            //
-            // for (int i = 0; i < spawnPoints.Length; i++)
-            // {
-            //     var enemy = LeanPool.Spawn(enemyCoreData.EnemyPrefab); 
-            //     enemy.transform.position = spawnPoints[i].position;
-            //     
-            // }
-            
           var enemy = LeanPool.Spawn(enemyCoreData.EnemyPrefab); 
           int randomPlace = Random.Range(0, spawnPoints.Length); 
-          enemy.transform.position = spawnPoints[randomPlace].position;  
+          
+          NavMeshAgent  agent = enemy.GetComponent<NavMeshAgent>();
+          EnemyController enemyController = enemy.GetComponent<EnemyController>();
+
+          enemyController.currentState = enemyController.aggroState;
+          // enemyController.ChangeState(enemyController.aggroState);
+          
+          agent.Warp(spawnPoints[randomPlace].position);
+
+          Debug.Log("SpawnEnemyWave".SetColor("#FE0D4F"));
         }
-        
+
+      
         private void DestroyEnemyCore()
         {
             EnemyCoreState = EnemyCoreState.Destroyed;
