@@ -1,8 +1,11 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using com.LazyGames.Dio;
 using Lean.Pool;
 using UnityEditor;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace com.LazyGames
 {
@@ -57,7 +60,15 @@ namespace com.LazyGames
         {
            Initialized();
         }
-        
+
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.S))
+            {
+                SpawnEnemyWave();
+            }
+        }
+
         // private void OnTriggerEnter(Collider other)
         // {
         //     if (other.GetComponent<DeactivatorCore>())
@@ -161,8 +172,22 @@ namespace com.LazyGames
         }
         private void SpawnEnemyWave()
         {
-            var enemy = LeanPool.Spawn(enemyCoreData.EnemyPrefab);
-            enemy.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
+            // // foreach (var placesToSpawnPoint in spawnPoints)
+            // // {
+            // //     var enemy = LeanPool.Spawn(enemyCoreData.EnemyPrefab); 
+            // //     enemy.transform.position = placesToSpawnPoint.position;
+            // // }
+            //
+            // for (int i = 0; i < spawnPoints.Length; i++)
+            // {
+            //     var enemy = LeanPool.Spawn(enemyCoreData.EnemyPrefab); 
+            //     enemy.transform.position = spawnPoints[i].position;
+            //     
+            // }
+            
+          var enemy = LeanPool.Spawn(enemyCoreData.EnemyPrefab); 
+          int randomPlace = Random.Range(0, spawnPoints.Length); 
+          enemy.transform.position = spawnPoints[randomPlace].position;  
         }
         
         private void DestroyEnemyCore()

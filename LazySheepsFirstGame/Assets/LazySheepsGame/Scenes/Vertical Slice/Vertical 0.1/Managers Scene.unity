@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 8c5dcf30d401c824f99caec0f2ad5ab8, type: 2}
 --- !u!1001 &311267161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1906325207827723096, guid: 9a8e9985666972447885bf7c553140c9, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1906325207827723096, guid: 9a8e9985666972447885bf7c553140c9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1906325207827723096, guid: 9a8e9985666972447885bf7c553140c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.14
+      value: 1.061
       objectReference: {fileID: 0}
     - target: {fileID: 1906325207827723096, guid: 9a8e9985666972447885bf7c553140c9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -319,11 +319,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6133733061732126599, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6133733061732126599, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.94
       objectReference: {fileID: 0}
     - target: {fileID: 6133733061732126599, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: m_LocalPosition.y
@@ -331,7 +331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6133733061732126599, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2.27
       objectReference: {fileID: 0}
     - target: {fileID: 6133733061732126599, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: m_LocalRotation.w
@@ -524,7 +524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1530712354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,7 +539,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadOnAwake: 1
   _sceneLoaderChannel: {fileID: 11400000, guid: b2e1fb687f5e1ef428cc05076b45321d, type: 2}
-  _alwaysLoadedScenes: []
+  _alwaysLoadedScenes:
+  - Managers Scene
   _scenesToLoad:
   - TabernMenu
 --- !u!4 &1530712355
@@ -654,7 +655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 331704744202041717, guid: e4f0c626b15682c4a992c6ccb8509e67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.017
       objectReference: {fileID: 0}
     - target: {fileID: 331704744202041717, guid: e4f0c626b15682c4a992c6ccb8509e67, type: 3}
       propertyPath: m_LocalPosition.z
