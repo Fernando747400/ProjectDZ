@@ -10,8 +10,12 @@ public class CurrencyManager : ManagerBase
     [Header("Currency")]
     [SerializeField] private AddCurrencyEventChannel addCurrencyEventChannel;
     [SerializeField] private RemoveCurrencyEventChannel removeCurrencyEventChannel;
+    [SerializeField] private IntEventChannelSO onUpdateCurrencyChannel;
+    
+    [SerializeField] private int initialCurrency = 5000;
     
     private int _currentCurrency;
+    private AddCurrencyEventChannel AddCurrencyChannel => addCurrencyEventChannel;
     public static CurrencyManager Instance
     {
         get
@@ -22,6 +26,9 @@ public class CurrencyManager : ManagerBase
             var singletonObject = new GameObject(); 
             _instance = singletonObject.AddComponent<CurrencyManager>(); 
             singletonObject.name = typeof(CurrencyManager).ToString(); 
+            _instance.addCurrencyEventChannel = Resources.Load<AddCurrencyEventChannel>("LazySheepsGame/_Scriptables/Currency/AddCurrencyEventChannel");
+            _instance.removeCurrencyEventChannel = Resources.Load<RemoveCurrencyEventChannel>("LazySheepsGame/_Scriptables/Currency/RemoveCurrencyEventChannel");
+            _instance.InitManager();
             DontDestroyOnLoad(singletonObject);
 
             return _instance;
@@ -31,8 +38,13 @@ public class CurrencyManager : ManagerBase
     public int CurrentCurrency
     {
         get { return _currentCurrency; }
-        
-        protected set { _currentCurrency = value; }
+
+        protected set
+        {
+            _currentCurrency = value;
+            onUpdateCurrencyChannel.RaiseEvent(_currentCurrency);
+            
+        }
     }
 
     
@@ -46,18 +58,25 @@ public class CurrencyManager : ManagerBase
     
     private void Start()
     {
+        InitializeStore();
+    }
+
+    public void InitializeStore()
+    {
         addCurrencyEventChannel.AddCurrencyEvent += AddCurrency;
         removeCurrencyEventChannel.RemoveCurrencyEvent += RemoveCurrency;
+        
+        CurrentCurrency = initialCurrency;
     }
     
    public void AddCurrency(CurrencyData currencyData)
    {
-       _currentCurrency += currencyData.ValueCurrency;
+       CurrentCurrency += currencyData.ValueCurrency;
    }
    
    public void RemoveCurrency(CurrencyData currencyData)
    {
-       _currentCurrency -= currencyData.ValueCurrency;
+       CurrentCurrency -= currencyData.ValueCurrency;
    }
   
    public bool TryBuy(CurrencyData currencyData)
@@ -91,10 +110,12 @@ public class CurrencyManager : ManagerBase
          _instance = this;
    }
    
+   
+   
 
    #region ManagerBase
    
-    public override void Init()
+    public override void InitManager()
     {
         if (FinishedLoading) return;
         CreateInstance();

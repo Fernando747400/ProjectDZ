@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
+using com.LazyGames;
 using com.LazyGames.Dio;
+using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -13,12 +16,17 @@ namespace com.LazyGames
 
         [SerializeField] private int maxHealth = 100;
         [SerializeField] private Collider collider;
+
+        [Header("Trigger")] 
+        [SerializeField] private Animator animator;
+        [SerializeField] private Rigidbody triggerRigidbody;
+        [SerializeField] private GameObject triggerGO;
+        
+        [Header("Events")]
         [SerializeField] private VoidEventChannelSO onCoreDestroyed;
         [SerializeField] private VoidEventChannelSO onDeactivatorIsPlaced;
-        [SerializeField] private XRGrabInteractable grabInteractable;
-        [SerializeField] private InteractionLayerMask nonInteractableLayers;
-
-
+        [SerializeField] private VoidEventChannelSO onDeactivatorEnterCore;
+        [SerializeField] private GameObjectEventChannelSO DeactivatorSender;
 
         #endregion
 
@@ -30,12 +38,7 @@ namespace com.LazyGames
     #endregion
 
         #region public variables
-
-        public XRGrabInteractable GrabInteractable
-        {
-            get => grabInteractable;
-            set => grabInteractable = value;
-        }
+        
         public Collider Collider => collider;
         public int CurrentHealth => _currentHealth;
         public Action OnDeactivatorDestroyed;
@@ -44,30 +47,46 @@ namespace com.LazyGames
         #endregion
 
         #region unity methods
-
-        
         void Start()
         {
             _currentHealth = maxHealth;
             onCoreDestroyed.VoidEvent += () => { Destroy(gameObject); };
-            onDeactivatorIsPlaced.VoidEvent += () =>
-            {
-                _deactivatorIsPlaced = true;
-                // grabInteractable.interactionLayers = nonInteractableLayers;
-                Debug.Log("Deactivator Is Placed ".SetColor("#FE0D4F") + nonInteractableLayers);
-            };
+            onDeactivatorIsPlaced.VoidEvent += StartDeactivator;
         }
-        private void OnTriggerEnter(Collider other)
+        
+        private void OnDestroy()
         {
-            if (other.CompareTag("Enemy"))
-            {
-                Debug.Log("Enemy Enter Deactivator Core".SetColor("#FE0D4F"));
-                ReceiveDamage(5);
-            }
+            onCoreDestroyed.VoidEvent -= () => { Destroy(gameObject); };
+            onDeactivatorIsPlaced.VoidEvent -= StartDeactivator;
         }
+        // private void OnTriggerEnter(Collider other)
+        // {
+        //     if (other.CompareTag("Enemy"))
+        //     {
+        //         Debug.Log("Enemy Enter Deactivator Core".SetColor("#FE0D4F"));
+        //         ReceiveDamage(5);
+        //     }
+        // }
        
         #endregion
+        private void AddForceTrigger()
+        {
+            triggerRigidbody.useGravity = true;
+            triggerRigidbody.isKinematic = false;
+            
+            Vector3 direction = new Vector3(triggerGO.transform.position.x -1 , triggerGO.transform.position.y + 1, triggerGO.transform.position.z - 0.5f);
+            triggerRigidbody.AddForce(direction, ForceMode.Impulse);
+        }
         
+        public void SetTriggerAnimator()
+        {
+            animator.Play("GranadeCore");
+            triggerRigidbody = triggerGO.AddComponent<Rigidbody>();
+            // triggerGO.AddComponent<MeshCollider>();
+            AddForceTrigger();
+            
+            StartCoroutine(EnableTrigger());
+        }
         public void ReceiveDamage(int damage)
         {
             if(_currentHealth <= 0) return;
@@ -81,26 +100,37 @@ namespace com.LazyGames
                 OnDeactivatorDestroyed?.Invoke();
             }
         }
-
-        public void LastSelectedExit(SelectExitEventArgs arg)
+        
+        #region private methods
+        private void StartDeactivator()
         {
-            if (_deactivatorIsPlaced)
-            {
-                gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                gameObject.GetComponent<Rigidbody>().useGravity = false;
-                grabInteractable.interactionLayers = nonInteractableLayers;
-                
-            }
-            Debug.Log("LastSelectedExit".SetColor("#FE0D4F"));
-
+            _deactivatorIsPlaced = true;
+            DeactivatorSender.RaiseEvent(this.gameObject);
+            StartCoroutine(StartAnimationDelay());
         }
 
+        public void MoveGranadeDown()
+        {
+            transform.DOLocalMove(new Vector3(transform.localPosition.x, transform.localPosition.y- 0.3f, transform.localPosition.z),
+                1.5f).onComplete += () =>
+            {
+                onDeactivatorEnterCore.RaiseEvent();
+                Debug.Log("Deactivator Enter Core".SetColor("#FE0D4F"));
+            };
+        }
+        IEnumerator EnableTrigger()
+        {
+            yield return new WaitForSeconds(1);
+            triggerRigidbody.useGravity = false;
+            triggerRigidbody.isKinematic = true;
+            triggerGO.SetActive(false);
+        }
+        IEnumerator StartAnimationDelay()
+        {
+            yield return new WaitForSeconds(1);
+            SetTriggerAnimator();
+        }
         
-
-        #region private methods
-
-        
-
         #endregion
     }
     
@@ -116,9 +146,9 @@ namespace com.LazyGames
 //         DrawDefaultInspector();
 //         DeactivatorCore deactivatorCore = (DeactivatorCore) target;
 //         
-//         if (GUILayout.Button("Receive Damage"))
+//         if (GUILayout.Button("Add force on trigger"))
 //         {
-//             deactivatorCore.ReceiveDamage(5);
+//             deactivatorCore.SetTriggerAnimator();
 //         }
 //     }
 // }

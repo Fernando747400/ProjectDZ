@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
@@ -11,14 +12,14 @@ namespace com.LazyGames
     public class EnemyCoreUI : MonoBehaviour
     {
         [SerializeField] private Slider lifetimeSlider;
-        [SerializeField] private TMP_Text deactivatorLifeText;
+        [SerializeField] private TMP_Text deactivatorTimerTxt;
         
         
         #region unity methods
 
         private void Start()
         {
-            deactivatorLifeText.text = "Deactivator Life = " + 100;
+            deactivatorTimerTxt.text = ""; 
             EnableLifeTimeUI(false);
 
         }
@@ -35,17 +36,18 @@ namespace com.LazyGames
         public void UpdateLifeTime(float value)
         {
             lifetimeSlider.value = value;
+            deactivatorTimerTxt.text = value.ToString();
         }
         
         public void EnableLifeTimeUI(bool value)
         {
             lifetimeSlider.gameObject.SetActive(value);
-            deactivatorLifeText.gameObject.SetActive(value);
+            deactivatorTimerTxt.gameObject.SetActive(value);
         }
         
         public void UpdateDeactivatorLifeText(int value)
         {
-            deactivatorLifeText.text = "Deactivator Life = " + value;
+            deactivatorTimerTxt.text = "Deactivator Life = " + value;
         }
         
         

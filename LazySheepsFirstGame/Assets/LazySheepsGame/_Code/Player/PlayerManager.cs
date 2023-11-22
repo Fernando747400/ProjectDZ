@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Autohand;
 using com.LazyGames;
 using com.LazyGames.Dio;
 using com.LazyGames.DZ;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class PlayerManager : ManagerBase, IGeneralTarget
 {
@@ -37,45 +37,65 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     }
 
     #region Serialized Fields
-
-
-    [Header("Right Hand")]
-    [SerializeField] private Transform rightHandAttachPoint;
     
-    [Header("Left Hand")]
-    [SerializeField] private Transform leftHandAttachPoint;
 
+    [Header("Player")]
+    [SerializeField] int playerHealth = 100;
+    
     [Header("Weapons")] 
     [SerializeField] private WeaponData currentWeaponData;
     [SerializeField] private List<WeaponObject> weapons;
-    [SerializeField] private Transform holsterWeapons;
-    
-    [Header("Holster")]
-    [SerializeField] private XRSocketInteractor socketInteractorWeapon;
+    [SerializeField] private Transform playerHolsterWeapon;
     
     [Header("Weapon ID Channel")]
     [SerializeField] private GenericDataEventChannelSO weaponSelectChannel;
     
-    
     [Header("Currency")]
-    [SerializeField] private GenericDataEventChannelSO onDeathEnemyChannel;
+    [SerializeField] private IntEventChannelSO onDeathEnemyChannel;
     [SerializeField] private AddCurrencyEventChannel addCurrencyEventChannel;
-    [SerializeField] private CurrencyData enemyCurrencyData;
+    
+    [Header("Heal")]
+    [SerializeField] private IntEventChannelSO onHealPlayerChannel;
+    [SerializeField] private IntEventChannelSO onUpdateHealthPlayerChannel;
+    
+    [Header("Objectives")]
+    [SerializeField] private GenericDataEventChannelSO onObjectiveCompletedChannel;
+    [SerializeField] ObjectivesData objectivesData;
+    
+    [Header("PlacePoint")]
+    [SerializeField] private PlacePoint placeGunPointHolster;
+    
     
     #endregion
 
+    #region private Variables
+    private int _currentHealth;
+    private Objectives _currentObjective;
+    
+    public int MaxHealth => playerHealth;
+    public event Action<Objectives> OnSetObjective;
+    private int CurrentHealth
+    {
+        get => _currentHealth;
+        set
+        {
+            _currentHealth = value;
+            onUpdateHealthPlayerChannel.RaiseEvent(_currentHealth);
+        }
+    }
+    
+
+    #endregion
 
     #region public Variables
 
-    public Transform RightHandAttachPoint => rightHandAttachPoint;
-    public Transform LeftHandAttachPoint => leftHandAttachPoint;
     #endregion
 
     #region Unity Methods
    
     private void OnDisable()
     {
-        weaponSelectChannel.StringEvent -= SelectWeapon;
+        weaponSelectChannel.StringEvent -= SelectWeaponPlayerHolster;
     }
 
     void Start()
@@ -97,10 +117,17 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     
     private void InitializePlayer()
     {
-        currentWeaponData = weapons[0].WeaponData;
-        SelectWeapon(currentWeaponData.ID); 
-        weaponSelectChannel.StringEvent += SelectWeapon;
+        _currentHealth = playerHealth;
+        weaponSelectChannel.StringEvent += SelectWeaponPlayerHolster;
+        onObjectiveCompletedChannel.StringEvent += OnCompletedObjective;
         onDeathEnemyChannel.IntEvent += OnKilledEnemy;
+        onHealPlayerChannel.IntEvent += HealPlayer;
+        
+        SetObjective("Presentation");
+        
+        currentWeaponData = weapons[0].WeaponData;
+        SelectWeaponPlayerHolster(currentWeaponData.ID); 
+        
     }
     #endregion
 
@@ -112,7 +139,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
         {
             if (weapon.WeaponData.ID == weaponID)
             {
-                if(weapon.gameObject.activeSelf == false)
+                // if(weapon.gameObject.activeSelf == false)
                     weapon.gameObject.SetActive(true);
                 
                 return weapon.gameObject;
@@ -121,7 +148,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
 
         return null;
     }
-    public void SelectWeapon(string weaponID)
+    public void SelectWeaponPlayerHolster(string weaponID)
     {
         foreach (var weapon in weapons)
         {
@@ -129,8 +156,14 @@ public class PlayerManager : ManagerBase, IGeneralTarget
             {
                 weapon.gameObject.SetActive(true);
                 weapon.EnableGrabInteractable(true);
-                weapon.gameObject.transform.position = holsterWeapons.position;
+                
+                if(playerHolsterWeapon != null) weapon.gameObject.transform.position = playerHolsterWeapon.position;
 
+                placeGunPointHolster.forcePlace = true;
+                placeGunPointHolster.TryPlace(weapon.AutoHandGrabbable);
+                placeGunPointHolster.Place(weapon.AutoHandGrabbable);
+                    
+                
                 weapon.InitializeWeapon();
                 currentWeaponData = weapon.WeaponData;
                 
@@ -144,12 +177,31 @@ public class PlayerManager : ManagerBase, IGeneralTarget
         }
         
     }
+
+    public void CleanPlayerHolster()
+    {
+        Grabbable grabbableToRemove = GetWeaponObject(currentWeaponData.ID).GetComponent<Grabbable>();
+        placeGunPointHolster.Remove(grabbableToRemove);
+    }
     public void DisableAllWeapons()
     {
         foreach (var weapon in weapons)
         {
             weapon.gameObject.SetActive(false);
             weapon.EnableGrabInteractable(false);
+        }
+    }
+    public void EnableWeapon(string weaponID)
+    {
+        foreach (var weapon in weapons)
+        {
+            if (weapon.WeaponData.ID == weaponID)
+            {
+                weapon.gameObject.SetActive(true);
+                weapon.EnableGrabInteractable(true);
+                
+                Debug.Log("Enable Weapon: ".SetColor("#87E720") + weaponID);
+            }
         }
     }
     public void ResetPlayersPosition()
@@ -160,11 +212,44 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     #endregion
 
     #region private Methods
+    
+    private void OnCompletedObjective(string objectiveID)
+    {
+        objectivesData.Objectives.Find(x => x.ID == objectiveID).IsCompleted = true;
+        int index = objectivesData.Objectives.FindIndex(x => x.ID == objectiveID);
+        if(index + 1 > objectivesData.Objectives.Count) return;
+        
+        Objectives nextObjective = objectivesData.Objectives[index + 1];
+        SetObjective(nextObjective.ID);
+    }
+    
+    private void SetObjective(string objectiveID)
+    {
+        _currentObjective = objectivesData.Objectives.Find(x => x.ID == objectiveID);
+        Debug.Log("Set Objective: ".SetColor("#87E720") + _currentObjective.Objective);
+        OnSetObjective?.Invoke(_currentObjective);
+        
+    }
+    private void HealPlayer(int heal)
+    {
+        if (_currentHealth < playerHealth)
+        {
+            CurrentHealth += heal;
+            Debug.Log("Heal Player".SetColor("#87E720") + heal);
+        }
+        else
+        {
+            CurrentHealth = playerHealth;
+            Debug.Log("Set max health".SetColor("#87E720"));
+        }
+        
+       
+    }
 
     private void OnKilledEnemy(int currency)
     {
         //Add if player needs to do something after killing enemy
-        
+        CurrencyData enemyCurrencyData = new CurrencyData();
         enemyCurrencyData.ValueCurrency = currency;
         addCurrencyEventChannel.RaiseAddCurrencyEvent(enemyCurrencyData);
         
@@ -174,15 +259,21 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     #endregion
     
     #region IGeneralTarget
+
     public void ReceiveAggression(Vector3 direction, float velocity, float dmg = 0)
     {
-        
+        CurrentHealth -= (int) dmg;
+        if (_currentHealth <= 0)
+        {
+            Debug.Log("Player Dead".SetColor("#F51858"));
+        }
+
     }
     #endregion
 
 
     #region Manager Base
-    public override void Init()
+    public override void InitManager()
     {
         if (FinishedLoading) return;
         CreateInstance();

@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateChangedEventChannel: {fileID: 11400000, guid: 11ccc7c79774515479b90e52114ff649, type: 2}
   PauseEventChannel: {fileID: 11400000, guid: 10481b0f5b44a274c942a8819c0bdcda, type: 2}
-  PauseInputChannel: {fileID: 0}
+  PauseInputChannel: {fileID: 11400000, guid: 45e441df9087d5744b0553f89f86063a, type: 2}
 --- !u!4 &378139607
 Transform:
   m_ObjectHideFlags: 0
@@ -179,7 +179,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 614595335}
-  - component: {fileID: 614595337}
   - component: {fileID: 614595336}
   m_Layer: 0
   m_Name: CurrencyManager
@@ -217,19 +216,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   addCurrencyEventChannel: {fileID: 11400000, guid: ec70b6bb937a4da4794a261356edb8ac, type: 2}
   removeCurrencyEventChannel: {fileID: 11400000, guid: 27430abdc46b675428045aeb980051e0, type: 2}
---- !u!114 &614595337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 614595334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d980808969c1e345a548efd466dec67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _referencePool: {fileID: 0}
+  onUpdateCurrencyChannel: {fileID: 11400000, guid: 353dedf83ae1ebb4f8de269ed27f44c2, type: 2}
+  initialCurrency: 100
 --- !u!1001 &1224317410
 PrefabInstance:
   m_ObjectHideFlags: 0

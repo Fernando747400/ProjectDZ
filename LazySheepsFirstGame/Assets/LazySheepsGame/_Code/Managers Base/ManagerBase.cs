@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof(ReferenceRaiser))] 
 public abstract class ManagerBase : MonoBehaviour
 {
     public delegate void OnFinishedLoading();
@@ -15,10 +14,10 @@ public abstract class ManagerBase : MonoBehaviour
         get { return _finishedLoading; }
         protected set { _finishedLoading = value; }
     }
-    public abstract void Init();
+    public abstract void InitManager();
 
     private void Awake()
     {
-        Init();
+        InitManager();
     }
 }

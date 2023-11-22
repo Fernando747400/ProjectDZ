@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0327dbd2f69bdb14fb5d30a1ca62afc6, type: 3}
+  m_Name: PoolManagerData
+  m_EditorClassIdentifier: 
+  pools:
+  - poolID: BloodParticle
+    poolPrefab: {fileID: 1489431029902184, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+  - poolID: HitMetalParticle
+    poolPrefab: {fileID: 1067536016464596, guid: 57e18706e2792ff4bb5561ed74b796e2, type: 3}
+  - poolID: EnemyDogFish
+    poolPrefab: {fileID: 6493022791635176030, guid: 23de5f20d1d1df447a29a45e567bbb68, type: 3}

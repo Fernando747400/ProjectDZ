@@ -21,7 +21,6 @@ MonoBehaviour:
   bulletSpeed: 10
   maxDistance: 30
   shootParticle: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
-  hitParticle: BloodParticle
   cooldownPerShot: 1
   delayReload: 3
   maxAmmo: 10
@@ -31,3 +30,4 @@ MonoBehaviour:
     animationClip: {fileID: 7400000, guid: bd1b55fb14f9c4c43841249b3e4c8e9e, type: 2}
   - nameAnimation: Reload
     animationClip: {fileID: 7400000, guid: 8c8743d829955e0409074dfbb0810efa, type: 2}
+  currencyData: {fileID: 11400000, guid: 72378a94e840d1a468c9f2092bebfd1a, type: 2}
