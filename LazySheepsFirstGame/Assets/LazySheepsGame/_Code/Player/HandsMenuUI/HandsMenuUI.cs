@@ -10,10 +10,12 @@ public class HandsMenuUI : MonoBehaviour
     
     [Header("Player Manager")]
     [SerializeField] private PlayerManager _playerManager;
+
+    [SerializeField] private WeaponStoreManager _weaponStoreManager;
     
     [Header("UI")]
     [SerializeField] private GameObject _runButton;
-    [SerializeField] private Button exitButton;
+    [SerializeField] private GameObject exitButton;
     
     [Header("Health")]
     [SerializeField] private IntEventChannelSO onUpdatePlayerHealth;
@@ -67,8 +69,11 @@ public class HandsMenuUI : MonoBehaviour
     {
         _runButton.gameObject.SetActive(false);
         exitButton.gameObject.SetActive(true);
+        _weaponStoreManager.EnableStore(false);
 
         _playerManager.ResetPlayersPosition(new Vector3(0,1.5f,0));
+        
+        
         _changeSceneChannel.RaiseStringEvent(_sceneRun);
         _changeSceneChannel.RaiseStringEvent(_sceneAI);
         _changeSceneChannel.RaiseBoolEvent(true);
@@ -80,11 +85,15 @@ public class HandsMenuUI : MonoBehaviour
     public void OnClickReturn()
     {
         _runButton.gameObject.SetActive(true);
+        exitButton.gameObject.SetActive(false);
+        _weaponStoreManager.EnableStore(true);
+        
         _playerManager.ResetPlayersPosition(new Vector3(0,1.5f,0));
+        
         _changeSceneChannel.RaiseStringEvent(_sceneTabern);
         _changeSceneChannel.RaiseBoolEvent(true);  
         
-        onObjectiveCompletedChannel.RaiseStringEvent("EnemyCore");
+        // onObjectiveCompletedChannel.RaiseStringEvent("EnemyCore");
 
     }
 
