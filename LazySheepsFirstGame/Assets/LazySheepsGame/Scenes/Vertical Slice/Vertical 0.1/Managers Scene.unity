@@ -303,6 +303,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1765669416188215851, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
+      propertyPath: _buildingSystem
+      value: 
+      objectReference: {fileID: 1870636831}
     - target: {fileID: 3667990794516128500, guid: d147081d4dc89d242afb003eb86ed7af, type: 3}
       propertyPath: heightOffset
       value: 0.3
