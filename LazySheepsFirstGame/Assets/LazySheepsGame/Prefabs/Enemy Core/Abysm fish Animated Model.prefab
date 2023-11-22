@@ -2629,7 +2629,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7486520324645143951}
   - component: {fileID: 7831379584854990650}
-  - component: {fileID: 1128131668}
   m_Layer: 0
   m_Name: Abysm fish Animated Model
   m_TagString: Untagged
@@ -2674,34 +2673,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1128131668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7831379584854990645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c43316ffa289a946a6f6dbb54caa2af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 7831379584854990650}
-  normalizedTransitionTime: 0.3
-  animConfgs:
-  - nameAnim: lddle
-  - nameAnim: Walking
-  - nameAnim: Runing
-  - nameAnim: FishAttack
-  - nameAnim: FishAttack 2
-  - nameAnim: Hit_Right
-  - nameAnim: Hit_Up
-  - nameAnim: Hit_Left
-  - nameAnim: Hit_Down
-  TESTAnim: DogFishRun
-  valueTestAnim: 1
-  previousAnim:
-    nameAnim: 
 --- !u!1 &7894121494084487402
 GameObject:
   m_ObjectHideFlags: 0

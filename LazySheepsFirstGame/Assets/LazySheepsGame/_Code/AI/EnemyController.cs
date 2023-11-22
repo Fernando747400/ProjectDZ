@@ -24,6 +24,9 @@ namespace com.LazyGames.DZ
         
         public AiParameters parameters;
         public SceneWallsSO sceneWallsSo;
+        
+        // decouple and refactor asap
+        public AnimDataSO animDataSo;
 
         [HideInInspector] public GameObject player;
         [HideInInspector] public bool doHear = true;
@@ -31,11 +34,11 @@ namespace com.LazyGames.DZ
         [HideInInspector] public float hP;
         [HideInInspector]public string currentAnimState;
         
-        
         # region "Components"
         
             [HideInInspector] public NavMeshAgent agent;
             [HideInInspector] public NPC_TickManager tickManager;
+            // decouple and refactor asap
             [HideInInspector]public AdvanceAnimatorController animController;
         
         # endregion
