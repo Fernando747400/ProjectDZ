@@ -1028,6 +1028,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8464746471073475775}
     m_Modifications:
+    - target: {fileID: 7322261140681239557, guid: 29a0403b61379a2498feeb7672f0f5d0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f2372c2ad2837f45b00cf79ba927981, type: 2}
     - target: {fileID: 7322261140681239558, guid: 29a0403b61379a2498feeb7672f0f5d0, type: 3}
       propertyPath: m_Name
       value: BodyPlacePoint_Gordy
@@ -1048,6 +1052,10 @@ PrefabInstance:
       propertyPath: placeNames.Array.data[1]
       value: Zanfona_Interactable
       objectReference: {fileID: 0}
+    - target: {fileID: 7322261140681239562, guid: 29a0403b61379a2498feeb7672f0f5d0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4711208715938537054, guid: 38046298affeaa74e9d728100b6d8cca, type: 3}
     - target: {fileID: 7322261140681239563, guid: 29a0403b61379a2498feeb7672f0f5d0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1492,6 +1500,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8464746471073475775}
     m_Modifications:
+    - target: {fileID: 7322261140681239557, guid: 29a0403b61379a2498feeb7672f0f5d0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f2372c2ad2837f45b00cf79ba927981, type: 2}
     - target: {fileID: 7322261140681239558, guid: 29a0403b61379a2498feeb7672f0f5d0, type: 3}
       propertyPath: m_Name
       value: BodyPlacePoint_Gun
@@ -1500,6 +1512,10 @@ PrefabInstance:
       propertyPath: forceHandRelease
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7322261140681239562, guid: 29a0403b61379a2498feeb7672f0f5d0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4711208715938537054, guid: 38046298affeaa74e9d728100b6d8cca, type: 3}
     - target: {fileID: 7322261140681239563, guid: 29a0403b61379a2498feeb7672f0f5d0, type: 3}
       propertyPath: m_RootOrder
       value: 0
