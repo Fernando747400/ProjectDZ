@@ -31,16 +31,16 @@ public class InvestigatingState : EnemyState
         switch ( Controller.agent.velocity.magnitude)
         {
             case var n when n <= 0.1f:
-                newAnimState = "Idle";
+                newAnimState = Controller.animDataSo.idleAnim;
                 break;
             case var n when n > 0.1f && n <= 2.1f:
-                newAnimState = "Walking";
+                newAnimState = Controller.animDataSo.walkAnim;
                 break;
             case var n when n > 2.1f:
-                newAnimState = "Running";
+                newAnimState = Controller.animDataSo.runAnim;
                 break;
             default:
-                newAnimState = "Idle";
+                newAnimState = Controller.animDataSo.idleAnim;
                 break;
         }
 

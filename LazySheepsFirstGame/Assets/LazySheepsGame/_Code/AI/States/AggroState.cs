@@ -38,16 +38,16 @@ namespace com.LazyGames.DZ
             switch ( Controller.agent.velocity.magnitude)
             {
                 case var n when n <= 0.1f:
-                    newAnimState = "Idle";
+                    newAnimState = Controller.animDataSo.idleAnim;
                     break;
                 case var n when n > 0.1f && n <= 2.1f:
-                    newAnimState = "Walking";
+                    newAnimState = Controller.animDataSo.walkAnim;
                     break;
                 case var n when n > 2.1f:
-                    newAnimState = "Running";
+                    newAnimState = Controller.animDataSo.runAnim;
                     break;
                 default:
-                    newAnimState = "Idle";
+                    newAnimState = Controller.animDataSo.idleAnim;
                     break;
             }
             
@@ -62,7 +62,7 @@ namespace com.LazyGames.DZ
 
             _attacking = true;
             Controller.SendAggression();
-            newAnimState = "FishAttacK 2";
+            newAnimState = Controller.animDataSo.attackAnim;
             if (newAnimState == Controller.currentAnimState) return;
             Controller.animController.SetAnim(newAnimState);
             Controller.currentAnimState = newAnimState; // Update the current state

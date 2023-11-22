@@ -77,6 +77,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7439231909585177860, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: m_Height
+      value: 2.02
+      objectReference: {fileID: 0}
+    - target: {fileID: -7439231909585177860, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: m_Radius
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: -7439231909585177860, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: m_Center.y
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: -7439231909585177860, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: m_Direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 281219074889938976, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_Center.y
       value: 0.5
@@ -115,15 +131,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.56
+      value: 6.738544
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.49800003
+      value: 0.50000024
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.19
+      value: -24.928963
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalRotation.w
@@ -157,6 +173,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DogEnemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: animDataSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 2540acf99769bc349841f2cb53e0df77, type: 2}
     - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: parameters
       value: 
@@ -209,6 +229,10 @@ PrefabInstance:
       propertyPath: leftSide.y
       value: -130
       objectReference: {fileID: 0}
+    - target: {fileID: 1157796155901694149, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: _animDataSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 2540acf99769bc349841f2cb53e0df77, type: 2}
     - target: {fileID: 1157796155901694149, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: rightSide.x
       value: 60

@@ -33,7 +33,7 @@ namespace com.LazyGames.DZ
 
         public override void SetAnimation()
         {
-            var newAnimState = "Dead";
+            var newAnimState = Controller.animDataSo.deathAnim;
             if (newAnimState == Controller.currentAnimState) return;
             Controller.animController.SetAnim(newAnimState);
             Controller.currentAnimState = newAnimState; // Update the current state
