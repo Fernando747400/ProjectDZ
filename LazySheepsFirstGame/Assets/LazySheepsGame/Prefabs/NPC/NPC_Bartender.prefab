@@ -162,6 +162,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2658857726072966257, guid: 637ad5a197a749d469f44b386b827158, type: 3}
+      propertyPath: OnDialoguesCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Presentation
+      objectReference: {fileID: 0}
     - target: {fileID: 2658857726072966262, guid: 637ad5a197a749d469f44b386b827158, type: 3}
       propertyPath: m_RootOrder
       value: 1

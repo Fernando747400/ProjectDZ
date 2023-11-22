@@ -98,11 +98,11 @@ public class WeaponStoreManager : MonoBehaviour
         if (weaponData != null)
         {
             GameObject o = PlayerManager.Instance.GetWeaponObject(weaponData.ID);
-            WeaponObject weaponObject = o.GetComponent<WeaponObject>();
+            // WeaponObject weaponObject = o.GetComponent<WeaponObject>();
             // weaponObject.Rigidbody.isKinematic = false;
             // weaponObject.EnableGrabInteractable(true);
             o.transform.DOKill();
-            Debug.Log("OnGrabWeapon: ".SetColor("#96E542") + weaponID);
+            // Debug.Log("OnGrabWeapon: ".SetColor("#96E542") + weaponID);
         }
 
         

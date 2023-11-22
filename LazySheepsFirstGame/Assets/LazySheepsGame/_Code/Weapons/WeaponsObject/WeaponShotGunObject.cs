@@ -52,7 +52,7 @@ public class WeaponShotGunObject : WeaponObject
    public override void Shoot()
    {
       base.Shoot();
-      Debug.Log("Shoot ShotGun".SetColor("#6BE720"));
+      // Debug.Log("Shoot ShotGun".SetColor("#6BE720"));
       ShotGunShoot(positionShoots);
 
    }
@@ -60,7 +60,7 @@ public class WeaponShotGunObject : WeaponObject
    public override void PhysicShoot()
    {
       base.PhysicShoot();
-      Debug.Log("Shoot ShotGun".SetColor(""));
+      // Debug.Log("Shoot ShotGun".SetColor(""));
 
    }
 
@@ -68,7 +68,7 @@ public class WeaponShotGunObject : WeaponObject
    {
       base.Reload();
       PlayAnimsWeapon(animaReloadName);
-      Debug.Log("Reload ShotGun");
+      // Debug.Log("Reload ShotGun");
    }
    #endregion
    

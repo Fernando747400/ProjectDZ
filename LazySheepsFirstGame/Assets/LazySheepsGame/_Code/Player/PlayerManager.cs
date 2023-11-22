@@ -74,7 +74,8 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     
     public int MaxHealth => playerHealth;
     public event Action<Objectives> OnSetObjective;
-    private int CurrentHealth
+    public Objectives CurrentObjective => _currentObjective;
+    public int CurrentHealth
     {
         get => _currentHealth;
         set
@@ -206,7 +207,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     }
     public void ResetPlayersPosition()
     {
-        transform.parent.position = Vector3.zero;
+        transform.position = Vector3.zero;
     }
 
     #endregion

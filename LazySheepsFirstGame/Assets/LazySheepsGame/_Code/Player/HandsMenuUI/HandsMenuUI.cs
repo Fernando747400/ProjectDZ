@@ -26,6 +26,8 @@ public class HandsMenuUI : MonoBehaviour
     
     [Header("Objective")]
     [SerializeField] private TMP_Text _objectiveText;
+    [SerializeField] private GenericDataEventChannelSO onObjectiveCompletedChannel;
+
     
     [Header("Scenes Channel")]
     [SerializeField] private GenericDataEventChannelSO _changeSceneChannel;
@@ -42,10 +44,16 @@ public class HandsMenuUI : MonoBehaviour
         onUpdatePlayerCurrency.IntEvent += UpdatePlayerCurrency;
         
         exitButton.gameObject.SetActive(false);
+        _runButton.gameObject.SetActive(false);
         
-        _playerManager = PlayerManager.Instance;
+        if(_playerManager == null) _playerManager = PlayerManager.Instance;
+        
         _playerManager.OnSetObjective += SetObjective;
-        SetLifeMaxValue(_playerManager.MaxHealth);
+        SetObjective(_playerManager.CurrentObjective);
+        onObjectiveCompletedChannel.StringEvent += OnCompletedObjective;
+        _playerCurrencyText.text = CurrencyManager.Instance.CurrentCurrency.ToString();
+        _playerHealthText.text = _playerManager.CurrentHealth.ToString();
+        SetLifeValue(_playerManager.CurrentHealth);
 
     }
     
@@ -60,7 +68,7 @@ public class HandsMenuUI : MonoBehaviour
         _runButton.gameObject.SetActive(false);
         exitButton.gameObject.SetActive(true);
 
-        PlayerManager.Instance.ResetPlayersPosition();
+        _playerManager.ResetPlayersPosition();
         _changeSceneChannel.RaiseStringEvent(_sceneRun);
         _changeSceneChannel.RaiseStringEvent(_sceneAI);
         _changeSceneChannel.RaiseBoolEvent(true);
@@ -70,18 +78,25 @@ public class HandsMenuUI : MonoBehaviour
     public void OnClickReturn()
     {
         _runButton.gameObject.SetActive(true);
-        PlayerManager.Instance.ResetPlayersPosition();
+        _playerManager.ResetPlayersPosition();
         _changeSceneChannel.RaiseStringEvent(_sceneTabern);
         _changeSceneChannel.RaiseBoolEvent(true);        
     }
 
+    private void OnCompletedObjective(string objective)
+    {
+        if (objective == "Presentation")
+        {
+            _runButton.gameObject.SetActive(true);
+        }
+    }
     private void SetObjective(Objectives objective)
     {
         _objectiveText.text = objective.Objective;
     }
-    private void SetLifeMaxValue(int value)
+    private void SetLifeValue(int value)
     {
-        _playerHealthSlider.maxValue = value;
+        _playerHealthSlider.maxValue = PlayerManager.Instance.MaxHealth;
         _playerHealthSlider.value = value;
     }
     
