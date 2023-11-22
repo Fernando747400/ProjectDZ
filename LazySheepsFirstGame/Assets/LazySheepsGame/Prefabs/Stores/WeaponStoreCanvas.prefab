@@ -548,7 +548,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &6244903019882391465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,6 +694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentCurrencyText: {fileID: 5838159084091229269}
   WeaponStoreManager: {fileID: 0}
+  OnUpdateCurrencyChannel: {fileID: 11400000, guid: 353dedf83ae1ebb4f8de269ed27f44c2, type: 2}
 --- !u!1001 &338812041489149241
 PrefabInstance:
   m_ObjectHideFlags: 0

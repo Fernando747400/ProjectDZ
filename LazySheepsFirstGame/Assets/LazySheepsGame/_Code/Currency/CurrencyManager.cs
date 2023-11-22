@@ -71,12 +71,12 @@ public class CurrencyManager : ManagerBase
     
    public void AddCurrency(CurrencyData currencyData)
    {
-       _currentCurrency += currencyData.ValueCurrency;
+       CurrentCurrency += currencyData.ValueCurrency;
    }
    
    public void RemoveCurrency(CurrencyData currencyData)
    {
-       _currentCurrency -= currencyData.ValueCurrency;
+       CurrentCurrency -= currencyData.ValueCurrency;
    }
   
    public bool TryBuy(CurrencyData currencyData)

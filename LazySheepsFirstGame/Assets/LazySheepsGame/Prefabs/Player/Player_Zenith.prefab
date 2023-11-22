@@ -647,14 +647,15 @@ MonoBehaviour:
   weapons:
   - {fileID: 0}
   - {fileID: 0}
-  playerHolsterWeapon: {fileID: 0}
+  playerHolsterWeapon: {fileID: 4571801502370708652}
   weaponSelectChannel: {fileID: 11400000, guid: 6a2bcbeed6654154ba7a0e506bfdbd6d, type: 2}
   onDeathEnemyChannel: {fileID: 11400000, guid: 7ac64063f502ac2498574aaabb13aa56, type: 2}
   addCurrencyEventChannel: {fileID: 11400000, guid: ec70b6bb937a4da4794a261356edb8ac, type: 2}
-  onHealPlayerChannel: {fileID: 0}
-  onUpdateHealthPlayerChannel: {fileID: 0}
-  onObjectiveCompletedChannel: {fileID: 0}
-  objectivesData: {fileID: 0}
+  onHealPlayerChannel: {fileID: 11400000, guid: 3dadca9325a5be84191de1a5ea5d391b, type: 2}
+  onUpdateHealthPlayerChannel: {fileID: 11400000, guid: f8941ab294ff848458958b90c3e392e3, type: 2}
+  onObjectiveCompletedChannel: {fileID: 11400000, guid: 4df5481afc292d043b642a2de84a4bb2, type: 2}
+  objectivesData: {fileID: 11400000, guid: 9e52d209a084d8e40bb0145d916a8e36, type: 2}
+  placeGunPointHolster: {fileID: 4571801502370708655}
 --- !u!1 &6133733062145178457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,3 +1373,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7322261140681239558, guid: 29a0403b61379a2498feeb7672f0f5d0, type: 3}
   m_PrefabInstance: {fileID: 6552641285295214759}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &4571801502370708652 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7322261140681239563, guid: 29a0403b61379a2498feeb7672f0f5d0, type: 3}
+  m_PrefabInstance: {fileID: 6552641285295214759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4571801502370708655 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7322261140681239560, guid: 29a0403b61379a2498feeb7672f0f5d0, type: 3}
+  m_PrefabInstance: {fileID: 6552641285295214759}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4571801502370708641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9c288aa20513c4aafa0228d4cfd80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

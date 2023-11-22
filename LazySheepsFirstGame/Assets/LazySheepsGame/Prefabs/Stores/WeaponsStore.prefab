@@ -1542,6 +1542,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8a6ea979d3d5bcd43814fbd3f89ebec6, type: 2}
   weaponShowPosition: {fileID: 8952610609860944693}
   onGrabWeaponFromStoreChannel: {fileID: 11400000, guid: 980050dd2941aab46a6002d99023853e, type: 2}
+  placePoint: {fileID: 8262079157833687643}
+  weaponButtons:
+  - {fileID: 4023986710132891238}
+  - {fileID: 2941110808850499462}
 --- !u!1 &8952610609860944692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,8 +1610,8 @@ MonoBehaviour:
   placedOffset: {fileID: 8952610609860944693}
   placeRadius: 0.1
   radiusOffset: {x: 0, y: 0, z: 0}
-  parentOnPlace: 1
-  forcePlace: 0
+  parentOnPlace: 0
+  forcePlace: 1
   forceHandRelease: 1
   destroyObjectOnPlace: 0
   disableRigidbodyOnPlace: 0
@@ -1827,6 +1831,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0311e0234c37b6f4d9d7ace76f9250c8, type: 3}
+--- !u!114 &2941110808850499462 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3986983827490049233, guid: 0311e0234c37b6f4d9d7ace76f9250c8, type: 3}
+  m_PrefabInstance: {fileID: 2271063362166917975}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bccbac3164f59844baa0ea20ff3aecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4023986710132891238 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2908307828412257585, guid: 0311e0234c37b6f4d9d7ace76f9250c8, type: 3}
+  m_PrefabInstance: {fileID: 2271063362166917975}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bccbac3164f59844baa0ea20ff3aecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5273198589823659263 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6244903019882391464, guid: 0311e0234c37b6f4d9d7ace76f9250c8, type: 3}

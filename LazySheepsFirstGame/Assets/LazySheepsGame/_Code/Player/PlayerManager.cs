@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Autohand;
 using com.LazyGames;
 using com.LazyGames.Dio;
 using com.LazyGames.DZ;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerManager : ManagerBase, IGeneralTarget
 {
@@ -59,6 +61,9 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     [Header("Objectives")]
     [SerializeField] private GenericDataEventChannelSO onObjectiveCompletedChannel;
     [SerializeField] ObjectivesData objectivesData;
+    
+    [Header("PlacePoint")]
+    [SerializeField] private PlacePoint placeGunPointHolster;
     
     
     #endregion
@@ -119,8 +124,9 @@ public class PlayerManager : ManagerBase, IGeneralTarget
         onHealPlayerChannel.IntEvent += HealPlayer;
         
         SetObjective("Presentation");
-        // currentWeaponData = weapons[0].WeaponData;
-        // SelectWeaponPlayerHolster(currentWeaponData.ID); 
+        
+        currentWeaponData = weapons[0].WeaponData;
+        SelectWeaponPlayerHolster(currentWeaponData.ID); 
         
     }
     #endregion
@@ -133,7 +139,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
         {
             if (weapon.WeaponData.ID == weaponID)
             {
-                if(weapon.gameObject.activeSelf == false)
+                // if(weapon.gameObject.activeSelf == false)
                     weapon.gameObject.SetActive(true);
                 
                 return weapon.gameObject;
@@ -152,8 +158,12 @@ public class PlayerManager : ManagerBase, IGeneralTarget
                 weapon.EnableGrabInteractable(true);
                 
                 if(playerHolsterWeapon != null) weapon.gameObject.transform.position = playerHolsterWeapon.position;
-                weapon.gameObject.transform.position = new Vector3(0, 1, 0);
 
+                placeGunPointHolster.forcePlace = true;
+                placeGunPointHolster.TryPlace(weapon.AutoHandGrabbable);
+                placeGunPointHolster.Place(weapon.AutoHandGrabbable);
+                    
+                
                 weapon.InitializeWeapon();
                 currentWeaponData = weapon.WeaponData;
                 
@@ -167,8 +177,12 @@ public class PlayerManager : ManagerBase, IGeneralTarget
         }
         
     }
-    
-    
+
+    public void CleanPlayerHolster()
+    {
+        Grabbable grabbableToRemove = GetWeaponObject(currentWeaponData.ID).GetComponent<Grabbable>();
+        placeGunPointHolster.Remove(grabbableToRemove);
+    }
     public void DisableAllWeapons()
     {
         foreach (var weapon in weapons)
