@@ -68,9 +68,17 @@ PrefabInstance:
       value: BipedEnemyVariant
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: Collider
+      value: 
+      objectReference: {fileID: 4708369627558995193}
+    - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: animDataSo
       value: 
       objectReference: {fileID: 11400000, guid: 917d94b05c910f84ebc9b78fa30905c2, type: 2}
+    - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: OnCoreDestroyed
+      value: 
+      objectReference: {fileID: 11400000, guid: e82263401804fb84792edb1e85174d80, type: 2}
     - target: {fileID: 1157796155901694149, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: animHead
       value: Hit_left
@@ -148,6 +156,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c43316ffa289a946a6f6dbb54caa2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &4708369627558995193 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: -7439231909585177860, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+  m_PrefabInstance: {fileID: 6455334766819988997}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6517521779524120096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}

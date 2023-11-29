@@ -9,13 +9,16 @@ public class VRBuildingSystem : MonoBehaviour
     [Required]
     [SerializeField] private BuildingSystem _buildingSystem;
     [Required]
-    [SerializeField] private GameObject _vrHead;
+    [SerializeField] private GameObject _xrPlayerHead;
 
     [Header("Scriptable Objects")]
+    [Required]
     [SerializeField] private BoolEventChannelSO _hammerInHandChannel;
+    [Required]
+    [SerializeField] private BoolEventChannelSO _xrConfirmationChannel;
 
     [Header("Settings")]
-    [SerializeField] private float _headTiltDegrees = 35.0f;
+    [SerializeField] private float _headTiltDegrees = 20.0f;
 
     [SerializeField]
     private bool _hammerInHand = false; //serialized for testing only
@@ -43,15 +46,12 @@ public class VRBuildingSystem : MonoBehaviour
 
     private void CheckForBuilding()
     {
-        if (!_hammerInHand)
-        {
-            _buildingSystem.VRConfirmation = false;
-            return;
-        }
-        else if (_vrHead.transform.rotation.eulerAngles.x > _headTiltDegrees)
+        if (!_hammerInHand) return;
+
+        if (_xrPlayerHead.transform.rotation.eulerAngles.x > _headTiltDegrees)
         {
             if (_isBuilding) return;
-            _buildingSystem.VRConfirmation = true;
+            _xrConfirmationChannel.BoolEvent(true);
             _buildingSystem.StartBuilding();
             _isBuilding = true;
         }
@@ -59,7 +59,7 @@ public class VRBuildingSystem : MonoBehaviour
 
     private void DroppedHammer()
     {
-        _buildingSystem.VRConfirmation = false;
+        _xrConfirmationChannel.BoolEvent(false);
         StopBuilding();
     }
 
@@ -78,4 +78,5 @@ public class VRBuildingSystem : MonoBehaviour
             DroppedHammer();
         }
     }
+
 }
