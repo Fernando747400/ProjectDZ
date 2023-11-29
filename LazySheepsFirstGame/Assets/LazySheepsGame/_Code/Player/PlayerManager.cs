@@ -69,6 +69,9 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     [Header("PlacePoint")]
     [SerializeField] private PlacePoint placeGunPointHolster;
     
+    [Header("Heals")]
+    [SerializeField] private ParticleSystem healParticles;
+    
     
     #endregion
 
@@ -107,6 +110,15 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     {
         InitializePlayer();
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            HealPlayer(10);
+        }
+    }
+
     #endregion
 
     #region private Methods
@@ -122,7 +134,8 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     
     private void InitializePlayer()
     {
-        _currentHealth = playerHealth;
+        // _currentHealth = playerHealth;
+        _currentHealth = 10;
         weaponSelectChannel.StringEvent += SelectWeaponPlayerHolster;
         onObjectiveCompletedChannel.StringEvent += OnCompletedObjective;
         onDeathEnemyChannel.IntEvent += OnKilledEnemy;
@@ -250,14 +263,15 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     }
     private void HealPlayer(int heal)
     {
-        if (_currentHealth < playerHealth)
+        if (_currentHealth < MaxHealth)
         {
             CurrentHealth += heal;
+            healParticles.Play();
             Debug.Log("Heal Player".SetColor("#87E720") + heal);
         }
         else
         {
-            CurrentHealth = playerHealth;
+            CurrentHealth = MaxHealth;
             Debug.Log("Set max health".SetColor("#87E720"));
         }
         
@@ -285,6 +299,8 @@ public class PlayerManager : ManagerBase, IGeneralTarget
         {
             Debug.Log("Player Dead".SetColor("#F51858"));
         }
+        
+        Debug.Log("Player Received damage :" + dmg);
 
     }
     #endregion
