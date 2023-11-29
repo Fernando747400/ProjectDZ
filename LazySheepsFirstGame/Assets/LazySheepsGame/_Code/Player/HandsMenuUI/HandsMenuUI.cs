@@ -56,7 +56,7 @@ public class HandsMenuUI : MonoBehaviour
         SetLifeValue(_playerManager.CurrentHealth);
         GetEvents();
         
-        Debug.Log("HandsMenuUI Initialized".SetColor("#96E542"));
+        // Debug.Log("HandsMenuUI Initialized".SetColor("#96E542"));
         
     }
 
@@ -74,7 +74,7 @@ public class HandsMenuUI : MonoBehaviour
         
         _gotEvents = true;
         
-        Debug.Log("Get Events".SetColor("#96E542"));
+        // Debug.Log("Get Events".SetColor("#96E542"));
     }
 
 public void OnClickWeapon(WeaponData weaponData)
@@ -97,7 +97,7 @@ public void OnClickWeapon(WeaponData weaponData)
         _changeSceneChannel.RaiseBoolEvent(true);
         
         onObjectiveCompletedChannel.RaiseStringEvent("Run");
-        Debug.Log("Run".SetColor("#96E542"));
+        // Debug.Log("Run".SetColor("#96E542"));
     }
 
     [Button]
@@ -132,7 +132,7 @@ public void OnClickWeapon(WeaponData weaponData)
         if (objective == null) return;
         
         _objectiveText.text = objective.Objective;
-        Debug.Log("Set Objective UI: ".SetColor("#96E542") + objective.Objective);
+        // Debug.Log("Set Objective UI: ".SetColor("#96E542") + objective.Objective);
     }
     private void SetLifeValue(int value)
     {
