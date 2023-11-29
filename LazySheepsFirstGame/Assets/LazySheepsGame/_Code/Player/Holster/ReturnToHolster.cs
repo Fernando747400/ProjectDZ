@@ -1,15 +1,32 @@
+using System;
+using Autohand;
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 
 public class ReturnToHolster : MonoBehaviour
 {
+    [SerializeField] private Grabbable autoHandGrabbable;
     [SerializeField] private Transform _targetPosition;
-    [SerializeField] private float _secondsToReturn = 10f;
+    [SerializeField] private float _secondsToReturn = 2f;
+    [SerializeField] private bool _isGordy = false;
 
     private Tween returnTween;
     private Rigidbody _rb;
     private bool _return = false;
+    private bool _isInHand = false;
+
+    private void OnEnable()
+    {
+        autoHandGrabbable.OnGrabEvent += IsGrabbed;
+        autoHandGrabbable.OnReleaseEvent += IsDroped;
+    }
+    
+    private void OnDisable()
+    {
+        autoHandGrabbable.OnGrabEvent -= IsGrabbed;
+        autoHandGrabbable.OnReleaseEvent -= IsDroped;
+    }
 
     void Start()
     {
@@ -18,15 +35,40 @@ public class ReturnToHolster : MonoBehaviour
 
     private void Update()
     {
-        if (_rb.isKinematic)
+        if (_isGordy)
         {
-            _return = false;
-            if(returnTween != null) returnTween.Kill();
-            StopAllCoroutines();
+            if (_rb.isKinematic || _isInHand)
+            {
+                _return = false;
+                if(returnTween != null) returnTween.Kill();
+                StopAllCoroutines();
+            }
+            if (!_rb.isKinematic || !_isInHand) 
+            {
+                _return = true;
+            }
         }
-        if (!_rb.isKinematic) 
+        else if(!_isGordy)
         {
-            _return = true;
+            try
+            {
+                _rb = GetComponent<Rigidbody>();
+            }
+            catch (Exception e)
+            {
+                
+            }
+            
+            if (_rb == null || _isInHand)
+            {
+                _return = false;
+                if(returnTween != null) returnTween.Kill();
+                StopAllCoroutines();
+            }
+            else if(_rb != null || !_isInHand)
+            {
+                _return = true;
+            }
         }
     }
 
@@ -62,5 +104,15 @@ public class ReturnToHolster : MonoBehaviour
             }
             return;
         });
+    }
+    
+    private void IsGrabbed(Hand hand, Grabbable grabbable)
+    {
+        _isInHand = true;
+    }
+    
+    private void IsDroped(Hand hand, Grabbable grabbable)
+    {
+        _isInHand = false;
     }
 }

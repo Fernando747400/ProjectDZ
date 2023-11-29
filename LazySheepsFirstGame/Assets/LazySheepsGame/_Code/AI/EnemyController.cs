@@ -37,7 +37,8 @@ namespace com.LazyGames.DZ
         [HideInInspector] public bool doHear = true;
         [HideInInspector] public Vector3 target;
         [HideInInspector] public float hP;
-        [HideInInspector]public string currentAnimState;
+        [HideInInspector] public string currentAnimState;
+        [HideInInspector] public bool doneAttacking;
         
         # region "Components"
         
@@ -166,7 +167,9 @@ namespace com.LazyGames.DZ
 
         public void SendAggression()
         {
-            // Debug.Log("attacked");
+            if (!doneAttacking) return;
+            if (!player.TryGetComponent<IGeneralTarget>(out var generalTarget)) return;
+            generalTarget.ReceiveAggression(Vector3.Normalize(transform.position - player.transform.position), 1, parameters.attackPower);
         }
 
         private void OnDestroyCore()
