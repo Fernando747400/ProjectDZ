@@ -112,6 +112,8 @@ namespace com.LazyGames.DZ
             agent.speed = parameters.baseSpeed;
             agent.stoppingDistance = parameters.circleRadius - .1f;
             player = GameObject.Find(playerName);
+            doneAttacking = true;
+            
             
             OnCoreDestroyed.VoidEvent += OnDestroyCore;
         }
@@ -169,6 +171,7 @@ namespace com.LazyGames.DZ
         {
             if (!doneAttacking) return;
             if (!player.TryGetComponent<IGeneralTarget>(out var generalTarget)) return;
+            Debug.Log("Enemy attacked player");
             generalTarget.ReceiveAggression(Vector3.Normalize(transform.position - player.transform.position), 1, parameters.attackPower);
         }
 

@@ -1,3 +1,4 @@
+using com.LazyGames.Dio;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
@@ -12,6 +13,7 @@ public class GordyUI : MonoBehaviour
     [SerializeField] private FloatVariable _mana;
     [Required]
     [SerializeField] private FloatVariable _maxMana;
+    [SerializeField]  private IntEventChannelSO onHealPlayerChannel;
 
     private void OnEnable()
     {
@@ -28,5 +30,7 @@ public class GordyUI : MonoBehaviour
     private void UpdateHealth(float value)
     {
         _manaBar.value = _mana/_maxMana;
+        onHealPlayerChannel.RaiseEvent((int) _mana);
+        
     }
 }

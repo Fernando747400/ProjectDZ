@@ -53,7 +53,7 @@ public class HandsMenuUI : MonoBehaviour
 
         _playerCurrencyText.text = CurrencyManager.Instance.CurrentCurrency.ToString();
         _playerHealthText.text = 100f.ToString();
-        SetLifeValue(100);
+        SetLifeValue(_playerManager.CurrentHealth);
         GetEvents();
         
         Debug.Log("HandsMenuUI Initialized".SetColor("#96E542"));
