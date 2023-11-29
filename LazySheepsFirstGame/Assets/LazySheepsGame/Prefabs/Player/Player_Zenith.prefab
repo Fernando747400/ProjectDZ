@@ -687,6 +687,7 @@ MonoBehaviour:
   onHealPlayerChannel: {fileID: 11400000, guid: 3dadca9325a5be84191de1a5ea5d391b, type: 2}
   onUpdateHealthPlayerChannel: {fileID: 11400000, guid: f8941ab294ff848458958b90c3e392e3, type: 2}
   onObjectiveCompletedChannel: {fileID: 11400000, guid: 4df5481afc292d043b642a2de84a4bb2, type: 2}
+  onSetObjectivesSO: {fileID: 11400000, guid: fb0ace674e8e1584784ad9b9589c5a47, type: 2}
   objectivesData: {fileID: 11400000, guid: 9e52d209a084d8e40bb0145d916a8e36, type: 2}
   placeGunPointHolster: {fileID: 4571801502370708655}
 --- !u!1 &6133733062145178457
@@ -1371,7 +1372,7 @@ MonoBehaviour:
   OnShow:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8070425959719401371}
+      - m_Target: {fileID: 8070425959874076219}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1383,9 +1384,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 8070425959692367387}
+      - m_Target: {fileID: 3748028581478831811}
         m_TargetAssemblyTypeName: HandsMenuUI, Assembly-CSharp
-        m_MethodName: GetEvent
+        m_MethodName: GetEvents
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1398,7 +1399,7 @@ MonoBehaviour:
   OnHide:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8070425959719401371}
+      - m_Target: {fileID: 8070425959874076219}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1676,9 +1677,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b542046507b78ff41ac3066c38209119, type: 3}
---- !u!114 &8070425959692367387 stripped
+--- !u!114 &3748028581478831811 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3800415801698277709, guid: b542046507b78ff41ac3066c38209119, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8016846645528541589, guid: b542046507b78ff41ac3066c38209119, type: 3}
   m_PrefabInstance: {fileID: 6575857642630819670}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1687,8 +1688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0151091ca3775854fa8945974eb3cec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8070425959719401371 stripped
+--- !u!1 &8070425959874076219 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 3800415801675503821, guid: b542046507b78ff41ac3066c38209119, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3800415801898348909, guid: b542046507b78ff41ac3066c38209119, type: 3}
   m_PrefabInstance: {fileID: 6575857642630819670}
   m_PrefabAsset: {fileID: 0}

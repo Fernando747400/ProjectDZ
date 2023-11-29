@@ -5,6 +5,7 @@ using Autohand;
 using com.LazyGames;
 using com.LazyGames.Dio;
 using com.LazyGames.DZ;
+using Obvious.Soap;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -61,6 +62,8 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     
     [Header("Objectives")]
     [SerializeField] private GenericDataEventChannelSO onObjectiveCompletedChannel;
+    [SerializeField] private ScriptableEventObjectives onSetObjectivesSO;
+
     [SerializeField] ObjectivesData objectivesData;
     
     [Header("PlacePoint")]
@@ -74,7 +77,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     private Objectives _currentObjective;
     
     public int MaxHealth => playerHealth;
-    public event Action<Objectives> OnSetObjective;
+    // public event Action<Objectives> OnSetObjective;
     public Objectives CurrentObjective => _currentObjective;
     public int CurrentHealth
     {
@@ -126,6 +129,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
         onHealPlayerChannel.IntEvent += HealPlayer;
         
         SetObjective("Presentation");
+        objectivesData.ResetObjectives();
         
         currentWeaponData = weapons[0].WeaponData;
         SelectWeaponPlayerHolster(currentWeaponData.ID); 
@@ -209,33 +213,39 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     public void ResetPlayersPosition(Vector3 position)
     {
         player.transform.position = position;
-        Debug.Log("Reset Player Position".SetColor("#87E720"));
+        // Debug.Log("Reset Player Position".SetColor("#87E720"));
     }
 
+    public Objectives GetObjective(string objectiveID)
+    {
+        return objectivesData.Objectives.Find(x => x.ID == objectiveID);
+    }
     #endregion
 
     #region private Methods
     
-    private void OnCompletedObjective(string objectiveID)
+    public void OnCompletedObjective(string objectiveID)
     {
-        Debug.Log("Completed Objective: ".SetColor("#87E720") + objectiveID);
         Objectives objective = objectivesData.Objectives.Find(x => x.ID == objectiveID);
-        
         if(objective.IsCompleted) return;
         
         objective.IsCompleted = true;
         int index = objectivesData.Objectives.FindIndex(x => x.ID == objectiveID);
+        Debug.Log("Completed Objective: ".SetColor("#29DDEF") + objectiveID);
+
         if(index + 1 > objectivesData.Objectives.Count) return;
         
         Objectives nextObjective = objectivesData.Objectives[index + 1];
         SetObjective(nextObjective.ID);
+        Debug.Log("Next Objective: ".SetColor("#29DDEF") + nextObjective.Objective);
     }
     
     private void SetObjective(string objectiveID)
     {
         _currentObjective = objectivesData.Objectives.Find(x => x.ID == objectiveID);
-        Debug.Log("Set Objective: ".SetColor("#87E720") + _currentObjective.Objective);
-        OnSetObjective?.Invoke(_currentObjective);
+        Debug.Log("Set Objective: ".SetColor("#29DDEF") + _currentObjective.Objective);
+        
+        onSetObjectivesSO.Raise(_currentObjective);
         
     }
     private void HealPlayer(int heal)

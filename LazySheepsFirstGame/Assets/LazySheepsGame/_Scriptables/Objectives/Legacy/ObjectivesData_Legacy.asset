@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c56ca9d79957bf48b7b3786e6805ae2, type: 3}
-  m_Name: ObjectivesData
+  m_Name: ObjectivesData_Legacy
   m_EditorClassIdentifier: 
   objectives:
   - ID: Presentation
@@ -23,5 +23,5 @@ MonoBehaviour:
     Objective: Find and destroy the enemy core.
     IsCompleted: 0
   - ID: Weapon
-    Objective: Gear up with X.
+    Objective: Gear up with S.A.I.L
     IsCompleted: 0

@@ -166,7 +166,7 @@ namespace com.LazyGames.DZ
 
         public void SendAggression()
         {
-            Debug.Log("attacked");
+            // Debug.Log("attacked");
         }
 
         private void OnDestroyCore()

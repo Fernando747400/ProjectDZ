@@ -1,8 +1,10 @@
+using System;
 using com.LazyGames;
 using com.LazyGames.Dio;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using Obvious.Soap;
 using TMPro;
 
 public class HandsMenuUI : MonoBehaviour
@@ -26,6 +28,9 @@ public class HandsMenuUI : MonoBehaviour
     [Header("Objective")] [SerializeField] private TMP_Text _objectiveText;
     [SerializeField] private GenericDataEventChannelSO onObjectiveCompletedChannel;
 
+    [SerializeField] private ScriptableEventObjectives setObjectivesSO;
+
+
 
     [Header("Scenes Channel")] [SerializeField]
     private GenericDataEventChannelSO _changeSceneChannel;
@@ -34,36 +39,42 @@ public class HandsMenuUI : MonoBehaviour
     [Scene] [SerializeField] private string _sceneTabern;
     [Scene] [SerializeField] private string _sceneAI;
 
+
+    private bool _gotEvents;
     void Start()
     {
-        onUpdatePlayerHealth.IntEvent += UpdatePlayerHealth;
-        onUpdatePlayerCurrency.IntEvent += UpdatePlayerCurrency;
 
         exitButton.gameObject.SetActive(false);
         _runButton.gameObject.SetActive(false);
 
         if (_playerManager == null) _playerManager = PlayerManager.Instance;
 
-        _playerManager.OnSetObjective += SetObjective;
         SetObjective(_playerManager.CurrentObjective);
-        onObjectiveCompletedChannel.StringEvent += OnCompletedObjective;
+
         _playerCurrencyText.text = CurrencyManager.Instance.CurrentCurrency.ToString();
         _playerHealthText.text = 100f.ToString();
         SetLifeValue(100);
-
+        GetEvents();
+        
+        Debug.Log("HandsMenuUI Initialized".SetColor("#96E542"));
+        
     }
 
 
-    public void GetEvent()
+    public void GetEvents()
     {
-        onObjectiveCompletedChannel.StringEvent += OnCompletedObjective;
-        _playerManager.OnSetObjective += SetObjective;
+        SetObjective(_playerManager.CurrentObjective);
+        if (_gotEvents) return;
         
+        onObjectiveCompletedChannel.StringEvent += OnCompletedObjective;
+        setObjectivesSO.OnRaised += SetObjective;
+            
         onUpdatePlayerHealth.IntEvent += UpdatePlayerHealth;
         onUpdatePlayerCurrency.IntEvent += UpdatePlayerCurrency;
-
         
-
+        _gotEvents = true;
+        
+        Debug.Log("Get Events".SetColor("#96E542"));
     }
 
 public void OnClickWeapon(WeaponData weaponData)
@@ -110,11 +121,17 @@ public void OnClickWeapon(WeaponData weaponData)
         {
             _runButton.gameObject.SetActive(true);
         }
+        
     }
     private void SetObjective(Objectives objective)
     {
-        if(objective != null)
-            _objectiveText.text = objective.Objective;
+        // if(String.IsNullOrEmpty(objectiveID)) return;
+        // var objective = PlayerManager.Instance.GetObjective(objectiveID);
+
+        if (objective == null) return;
+        
+        _objectiveText.text = objective.Objective;
+        Debug.Log("Set Objective UI: ".SetColor("#96E542") + objective.Objective);
     }
     private void SetLifeValue(int value)
     {

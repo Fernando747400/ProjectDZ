@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using com.LazyGames;
+using com.LazyGames.Dio;
 using DG.Tweening;
 using TMPro;
 using UnityEditor;
@@ -16,6 +18,7 @@ public class DialogueTrigger : MonoBehaviour
     public CanvasGroup dialogueCanvasGroup;
     private Dialogue _currentDialogue;
     public UnityEvent OnDialoguesCompleted;
+    [SerializeField] private GenericDataEventChannelSO onObjectiveCompletedChannel;
     
     private bool _isDialogueActive;
     void Start()
@@ -23,11 +26,18 @@ public class DialogueTrigger : MonoBehaviour
         dialogueCanvasGroup.alpha = 0;
     }
 
-    // public void TestDialogue()
-    // {
-    //     _currentDialogue = dialogueData.Dialogues[0];
-    //     ShowDialogue(_currentDialogue);
-    // }
+    public void DebugOnComplete()
+    {
+        Debug.Log("OnCompleteDialogue".SetColor("#96E542"));
+        FinishedObjectiveDialogue("Presentation");
+    }
+
+    public void FinishedObjectiveDialogue(string objectiveID)
+    {
+        PlayerManager.Instance.OnCompletedObjective(objectiveID);
+
+        onObjectiveCompletedChannel.RaiseStringEvent(objectiveID);
+    }
 
     public void ShowDialogue()
     {
