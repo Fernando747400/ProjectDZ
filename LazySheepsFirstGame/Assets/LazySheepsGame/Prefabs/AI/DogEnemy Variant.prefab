@@ -77,6 +77,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7439231909585177860, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: m_Height
+      value: 2.02
+      objectReference: {fileID: 0}
+    - target: {fileID: -7439231909585177860, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: m_Radius
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: -7439231909585177860, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: m_Center.y
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: -7439231909585177860, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: m_Direction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 281219074889938976, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_Center.y
       value: 0.5
@@ -115,15 +131,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.56
+      value: 6.738544
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.49800003
+      value: 0.50000024
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.19
+      value: -24.928963
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889938981, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_LocalRotation.w
@@ -158,6 +174,14 @@ PrefabInstance:
       value: DogEnemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: Collider
+      value: 
+      objectReference: {fileID: 4701273606584418444}
+    - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: animDataSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 2540acf99769bc349841f2cb53e0df77, type: 2}
+    - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: parameters
       value: 
       objectReference: {fileID: 11400000, guid: 20bf2c09fda47634c83e395cd5ad899f, type: 2}
@@ -165,6 +189,10 @@ PrefabInstance:
       propertyPath: playerName
       value: Player_Zenith
       objectReference: {fileID: 0}
+    - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: OnCoreDestroyed
+      value: 
+      objectReference: {fileID: 11400000, guid: e82263401804fb84792edb1e85174d80, type: 2}
     - target: {fileID: 281219075871051866, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_Name
       value: VFX
@@ -209,6 +237,10 @@ PrefabInstance:
       propertyPath: leftSide.y
       value: -130
       objectReference: {fileID: 0}
+    - target: {fileID: 1157796155901694149, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: _animDataSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 2540acf99769bc349841f2cb53e0df77, type: 2}
     - target: {fileID: 1157796155901694149, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: rightSide.x
       value: 60
@@ -290,6 +322,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c43316ffa289a946a6f6dbb54caa2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &4701273606584418444 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: -7439231909585177860, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+  m_PrefabInstance: {fileID: 6484284689481658992}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6493022790501098029 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 281219075871051869, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}

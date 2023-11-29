@@ -598,10 +598,12 @@ MonoBehaviour:
   isInHandChannel: {fileID: 11400000, guid: 2d80843320567354785e0dbdb16ab24c, type: 2}
   handHolderEventSO: {fileID: 11400000, guid: 6dde001a78d7414449227ed5e5b6b838, type: 2}
   currentHandHolding: 0
+  objectInHand: {fileID: 0}
   weaponUIGO: {fileID: 2586423692061490887}
   timeToDespawnPart: 3
   lineRenderer: {fileID: 3634637588120528818}
   hitLaserParticle: {fileID: 15510708740537749}
+  weaponsStoreLight: {fileID: 0}
   reloadAnimator: {fileID: 7580148298901662599}
   animaNeedReloadName: NeedReload
   autoHandGrabbable: {fileID: 4635912605813882699}
@@ -947,7 +949,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906325207997439851}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0604, z: 0.166}
+  m_LocalPosition: {x: 0, y: 0.0399, z: 0.166}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6482,8 +6484,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.977417
-        value: 0.013050079
+        time: 0.9928019
+        value: 0.0065727076
         inSlope: 0
         outSlope: 0
         tangentMode: 0

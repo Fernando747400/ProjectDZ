@@ -5,6 +5,7 @@ using com.LazyGames.Dz;
 using com.LazyGames.Dio;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace com.LazyGames.DZ
 {
@@ -19,11 +20,18 @@ namespace com.LazyGames.DZ
     
     public class EnemyController : MonoBehaviour, IGeneralTarget, INoiseSensitive, IGeneralAggressor
     {
-        public string playerName = "Player_Zenith";
+        [SerializeField] private VoidEventChannelSO OnCoreDestroyed;
+        
+        public Collider Collider;
+        
+        public string playerName = "Auto Hand Player";
         public IntEventChannelSO onDeathScriptableChannel;
         
         public AiParameters parameters;
         public SceneWallsSO sceneWallsSo;
+        
+        // decouple and refactor asap
+        public AnimDataSO animDataSo;
 
         [HideInInspector] public GameObject player;
         [HideInInspector] public bool doHear = true;
@@ -31,11 +39,11 @@ namespace com.LazyGames.DZ
         [HideInInspector] public float hP;
         [HideInInspector]public string currentAnimState;
         
-        
         # region "Components"
         
             [HideInInspector] public NavMeshAgent agent;
             [HideInInspector] public NPC_TickManager tickManager;
+            // decouple and refactor asap
             [HideInInspector]public AdvanceAnimatorController animController;
         
         # endregion
@@ -103,6 +111,8 @@ namespace com.LazyGames.DZ
             agent.speed = parameters.baseSpeed;
             agent.stoppingDistance = parameters.circleRadius - .1f;
             player = GameObject.Find(playerName);
+            
+            OnCoreDestroyed.VoidEvent += OnDestroyCore;
         }
         
         public void ReceiveAggression(Vector3 direction, float velocity,float dmg = 0)
@@ -157,6 +167,12 @@ namespace com.LazyGames.DZ
         public void SendAggression()
         {
             Debug.Log("attacked");
+        }
+
+        private void OnDestroyCore()
+        {
+            ChangeState(deadState);
+            Collider.enabled = false;
         }
     }
 }

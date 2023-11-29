@@ -16,6 +16,7 @@ public class WeaponStoreManager : MonoBehaviour
     [SerializeField] private Transform weaponShowPosition;
     [SerializeField] private GenericDataEventChannelSO onGrabWeaponFromStoreChannel;
     [SerializeField] private PlacePoint placePoint;
+    [SerializeField] private GameObject visual;
     
     [SerializeField] private List<WeaponButtonUI> weaponButtons;
     
@@ -33,6 +34,10 @@ public class WeaponStoreManager : MonoBehaviour
         }
     }
 
+    public void EnableStore(bool value)
+    {
+        visual.SetActive(value);
+    }
     public void BuyWeapon(string weaponID)
     {
         var weaponData = weaponsData.Find(x => x.ID == weaponID);

@@ -41,6 +41,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
 
     [Header("Player")]
     [SerializeField] int playerHealth = 100;
+    [SerializeField] private GameObject player;
     
     [Header("Weapons")] 
     [SerializeField] private WeaponData currentWeaponData;
@@ -205,9 +206,10 @@ public class PlayerManager : ManagerBase, IGeneralTarget
             }
         }
     }
-    public void ResetPlayersPosition()
+    public void ResetPlayersPosition(Vector3 position)
     {
-        transform.position = Vector3.zero;
+        player.transform.position = position;
+        Debug.Log("Reset Player Position".SetColor("#87E720"));
     }
 
     #endregion
@@ -216,7 +218,12 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     
     private void OnCompletedObjective(string objectiveID)
     {
-        objectivesData.Objectives.Find(x => x.ID == objectiveID).IsCompleted = true;
+        Debug.Log("Completed Objective: ".SetColor("#87E720") + objectiveID);
+        Objectives objective = objectivesData.Objectives.Find(x => x.ID == objectiveID);
+        
+        if(objective.IsCompleted) return;
+        
+        objective.IsCompleted = true;
         int index = objectivesData.Objectives.FindIndex(x => x.ID == objectiveID);
         if(index + 1 > objectivesData.Objectives.Count) return;
         

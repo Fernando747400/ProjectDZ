@@ -13,6 +13,7 @@ namespace com.LazyGames.DZ
         [Header(" Controllers")]
         [SerializeField] private AdvanceAnimatorController animatorController;
         [SerializeField] private EnemyController enemyController;
+        [SerializeField] private AnimDataSO _animDataSo;
        
         [Header("Body Parts")]
         [HideInInspector] private EnemyBodyPart hittedBodyPart;
@@ -43,6 +44,9 @@ namespace com.LazyGames.DZ
         private void Start()
         {
             enemyController.OnAnimEvent += HandleHitPoint;
+            animHead = _animDataSo.forwardHitAnim;
+            animLeftSide = _animDataSo.leftHitAnim;
+            animRightSide = _animDataSo.rightHitAnim;
         }
 
         #endregion

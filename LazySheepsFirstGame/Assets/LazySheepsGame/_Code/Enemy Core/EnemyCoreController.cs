@@ -1,14 +1,23 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using com.LazyGames;
 using UnityEngine;
 using com.LazyGames.Dio;
+using com.LazyGames.DZ;
 using Lean.Pool;
 using UnityEditor;
+using UnityEngine.AI;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace com.LazyGames
 {
     public class EnemyCoreController : MonoBehaviour
     {
         #region Serialized Fields
+        
+        [SerializeField] private GenericDataEventChannelSO onObjectiveCompletedChannel;
 
         [Header("Enemy Core")]
         [SerializeField] private EnemyCoreData enemyCoreData;
@@ -57,7 +66,15 @@ namespace com.LazyGames
         {
            Initialized();
         }
-        
+
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.S))
+            {
+                SpawnEnemyWave();
+            }
+        }
+
         // private void OnTriggerEnter(Collider other)
         // {
         //     if (other.GetComponent<DeactivatorCore>())
@@ -161,10 +178,21 @@ namespace com.LazyGames
         }
         private void SpawnEnemyWave()
         {
-            var enemy = LeanPool.Spawn(enemyCoreData.EnemyPrefab);
-            enemy.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
+          var enemy = LeanPool.Spawn(enemyCoreData.EnemyPrefab); 
+          int randomPlace = Random.Range(0, spawnPoints.Length); 
+          
+          NavMeshAgent  agent = enemy.GetComponent<NavMeshAgent>();
+          EnemyController enemyController = enemy.GetComponent<EnemyController>();
+
+          enemyController.currentState = enemyController.aggroState;
+          // enemyController.ChangeState(enemyController.aggroState);
+          
+          agent.Warp(spawnPoints[randomPlace].position);
+
+          // Debug.Log("SpawnEnemyWave".SetColor("#FE0D4F"));
         }
-        
+
+      
         private void DestroyEnemyCore()
         {
             EnemyCoreState = EnemyCoreState.Destroyed;
@@ -173,6 +201,9 @@ namespace com.LazyGames
             collider.enabled = false;
             onCoreDestroyed.RaiseEvent();
             explosionParticle.Play();
+            
+            onObjectiveCompletedChannel.RaiseStringEvent("EnemyCore");
+
             // Debug.Log("Enemy Core Destroyed".SetColor("#FE0D4F"));
         }
         private void CheckEnemyCoreState()

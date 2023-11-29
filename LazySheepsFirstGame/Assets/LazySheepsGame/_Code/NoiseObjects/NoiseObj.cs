@@ -20,12 +20,7 @@ public class NoiseObj : MonoBehaviour, INoiseSource
         Prepare();
         _visualize = true;
     }
-
-    private void Update()
-    {
-        // Debug.Log(_rb.velocity.magnitude);
-    }
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         _relativeSpeed = collision.relativeVelocity.magnitude;

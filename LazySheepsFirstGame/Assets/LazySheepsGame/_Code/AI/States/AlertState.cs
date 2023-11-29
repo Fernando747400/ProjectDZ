@@ -9,6 +9,7 @@ namespace com.LazyGames.DZ
         {
             //perform alerted animation
             Controller.agent.isStopped = true;
+            Controller.doHear = false;
             _elapsedTime = 0f;
         }
 
@@ -27,16 +28,16 @@ namespace com.LazyGames.DZ
             switch ( Controller.agent.velocity.magnitude)
             {
                 case var n when n <= 0.1f:
-                    newAnimState = "Idle";
+                    newAnimState = Controller.animDataSo.idleAnim;
                     break;
                 case var n when n > 0.1f && n <= 2.1f:
-                    newAnimState = "Walking";
+                    newAnimState = Controller.animDataSo.walkAnim;
                     break;
                 case var n when n > 2.1f:
-                    newAnimState = "Running";
+                    newAnimState = Controller.animDataSo.runAnim;
                     break;
                 default:
-                    newAnimState = "Idle";
+                    newAnimState = Controller.animDataSo.idleAnim;
                     break;
             }
 
@@ -71,7 +72,8 @@ namespace com.LazyGames.DZ
         public override void ExitState()
         {
             Controller.agent.isStopped = false;
-            
+            Controller.doHear = true;
+
         }
     }
     

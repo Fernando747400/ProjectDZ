@@ -35,8 +35,10 @@ namespace com.LazyGames
         }
         public void UpdateLifeTime(float value)
         {
+            int minutes = Mathf.FloorToInt(value / 60F);
+            int seconds = Mathf.FloorToInt(value % 60F);
             lifetimeSlider.value = value;
-            deactivatorTimerTxt.text = value.ToString();
+            deactivatorTimerTxt.text = string.Format("{0:00}m {1:00}s", minutes, seconds);
         }
         
         public void EnableLifeTimeUI(bool value)
