@@ -250,6 +250,7 @@ namespace com.LazyGames.DZ
         private void HandleShootEvent(int value)
         {
             // Debug.Log("HandleShootEvent".SetColor("#F1BE50"));
+            if(!gameObject.activeSelf) return;
             if(currentHandHolding == HandHolder.None) return;
             if (value != (int)currentHandHolding) return;
             if (!_isHoldingWeapon) return;
