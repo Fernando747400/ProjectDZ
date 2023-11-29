@@ -2,6 +2,7 @@ using UnityEngine;
 using Obvious.Soap;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using UnityEngine.Serialization;
 
 public class GordyKeyColor : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class GordyKeyColor : MonoBehaviour
 
     [SerializeField] private Material _offMaterial;
 
+    [SerializeField] private List<BoolVariable> _KeyBoolCast = new List<BoolVariable>();
+
     private void OnEnable()
     {
         _mana.OnValueChanged += UpdateKeys;
@@ -34,11 +37,11 @@ public class GordyKeyColor : MonoBehaviour
     {
         float quarterValue = _maxMana.Value / 4f;
 
-        UpdateKeysList(_damageKeys, _damageColors, manaValue, quarterValue);
-        UpdateKeysList(_healthKeys, _healthColors, manaValue, quarterValue);
+        UpdateKeysList(_damageKeys, _damageColors, _KeyBoolCast, manaValue, quarterValue);
+        UpdateKeysList(_healthKeys, _healthColors, _KeyBoolCast, manaValue, quarterValue);
     }
 
-    void UpdateKeysList(List<GameObject> keys, List<Material> onMaterials, float manaValue, float quarterValue)
+    void UpdateKeysList(List<GameObject> keys, List<Material> onMaterials, List<BoolVariable> keyBools, float manaValue, float quarterValue)
     {
         for (int i = 0; i < keys.Count; i++)
         {
@@ -47,6 +50,7 @@ public class GordyKeyColor : MonoBehaviour
 
             // Check if the key should be turned on for the specific quarter
             bool shouldTurnOn = i <= quarterIndex && manaValue >= quarterValue * (i + 1);
+            keyBools[i].Value = shouldTurnOn;
 
             if (shouldTurnOn)
             {
