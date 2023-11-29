@@ -62,11 +62,13 @@ namespace com.LazyGames.DZ
 
             _attacking = true;
             Controller.SendAggression();
+            Controller.doneAttacking = false;
             newAnimState = Controller.animDataSo.attackAnim;
             if (newAnimState == Controller.currentAnimState) return;
             Controller.animController.SetAnim(newAnimState);
             Controller.currentAnimState = newAnimState; // Update the current state
             StartCoroutine(corWaitForAttack());
+            Controller.doneAttacking = true;
         }
         
         private IEnumerator corWaitForAttack()
