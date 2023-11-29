@@ -63,9 +63,9 @@ public class HandsMenuUI : MonoBehaviour
 
     public void GetEvents()
     {
-        SetObjective(_playerManager.CurrentObjective);
         if (_gotEvents) return;
-        
+        SetObjective(_playerManager.CurrentObjective);
+
         onObjectiveCompletedChannel.StringEvent += OnCompletedObjective;
         setObjectivesSO.OnRaised += SetObjective;
             
@@ -97,6 +97,7 @@ public void OnClickWeapon(WeaponData weaponData)
         _changeSceneChannel.RaiseBoolEvent(true);
         
         onObjectiveCompletedChannel.RaiseStringEvent("Run");
+        Debug.Log("Run".SetColor("#96E542"));
     }
 
     [Button]

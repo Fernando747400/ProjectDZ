@@ -250,14 +250,14 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     }
     private void HealPlayer(int heal)
     {
-        if (_currentHealth < playerHealth)
+        if (_currentHealth < MaxHealth)
         {
             CurrentHealth += heal;
             Debug.Log("Heal Player".SetColor("#87E720") + heal);
         }
         else
         {
-            CurrentHealth = playerHealth;
+            CurrentHealth = MaxHealth;
             Debug.Log("Set max health".SetColor("#87E720"));
         }
         
@@ -285,6 +285,8 @@ public class PlayerManager : ManagerBase, IGeneralTarget
         {
             Debug.Log("Player Dead".SetColor("#F51858"));
         }
+        
+        Debug.Log("Player Received damage :" + dmg);
 
     }
     #endregion
