@@ -63,6 +63,7 @@ public class HandsMenuUI : MonoBehaviour
 
     public void GetEvents()
     {
+        SetObjective(_playerManager.CurrentObjective);
         if (_gotEvents) return;
         
         onObjectiveCompletedChannel.StringEvent += OnCompletedObjective;

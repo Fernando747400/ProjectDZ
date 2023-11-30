@@ -129,6 +129,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
         onHealPlayerChannel.IntEvent += HealPlayer;
         
         SetObjective("Presentation");
+        objectivesData.ResetObjectives();
         
         currentWeaponData = weapons[0].WeaponData;
         SelectWeaponPlayerHolster(currentWeaponData.ID); 
@@ -223,26 +224,26 @@ public class PlayerManager : ManagerBase, IGeneralTarget
 
     #region private Methods
     
-    private void OnCompletedObjective(string objectiveID)
+    public void OnCompletedObjective(string objectiveID)
     {
         Objectives objective = objectivesData.Objectives.Find(x => x.ID == objectiveID);
         if(objective.IsCompleted) return;
         
         objective.IsCompleted = true;
         int index = objectivesData.Objectives.FindIndex(x => x.ID == objectiveID);
-        // Debug.Log("Completed Objective: ".SetColor("#87E720") + objectiveID);
+        Debug.Log("Completed Objective: ".SetColor("#29DDEF") + objectiveID);
 
         if(index + 1 > objectivesData.Objectives.Count) return;
         
         Objectives nextObjective = objectivesData.Objectives[index + 1];
         SetObjective(nextObjective.ID);
-        // Debug.Log("Next Objective: ".SetColor("#87E720") + nextObjective.Objective);
+        Debug.Log("Next Objective: ".SetColor("#29DDEF") + nextObjective.Objective);
     }
     
     private void SetObjective(string objectiveID)
     {
         _currentObjective = objectivesData.Objectives.Find(x => x.ID == objectiveID);
-        Debug.Log("Set Objective: ".SetColor("#87E720") + _currentObjective.Objective);
+        Debug.Log("Set Objective: ".SetColor("#29DDEF") + _currentObjective.Objective);
         
         onSetObjectivesSO.Raise(_currentObjective);
         
