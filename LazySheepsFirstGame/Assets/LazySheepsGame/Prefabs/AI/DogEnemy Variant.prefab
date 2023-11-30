@@ -174,6 +174,10 @@ PrefabInstance:
       value: DogEnemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: Collider
+      value: 
+      objectReference: {fileID: 4701273606584418444}
+    - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: animDataSo
       value: 
       objectReference: {fileID: 11400000, guid: 2540acf99769bc349841f2cb53e0df77, type: 2}
@@ -185,6 +189,10 @@ PrefabInstance:
       propertyPath: playerName
       value: Player_Zenith
       objectReference: {fileID: 0}
+    - target: {fileID: 281219074889939419, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+      propertyPath: OnCoreDestroyed
+      value: 
+      objectReference: {fileID: 11400000, guid: e82263401804fb84792edb1e85174d80, type: 2}
     - target: {fileID: 281219075871051866, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
       propertyPath: m_Name
       value: VFX
@@ -314,6 +322,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c43316ffa289a946a6f6dbb54caa2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &4701273606584418444 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: -7439231909585177860, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
+  m_PrefabInstance: {fileID: 6484284689481658992}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6493022790501098029 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 281219075871051869, guid: 24e20ea0aab4ec540880616f86b6ff83, type: 3}
