@@ -61,6 +61,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     
     [Header("Objectives")]
     [SerializeField] private GenericDataEventChannelSO onObjectiveCompletedChannel;
+    [SerializeField] private GenericDataEventChannelSO onSetObjectiveChannel;
     [SerializeField] ObjectivesData objectivesData;
     
     [Header("PlacePoint")]
@@ -74,7 +75,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     private Objectives _currentObjective;
     
     public int MaxHealth => playerHealth;
-    public event Action<Objectives> OnSetObjective;
+    // public event Action<Objectives> OnSetObjective;
     public Objectives CurrentObjective => _currentObjective;
     public int CurrentHealth
     {
@@ -212,6 +213,10 @@ public class PlayerManager : ManagerBase, IGeneralTarget
         // Debug.Log("Reset Player Position".SetColor("#87E720"));
     }
 
+    public Objectives GetObjective(string objectiveID)
+    {
+        return objectivesData.Objectives.Find(x => x.ID == objectiveID);
+    }
     #endregion
 
     #region private Methods
@@ -236,7 +241,9 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     {
         _currentObjective = objectivesData.Objectives.Find(x => x.ID == objectiveID);
         // Debug.Log("Set Objective: ".SetColor("#87E720") + _currentObjective.Objective);
-        OnSetObjective?.Invoke(_currentObjective);
+        
+        onSetObjectiveChannel.RaiseStringEvent(_currentObjective.ID);
+        // OnSetObjective?.Invoke(_currentObjective);
         
     }
     private void HealPlayer(int heal)
