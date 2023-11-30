@@ -4,6 +4,7 @@ using com.LazyGames.Dio;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using Obvious.Soap;
 using TMPro;
 
 public class HandsMenuUI : MonoBehaviour
@@ -26,7 +27,8 @@ public class HandsMenuUI : MonoBehaviour
 
     [Header("Objective")] [SerializeField] private TMP_Text _objectiveText;
     [SerializeField] private GenericDataEventChannelSO onObjectiveCompletedChannel;
-    [SerializeField] private GenericDataEventChannelSO onSetObjectiveChannel;
+
+    [SerializeField] private ScriptableEventObjectives setObjectivesSO;
 
 
 
@@ -47,7 +49,7 @@ public class HandsMenuUI : MonoBehaviour
 
         if (_playerManager == null) _playerManager = PlayerManager.Instance;
 
-        SetObjective(_playerManager.CurrentObjective.ID);
+        SetObjective(_playerManager.CurrentObjective);
 
         _playerCurrencyText.text = CurrencyManager.Instance.CurrentCurrency.ToString();
         _playerHealthText.text = 100f.ToString();
@@ -64,8 +66,8 @@ public class HandsMenuUI : MonoBehaviour
         if (_gotEvents) return;
         
         onObjectiveCompletedChannel.StringEvent += OnCompletedObjective;
-        onSetObjectiveChannel.StringEvent += SetObjective;
-        
+        setObjectivesSO.OnRaised += SetObjective;
+            
         onUpdatePlayerHealth.IntEvent += UpdatePlayerHealth;
         onUpdatePlayerCurrency.IntEvent += UpdatePlayerCurrency;
         
@@ -120,11 +122,13 @@ public void OnClickWeapon(WeaponData weaponData)
         }
         
     }
-    private void SetObjective(string objectiveID)
+    private void SetObjective(Objectives objective)
     {
-        if(String.IsNullOrEmpty(objectiveID)) return;
+        // if(String.IsNullOrEmpty(objectiveID)) return;
+        // var objective = PlayerManager.Instance.GetObjective(objectiveID);
+
+        if (objective == null) return;
         
-        var objective = PlayerManager.Instance.GetObjective(objectiveID);
         _objectiveText.text = objective.Objective;
         Debug.Log("Set Objective UI: ".SetColor("#96E542") + objective.Objective);
     }

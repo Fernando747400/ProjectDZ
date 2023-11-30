@@ -5,6 +5,7 @@ using Autohand;
 using com.LazyGames;
 using com.LazyGames.Dio;
 using com.LazyGames.DZ;
+using Obvious.Soap;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -61,7 +62,8 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     
     [Header("Objectives")]
     [SerializeField] private GenericDataEventChannelSO onObjectiveCompletedChannel;
-    [SerializeField] private GenericDataEventChannelSO onSetObjectiveChannel;
+    [SerializeField] private ScriptableEventObjectives onSetObjectivesSO;
+
     [SerializeField] ObjectivesData objectivesData;
     
     [Header("PlacePoint")]
@@ -240,10 +242,9 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     private void SetObjective(string objectiveID)
     {
         _currentObjective = objectivesData.Objectives.Find(x => x.ID == objectiveID);
-        // Debug.Log("Set Objective: ".SetColor("#87E720") + _currentObjective.Objective);
+        Debug.Log("Set Objective: ".SetColor("#87E720") + _currentObjective.Objective);
         
-        onSetObjectiveChannel.RaiseStringEvent(_currentObjective.ID);
-        // OnSetObjective?.Invoke(_currentObjective);
+        onSetObjectivesSO.Raise(_currentObjective);
         
     }
     private void HealPlayer(int heal)
