@@ -68,7 +68,7 @@ public class WeaponShotGunObject : WeaponObject
    {
       base.Reload();
       PlayAnimsWeapon(animaReloadName);
-      // Debug.Log("Reload ShotGun");
+      Debug.Log("Reload ShotGun");
    }
    #endregion
    
@@ -87,6 +87,7 @@ public class WeaponShotGunObject : WeaponObject
    {
       if(!IsHoldingWeapon) return;
         
+      Debug.Log("OnHoveredWeaponEnter");
       _initialHandReloadPosition = position;
       _isReloading = true;
    }
@@ -95,6 +96,8 @@ public class WeaponShotGunObject : WeaponObject
    {
       if(!IsHoldingWeapon) return;
         
+      Debug.Log("OnHoveredWeaponExit");
+
       _lastHandReloadPosition = position;
       _isReloading = false;
       CalculateVelocity();

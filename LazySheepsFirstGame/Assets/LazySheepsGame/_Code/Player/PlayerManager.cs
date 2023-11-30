@@ -209,7 +209,7 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     public void ResetPlayersPosition(Vector3 position)
     {
         player.transform.position = position;
-        Debug.Log("Reset Player Position".SetColor("#87E720"));
+        // Debug.Log("Reset Player Position".SetColor("#87E720"));
     }
 
     #endregion
@@ -218,23 +218,24 @@ public class PlayerManager : ManagerBase, IGeneralTarget
     
     private void OnCompletedObjective(string objectiveID)
     {
-        Debug.Log("Completed Objective: ".SetColor("#87E720") + objectiveID);
         Objectives objective = objectivesData.Objectives.Find(x => x.ID == objectiveID);
-        
         if(objective.IsCompleted) return;
         
         objective.IsCompleted = true;
         int index = objectivesData.Objectives.FindIndex(x => x.ID == objectiveID);
+        // Debug.Log("Completed Objective: ".SetColor("#87E720") + objectiveID);
+
         if(index + 1 > objectivesData.Objectives.Count) return;
         
         Objectives nextObjective = objectivesData.Objectives[index + 1];
         SetObjective(nextObjective.ID);
+        // Debug.Log("Next Objective: ".SetColor("#87E720") + nextObjective.Objective);
     }
     
     private void SetObjective(string objectiveID)
     {
         _currentObjective = objectivesData.Objectives.Find(x => x.ID == objectiveID);
-        Debug.Log("Set Objective: ".SetColor("#87E720") + _currentObjective.Objective);
+        // Debug.Log("Set Objective: ".SetColor("#87E720") + _currentObjective.Objective);
         OnSetObjective?.Invoke(_currentObjective);
         
     }

@@ -34,6 +34,8 @@ public class HandsMenuUI : MonoBehaviour
     [Scene] [SerializeField] private string _sceneTabern;
     [Scene] [SerializeField] private string _sceneAI;
 
+    
+    bool _hasInitialized;
     void Start()
     {
         onUpdatePlayerHealth.IntEvent += UpdatePlayerHealth;
@@ -50,20 +52,21 @@ public class HandsMenuUI : MonoBehaviour
         _playerCurrencyText.text = CurrencyManager.Instance.CurrentCurrency.ToString();
         _playerHealthText.text = 100f.ToString();
         SetLifeValue(100);
+        _hasInitialized = true;
 
     }
 
 
     public void GetEvent()
     {
+        if(_hasInitialized) return;
+        
         onObjectiveCompletedChannel.StringEvent += OnCompletedObjective;
         _playerManager.OnSetObjective += SetObjective;
         
         onUpdatePlayerHealth.IntEvent += UpdatePlayerHealth;
         onUpdatePlayerCurrency.IntEvent += UpdatePlayerCurrency;
-
-        
-
+        _hasInitialized = true;
     }
 
 public void OnClickWeapon(WeaponData weaponData)
@@ -110,11 +113,13 @@ public void OnClickWeapon(WeaponData weaponData)
         {
             _runButton.gameObject.SetActive(true);
         }
+        
     }
     private void SetObjective(Objectives objective)
     {
-        if(objective != null)
-            _objectiveText.text = objective.Objective;
+        if(objective != null)  _objectiveText.text = objective.Objective;
+        
+        Debug.Log("Set Objective UI: ".SetColor("#96E542") + objective.Objective);
     }
     private void SetLifeValue(int value)
     {
