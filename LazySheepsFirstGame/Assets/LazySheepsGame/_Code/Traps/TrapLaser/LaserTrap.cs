@@ -1,16 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class LaserTrap : MonoBehaviour
+using com.LazyGames;
+public class LaserTrap : StateMachine<TrapsStates>
 {
-    
-    
+   
 }
 
-public enum LaserTrapState
-{
-    Innactive,
-    Active,
-    Triggered
-}
