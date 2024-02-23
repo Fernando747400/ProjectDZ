@@ -27,7 +27,7 @@ namespace com.LazyGames.Dz.Ai
         {
             foreach (var child in children)
             {
-
+                Attach(child);
             }
         }
 

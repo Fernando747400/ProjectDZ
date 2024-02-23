@@ -16,6 +16,7 @@ namespace com.LazyGames.DZ
         public bool skittish;
         
         [Header("Movement Variables")]
+        public float patrolSpeed = 2f;
         public float baseSpeed = 2f;
         public float alertSpeed = 4f;
         public float aggroSpeed = 6f;
