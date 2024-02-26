@@ -2,15 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserTrap : MonoBehaviour
+public class LaserTrap : TrapsBase
 {
-    
-    
-}
-
-public enum LaserTrapState
-{
-    Innactive,
-    Active,
-    Triggered
+    public override void ActivateTrap()
+    {
+        base.ActivateTrap();
+    }
+    public override void DeactivateTrap()
+    {
+        base.DeactivateTrap();
+    }
+    public override void ResetTrap()
+    {
+        base.ResetTrap();
+    }
+    public override void TriggerTrap()
+    {
+        base.TriggerTrap();
+    }
+    public override void DestroyTrap()
+    {
+        base.DestroyTrap();
+    }
+    public override void DisableTrap()
+    {
+        base.DisableTrap();
+    }
 }
