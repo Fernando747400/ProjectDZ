@@ -20,6 +20,8 @@ public class TrapsBase : StateManager<TrapsStates,TrapsBase>
         States.Add(TrapsStates.Destroyed, new TrapDestroyedState(TrapsStates.Destroyed, this));
         
         CurrentState = States[initialState];
+        Debug.Log("Trap State = ".SetColor("#FED744") + CurrentState);
+        
     }
     
     public virtual void ActivateTrap()
